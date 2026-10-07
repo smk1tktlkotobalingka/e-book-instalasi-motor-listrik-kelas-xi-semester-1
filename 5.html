@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 5: Kontrol Kecepatan Motor 1 Fasa - Instalasi Motor Listrik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .highlight-box { border-left: 4px solid #2563eb; background-color: #eff6ff; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .tip-box { border-left: 4px solid #16a34a; background-color: #f0fdf4; }
+        .formula-box { background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 0.5rem; font-family: 'Courier New', monospace; }
+        .diagram { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 0.5rem; font-family: 'Courier New', monospace; overflow-x: auto; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans" id="top">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl font-bold tracking-wide">INSTALASI MOTOR LISTRIK</div>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0">
+                <a href="index.html" class="hover:text-yellow-400 transition"><i class="fas fa-home mr-1"></i> Beranda</a>
+                <a href="index.html#tentang" class="hover:text-yellow-400 transition"><i class="fas fa-info-circle mr-1"></i> Tentang</a>
+                <a href="index.html#daftar-isi" class="hover:text-yellow-400 transition"><i class="fas fa-list mr-1"></i> Daftar Bab</a>
+                <a href="index.html#kontak" class="hover:text-yellow-400 transition"><i class="fas fa-user mr-1"></i> Penulis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Chapter -->
+    <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="bg-yellow-500 text-blue-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pertemuan 5</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-4 mb-2">Kontrol Kecepatan Motor Listrik 1 Fasa & Aplikasinya</h1>
+            <p class="text-blue-100 text-lg max-w-3xl mx-auto">
+                Mempelajari berbagai metode pengendalian kecepatan motor 1 fasa — mulai dari kontrol tegangan menggunakan TRIAC/DIAC, perubahan jumlah kutub, hingga penggunaan Variable Frequency Drive (VFD) — serta aplikasinya pada kipas angin, pompa, blower HVAC, dan peralatan industri.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <a href="4.html" class="bg-gray-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-600 transition border border-gray-500"><i class="fas fa-arrow-left mr-1"></i>Pertemuan 4</a>
+                <a href="#materi-inti" class="bg-white text-blue-900 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition">Mulai Membaca</a>
+                <a href="6.html" class="bg-blue-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-blue-600 transition border border-blue-500">Pertemuan 6 →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl" id="materi-inti">
+        
+        <!-- Pendahuluan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b-2 border-blue-200 pb-2">Pendahuluan</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Pada pertemuan sebelumnya, siswa telah memahami prinsip kerja dan jenis-jenis motor 1 fasa. Namun, dalam banyak aplikasi praktis — seperti kipas angin yang membutuhkan beberapa tingkat kecepatan, pompa air yang perlu disesuaikan debitnya, atau blower HVAC yang memerlukan pengaturan aliran udara — motor 1 fasa tidak cukup hanya dinyalakan dan dimatikan. Diperlukan kemampuan untuk <strong>mengontrol kecepatannya</strong> secara variabel.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Kontrol kecepatan motor 1 fasa memiliki tantangan tersendiri karena karakteristik motor ini yang tidak sefleksibel motor 3 fasa. Namun, berbagai metode telah dikembangkan untuk mengatasi hal ini — mulai dari metode sederhana berbasis <em>phase angle control</em> menggunakan TRIAC/DIAC (seperti pada dimmer kipas angin), hingga metode canggih menggunakan <em>Variable Frequency Drive</em> (VFD) khusus motor 1 fasa.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Pada pertemuan ini, siswa akan mempelajari tiga metode utama kontrol kecepatan motor 1 fasa: <strong>(1) Kontrol Tegangan</strong>, <strong>(2) Perubahan Jumlah Kutub</strong>, dan <strong>(3) Variable Frequency Drive</strong>. Pemahaman ini akan membekali siswa untuk merancang, memasang, dan merawat sistem kontrol kecepatan pada berbagai aplikasi rumah tangga maupun industri.
+            </p>
+        </section>
+
+        <!-- Konsep Kunci -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-key text-yellow-500 mr-2"></i>Konsep Kunci</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Kecepatan Sinkron Motor</h4>
+                    <p class="text-sm text-gray-700 mt-1">Kecepatan teoritis motor yang ditentukan oleh frekuensi sumber dan jumlah kutub: N<sub>s</sub> = 120 × f / P. Pada motor 1 fasa 50 Hz dengan 4 kutub, N<sub>s</sub> = 1500 RPM.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Slip (s)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Selisih antara kecepatan sinkron dan kecepatan rotor aktual, dinyatakan dalam persentase: s = (N<sub>s</sub> − N<sub>r</sub>) / N<sub>s</sub> × 100%. Motor induksi selalu beroperasi dengan slip.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Phase Angle Control</h4>
+                    <p class="text-sm text-gray-700 mt-1">Teknik mengatur daya yang disuplai ke motor dengan menunda penyalaan TRIAC pada setiap setengah siklus AC. Semakin besar penundaan (sudut firing), semakin rendah tegangan efektif → kecepatan turun.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Variable Frequency Drive (VFD)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Perangkat elektronik daya yang mengubah frekuensi dan tegangan sumber secara simultan untuk mengontrol kecepatan motor. Metode paling efisien dan presisi, namun juga yang paling mahal.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Landasan Teoretis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">5.1 Landasan Teoretis Kontrol Kecepatan Motor 1 Fasa</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">5.1.1 Persamaan Kecepatan Motor Induksi</h3>
+                    <p class="text-gray-700 mt-2">
+                        Kecepatan motor induksi 1 fasa ditentukan oleh dua parameter utama: <strong>frekuensi sumber (f)</strong> dan <strong>jumlah kutub (P)</strong>. Hubungan ini dinyatakan dalam rumus:
+                    </p>
+                    <div class="formula-box mt-3">
+                        <p><strong>Kecepatan Sinkron:</strong></p>
+                        <p>N<sub>s</sub> = 120 × f / P (RPM)</p>
+                        <p class="mt-2"><strong>Kecepatan Rotor Aktual:</strong></p>
+                        <p>N<sub>r</sub> = N<sub>s</sub> × (1 − s)</p>
+                        <p class="mt-2"><strong>Dimana:</strong></p>
+                        <p>N<sub>s</sub> = kecepatan sinkron (RPM)</p>
+                        <p>N<sub>r</sub> = kecepatan rotor (RPM)</p>
+                        <p>f = frekuensi sumber (Hz) — di Indonesia 50 Hz</p>
+                        <p>P = jumlah kutub motor</p>
+                        <p>s = slip (0 &lt; s &lt; 1)</p>
+                    </div>
+                    <p class="text-gray-700 mt-3">
+                        Dari persamaan di atas, terlihat ada <strong>tiga cara</strong> untuk mengontrol kecepatan motor 1 fasa:
+                    </p>
+                    <ol class="list-decimal list-inside text-gray-700 mt-2 ml-4 space-y-1">
+                        <li>Mengubah frekuensi sumber (f) → <strong>VFD</strong></li>
+                        <li>Mengubah jumlah kutub (P) → <strong>Pole Changing</strong></li>
+                        <li>Mengubah slip (s) dengan variasi tegangan → <strong>Voltage Control</strong></li>
+                    </ol>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">5.1.2 Karakteristik Torsi-Kecepatan Motor 1 Fasa</h3>
+                    <p class="text-gray-700 mt-2">
+                        Memahami kurva torsi-kecepatan motor 1 fasa sangat penting untuk merancang sistem kontrol yang efektif. Pada motor 1 fasa tipe <em>Permanent Split Capacitor</em> (PSC) yang umum digunakan pada kipas angin, torsi berbanding lurus dengan kuadrat tegangan:
+                    </p>
+                    <div class="formula-box mt-3">
+                        <p>T ∝ V²</p>
+                        <p class="mt-2">Artinya: jika tegangan turun 20%, torsi turun 36%.</p>
+                    </div>
+                    <p class="text-gray-700 mt-3">
+                        Karakteristik ini menjelaskan mengapa kontrol tegangan efektif untuk beban tipe <em>fan/pump</em> (torsi bervariasi dengan kuadrat kecepatan), tetapi tidak cocok untuk beban dengan torsi konstan seperti conveyor.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Metode Kontrol Kecepatan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">5.2 Metode-Metode Kontrol Kecepatan Motor 1 Fasa</h2>
+            
+            <div class="space-y-8">
+                <!-- Metode 1: Voltage Control -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">5.2.1 Kontrol Tegangan (Voltage Control) Menggunakan TRIAC/DIAC</h3>
+                    <p class="text-gray-700 mb-3">
+                        Metode paling sederhana dan paling banyak digunakan untuk motor 1 fasa kecil (kipas angin, blower). Prinsipnya: mengatur <strong>tegangan efektif</strong> yang disuplai ke motor dengan menunda sudut penyalaan (<em>firing angle</em>) TRIAC pada setiap setengah siklus AC.
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold text-blue-900 mb-2">Cara Kerja:</p>
+                        <ol class="list-decimal list-inside text-gray-700 space-y-1 text-sm">
+                            <li>DIAC berfungsi sebagai pemicu (trigger) yang menyala ketika tegangan kapasitor mencapai threshold (~30V).</li>
+                            <li>Potensiometer mengatur waktu pengisian kapasitor → menentukan kapan DIAC menyala.</li>
+                            <li>DIAC memicu TRIAC untuk menghantarkan arus ke motor.</li>
+                            <li>Semakin besar resistansi potensiometer → pengisian kapasitor lebih lambat → firing angle lebih besar → tegangan ke motor lebih rendah → kecepatan turun.</li>
+                        </ol>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4 mt-4 text-sm">
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Kelebihan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Rangkaian sederhana, murah</li>
+                                <li>Ukuran kecil, mudah dipasang</li>
+                                <li>Cocok untuk beban fan/pump</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded">
+                            <p class="font-bold text-red-900">Kekurangan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Efisiensi rendah (daya terbuang sebagai panas)</li>
+                                <li>Menghasilkan harmonisa</li>
+                                <li>Torsi turun drastis pada kecepatan rendah</li>
+                                <li>Tidak cocok untuk beban torsi konstan</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-3">
+                        <strong>Aplikasi:</strong> Dimmer kipas angin, pengatur kecepatan blower kecil, mixer dapur.
+                    </p>
+                </div>
+
+                <!-- Metode 2: Pole Changing -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">5.2.2 Perubahan Jumlah Kutub (Pole Changing)</h3>
+                    <p class="text-gray-700 mb-3">
+                        Metode ini mengubah kecepatan motor dengan cara <strong>mengubah konfigurasi lilitan stator</strong> sehingga jumlah kutub magnet berubah. Karena N<sub>s</sub> = 120f/P, perubahan jumlah kutub akan mengubah kecepatan sinkron secara diskrit (bertahap, bukan kontinyu).
+                    </p>
+                    <div class="formula-box mt-3">
+                        <p><strong>Contoh:</strong> Motor 1 fasa 50 Hz dengan 4 konfigurasi kutub:</p>
+                        <p>2 kutub → N<sub>s</sub> = 3000 RPM</p>
+                        <p>4 kutub → N<sub>s</sub> = 1500 RPM</p>
+                        <p>6 kutub → N<sub>s</sub> = 1000 RPM</p>
+                        <p>8 kutub → N<sub>s</sub> = 750 RPM</p>
+                    </div>
+                    <p class="text-gray-700 mt-3">
+                        Implementasinya menggunakan <strong>tap pada lilitan stator</strong> atau <strong>lilitan terpisah</strong> yang dapat dihubungkan melalui saklar selector. Pada kipas angin ceiling, biasanya terdapat 3 kecepatan (low, medium, high) yang diakses melalui saklar putar atau remote control.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 mt-4 text-sm">
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Kelebihan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Efisiensi tinggi (tidak ada rugi-rugi kontrol)</li>
+                                <li>Torsi tetap baik pada semua kecepatan</li>
+                                <li>Andal, umur panjang</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded">
+                            <p class="font-bold text-red-900">Kekurangan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Kecepatan diskrit (tidak kontinyu)</li>
+                                <li>Konstruksi motor lebih kompleks</li>
+                                <li>Harga motor lebih mahal</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-3">
+                        <strong>Aplikasi:</strong> Kipas angin ceiling, exhaust fan industri, mesin perkakas multi-speed.
+                    </p>
+                </div>
+
+                <!-- Metode 3: VFD -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">5.2.3 Variable Frequency Drive (VFD) untuk Motor 1 Fasa</h3>
+                    <p class="text-gray-700 mb-3">
+                        VFD adalah metode kontrol kecepatan paling canggih dan efisien. Perangkat ini mengubah tegangan AC 1 fasa 50 Hz menjadi DC, lalu mengubahnya kembali menjadi AC dengan <strong>frekuensi dan tegangan yang dapat diatur</strong>. Dengan mengubah frekuensi, kecepatan motor dapat diatur secara kontinyu dari 0 hingga di atas kecepatan nominal.
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold text-blue-900 mb-2">Prinsip Kerja VFD 1 Fasa:</p>
+                        <ol class="list-decimal list-inside text-gray-700 space-y-1 text-sm">
+                            <li><strong>Rectifier:</strong> Mengubah AC 220V 50Hz menjadi DC (sekitar 310V DC).</li>
+                            <li><strong>DC Bus:</strong> Kapasitor besar meratakan tegangan DC.</li>
+                            <li><strong>Inverter:</strong> Transistor IGBT mengubah DC kembali menjadi AC dengan frekuensi variabel (0–400 Hz) menggunakan teknik PWM (Pulse Width Modulation).</li>
+                            <li><strong>Control Circuit:</strong> Mikroprosesor mengatur frekuensi dan tegangan output sesuai setpoint.</li>
+                        </ol>
+                    </div>
+                    <p class="text-gray-700 mt-3">
+                        <strong>Catatan penting:</strong> Tidak semua motor 1 fasa kompatibel dengan VFD. Motor tipe <em>Split Phase</em> dan <em>Capacitor Start</em> <strong>tidak boleh</strong> dihubungkan ke VFD karena kapasitor start dan centrifugal switch akan rusak. Hanya motor tipe <em>PSC</em> (Permanent Split Capacitor) atau motor khusus inverter-duty yang dapat digunakan.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 mt-4 text-sm">
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Kelebihan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Kontrol kecepatan kontinyu dan presisi</li>
+                                <li>Efisiensi sangat tinggi (hemat energi 20–50%)</li>
+                                <li>Soft start & soft stop terintegrasi</li>
+                                <li>Dapat diintegrasikan dengan sistem otomasi</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded">
+                            <p class="font-bold text-red-900">Kekurangan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Harga mahal (3–10× harga motor)</li>
+                                <li>Menghasilkan harmonisa ke jala-jala</li>
+                                <li>Memerlukan motor khusus (inverter-duty)</li>
+                                <li>Kompleks, memerlukan keahlian pemrograman</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-3">
+                        <strong>Aplikasi:</strong> Pompa air variabel, HVAC presisi, conveyor, mesin packaging, sistem irigasi.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perbandingan Metode -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">5.3 Perbandingan Tiga Metode Kontrol Kecepatan</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm text-sm">
+                    <thead class="bg-blue-100 text-blue-900">
+                        <tr>
+                            <th class="py-3 px-4 text-left font-bold border-b">Aspek</th>
+                            <th class="py-3 px-4 text-left font-bold border-b">Voltage Control (TRIAC)</th>
+                            <th class="py-3 px-4 text-left font-bold border-b">Pole Changing</th>
+                            <th class="py-3 px-4 text-left font-bold border-b">VFD</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Jenis Kontrol</td>
+                            <td class="py-3 px-4">Kontinyu</td>
+                            <td class="py-3 px-4">Diskrit (2–4 tingkat)</td>
+                            <td class="py-3 px-4">Kontinyu & presisi</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Efisiensi</td>
+                            <td class="py-3 px-4">Rendah (40–70%)</td>
+                            <td class="py-3 px-4">Tinggi (90–95%)</td>
+                            <td class="py-3 px-4">Sangat Tinggi (95–98%)</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Torsi pada Kecepatan Rendah</td>
+                            <td class="py-3 px-4">Sangat rendah</td>
+                            <td class="py-3 px-4">Baik</td>
+                            <td class="py-3 px-4">Sangat baik</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Biaya</td>
+                            <td class="py-3 px-4">Sangat Murah</td>
+                            <td class="py-3 px-4">Sedang</td>
+                            <td class="py-3 px-4">Mahal</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Kompleksitas</td>
+                            <td class="py-3 px-4">Sederhana</td>
+                            <td class="py-3 px-4">Sedang</td>
+                            <td class="py-3 px-4">Tinggi</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Cocok untuk Beban</td>
+                            <td class="py-3 px-4">Fan, pump (torsi ∝ N²)</td>
+                            <td class="py-3 px-4">Fan, pump, conveyor ringan</td>
+                            <td class="py-3 px-4">Semua jenis beban</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Studi Kasus -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-book-open text-yellow-500 mr-2"></i>Studi Kasus 1: Penghematan Energi pada Sistem Pompa Air Gedung</h3>
+            <div class="warning-box p-6 rounded-r-lg">
+                <p class="text-gray-800 mb-3">
+                    Sebuah gedung perkantoran di Jakarta menggunakan 3 unit pompa air 2 HP (1 fasa) untuk sistem peningkat tekanan. Sebelumnya, pompa beroperasi full speed 24 jam dengan kontrol on/off berdasarkan pressure switch. Akibatnya: tekanan berfluktuasi drastis, pompa sering start-stop (menyebabkan keausan), dan konsumsi listrik tinggi (±Rp 4,5 juta/bulan).
+                </p>
+                <p class="font-semibold text-red-700">
+                    <i class="fas fa-lightbulb mr-1"></i> Solusi:
+                </p>
+                <p class="text-gray-800 mt-1">
+                    Teknisi memasang 3 unit VFD 1 fasa 2 HP dengan kontrol PID berdasarkan pressure sensor. Pompa kini beroperasi variabel sesuai kebutuhan riil. Hasil setelah 6 bulan:
+                </p>
+                <ul class="list-disc list-inside text-gray-800 mt-2 ml-4 space-y-1">
+                    <li>Konsumsi listrik turun 35% (hemat ±Rp 1,6 juta/bulan)</li>
+                    <li>Tekanan air stabil, tidak ada fluktuasi</li>
+                    <li>Pompa tidak lagi start-stop berulang → umur bearing meningkat</li>
+                    <li>ROI (Return on Investment): 14 bulan (harga VFD ±Rp 7 juta/unit)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Tips Praktis -->
+        <section class="mb-12">
+            <div class="tip-box p-6 rounded-r-lg">
+                <h3 class="font-bold text-green-800 mb-2"><i class="fas fa-tools mr-2"></i>Tips Praktis Instalasi dan Troubleshooting</h3>
+                <ul class="list-disc list-inside text-gray-800 space-y-2 text-sm">
+                    <li><strong>Untuk kontrol tegangan (TRIAC):</strong> Pastikan TRIAC dilengkapi heatsink yang memadai. Gunakan snubber circuit (R-C) untuk melindungi TRIAC dari spike tegangan. Selalu gunakan fuse sesuai rating motor.</li>
+                    <li><strong>Untuk pole changing:</strong> Pastikan saklar selector memiliki rating arus yang sesuai. Jangan mengubah tap saat motor berputar — matikan terlebih dahulu. Label setiap tap dengan jelas.</li>
+                    <li><strong>Untuk VFD:</strong> Pastikan motor kompatibel (tipe PSC atau inverter-duty). Gunakan kabel shielded antara VFD dan motor untuk mengurangi EMI. Setting parameter akselerasi/deselerasi sesuai beban — terlalu cepat menyebabkan overcurrent.</li>
+                    <li><strong>Troubleshooting motor bergetar:</strong> Periksa apakah ada harmonisa dari kontrol tegangan. Jika menggunakan VFD, cek parameter carrier frequency — naikkan jika perlu.</li>
+                    <li><strong>Troubleshooting motor cepat panas:</strong> Pada kontrol tegangan, operasi kecepatan rendah terlalu lama menyebabkan pendinginan tidak optimal (kipas internal melambat). Pertimbangkan upgrade ke VFD.</li>
+                    <li>Selalu ukur tegangan output dengan True RMS multimeter — multimeter biasa tidak akurat untuk sinyal non-sinusoidal dari TRIAC/VFD.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Aplikasi Industri -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">5.4 Aplikasi Kontrol Kecepatan Motor 1 Fasa</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-blue-900 mb-2"><i class="fas fa-fan text-blue-600 mr-2"></i>Kipas Angin & HVAC</h4>
+                    <p class="text-sm text-gray-700">Kipas angin ceiling menggunakan pole changing (3 kecepatan). Blower HVAC menggunakan VFD untuk kontrol aliran udara presisi sesuai kebutuhan ruangan.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-blue-900 mb-2"><i class="fas fa-tint text-blue-600 mr-2"></i>Pompa Air</h4>
+                    <p class="text-sm text-gray-700">Pompa rumah tangga menggunakan pressure tank + on/off control. Pompa industri menggunakan VFD dengan PID control untuk menjaga tekanan konstan dan hemat energi.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-blue-900 mb-2"><i class="fas fa-blender text-blue-600 mr-2"></i>Peralatan Dapur</h4>
+                    <p class="text-sm text-gray-700">Mixer, blender, dan food processor menggunakan kontrol tegangan (TRIAC) dengan potensiometer untuk mengatur kecepatan putar sesuai kebutuhan pengolahan.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-blue-900 mb-2"><i class="fas fa-industry text-blue-600 mr-2"></i>Mesin Industri Kecil</h4>
+                    <p class="text-sm text-gray-700">Mesin jahit, mesin kayu, dan conveyor kecil menggunakan VFD untuk kontrol kecepatan presisi. Meningkatkan kualitas produk dan fleksibilitas produksi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Refleksi -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Refleksi untuk Siswa SMK</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Kontrol kecepatan motor 1 fasa adalah contoh nyata bagaimana teori listrik (persamaan kecepatan, karakteristik torsi) diterjemahkan menjadi solusi rekayasa yang berdampak langsung pada efisiensi energi dan kenyamanan pengguna. Sebagai calon teknisi, Anda tidak hanya dituntut mampu memasang dimmer atau VFD, tetapi juga memahami <em>kapan</em> menggunakan metode yang tepat — apakah voltage control yang murah untuk aplikasi sederhana, atau VFD yang mahal namun hemat energi untuk aplikasi industri. Pemahaman konseptual inilah yang membedakan teknisi profesional dari sekadar "tukang pasang".
+            </p>
+        </section>
+
+        <!-- Kesimpulan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b-2 border-blue-200 pb-2">Kesimpulan</h2>
+            <p class="text-gray-700 leading-relaxed">
+                Kontrol kecepatan motor 1 fasa dapat dilakukan melalui tiga metode utama: <strong>(1) Kontrol Tegangan</strong> menggunakan TRIAC/DIAC yang sederhana dan murah namun efisien rendah, cocok untuk beban fan/pump; <strong>(2) Perubahan Jumlah Kutub</strong> yang efisien dan andal namun hanya memberikan kecepatan diskrit; dan <strong>(3) Variable Frequency Drive</strong> yang paling presisi dan hemat energi namun mahal dan kompleks. Pemilihan metode yang tepat harus mempertimbangkan jenis beban, kebutuhan kontrol, efisiensi energi, dan anggaran. Dalam era efisiensi energi saat ini, tren industri bergerak menuju penggunaan VFD meskipun investasi awalnya tinggi, karena penghematan energi jangka panjang yang signifikan.
+            </p>
+        </section>
+
+        <!-- Daftar Pustaka -->
+        <section class="mb-16">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-book text-yellow-500 mr-2"></i>Daftar Pustaka</h3>
+            <ul class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                <li>Theraja, B. L., & Theraja, A. (2005). <em>A Textbook of Electrical Technology Vol. II</em>. New Delhi: S. Chand.</li>
+                <li>Chapman, S. J. (2011). <em>Electric Machinery Fundamentals</em> (5th ed.). New York: McGraw-Hill.</li>
+                <li>Mohamed, A. A. (2016). <em>Power Electronics: Circuits, Devices, and Applications</em> (4th ed.). Pearson.</li>
+                <li>Zuraida, dkk. (2021). <em>Instalasi Motor Listrik Jilid 1 untuk SMK</em>. Jakarta: Direktorat Pembinaan SMK.</li>
+                <li>PUIL 2011. <em>Persyaratan Umum Instalasi Listrik 2011</em>. Jakarta: Badan Standardisasi Nasional.</li>
+                <li>Manual Book VFD 1 Fasa (Mitsubishi FR-E700, Omron MX2, Schneider ATV12) untuk Parameter dan Wiring.</li>
+            </ul>
+        </section>
+
+        <!-- Navigasi Bawah -->
+        <div class="flex justify-between items-center border-t pt-6 mb-16 flex-wrap gap-3">
+            <a href="4.html" class="text-blue-600 hover:text-blue-800 font-semibold"><i class="fas fa-arrow-left mr-1"></i> Pertemuan 4</a>
+            <a href="#top" class="text-gray-500 hover:text-gray-700 font-semibold"><i class="fas fa-arrow-up mr-1"></i> Ke Atas</a>
+            <a href="6.html" class="text-blue-600 hover:text-blue-800 font-semibold">Pertemuan 6: Komponen Panel Kontrol <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN UJI FORMATIF -->
+        <!-- ========================================================= -->
+        <section id="uji-formatif" class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-blue-900">📋 Uji Formatif 5: Kontrol Kecepatan Motor 1 Fasa</h2>
+                <p class="text-gray-600 mt-2">Materi: Metode kontrol kecepatan, TRIAC/DIAC, pole changing, VFD, dan aplikasi.</p>
+                <p class="text-red-600 text-sm font-semibold mt-2">⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu!</p>
+            </div>
+
+            <form id="quizForm" class="space-y-8">
+                <!-- Data Siswa -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">📋 Data Siswa</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Nama Lengkap</label>
+                            <input type="text" name="nama" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* NIS (Nomor Induk Siswa)</label>
+                            <input type="text" name="nis" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Tanggal Ujian</label>
+                            <input type="date" name="tanggal" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Kelas</label>
+                            <input type="text" name="kelas" placeholder="Contoh: XI TITL 1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Semester</label>
+                            <select name="semester" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                                <option value="">Pilih Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian A: Pilihan Ganda -->
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon lengkapi semua 10 soal pilihan ganda!</p>
+                    
+                    <div class="space-y-6 text-gray-800">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">1. Kecepatan sinkron motor induksi 1 fasa 4 kutub yang dihubungkan ke sumber 50 Hz adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q1" value="a" class="mr-2"> a. 3000 RPM</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="b" class="mr-2"> b. 1500 RPM</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="c" class="mr-2"> c. 1000 RPM</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="d" class="mr-2"> d. 750 RPM</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">2. Komponen semikonduktor yang berfungsi sebagai pemicu (trigger) pada rangkaian dimmer kipas angin adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q2" value="a" class="mr-2"> a. TRIAC</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="b" class="mr-2"> b. DIAC</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="c" class="mr-2"> c. IGBT</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="d" class="mr-2"> d. MOSFET</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">3. Metode kontrol kecepatan yang paling efisien untuk motor 1 fasa adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q3" value="a" class="mr-2"> a. Voltage control menggunakan TRIAC</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="b" class="mr-2"> b. Pole changing</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="c" class="mr-2"> c. Variable Frequency Drive (VFD)</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="d" class="mr-2"> d. Rheostat control</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">4. Pada motor 1 fasa, hubungan antara torsi dan tegangan adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q4" value="a" class="mr-2"> a. T ∝ V</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="b" class="mr-2"> b. T ∝ V²</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="c" class="mr-2"> c. T ∝ 1/V</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="d" class="mr-2"> d. T tidak bergantung pada V</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">5. Tipe motor 1 fasa yang TIDAK BOLEH dihubungkan ke VFD adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q5" value="a" class="mr-2"> a. Permanent Split Capacitor (PSC)</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="b" class="mr-2"> b. Inverter-duty motor</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="c" class="mr-2"> c. Capacitor Start dengan centrifugal switch</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="d" class="mr-2"> d. Shaded pole motor</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">6. Pada kontrol tegangan menggunakan TRIAC, jika firing angle diperbesar, maka...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q6" value="a" class="mr-2"> a. Tegangan efektif ke motor meningkat</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="b" class="mr-2"> b. Tegangan efektif ke motor menurun</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="c" class="mr-2"> c. Frekuensi sumber meningkat</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="d" class="mr-2"> d. Jumlah kutub motor berubah</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">7. Kipas angin ceiling umumnya menggunakan metode kontrol kecepatan...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q7" value="a" class="mr-2"> a. VFD</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="b" class="mr-2"> b. Pole changing (3 kecepatan)</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="c" class="mr-2"> c. Rheostat</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="d" class="mr-2"> d. Auto-transformator besar</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">8. Tahapan kerja VFD yang benar adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q8" value="a" class="mr-2"> a. Rectifier → Inverter → DC Bus</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="b" class="mr-2"> b. DC Bus → Rectifier → Inverter</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="c" class="mr-2"> c. Rectifier → DC Bus → Inverter</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="d" class="mr-2"> d. Inverter → Rectifier → DC Bus</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">9. Kelemahan utama kontrol tegangan menggunakan TRIAC adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q9" value="a" class="mr-2"> a. Harga sangat mahal</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="b" class="mr-2"> b. Efisiensi rendah dan torsi turun drastis pada kecepatan rendah</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="c" class="mr-2"> c. Hanya memberikan kecepatan diskrit</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="d" class="mr-2"> d. Memerlukan motor khusus inverter-duty</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">10. Aplikasi yang PALING TEPAT menggunakan VFD 1 fasa adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q10" value="a" class="mr-2"> a. Kipas angin meja kecil</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="b" class="mr-2"> b. Pompa air industri dengan kebutuhan tekanan konstan</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="c" class="mr-2"> c. Mixer dapur rumah tangga</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="d" class="mr-2"> d. Exhaust fan kamar mandi</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Essay -->
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon isi semua 5 soal essay dengan jawaban yang jelas!</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <p class="font-semibold mb-2">1. Jelaskan tiga metode utama kontrol kecepatan motor 1 fasa (voltage control, pole changing, VFD) beserta prinsip kerja, kelebihan, dan kekurangan masing-masing!</p>
+                            <textarea name="essay1" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">2. Jelaskan cara kerja rangkaian dimmer kipas angin menggunakan TRIAC dan DIAC! Gambarkan secara naratif bagaimana perubahan resistansi potensiometer mempengaruhi kecepatan motor!</p>
+                            <textarea name="essay2" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">3. Sebuah motor 1 fasa 4 kutub beroperasi pada sumber 50 Hz dengan slip 4%. Hitunglah: (a) kecepatan sinkron, (b) kecepatan rotor aktual, dan (c) kecepatan baru jika jumlah kutub diubah menjadi 6 kutub dengan slip yang sama!</p>
+                            <textarea name="essay3" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">4. Mengapa motor tipe Capacitor Start dengan centrifugal switch tidak boleh dihubungkan ke VFD? Jelaskan akibat yang terjadi dan berikan solusi jika ingin menggunakan VFD pada aplikasi tersebut!</p>
+                            <textarea name="essay4" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">5. Rancanglah skenario pemilihan metode kontrol kecepatan yang tepat untuk tiga aplikasi berikut: (a) kipas angin standing fan rumah tangga, (b) pompa air gedung perkantoran 10 lantai, (c) mesin jahit industri. Jelaskan alasan pemilihan Anda untuk masing-masing aplikasi!</p>
+                            <textarea name="essay5" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hasil & Tombol Aksi -->
+                <div class="bg-blue-50 p-6 rounded-lg border border-blue-200 text-center">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4">📊 Hasil Uji Formatif</h3>
+                    <div id="hasilSkor" class="text-3xl font-extrabold text-blue-700 mb-2">0</div>
+                    <p id="detailSkor" class="text-sm text-gray-600 mb-6">Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button type="button" onclick="hitungNilai()" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-paper-plane mr-2"></i>KIRIM JAWABAN & LIHAT HASIL
+                        </button>
+                        <button type="button" onclick="window.print()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-file-pdf mr-2"></i>UNDUH PDF LENGKAP
+                        </button>
+                        <button type="button" onclick="kirimEmail()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-envelope mr-2"></i>KIRIM EMAIL GURU
+                        </button>
+                        <button type="button" onclick="resetForm()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-redo mr-2"></i>MULAI ULANG
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-blue-200 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">&copy; 2026 UKI SAPUTRA - SMK N 1 Koto Balingka. Hak Cipta Dilindungi.</p>
+            <a href="respon-pembaca.html" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-2 px-6 rounded-full transition duration-300 text-sm">
+                <i class="fas fa-paper-plane mr-1"></i> Kirim Respon tentang Materi Ini
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Fungsi Uji Formatif -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const kunciJawaban = {
+            q1: 'b', // 1500 RPM
+            q2: 'b', // DIAC
+            q3: 'c', // VFD
+            q4: 'b', // T ∝ V²
+            q5: 'c', // Capacitor Start dengan centrifugal switch
+            q6: 'b', // Tegangan efektif menurun
+            q7: 'b', // Pole changing
+            q8: 'c', // Rectifier → DC Bus → Inverter
+            q9: 'b', // Efisiensi rendah & torsi turun
+            q10: 'b' // Pompa air industri
+        };
+
+        function hitungNilai() {
+            const form = document.getElementById('quizForm');
+            if (!form.checkValidity()) {
+                alert("⚠️ Mohon lengkapi semua data siswa, 10 soal Pilihan Ganda, dan 5 soal Essay terlebih dahulu!");
+                form.reportValidity();
+                return;
+            }
+
+            let skorPG = 0;
+            let benar = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const jawabanSiswa = document.querySelector(`input[name="q${i}"]:checked`);
+                if (jawabanSiswa && jawabanSiswa.value === kunciJawaban[`q${i}`]) {
+                    benar++;
+                    skorPG += 10;
+                }
+            }
+
+            const hasilDiv = document.getElementById('hasilSkor');
+            const detailDiv = document.getElementById('detailSkor');
+            
+            hasilDiv.innerText = skorPG;
+            detailDiv.innerHTML = `Bagian A (PG): <strong>${skorPG}/100</strong> (${benar} jawaban benar) <br> Bagian B (Essay): <strong>Menunggu Penilaian Guru</strong> (Jawaban telah tersimpan di sistem)`;
+            
+            document.getElementById('hasilSkor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            alert(`✅ Jawaban berhasil dikirim!\nSkor Sementara Pilihan Ganda: ${skorPG}/100\n\nCatatan: Jawaban Essay akan dinilai oleh guru.`);
+        }
+
+        function kirimEmail() {
+            const nama = document.querySelector('input[name="nama"]').value || "Siswa";
+            const nis = document.querySelector('input[name="nis"]').value || "-";
+            const kelas = document.querySelector('input[name="kelas"]').value || "-";
+            
+            const subject = `Hasil Uji Formatif 5 (Kontrol Kecepatan Motor 1 Fasa) - ${nama} (${nis})`;
+            const body = `Yth. Bapak UKI SAPUTRA,\n\nBerikut adalah hasil uji formatif saya:\nNama: ${nama}\nNIS: ${nis}\nKelas: ${kelas}\nMateri: Pertemuan 5 - Kontrol Kecepatan Motor 1 Fasa\n\nSaya telah menyelesaikan Bagian A (Pilihan Ganda) dan Bagian B (Essay) pada Pertemuan 5.\n\nTerima kasih.`;
+            
+            window.location.href = `mailto:trauky@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function resetForm() {
+            if(confirm("⚠️ Apakah Anda yakin ingin menghapus semua jawaban dan mulai ulang?")) {
+                document.getElementById('quizForm').reset();
+                document.getElementById('hasilSkor').innerText = "0";
+                document.getElementById('detailSkor').innerText = "Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

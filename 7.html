@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 7: Teknik Pengkabelan & Perakitan Panel Standar PUIL - Instalasi Motor Listrik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .highlight-box { border-left: 4px solid #2563eb; background-color: #eff6ff; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .tip-box { border-left: 4px solid #16a34a; background-color: #f0fdf4; }
+        .formula-box { background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 0.5rem; font-family: 'Courier New', monospace; }
+        .component-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .component-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans" id="top">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl font-bold tracking-wide">INSTALASI MOTOR LISTRIK</div>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0">
+                <a href="index.html" class="hover:text-yellow-400 transition"><i class="fas fa-home mr-1"></i> Beranda</a>
+                <a href="index.html#tentang" class="hover:text-yellow-400 transition"><i class="fas fa-info-circle mr-1"></i> Tentang</a>
+                <a href="index.html#daftar-isi" class="hover:text-yellow-400 transition"><i class="fas fa-list mr-1"></i> Daftar Bab</a>
+                <a href="index.html#kontak" class="hover:text-yellow-400 transition"><i class="fas fa-user mr-1"></i> Penulis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Chapter -->
+    <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="bg-yellow-500 text-blue-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pertemuan 7</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-4 mb-2">Teknik Pengkabelan & Perakitan Panel Kontrol Standar PUIL</h1>
+            <p class="text-blue-100 text-lg max-w-3xl mx-auto">
+                Mempelajari teknik pengkabelan (wiring) yang benar sesuai standar PUIL 2011, pemilihan jenis dan ukuran kabel, teknik terminasi, tata letak komponen, labeling, grounding panel, serta prosedur uji coba dan K3 dalam perakitan panel kontrol motor listrik yang aman dan andal.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <a href="6.html" class="bg-gray-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-600 transition border border-gray-500"><i class="fas fa-arrow-left mr-1"></i>Pertemuan 6</a>
+                <a href="#materi-inti" class="bg-white text-blue-900 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition">Mulai Membaca</a>
+                <a href="8.html" class="bg-blue-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-blue-600 transition border border-blue-500">Pertemuan 8 (UTS) →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl" id="materi-inti">
+        
+        <!-- Pendahuluan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b-2 border-blue-200 pb-2">Pendahuluan</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Pada pertemuan sebelumnya, siswa telah mengenal komponen-komponen utama panel kontrol motor listrik. Namun, memiliki komponen yang tepat saja tidak cukup — <strong>teknik pengkabelan dan perakitan yang benar</strong> sama pentingnya dengan pemilihan komponen itu sendiri. Sebuah panel yang dirakit dengan kabel yang salah ukuran, terminasi yang longgar, atau tata letak yang tidak sistematis akan menimbulkan masalah serius: panas berlebih, hubung singkat, kegagalan operasi, hingga kebakaran.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Di Indonesia, seluruh instalasi listrik — termasuk panel kontrol motor — wajib memenuhi standar <strong>PUIL 2011 (Persyaratan Umum Instalasi Listrik)</strong>. Standar ini mengatur segala hal mulai dari pemilihan kabel, ukuran minimum, teknik pemasangan, grounding, hingga pengujian. Kepatuhan terhadap PUIL bukan hanya kewajiban hukum, tetapi juga jaminan keselamatan bagi operator dan keandalan sistem dalam jangka panjang.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Pada pertemuan ini, siswa akan mempelajari secara komprehensif teknik pengkabelan panel kontrol: mulai dari pemilihan jenis dan ukuran kabel, teknik terminasi yang benar, tata letak komponen pada din rail dan ducting, sistem labeling yang sistematis, instalasi grounding panel, hingga prosedur uji coba (commissioning) sebelum panel di-energize. Pemahaman ini akan membekali siswa untuk merakit panel kontrol yang tidak hanya berfungsi, tetapi juga aman, rapi, dan sesuai standar industri.
+            </p>
+        </section>
+
+        <!-- Konsep Kunci -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-key text-yellow-500 mr-2"></i>Konsep Kunci</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">PUIL 2011</h4>
+                    <p class="text-sm text-gray-700 mt-1">Persyaratan Umum Instalasi Listrik 2011 — standar nasional Indonesia yang mengatur seluruh aspek instalasi listrik untuk menjamin keselamatan, keandalan, dan efisiensi. Wajib dipatuhi oleh setiap instalasi listrik di Indonesia.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Kabel Daya vs Kabel Kontrol</h4>
+                    <p class="text-sm text-gray-700 mt-1"><strong>Kabel Daya:</strong> Membawa arus besar dari sumber ke motor (ukuran besar, isolasi tebal). <strong>Kabel Kontrol:</strong> Membawa arus kecil untuk logika kendali (ukuran kecil, fleksibel). Keduanya harus dipisahkan untuk menghindari interferensi.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Terminasi Kabel</h4>
+                    <p class="text-sm text-gray-700 mt-1">Proses menyambungkan ujung kabel ke terminal komponen. Teknik yang benar: crimping dengan ferrule (untuk kabel serabut), soldering, atau screw terminal. Terminasi yang buruk = kontak resistif tinggi = panas berlebih = kebakaran.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Grounding Panel</h4>
+                    <p class="text-sm text-gray-700 mt-1">Sistem pentanahan yang menghubungkan semua bagian logam panel ke bumi. Berfungsi melindungi operator dari sengatan listrik akibat kebocoran isolasi dan menyediakan jalur aman bagi arus gangguan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Landasan Teoretis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">7.1 Landasan Teoretis Pengkabelan Panel</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.1.1 Persyaratan Kabel Menurut PUIL 2011</h3>
+                    <p class="text-gray-700 mt-2">
+                        PUIL 2011 Bab 5 mengatur persyaratan kabel listrik, termasuk:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 ml-4 space-y-1">
+                        <li><strong>Kabel harus memiliki SNI</strong> — hanya kabel bersertifikat SNI yang boleh digunakan.</li>
+                        <li><strong>Ukuran kabel minimum:</strong> 1.5 mm² untuk penerangan, 2.5 mm² untuk stop kontak, dan sesuai perhitungan arus untuk motor.</li>
+                        <li><strong>Isolasi kabel:</strong> Harus sesuai dengan tegangan kerja (300/500V untuk tegangan rendah, 600/1000V untuk tegangan menengah).</li>
+                        <li><strong>Warna kabel:</strong> Fase (R=merah, S=kuning, T=biru), Netral (hitam), Ground (kuning-hijau).</li>
+                        <li><strong>Pemisahan kabel daya dan kontrol:</strong> Harus dipisahkan dengan jarak minimal 10 cm atau menggunakan sekat pemisah.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.1.2 Perhitungan Ukuran Kabel</h3>
+                    <p class="text-gray-700 mt-2">
+                        Ukuran kabel (penampang konduktor) ditentukan berdasarkan <strong>arus yang akan dialirkan</strong> dan <strong>faktor koreksi</strong> (suhu ambient, cara pemasangan). Rumus dasar:
+                    </p>
+                    <div class="formula-box mt-3">
+                        <p><strong>I<sub>z</sub> ≥ I<sub>n</sub> × Faktor Koreksi</p>
+                        <p class="mt-2">Dimana:</p>
+                        <p>I<sub>z</sub> = kapasitas hantar arus kabel (Ampere)</p>
+                        <p>I<sub>n</sub> = arus nominal beban (Ampere)</p>
+                        <p>Faktor Koreksi = suhu, pemasangan dalam duct, dll.</p>
+                    </div>
+                    <p class="text-gray-700 mt-3">
+                        <strong>Contoh:</strong> Motor 3 fasa 5.5 kW, 380V, In = 11A. Dengan faktor koreksi 1.25 (untuk starting motor), arus kabel minimum = 11 × 1.25 = 13.75A. Dari tabel PUIL, kabel NYAF 2.5 mm² memiliki kapasitas 18A → <strong>memenuhi syarat</strong>.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.1.3 Tabel Kapasitas Hantar Arus Kabel (PUIL 2011)</h3>
+                    <div class="overflow-x-auto mt-3">
+                        <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm text-sm">
+                            <thead class="bg-blue-100 text-blue-900">
+                                <tr>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Ukuran Kabel (mm²)</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Kapasitas Hantar Arus (A)</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Aplikasi Khas</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3">1.5</td>
+                                    <td class="py-2 px-3">15</td>
+                                    <td class="py-2 px-3">Rangkaian kontrol, lampu indikator</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3">2.5</td>
+                                    <td class="py-2 px-3">21</td>
+                                    <td class="py-2 px-3">Motor kecil ≤ 4 kW, stop kontak</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3">4.0</td>
+                                    <td class="py-2 px-3">28</td>
+                                    <td class="py-2 px-3">Motor 4–7.5 kW</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3">6.0</td>
+                                    <td class="py-2 px-3">36</td>
+                                    <td class="py-2 px-3">Motor 7.5–11 kW</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3">10</td>
+                                    <td class="py-2 px-3">50</td>
+                                    <td class="py-2 px-3">Motor 11–15 kW</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3">16</td>
+                                    <td class="py-2 px-3">66</td>
+                                    <td class="py-2 px-3">Motor 15–22 kW</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-2 px-3">25</td>
+                                    <td class="py-2 px-3">84</td>
+                                    <td class="py-2 px-3">Motor 22–30 kW</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2">
+                        <strong>Catatan:</strong> Nilai di atas untuk kabel tembaga dengan isolasi PVC, pemasangan dalam udara pada suhu 30°C. Untuk pemasangan dalam duct atau suhu lebih tinggi, diperlukan faktor koreksi.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Jenis-Jenis Kabel -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">7.2 Jenis-Jenis Kabel untuk Panel Kontrol</h2>
+            
+            <div class="space-y-6">
+                <div class="component-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">7.2.1 Kabel NYA (Kawat Tembaga Single Core)</h3>
+                    <p class="text-gray-700 mb-3">
+                        Kabel dengan satu inti tembaga padat (solid), isolasi PVC. Kaku, tidak fleksibel. Biasanya digunakan untuk instalasi tetap dalam pipa conduit atau tanam dalam dinding.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Karakteristik:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Inti: Tembaga padat (solid)</li>
+                                <li>Isolasi: PVC 300/500V</li>
+                                <li>Ukuran: 1.5 – 16 mm²</li>
+                                <li>Sifat: Kaku, tidak fleksibel</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Aplikasi:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Instalasi dalam pipa conduit</li>
+                                <li>Tanam dalam dinding/plafon</li>
+                                <li>Jarang digunakan dalam panel (karena kaku)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">7.2.2 Kabel NYAF (Kawat Tembaga Serabut Fleksibel)</h3>
+                    <p class="text-gray-700 mb-3">
+                        Kabel dengan inti tembaga serabut (stranded), isolasi PVC. <strong>Fleksibel dan mudah dibengkokkan</strong>. Merupakan kabel paling umum digunakan dalam panel kontrol untuk rangkaian daya dan kontrol.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Karakteristik:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Inti: Tembaga serabut (stranded)</li>
+                                <li>Isolasi: PVC 300/500V</li>
+                                <li>Ukuran: 0.5 – 400 mm²</li>
+                                <li>Sifat: Fleksibel, mudah dibengkokkan</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Aplikasi:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Rangkaian daya dalam panel</li>
+                                <li>Rangkaian kontrol</li>
+                                <li>Kabel penghubung antar komponen</li>
+                                <li>Wiring pada din rail</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">7.2.3 Kabel NYY (Kabel Tanah / Outdoor)</h3>
+                    <p class="text-gray-700 mb-3">
+                        Kabel dengan isolasi ganda (inner sheath + outer sheath), tahan terhadap kelembaban dan mekanis. Digunakan untuk instalasi outdoor, tanam dalam tanah, atau lingkungan basah.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Karakteristik:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Isolasi ganda (PVC + PVC)</li>
+                                <li>Tahan air, minyak, bahan kimia</li>
+                                <li>Ukuran: 1.5 – 400 mm²</li>
+                                <li>Tegangan: 0.6/1 kV</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Aplikasi:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Kabel incoming dari sumber ke panel</li>
+                                <li>Instalasi outdoor</li>
+                                <li>Tanam dalam tanah</li>
+                                <li>Lingkungan basah/lembab</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">7.2.4 Kabel NYFGbY (Kabel Baja / Armoured)</h3>
+                    <p class="text-gray-700 mb-3">
+                        Kabel dengan pelindung baja (steel wire armour) di bawah outer sheath. Sangat tahan terhadap gangguan mekanis. Digunakan untuk instalasi industri berat, tanam dalam tanah dengan risiko kerusakan mekanis.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Karakteristik:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Pelindung: Steel wire armour</li>
+                                <li>Isolasi ganda + armour</li>
+                                <li>Sangat tahan mekanis</li>
+                                <li>Tegangan: 0.6/1 kV</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Aplikasi:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Feeders industri berat</li>
+                                <li>Tanam dalam tanah area industri</li>
+                                <li>Area dengan risiko kerusakan mekanis</li>
+                                <li>Instalasi outdoor jarak jauh</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teknik Terminasi -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">7.3 Teknik Terminasi Kabel</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.3.1 Crimping dengan Ferrule (Untuk Kabel Serabut)</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        <strong>Ferrule</strong> (end sleeve) adalah selongsong tembaga/timah yang dipasang di ujung kabel serabut sebelum dimasukkan ke terminal screw. Ferrule mencegah serabut kabel tersebar dan memastikan kontak yang solid.
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold text-blue-900 mb-2">Langkah-langkah Crimping:</p>
+                        <ol class="list-decimal list-inside text-gray-700 space-y-1 text-sm">
+                            <li>Kupas isolasi kabel sepanjang 8–10 mm menggunakan wire stripper.</li>
+                            <li>Pilih ferrule dengan ukuran yang sesuai (warna ferrule menunjukkan ukuran kabel: 0.5mm²=putih, 1.5mm²=merah, 2.5mm²=biru, dst.).</li>
+                            <li>Masukkan serabut kabel ke dalam ferrule hingga ujung kabel menyentuh batas ferrule.</li>
+                            <li>Masukkan ferrule + kabel ke dalam crimping tool.</li>
+                            <li>Tekan crimping tool hingga terdengar "klik" (crimping selesai).</li>
+                            <li>Periksa hasil crimping — ferrule harus terpasang kuat dan tidak mudah lepas.</li>
+                        </ol>
+                    </div>
+                    <div class="warning-box p-4 rounded-r-lg mt-3">
+                        <p class="text-sm text-gray-800">
+                            <strong>⚠️ PERINGATAN:</strong> Jangan pernah memasukkan kabel serabut langsung ke terminal screw tanpa ferrule! Serabut yang tersebar akan menyebabkan kontak tidak sempurna → resistansi tinggi → panas berlebih → risiko kebakaran.
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.3.2 Soldering (Penyolderan)</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Teknik menyambungkan kabel dengan timah solder. Umumnya digunakan untuk kabel kecil (≤ 2.5 mm²) atau koneksi permanen yang tidak akan dibongkar pasang.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Kelebihan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Koneksi permanen dan kuat</li>
+                                <li>Resistansi kontak sangat rendah</li>
+                                <li>Tahan getaran</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded">
+                            <p class="font-bold text-red-900">Kekurangan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Sulit dibongkar untuk maintenance</li>
+                                <li>Memerlukan keterampilan khusus</li>
+                                <li>Tidak cocok untuk terminal screw (bisa merusak terminal)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.3.3 Screw Terminal (Terminal Sekrup)</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Teknik paling umum dalam panel kontrol. Kabel dimasukkan ke terminal dan dikencangkan dengan sekrup. Untuk kabel serabut, <strong>wajib menggunakan ferrule</strong>. Untuk kabel padat (NYA), bisa langsung dimasukkan.
+                    </p>
+                    <div class="tip-box p-4 rounded-r-lg">
+                        <p class="font-semibold text-green-800 mb-2">Tips Pengencangan Screw Terminal:</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                            <li>Gunakan obeng dengan ukuran yang sesuai (Phillips/flat head).</li>
+                            <li>Kencangkan sekrup dengan torsi yang tepat — jangan terlalu longgar (kontak buruk) atau terlalu kencang (merusak terminal).</li>
+                            <li>Tarik kabel setelah dikencangkan untuk memastikan tidak lepas.</li>
+                            <li>Periksa kembali semua terminal setelah 24 jam (karena getaran bisa mengendurkan sekrup).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tata Letak Komponen -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">7.4 Tata Letak Komponen dalam Panel</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.4.1 Prinsip Tata Letak Panel</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Tata letak komponen dalam panel harus memperhatikan aspek <strong>keselamatan, kemudahan akses, dan efisiensi ruang</strong>. Prinsip umum:
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li><strong>Komponen daya di bagian atas:</strong> MCB/MCCB incoming, kontaktor utama, TOR — ditempatkan di area yang tidak mudah dijangkau operator untuk keselamatan.</li>
+                            <li><strong>Komponen kontrol di bagian tengah:</strong> Relay bantu, timer, PLC — mudah diakses untuk maintenance.</li>
+                            <li><strong>Komponen antarmuka di pintu panel:</strong> Push button, selector switch, lampu indikator — di bagian depan untuk kemudahan operasi.</li>
+                            <li><strong>Terminal block di bagian bawah:</strong> Untuk koneksi kabel keluar panel ke motor/sensor — memudahkan wiring.</li>
+                            <li><strong>Pisahkan kabel daya dan kontrol:</strong> Gunakan ducting terpisah atau sekat pemisah untuk menghindari interferensi elektromagnetik.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.4.2 Komponen Pendukung Panel</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="component-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                            <h4 class="font-bold text-blue-900 mb-2"><i class="fas fa-grip-lines text-blue-600 mr-2"></i>Din Rail (Rel mounting)</h4>
+                            <p class="text-sm text-gray-700">Rel logam standar (35mm) untuk memasang komponen panel (MCB, kontaktor, relay, timer). Dipasang horizontal di dalam panel. Komponen diklik ke din rail menggunakan spring clip.</p>
+                        </div>
+                        <div class="component-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                            <h4 class="font-bold text-blue-900 mb-2"><i class="fas fa-stream text-blue-600 mr-2"></i>Ducting (Cable Trunking)</h4>
+                            <p class="text-sm text-gray-700">Saluran plastik berlubang untuk merapikan kabel dalam panel. Kabel dimasukkan ke dalam ducting dan keluar melalui lubang-lubang samping menuju komponen. Memudahkan routing kabel dan menjaga kerapian.</p>
+                        </div>
+                        <div class="component-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                            <h4 class="font-bold text-blue-900 mb-2"><i class="fas fa-th text-blue-600 mr-2"></i>Terminal Block</h4>
+                            <p class="text-sm text-gray-700">Blok terminal untuk menghubungkan kabel dari komponen ke kabel keluar panel. Memudahkan disconnect/reconnect saat maintenance. Dilengkapi label untuk identifikasi.</p>
+                        </div>
+                        <div class="component-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                            <h4 class="font-bold text-blue-900 mb-2"><i class="fas fa-bars text-blue-600 mr-2"></i>Busbar</h4>
+                            <p class="text-sm text-gray-700">Batang tembaga/aluminium untuk distribusi arus besar. Digunakan sebagai bus daya (L1, L2, L3, N, PE) dalam panel. Lebih rapi dan efisien dibanding kabel untuk distribusi multi-cabang.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Labeling dan Marking -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">7.5 Labeling dan Marking Kabel</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.5.1 Pentingnya Labeling</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Sistem labeling yang baik adalah kunci <strong>maintainability</strong> (kemudahan pemeliharaan) panel. Panel yang dilabel dengan benar akan memudahkan troubleshooting, modifikasi, dan penggantian komponen di masa depan. Panel tanpa labeling = mimpi buruk saat maintenance.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.5.2 Sistem Penomoran Kabel</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Setiap kabel dalam panel harus diberi nomor unik sesuai skema diagram. Sistem penomoran umum:
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li><strong>Rangkaian Daya:</strong> Menggunakan huruf L1, L2, L3 (fasa), N (netral), PE (ground). Contoh: L1-1, L1-2 (cabang dari L1).</li>
+                            <li><strong>Rangkaian Kontrol:</strong> Menggunakan angka berurutan. Contoh: 101, 102, 103 (baris 1), 201, 202 (baris 2).</li>
+                            <li><strong>Kabel ke Motor:</strong> Menggunakan kode motor + terminal. Contoh: M1-U, M1-V, M1-W (terminal motor M1).</li>
+                            <li><strong>Kabel Ground:</strong> Selalu menggunakan warna kuning-hijau dan label PE.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.5.3 Teknik Labeling</h3>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Jenis Label:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li><strong>Label Kabel (Cable Marker):</strong> Selongsong plastik dengan cetak nomor, dipasang di ujung kabel.</li>
+                                <li><strong>Label Komponen:</strong> Stiker atau plat nama untuk identifikasi komponen (KM1, Q1, F1, dll.).</li>
+                                <li><strong>Label Terminal:</strong> Stiker kecil untuk terminal block.</li>
+                                <li><strong>Label Peringatan:</strong> "DANGER", "HIGH VOLTAGE", "EARTH CONNECTION".</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Tips Labeling:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Gunakan label printer untuk hasil cetak yang rapi dan tahan lama.</li>
+                                <li>Pasang label di kedua ujung kabel (sumber dan tujuan).</li>
+                                <li>Gunakan font yang jelas dan ukuran yang mudah dibaca.</li>
+                                <li>Label harus tahan panas, minyak, dan bahan kimia.</li>
+                                <li>Dokumentasikan semua label dalam diagram single-line dan wiring diagram.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grounding Panel -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">7.6 Grounding Panel Kontrol</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.6.1 Fungsi Grounding</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Grounding (pentanahan) panel memiliki fungsi kritis:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 ml-4 space-y-1">
+                        <li><strong>Keselamatan operator:</strong> Jika terjadi kebocoran isolasi, arus gangguan akan mengalir ke bumi melalui grounding, bukan melalui tubuh operator.</li>
+                        <li><strong>Proteksi peralatan:</strong> Grounding menyediakan jalur aman bagi arus gangguan sehingga MCB/TOR dapat trip dengan cepat.</li>
+                        <li><strong>Stabilitas tegangan:</strong> Grounding menstabilkan tegangan terhadap bumi dan mengurangi noise elektromagnetik.</li>
+                        <li><strong>Perlindungan petir:</strong> Grounding yang baik membantu mengalirkan arus petir ke bumi.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.6.2 Sistem Grounding Panel</h3>
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li><strong>Ground Bar:</strong> Batang tembaga di dalam panel yang menjadi titik kumpul semua kabel ground.</li>
+                            <li><strong>Kabel Ground:</strong> Semua bagian logam panel (pintu, rangka, backplate) harus dihubungkan ke ground bar menggunakan kabel kuning-hijau.</li>
+                            <li><strong>Grounding Electrode:</strong> Ground bar panel dihubungkan ke electrode grounding (rod/plate) di luar bangunan menggunakan kabel NYY minimal 16 mm².</li>
+                            <li><strong>Tahanan Ground:</strong> Nilai tahanan grounding harus < 5 Ohm (diukur dengan earth tester).</li>
+                        </ol>
+                    </div>
+                    <div class="warning-box p-4 rounded-r-lg mt-3">
+                        <p class="text-sm text-gray-800">
+                            <strong>⚠️ WAJIB:</strong> Setiap pintu panel harus dihubungkan ke rangka panel menggunakan kabel ground fleksibel (braided wire). Ini memastikan pintu yang terbuka tetap ter-grounding dan aman disentuh.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prosedur Uji Coba -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">7.7 Prosedur Uji Coba Panel (Commissioning)</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.7.1 Pemeriksaan Visual (Tanpa Tegangan)</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Sebelum panel di-energize, lakukan pemeriksaan visual menyeluruh:
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li>Periksa semua terminasi kabel — pastikan kencang dan tidak ada serabut yang tersebar.</li>
+                            <li>Periksa warna kabel — pastikan sesuai standar (L1=merah, L2=kuning, L3=biru, N=hitam, PE=kuning-hijau).</li>
+                            <li>Periksa labeling — semua kabel dan komponen harus terlabel dengan benar.</li>
+                            <li>Periksa grounding — semua bagian logam harus ter-grounding.</li>
+                            <li>Periksa jarak clearance — kabel daya dan kontrol harus terpisah.</li>
+                            <li>Periksa tidak ada benda asing (baut, potongan kabel) yang tertinggal di dalam panel.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.7.2 Pengukuran Tahanan Isolasi (Megger Test)</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Gunakan <strong>Megger (Insulation Tester)</strong> untuk mengukur tahanan isolasi kabel dan komponen:
+                    </p>
+                    <div class="formula-box">
+                        <p><strong>Prosedur:</strong></p>
+                        <p>1. Pastikan semua MCB OFF dan tidak ada tegangan.</p>
+                        <p>2. Hubungkan probe Megger antara konduktor dan ground.</p>
+                        <p>3. Set tegangan test: 500V DC untuk sistem 380V.</p>
+                        <p>4. Tekan tombol test, baca nilai tahanan isolasi.</p>
+                        <p class="mt-2"><strong>Standar:</strong> Tahanan isolasi minimum = 1 MΩ (megaohm).</p>
+                        <p>Nilai < 1 MΩ = isolasi rusak → JANGAN energize!</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.7.3 Pengujian Kontinuitas</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Gunakan multimeter (mode continuity/ohm) untuk memeriksa:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 ml-4 space-y-1">
+                        <li>Kontinuitas kabel ground — pastikan semua bagian logam terhubung ke ground bar.</li>
+                        <li>Kontinuitas rangkaian kontrol — pastikan tidak ada kabel putus.</li>
+                        <li>Tidak ada hubung singkat antar fasa (L1-L2, L2-L3, L1-L3) — tahanan harus tak terhingga.</li>
+                        <li>Tidak ada hubung singkat fasa ke ground — tahanan harus tak terhingga.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">7.7.4 Energizing dan Uji Fungsi</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Setelah semua pemeriksaan lolos, panel siap di-energize:
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li>Pastikan semua MCB dalam posisi OFF.</li>
+                            <li>Hubungkan panel ke sumber daya (incoming).</li>
+                            <li>Ukur tegangan incoming — pastikan sesuai (380V ±10%).</li>
+                            <li>ON-kan MCB incoming — periksa tegangan di busbar.</li>
+                            <li>ON-kan MCB kontrol — periksa lampu indikator power.</li>
+                            <li>Uji fungsi satu per satu: Start motor, Stop motor, Forward-Reverse, dll.</li>
+                            <li>Ukur arus operasi — pastikan sesuai nameplate motor.</li>
+                            <li>Uji fungsi proteksi: Trip TOR (dengan test button), trip MCB.</li>
+                            <li>Dokumentasikan semua hasil pengujian dalam log book.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- K3 dalam Perakitan Panel -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">7.8 K3 (Keselamatan dan Kesehatan Kerja) dalam Perakitan Panel</h2>
+            
+            <div class="warning-box p-6 rounded-r-lg">
+                <h3 class="font-bold text-red-800 mb-3"><i class="fas fa-exclamation-triangle mr-2"></i>Aturan Keselamatan Wajib</h3>
+                <ul class="list-disc list-inside text-gray-800 space-y-2 text-sm">
+                    <li><strong>LOTO (Lock Out Tag Out):</strong> Selalu kunci dan beri tanda pada MCB incoming saat bekerja di dalam panel. Jangan pernah bekerja pada panel yang ber

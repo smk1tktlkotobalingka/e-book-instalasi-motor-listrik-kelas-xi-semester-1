@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 10: Pemeliharaan Preventif Motor 1 Fasa & 3 Fasa - Instalasi Motor Listrik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .highlight-box { border-left: 4px solid #2563eb; background-color: #eff6ff; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .tip-box { border-left: 4px solid #16a34a; background-color: #f0fdf4; }
+        .maintenance-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .maintenance-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .schedule-badge { display: inline-block; padding: 2px 8px; border-radius: 9999px; font-size: 0.75rem; font-weight: bold; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans" id="top">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl font-bold tracking-wide">INSTALASI MOTOR LISTRIK</div>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0">
+                <a href="index.html" class="hover:text-yellow-400 transition"><i class="fas fa-home mr-1"></i> Beranda</a>
+                <a href="index.html#tentang" class="hover:text-yellow-400 transition"><i class="fas fa-info-circle mr-1"></i> Tentang</a>
+                <a href="index.html#daftar-isi" class="hover:text-yellow-400 transition"><i class="fas fa-list mr-1"></i> Daftar Bab</a>
+                <a href="index.html#kontak" class="hover:text-yellow-400 transition"><i class="fas fa-user mr-1"></i> Penulis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Chapter -->
+    <header class="bg-gradient-to-r from-amber-800 to-amber-600 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="bg-yellow-500 text-amber-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pertemuan 10 — Bab 5: Pemeliharaan & Troubleshooting</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-4 mb-2">Pemeliharaan Preventif Motor 1 Fasa & 3 Fasa</h1>
+            <p class="text-amber-100 text-lg max-w-3xl mx-auto">
+                Mempelajari konsep, jenis, prosedur, jadwal, dan checklist pemeliharaan preventif motor listrik — baik motor 1 fasa maupun 3 fasa — untuk memperpanjang umur pakai, mencegah kegagalan mendadak, dan menjamin keandalan sistem secara berkelanjutan.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <a href="9.html" class="bg-gray-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-600 transition border border-gray-500"><i class="fas fa-arrow-left mr-1"></i>Pertemuan 9</a>
+                <a href="#materi-inti" class="bg-white text-amber-900 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition">Mulai Membaca</a>
+                <a href="11.html" class="bg-amber-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-amber-600 transition border border-amber-500">Pertemuan 11 →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl" id="materi-inti">
+        
+        <!-- Pendahuluan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-amber-900 mb-4 border-b-2 border-amber-200 pb-2">Pendahuluan</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Pada pertemuan sebelumnya, siswa telah mempelajari prosedur K3 yang menjadi fondasi keselamatan dalam setiap pekerjaan pemeliharaan. Kini, siswa akan melangkah ke inti dari Bab 5: <strong>pemeliharaan preventif motor listrik</strong>. Pemeliharaan preventif (<em>preventive maintenance</em>) adalah serangkaian kegiatan terencana yang dilakukan secara berkala untuk menjaga motor listrik tetap beroperasi pada kondisi optimal, mencegah kegagalan mendadak (<em>breakdown</em>), dan memperpanjang umur pakai peralatan.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Data dari <em>Electric Power Research Institute</em> (EPRI) menunjukkan bahwa penerapan pemeliharaan preventif yang baik dapat <strong>menurunkan tingkat kegagalan motor hingga 40–50%</strong> dan <strong>menghemat biaya perbaikan hingga 3 kali lipat</strong> dibanding pemeliharaan korektif (perbaikan setelah rusak). Di industri, motor listrik menyumbang sekitar <strong>65% konsumsi energi</strong>, sehingga kegagalan motor tidak hanya menyebabkan downtime produksi, tetapi juga pemborosan energi yang signifikan.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Pada pertemuan ini, siswa akan mempelajari secara komprehensif pemeliharaan preventif untuk motor 3 fasa dan motor 1 fasa: mulai dari konsep dasar, jenis-jenis pemeliharaan (visual inspection, pengukuran elektris, pemeriksaan mekanis, termografi), jadwal pemeliharaan berkala, alat ukur yang digunakan, checklist standar, hingga dokumentasi log book. Pemahaman ini akan membekali siswa untuk menjadi teknisi yang tidak hanya mampu memperbaiki, tetapi juga <em>mencegah</em> kerusakan sebelum terjadi.
+            </p>
+        </section>
+
+        <!-- Konsep Kunci -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-amber-900 mb-4"><i class="fas fa-key text-yellow-500 mr-2"></i>Konsep Kunci</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Pemeliharaan Preventif</h4>
+                    <p class="text-sm text-gray-700 mt-1">Kegiatan pemeliharaan yang dilakukan secara terencana dan berkala untuk mencegah terjadinya kegagalan peralatan. Bersifat proaktif — mencegah sebelum rusak, bukan memperbaiki setelah rusak.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Pemeliharaan Korektif</h4>
+                    <p class="text-sm text-gray-700 mt-1">Kegiatan perbaikan yang dilakukan SETELAH terjadi kegagalan. Bersifat reaktif — biasanya lebih mahal dan menyebabkan downtime produksi. Harus diminimalkan dengan preventive maintenance.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Pemeliharaan Prediktif</h4>
+                    <p class="text-sm text-gray-700 mt-1">Pemeliharaan berbasis kondisi aktual peralatan menggunakan monitoring (vibrasi, suhu, arus). Lebih canggih dari preventif — hanya melakukan perawatan ketika benar-benar diperlukan berdasarkan data.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">MTBF & MTTR</h4>
+                    <p class="text-sm text-gray-700 mt-1"><strong>MTBF</strong> (Mean Time Between Failures) = rata-rata waktu antar kegagalan — semakin tinggi semakin baik. <strong>MTTR</strong> (Mean Time To Repair) = rata-rata waktu perbaikan — semakin rendah semakin baik.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Landasan Teoretis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-amber-900 mb-6 border-b-2 border-amber-200 pb-2">10.1 Landasan Teoretis Pemeliharaan Motor Listrik</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">10.1.1 Penyebab Utama Kegagalan Motor Listrik</h3>
+                    <p class="text-gray-700 mt-2">
+                        Menurut survei <em>EPRI</em> dan <em>IEEE</em>, penyebab kegagalan motor listrik secara umum adalah:
+                    </p>
+                    <div class="bg-amber-50 p-4 rounded-lg mt-3 border-l-4 border-amber-400">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li><strong>Bearing failure (40–50%):</strong> Keausan, pelumasan tidak tepat, kontaminasi, misalignment.</li>
+                            <li><strong>Kegagalan isolasi lilitan (20–30%):</strong> Overheating, kelembaban, kontaminasi kimia, tegangan lebih.</li>
+                            <li><strong>Masalah rotor (5–10%):</strong> Broken rotor bar, eccentricity, unbalance.</li>
+                            <li><strong>Masalah pendinginan (5–10%):</strong> Kipas rusak, ventilasi tersumbat, lingkungan terlalu panas.</li>
+                            <li><strong>Penyebab lain (5–10%):</strong> Kabel/terminal longgar, fase hilang, beban lebih berkepanjangan.</li>
+                        </ol>
+                    </div>
+                    <p class="text-gray-700 mt-3">
+                        <strong>Poin penting:</strong> Lebih dari <strong>70% kegagalan motor</strong> sebenarnya dapat dicegah dengan pemeliharaan preventif yang tepat sasaran — terutama pada bearing dan sistem isolasi.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">10.1.2 Kurva Bathtub: Umur Peralatan</h3>
+                    <p class="text-gray-700 mt-2">
+                        Kegagalan peralatan mengikuti pola <strong>Kurva Bathtub</strong> yang terdiri dari 3 fase:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 ml-4 space-y-1">
+                        <li><strong>Fase 1 — Infant Mortality (Tingkat kegagalan tinggi di awal):</strong> Kegagalan akibat cacat manufaktur, pemasangan salah, commissioning buruk.</li>
+                        <li><strong>Fase 2 — Useful Life (Tingkat kegagalan rendah & konstan):</strong> Periode operasi normal. Pemeliharaan preventif paling efektif di fase ini.</li>
+                        <li><strong>Fase 3 — Wear-out (Tingkat kegagalan meningkat):</strong> Keausan alami. Diperlukan penggantian komponen atau motor baru.</li>
+                    </ul>
+                    <p class="text-gray-700 mt-3">
+                        Tujuan pemeliharaan preventif adalah <strong>memperpanjang Fase 2</strong> dan menunda masuknya Fase 3 selama mungkin.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Jenis Pemeliharaan Preventif -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-amber-900 mb-6 border-b-2 border-amber-200 pb-2">10.2 Jenis-Jenis Pemeliharaan Preventif Motor Listrik</h2>
+            
+            <div class="space-y-8">
+                <!-- 1. Visual Inspection -->
+                <div class="maintenance-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-blue-100 text-blue-700 p-3 rounded-full"><i class="fas fa-eye text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">10.2.1 Pemeriksaan Visual (Visual Inspection)</h3>
+                            <p class="text-sm text-gray-600">Langkah pertama dan paling dasar — dilakukan setiap hari operasi</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">Pemeriksaan visual adalah pemeriksaan tanpa alat ukur, hanya menggunakan indra (penglihatan, pendengaran, penciuman, perabaan) untuk mendeteksi anomali.</p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Item Pemeriksaan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Suara abnormal (grinding, squealing)</li>
+                                <li>Getaran berlebihan</li>
+                                <li>Bau hangus/overheating</li>
+                                <li>Warna cat menguning (indikasi panas)</li>
+                                <li>Kebocoran oli/grease dari bearing</li>
+                                <li>Kipas pendingin rusak/tersumbat</li>
+                                <li>Kabel/terminal longgar atau berubah warna</li>
+                                <li>Kotoran/debu menumpuk di body motor</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Frekuensi:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li><span class="schedule-badge bg-red-100 text-red-800">Harian</span> Operator</li>
+                                <li><span class="schedule-badge bg-yellow-100 text-yellow-800">Mingguan</span> Teknisi</li>
+                                <li>Dilakukan saat motor beroperasi normal</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Pengukuran Elektris -->
+                <div class="maintenance-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-yellow-100 text-yellow-700 p-3 rounded-full"><i class="fas fa-bolt text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">10.2.2 Pengukuran Elektris</h3>
+                            <p class="text-sm text-gray-600">Pemeriksaan parameter listrik untuk mendeteksi masalah kelistrikan</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 text-sm">
+                        <div class="bg-yellow-50 p-3 rounded">
+                            <p class="font-bold text-yellow-900 mb-2">a. Pengukuran Tahanan Isolasi (Megger Test)</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Menggunakan <strong>Megger/Insulation Tester</strong> (500V DC untuk motor 380V)</li>
+                                <li>Diukur antara: lilitan ke ground, lilitan ke lilitan (fasa-fasa)</li>
+                                <li><strong>Standar minimum:</strong> 1 MΩ (idealnya > 10 MΩ)</li>
+                                <li>Rumus empiris: R<sub>min</sub> (MΩ) = kV + 1 (untuk motor < 10.000 HP)</li>
+                                <li>Indikasi: nilai rendah = isolasi terdegradasi (kelembaban, panas, kontaminasi)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-yellow-50 p-3 rounded">
+                            <p class="font-bold text-yellow-900 mb-2">b. Pengukuran Tahanan Lilitan (Winding Resistance)</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Menggunakan multimeter digital atau micro-ohmmeter</li>
+                                <li>Ukur tahanan masing-masing fasa (U1-U2, V1-V2, W1-W2)</li>
+                                <li>Ketiga fasa harus <strong>seimbang</strong> — deviasi maksimal ±5%</li>
+                                <li>Deviasi besar = short turn, koneksi longgar, atau broken rotor bar</li>
+                            </ul>
+                        </div>
+                        <div class="bg-yellow-50 p-3 rounded">
+                            <p class="font-bold text-yellow-900 mb-2">c. Pengukuran Arus Operasi (Current Measurement)</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Menggunakan <strong>clamp meter</strong> (True RMS)</li>
+                                <li>Ukur arus tiap fasa — harus seimbang (deviasi ≤ 10%)</li>
+                                <li>Bandingkan dengan nameplate In — arus > In = overload</li>
+                                <li>Unbalance arus > 10% = masalah tegangan atau lilitan</li>
+                            </ul>
+                        </div>
+                        <div class="bg-yellow-50 p-3 rounded">
+                            <p class="font-bold text-yellow-900 mb-2">d. Pengukuran Tegangan Suplai</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Tegangan harus dalam range ±10% dari nameplate</li>
+                                <li>Voltage unbalance > 1% dapat menyebabkan arus unbalance 6–10×</li>
+                                <li>Formula unbalance: % = (deviasi maks dari rata-rata / rata-rata) × 100%</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Pemeriksaan Mekanis -->
+                <div class="maintenance-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-green-100 text-green-700 p-3 rounded-full"><i class="fas fa-cogs text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">10.2.3 Pemeriksaan Mekanis</h3>
+                            <p class="text-sm text-gray-600">Pemeriksaan komponen mekanis motor — bearing, shaft, kipas, coupling</p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Item Pemeriksaan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li><strong>Bearing:</strong> Suara, suhu, getaran, kondisi grease</li>
+                                <li><strong>Shaft:</strong> Keausan, runout (keolengan), alignment</li>
+                                <li><strong>Kipas pendingin:</strong> Kondisi fisik, kebersihan</li>
+                                <li><strong>Coupling/belt:</strong> Alignment, kekencangan, keausan</li>
+                                <li><strong>Mounting:</strong> Baut kencang, tidak ada getaran berlebihan</li>
+                                <li><strong>Rotasi rotor:</strong> Putar manual — harus lancar tanpa hambatan</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Alat Bantu:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li><strong>Vibration meter:</strong> Ukur getaran (mm/s) — standar ISO 10816</li>
+                                <li><strong>Stetoskop mekanik:</strong> Dengarkan suara bearing</li>
+                                <li><strong>Dial indicator:</strong> Ukur runout shaft</li>
+                                <li><strong>Laser alignment tool:</strong> Cek alignment motor-beban</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Termografi Inframerah -->
+                <div class="maintenance-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-red-100 text-red-700 p-3 rounded-full"><i class="fas fa-temperature-high text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">10.2.4 Termografi Inframerah (Thermal Imaging)</h3>
+                            <p class="text-sm text-gray-600">Teknologi modern untuk deteksi dini masalah panas</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">Menggunakan <strong>kamera thermal/inframerah</strong> untuk memvisualisasikan distribusi suhu motor secara real-time. Hotspot = indikasi masalah.</p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-red-50 p-3 rounded">
+                            <p class="font-bold text-red-900">Indikasi Masalah:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Terminal panas → koneksi longgar</li>
+                                <li>Body motor panas → overload/ventilasi buruk</li>
+                                <li>Bearing panas → pelumasan buruk/aus</li>
+                                <li>Satu fasa lebih panas → unbalance/short turn</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Standar Suhu Operasi:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Class A: maks 105°C</li>
+                                <li>Class B: maks 130°C</li>
+                                <li>Class F: maks 155°C (paling umum)</li>
+                                <li>Class H: maks 180°C</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Pelumasan Bearing -->
+                <div class="maintenance-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-indigo-100 text-indigo-700 p-3 rounded-full"><i class="fas fa-oil-can text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">10.2.5 Pelumasan Bearing (Re-lubrication)</h3>
+                            <p class="text-sm text-gray-600">Kegiatan paling kritis untuk memperpanjang umur bearing</p>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-400">
+                        <p class="font-semibold text-indigo-900 mb-2">Aturan Pelumasan yang Benar:</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                            <li><strong>Jenis grease:</strong> Sesuaikan dengan rekomendasi pabrikan (lithium, polyurea, dll.)</li>
+                            <li><strong>Jumlah grease:</strong> Jangan berlebihan! Rumus: G (gram) = D (mm bearing) × B (lebar) × 0.005</li>
+                            <li><strong>Interval:</strong> Tergantung jenis bearing, RPM, suhu — biasanya 2.000–10.000 jam operasi</li>
+                            <li><strong>Prosedur:</strong> Bersihkan nipple → suntik grease baru → jalankan motor 15–30 menit → buang grease lama yang keluar</li>
+                            <li><strong>Jangan campur grease berbeda jenis</strong> — dapat merusak sifat pelumas!</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 6. Pembersihan -->
+                <div class="maintenance-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-cyan-100 text-cyan-700 p-3 rounded-full"><i class="fas fa-broom text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">10.2.6 Pembersihan Motor (Cleaning)</h3>
+                            <p class="text-sm text-gray-600">Membersihkan motor dari debu, minyak, dan kontaminan</p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-cyan-50 p-3 rounded">
+                            <p class="font-bold text-cyan-900">Metode Pembersihan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Tiup dengan udara kering (kompresor) — maks 2 bar</li>
+                                <li>Vacuum cleaner industri</li>
+                                <li>Solvent khusus (contact cleaner) untuk lilitan</li>
+                                <li>Lap kering untuk body motor</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded">
+                            <p class="font-bold text-red-900">Peringatan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>JANGAN gunakan air bertekanan!</li>
+                                <li>JANGAN gunakan solvent yang merusak isolasi</li>
+                                <li>Pastikan motor OFF dan LOTO sebelum membersihkan</li>
+                                <li>Keringkan sempurna sebelum energizing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Jadwal Pemeliharaan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-amber-900 mb-6 border-b-2 border-amber-200 pb-2">10.3 Jadwal Pemeliharaan Berkala</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm text-sm">
+                    <thead class="bg-amber-100 text-amber-900">
+                        <tr>
+                            <th class="py-3 px-3 text-left font-bold border-b">Frekuensi</th>
+                            <th class="py-3 px-3 text-left font-bold border-b">Kegiatan</th>
+                            <th class="py-3 px-3 text-left font-bold border-b">Pelaksana</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold"><span class="schedule-badge bg-red-100 text-red-800">Harian</span></td>
+                            <td class="py-3 px-3">Pemeriksaan visual, dengar suara, cek suhu permukaan, cek getaran</td>
+                            <td class="py-3 px-3">Operator</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold"><span class="schedule-badge bg-yellow-100 text-yellow-800">Mingguan</span></td>
+                            <td class="py-3 px-3">Pemeriksaan visual detail, ukur arus operasi, cek kebersihan</td>
+                            <td class="py-3 px-3">Teknisi</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold"><span class="schedule-badge bg-blue-100 text-blue-800">Bulanan</span></td>
+                            <td class="py-3 px-3">Ukur tahanan isolasi, cek terminal, periksa bearing, bersihkan motor</td>
+                            <td class="py-3 px-3">Teknisi senior</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold"><span class="schedule-badge bg-green-100 text-green-800">6 Bulanan</span></td>
+                            <td class="py-3 px-3">Ukur tahanan lilitan, thermal imaging, periksa alignment, cek vibration</td>
+                            <td class="py-3 px-3">Teknisi senior</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold"><span class="schedule-badge bg-purple-100 text-purple-800">Tahunan</span></td>
+                            <td class="py-3 px-3">Overhaul parsial, ganti bearing (jika perlu), re-lubrication penuh, test lengkap</td>
+                            <td class="py-3 px-3">Tim maintenance</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-sm text-gray-600 mt-3">
+                <strong>Catatan:</strong> Jadwal di atas adalah panduan umum. Interval aktual harus disesuaikan dengan kondisi operasi (lingkungan keras = interval lebih pendek), rekomendasi pabrikan, dan riwayat kegagalan motor.
+            </p>
+        </section>
+
+        <!-- Checklist Pemeliharaan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-amber-900 mb-6 border-b-2 border-amber-200 pb-2">10.4 Checklist Pemeliharaan Preventif Motor 3 Fasa</h2>
+            
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                <div class="space-y-3 text-sm">
+                    <div class="flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <div><strong>Pemeriksaan Visual:</strong> Body motor bersih, tidak ada kebocoran grease, cat tidak menguning, kipas pendingin utuh, ventilasi tidak tersumbat.</div>
+                    </div>
+                    <div class="flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <div><strong>Pemeriksaan Suara & Getaran:</strong> Tidak ada suara abnormal (grinding, squealing), getaran dalam batas normal (< 4.5 mm/s untuk motor kecil).</div>
+                    </div>
+                    <div class="flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <div><strong>Pemeriksaan Terminal:</strong> Baut terminal kencang, tidak ada perubahan warna (indikasi panas), kabel tidak retak/terkelupas.</div>
+                    </div>
+                    <div class="flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <div><strong>Pengukuran Tahanan Isolasi:</strong> Nilai > 1 MΩ (500V DC). Catat nilai untuk trend monitoring.</div>
+                    </div>
+                    <div class="flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <div><strong>Pengukuran Tahanan Lilitan:</strong> Ketiga fasa seimbang (deviasi ≤ 5%).</div>
+                    </div>
+                    <div class="flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <div><strong>Pengukuran Arus Operasi:</strong> Arus ≤ In nameplate, unbalance ≤ 10%.</div>
+                    </div>
+                    <div class="flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <div><strong>Pengukuran Tegangan Suplai:</strong> Dalam range ±10%, unbalance ≤ 1%.</div>
+                    </div>
+                    <div class="flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <div><strong>Pemeriksaan Bearing:</strong> Suhu normal (< 80°C), suara halus, tidak ada kebocoran grease.</div>
+                    </div>
+                    <div class="flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <div><strong>Pelumasan:</strong> Grease sesuai jadwal, jenis sesuai rekomendasi, tidak berlebihan.</div>
+                    </div>
+                    <div class="flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <div><strong>Rotasi Manual:</strong> Putar shaft dengan tangan — harus lancar tanpa hambatan atau suara kasar.</div>
+                    </div>
+                    <div class="flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <div><strong>Alignment:</strong> Motor dan beban ter-align dengan baik (laser alignment tool).</div>
+                    </div>
+                    <div class="flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <div><strong>Grounding:</strong> Kabel ground terhubung baik, tahanan ground < 5 Ω.</div>
+                    </div>
+                    <div class="flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <div><strong>Dokumentasi:</strong> Semua hasil pengukuran dicatat di log book dengan tanggal dan nama teknisi.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Khusus Motor 1 Fasa -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-amber-900 mb-6 border-b-2 border-amber-200 pb-2">10.5 Pemeliharaan Preventif Khusus Motor 1 Fasa</h2>
+            
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Selain pemeriksaan umum yang sama dengan motor 3 fasa, motor 1 fasa memiliki komponen spesifik yang memerlukan perhatian khusus:
+            </p>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="maintenance-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-amber-900 mb-2"><i class="fas fa-battery-half text-amber-600 mr-2"></i>Pemeriksaan Kapasitor</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1">
+                        <li>Ukur kapasitansi dengan <strong>capacitance meter</strong></li>
+                        <li>Nilai aktual harus dalam range ±10% dari nameplate</li>
+                        <li>Periksa fisik: gembung, bocor, retak = ganti segera</li>
+                        <li>Umur kapasitor elektrolit: 5–10 tahun (tergantung suhu operasi)</li>
+                        <li>Ganti dengan tipe dan nilai yang sama persis</li>
+                    </ul>
+                </div>
+                <div class="maintenance-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-amber-900 mb-2"><i class="fas fa-sync text-amber-600 mr-2"></i>Pemeriksaan Centrifugal Switch</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1">
+                        <li>Bersihkan kontak dari kotoran/karbon</li>
+                        <li>Periksa mekanisme pegas — harus bergerak bebas</li>
+                        <li>Ukur kontinuitas kontak (harus terbuka saat motor berjalan)</li>
+                        <li>Kontak yang macet = lilitan bantu tetap aktif = motor panas</li>
+                        <li>Ganti jika aus atau rusak</li>
+                    </ul>
+                </div>
+                <div class="maintenance-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-amber-900 mb-2"><i class="fas fa-wave-square text-amber-600 mr-2"></i>Pemeriksaan Lilitan Bantu</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1">
+                        <li>Ukur tahanan lilitan utama dan lilitan bantu</li>
+                        <li>Lilitan bantu biasanya memiliki tahanan lebih tinggi</li>
+                        <li>Short pada lilitan bantu = motor tidak start/panas</li>
+                        <li>Open pada lilitan bantu = motor hanya mendengung</li>
+                    </ul>
+                </div>
+                <div class="maintenance-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-amber-900 mb-2"><i class="fas fa-ring text-amber-600 mr-2"></i>Pemeriksaan Shading Coil (Shaded Pole)</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 mt-2 space-y-1">
+                        <li>Periksa cincin tembaga hubung singkat</li>
+                        <li>Jika patah/putus = motor tidak dapat start</li>
+                        <li>Pembersihan kutub stator dari kotoran</li>
+                        <li>Motor shaded pole tidak dapat diperbaiki lilitannya — ganti unit</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Studi Kasus -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-amber-900 mb-4"><i class="fas fa-book-open text-yellow-500 mr-2"></i>Studi Kasus 1: Motor Pompa 15 kW yang Rusak Akibat Tidak Ada Pemeliharaan</h3>
+            <div class="warning-box p-6 rounded-r-lg">
+                <p class="text-gray-800 mb-3">
+                    Sebuah pabrik tekstil di Padang memiliki motor pompa 15 kW yang beroperasi 24 jam. Selama 3 tahun, motor tidak pernah menjalani pemeliharaan preventif — hanya diperbaiki saat rusak. Pada bulan ke-36, motor tiba-tiba berhenti dan <strong>terbakar</strong>. Hasil investigasi:
+                </p>
+                <ul class="list-disc list-inside text-gray-800 ml-4 space-y-2">
+                    <li>Bearing aus parah karena tidak pernah di-re-lubricate → gesekan tinggi → panas → merusak isolasi lilitan</li>
+                    <li>Kipas pendingin patah 2 siripnya → pendinginan tidak optimal → suhu operasi naik 20°C</li>
+                    <li>Terminal longgar → kontak resistif → hotspot → isolasi kabel meleleh</li>
+                    <li>Tahanan isolasi turun dari 500 MΩ (awal) menjadi 0.3 MΩ (sebelum terbakar)</li>
+                </ul>
+                <p class="font-semibold text-red-700 mt-3">
+                    <i class="fas fa-exclamation-triangle mr-1"></i> Kerugian:
+                </p>
+                <ul class="list-disc list-inside text-gray-800 ml-4 space-y-1">
+                    <li>Biaya rewind motor: ±Rp 12 juta</li>
+                    <li>Downtime produksi 3 hari: ±Rp 45 juta</li>
+                    <li>Total kerugian: <strong>±Rp 57 juta</strong></li>
+                </ul>
+                <p class="font-semibold text-green-700 mt-3">
+                    <i class="fas fa-check-circle mr-1"></i> Seandainya dilakukan pemeliharaan preventif:
+                </p>
+                <p class="text-gray-800 mt-1">
+                    Biaya pemeliharaan preventif 3 tahun: ±Rp 3 juta (pelumasan, pembersihan, pengukuran). Bearing bisa diganti sebelum merusak lilitan (biaya ±Rp 500 ribu). <strong>Penghematan: ±Rp 53 juta!</strong>
+                </p>
+            </div>
+        </section>
+
+        <!-- Tips Praktis -->
+        <section class="mb-12">
+            <div class="tip-box p-6 rounded-r-lg">
+                <h3 class="font-bold text-green-800 mb-2"><i class="fas fa-tools mr-2"></i>Tips Praktis Pemeliharaan Preventif untuk Siswa SMK</h3>
+                <ul class="list-disc list-inside text-gray-800 space-y-2 text-sm">
+                    <li><strong>Dokumentasi adalah kunci:</strong> Catat SEMUA hasil pengukuran dalam log book — ini menjadi data historis untuk trend monitoring.</li>
+                    <li><strong>Trend monitoring:</strong> Bandingkan hasil pengukuran saat ini dengan data sebelumnya. Penurunan tahanan isolasi dari 100 MΩ ke 10 MΩ dalam 6 bulan = indikasi masalah.</li>
+                    <li><strong>Jangan tunggu rusak:</strong> Jika ada anomali kecil (suara sedikit berbeda, suhu naik 5°C), investigasi segera — jangan ditunda.</li>
+                    <li><strong>Gunakan checklist:</strong> Checklist memastikan tidak ada item yang terlewat. Buat checklist standar untuk setiap jenis motor.</li>
+                    <li><strong>LOTO sebelum bekerja:</strong> Selalu terapkan prosedur LOTO sebelum melakukan pemeliharaan — keselamatan pertama!</li>
+                    <li><strong>Gunakan alat ukur terkalibrasi:</strong> Alat ukur yang tidak terkalibrasi dapat memberikan data yang menyesatkan.</li>
+                    <li><strong>Libatkan operator:</strong> Operator yang mengoperasikan motor setiap hari adalah orang pertama yang tahu jika ada anomali. Libatkan mereka dalam pelaporan.</li>
+                    <li><strong>Pelajari nameplate:</strong> Semua parameter operasi (In, tegangan, daya, kelas isolasi) ada di nameplate — jadikan acuan.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Refleksi -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-amber-900 mb-4"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Refleksi untuk Siswa SMK</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Pemeliharaan preventif adalah wujud nyata dari pepatah "<em>lebih baik mencegah daripada mengobati</em>". Seorang teknisi yang handal tidak hanya dinilai dari kemampuannya memperbaiki motor yang rusak, tetapi juga dari kemampuannya <em>mencegah motor tersebut rusak sejak awal</em>. Dalam dunia industri modern, pemeliharaan preventif telah berevolusi menjadi <em>predictive maintenance</em> berbasis IoT dan AI — di mana sensor memantau kondisi motor secara real-time dan sistem memberikan peringatan dini sebelum kegagalan terjadi. Namun, fondasi dari semua itu tetap sama: pemahaman mendalam tentang karakteristik motor, disiplin dalam prosedur, dan ketelitian dalam dokumentasi. Mulailah dari hal sederhana: catat setiap pengukuran, pelajari setiap anomali, dan jadilah teknisi yang proaktif, bukan reaktif.
+            </p>
+        </section>
+
+        <!-- Kesimpulan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-amber-900 mb-4 border-b-2 border-amber-200 pb-2">Kesimpulan</h2>
+            <p class="text-gray-700 leading-relaxed">
+                Pemeliharaan preventif motor listrik adalah serangkaian kegiatan terencana dan berkala yang bertujuan mencegah kegagalan, memperpanjang umur pakai, dan menjamin keandalan sistem. Kegiatan meliputi pemeriksaan visual, pengukuran elektris (tahanan isolasi, tahanan lilitan, arus, tegangan), pemeriksaan mekanis (bearing, shaft, alignment), termografi inframerah, pelumasan bearing, dan pembersihan. Jadwal pemeliharaan bervariasi dari harian (operator) hingga tahunan (overhaul). Motor 1 fasa memerlukan perhatian khusus pada kapasitor, centrifugal switch, dan lilitan bantu. Penerapan pemeliharaan preventif yang disiplin dapat menurunkan tingkat kegagalan hingga 40–50% dan menghemat biaya hingga 3× lipat dibanding pemeliharaan korektif. Dokumentasi yang baik dan trend monitoring adalah kunci keberhasilan program pemeliharaan preventif.
+            </p>
+        </section>
+
+        <!-- Daftar Pustaka -->
+        <section class="mb-16">
+            <h3 class="text-xl font-bold text-amber-900 mb-4"><i class="fas fa-book text-yellow-500 mr-2"></i>Daftar Pustaka</h3>
+            <ul class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                <li>EPRI. (2019). <em>Electric Motor Systems: Maintenance and Reliability Guide</em>. Palo Alto: Electric Power Research Institute.</li>
+                <li>IEEE. (2020). <em>IEEE 43: Recommended Practice for Testing Insulation Resistance of Rotating Machinery</em>. New York: IEEE.</li>
+                <li>ISO 10816. (2017). <em>Mechanical vibration — Evaluation of machine vibration</em>. International Organization for Standardization.</li>
+                <li>PUIL 2011. <em>Persyaratan Umum Instalasi Listrik 2011</em>. Jakarta: Badan Standardisasi Nasional.</li>
+                <li>Zuraida, dkk. (2021). <em>Instalasi Motor Listrik Jilid 1 untuk SMK</em>. Jakarta: Direktorat Pembinaan SMK.</li>
+                <li>Mobley, R. K. (2002). <em>An Introduction to Predictive Maintenance</em> (2nd ed.). Boston: Butterworth-Heinemann.</li>
+                <li>Manual Book Motor Listrik (Schneider Electric, ABB, Siemens, Toshiba) — untuk rekomendasi pemeliharaan spesifik.</li>
+            </ul>
+        </section>
+
+        <!-- Navigasi Bawah -->
+        <div class="flex justify-between items-center border-t pt-6 mb-16 flex-wrap gap-3">
+            <a href="9.html" class="text-amber-600 hover:text-amber-800 font-semibold"><i class="fas fa-arrow-left mr-1"></i> Pertemuan 9</a>
+            <a href="#top" class="text-gray-500 hover:text-gray-700 font-semibold"><i class="fas fa-arrow-up mr-1"></i> Ke Atas</a>
+            <a href="11.html" class="text-amber-600 hover:text-amber-800 font-semibold">Pertemuan 11: Teknik Troubleshooting <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN UJI FORMATIF -->
+        <!-- ========================================================= -->
+        <section id="uji-formatif" class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-amber-900">📋 Uji Formatif 10: Pemeliharaan Preventif Motor 1 Fasa & 3 Fasa</h2>
+                <p class="text-gray-600 mt-2">Materi: Konsep pemeliharaan preventif, jenis pemeriksaan, jadwal, checklist, dan alat ukur.</p>
+                <p class="text-red-600 text-sm font-semibold mt-2">⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu!</p>
+            </div>
+
+            <form id="quizForm" class="space-y-8">
+                <!-- Data Siswa -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-amber-900 mb-4 border-b pb-2">📋 Data Siswa</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Nama Lengkap</label>
+                            <input type="text" name="nama" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-amber-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* NIS (Nomor Induk Siswa)</label>
+                            <input type="text" name="nis" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-amber-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Tanggal Ujian</label>
+                            <input type="date" name="tanggal" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-amber-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Kelas</label>
+                            <input type="text" name="kelas" placeholder="Contoh: XI TITL 1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-amber-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Semester</label>
+                            <select name="semester" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-amber-500 outline-none">
+                                <option value="">Pilih Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian A: Pilihan Ganda -->
+                <div>
+                    <h3 class="text-lg font-bold text-amber-900 mb-4 border-b pb-2">📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon lengkapi semua 10 soal pilihan ganda!</p>
+                    
+                    <div class="space-y-6 text-gray-800">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">1. Pemeliharaan yang dilakukan secara terencana dan berkala untuk mencegah terjadinya kegagalan peralatan disebut...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q1" value="a" class="mr-2"> a. Pemeliharaan korektif</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="b" class="mr-2"> b. Pemeliharaan preventif</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="c" class="mr-2"> c. Pemeliharaan prediktif</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="d" class="mr-2"> d. Breakdown maintenance</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">2. Penyebab utama kegagalan motor listrik yang paling sering terjadi (40–50% kasus) adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q2" value="a" class="mr-2"> a. Kegagalan bearing</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="b" class="mr-2"> b. Broken rotor bar</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="c" class="mr-2"> c. Kipas pendingin rusak</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="d" class="mr-2"> d. Kabel ground putus</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">3. Alat ukur yang digunakan untuk mengukur tahanan isolasi motor listrik adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q3" value="a" class="mr-2"> a. Multimeter analog</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="b" class="mr-2"> b. Clamp meter</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="c" class="mr-2"> c. Megger (Insulation Tester)</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="d" class="mr-2"> d. Oscilloscope</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">4. Nilai tahanan isolasi minimum yang dipersyaratkan untuk motor 380V adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q4" value="a" class="mr-2"> a. 0,1 MΩ</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="b" class="mr-2"> b. 0,5 MΩ</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="c" class="mr-2"> c. 1 MΩ</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="d" class="mr-2"> d. 100 MΩ</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">5. Deviasi tahanan lilitan antar fasa yang masih diperbolehkan pada motor 3 fasa adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q5" value="a" class="mr-2"> a. ±1%</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="b" class="mr-2"> b. ±5%</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="c" class="mr-2"> c. ±15%</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="d" class="mr-2"> d. ±25%</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">6. Pada motor 1 fasa, komponen yang wajib diperiksa dengan capacitance meter adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q6" value="a" class="mr-2"> a. Bearing</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="b" class="mr-2"> b. Kapasitor start/run</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="c" class="mr-2"> c. Kipas pendingin</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="d" class="mr-2"> d. Shaft motor</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">7. Teknologi yang digunakan untuk mendeteksi hotspot pada motor secara visual tanpa kontak adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q7" value="a" class="mr-2"> a. Ultrasonic testing</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="b" class="mr-2"> b. Vibration analysis</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="c" class="mr-2"> c. Termografi inframerah (thermal imaging)</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="d" class="mr-2"> d. Oil analysis</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">8. MTBF dalam pemeliharaan motor listrik merupakan singkatan dari...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q8" value="a" class="mr-2"> a. Mean Time Between Failures</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="b" class="mr-2"> b. Maximum Time Before Failure</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="c" class="mr-2"> c. Minimum Time Between Fixes</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="d" class="mr-2"> d. Mean Time Before Function</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">9. Voltage unbalance pada suplai motor 3 fasa yang masih diperbolehkan adalah maksimal...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q9" value="a" class="mr-2"> a. 1%</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="b" class="mr-2"> b. 5%</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="c" class="mr-2"> c. 10%</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="d" class="mr-2"> d. 15%</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">10. Dalam kurva bathtub, fase di mana tingkat kegagalan rendah dan konstan disebut...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q10" value="a" class="mr-2"> a. Infant mortality</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="b" class="mr-2"> b. Useful life</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="c" class="mr-2"> c. Wear-out</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="d" class="mr-2"> d. Breakdown</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Essay -->
+                <div>
+                    <h3 class="text-lg font-bold text-amber-900 mb-4 border-b pb-2">✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon isi semua 5 soal essay dengan jawaban yang jelas!</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <p class="font-semibold mb-2">1. Jelaskan perbedaan antara pemeliharaan preventif, korektif, dan prediktif! Berikan contoh konkret masing-masing jenis pada pemeliharaan motor listrik!</p>
+                            <textarea name="essay1" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-amber-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">2. Uraikan minimal 6 jenis pemeriksaan yang termasuk dalam pemeliharaan preventif motor 3 fasa! Jelaskan alat ukur yang digunakan dan standar nilai yang diperbolehkan untuk masing-masing pemeriksaan!</p>
+                            <textarea name="essay2" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-amber-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">3. Berdasarkan studi kasus motor pompa 15 kW yang terbakar, analisislah penyebab kegagalan dan hitunglah penghematan biaya jika dilakukan pemeliharaan preventif yang tepat! Jelaskan mengapa pemeliharaan preventif lebih ekonomis!</p>
+                            <textarea name="essay3" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-amber-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">4. Jelaskan prosedur pelumasan bearing yang benar! Mengapa kelebihan grease dapat merusak bearing? Sebutkan rumus perhitungan jumlah grease yang dibutuhkan!</p>
+                            <textarea name="essay4" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-amber-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">5. Rancanglah jadwal pemeliharaan preventif lengkap (harian, mingguan, bulanan, 6 bulanan, tahunan) untuk motor 1 fasa 1 HP yang digunakan pada pompa air rumah tangga! Jelaskan kegiatan dan pelaksananya untuk masing-masing periode!</p>
+                            <textarea name="essay5" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-amber-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hasil & Tombol Aksi -->
+                <div class="bg-amber-50 p-6 rounded-lg border border-amber-200 text-center">
+                    <h3 class="text-lg font-bold text-amber-900 mb-4">📊 Hasil Uji Formatif</h3>
+                    <div id="hasilSkor" class="text-3xl font-extrabold text-amber-700 mb-2">0</div>
+                    <p id="detailSkor" class="text-sm text-gray-600 mb-6">Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button type="button" onclick="hitungNilai()" class="bg-amber-900 hover:bg-amber-800 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-paper-plane mr-2"></i>KIRIM JAWABAN & LIHAT HASIL
+                        </button>
+                        <button type="button" onclick="window.print()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-file-pdf mr-2"></i>UNDUH PDF LENGKAP
+                        </button>
+                        <button type="button" onclick="kirimEmail()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-envelope mr-2"></i>KIRIM EMAIL GURU
+                        </button>
+                        <button type="button" onclick="resetForm()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-redo mr-2"></i>MULAI ULANG
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-blue-200 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">&copy; 2026 UKI SAPUTRA - SMK N 1 Koto Balingka. Hak Cipta Dilindungi.</p>
+            <p class="text-sm mb-3 italic">"Preventive Maintenance = Investasi, Bukan Biaya"</p>
+            <a href="respon-pembaca.html" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-2 px-6 rounded-full transition duration-300 text-sm">
+                <i class="fas fa-paper-plane mr-1"></i> Kirim Respon tentang Materi Ini
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Fungsi Uji Formatif -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const kunciJawaban = {
+            q1: 'b', // Pemeliharaan preventif
+            q2: 'a', // Kegagalan bearing
+            q3: 'c', // Megger
+            q4: 'c', // 1 MΩ
+            q5: 'b', // ±5%
+            q6: 'b', // Kapasitor start/run
+            q7: 'c', // Termografi inframerah
+            q8: 'a', // Mean Time Between Failures
+            q9: 'a', // 1%
+            q10: 'b' // Useful life
+        };
+
+        function hitungNilai() {
+            const form = document.getElementById('quizForm');
+            if (!form.checkValidity()) {
+                alert("⚠️ Mohon lengkapi semua data siswa, 10 soal Pilihan Ganda, dan 5 soal Essay terlebih dahulu!");
+                form.reportValidity();
+                return;
+            }
+
+            let skorPG = 0;
+            let benar = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const jawabanSiswa = document.querySelector(`input[name="q${i}"]:checked`);
+                if (jawabanSiswa && jawabanSiswa.value === kunciJawaban[`q${i}`]) {
+                    benar++;
+                    skorPG += 10;
+                }
+            }
+
+            const hasilDiv = document.getElementById('hasilSkor');
+            const detailDiv = document.getElementById('detailSkor');
+            
+            hasilDiv.innerText = skorPG;
+            detailDiv.innerHTML = `Bagian A (PG): <strong>${skorPG}/100</strong> (${benar} jawaban benar) <br> Bagian B (Essay): <strong>Menunggu Penilaian Guru</strong> (Jawaban telah tersimpan di sistem)`;
+            
+            document.getElementById('hasilSkor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            alert(`✅ Jawaban berhasil dikirim!\nSkor Sementara Pilihan Ganda: ${skorPG}/100\n\nCatatan: Jawaban Essay akan dinilai oleh guru.`);
+        }
+
+        function kirimEmail() {
+            const nama = document.querySelector('input[name="nama"]').value || "Siswa";
+            const nis = document.querySelector('input[name="nis"]').value || "-";
+            const kelas = document.querySelector('input[name="kelas"]').value || "-";
+            
+            const subject = `Hasil Uji Formatif 10 (Pemeliharaan Preventif) - ${nama} (${nis})`;
+            const body = `Yth. Bapak UKI SAPUTRA,\n\nBerikut adalah hasil uji formatif saya:\nNama: ${nama}\nNIS: ${nis}\nKelas: ${kelas}\nMateri: Pertemuan 10 - Pemeliharaan Preventif Motor 1 Fasa & 3 Fasa\n\nSaya telah menyelesaikan Bagian A (Pilihan Ganda) dan Bagian B (Essay) pada Pertemuan 10.\n\nTerima kasih.`;
+            
+            window.location.href = `mailto:trauky@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function resetForm() {
+            if(confirm("⚠️ Apakah Anda yakin ingin menghapus semua jawaban dan mulai ulang?")) {
+                document.getElementById('quizForm').reset();
+                document.getElementById('hasilSkor').innerText = "0";
+                document.getElementById('detailSkor').innerText = "Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

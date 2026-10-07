@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 2: Pengasutan Otomatis Menggunakan PLC - Instalasi Motor Listrik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .highlight-box { border-left: 4px solid #2563eb; background-color: #eff6ff; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .tip-box { border-left: 4px solid #16a34a; background-color: #f0fdf4; }
+        .ladder { font-family: 'Courier New', monospace; background: #1e293b; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; }
+        .ladder .rung { border-left: 3px solid #fbbf24; padding-left: 1rem; margin-bottom: 0.75rem; }
+        .ladder .contact { color: #93c5fd; }
+        .ladder .coil { color: #fca5a5; }
+        .ladder .comment { color: #64748b; font-style: italic; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans" id="top">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl font-bold tracking-wide">INSTALASI MOTOR LISTRIK</div>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0">
+                <a href="index.html" class="hover:text-yellow-400 transition"><i class="fas fa-home mr-1"></i> Beranda</a>
+                <a href="index.html#tentang" class="hover:text-yellow-400 transition"><i class="fas fa-info-circle mr-1"></i> Tentang</a>
+                <a href="index.html#daftar-isi" class="hover:text-yellow-400 transition"><i class="fas fa-list mr-1"></i> Daftar Bab</a>
+                <a href="index.html#kontak" class="hover:text-yellow-400 transition"><i class="fas fa-user mr-1"></i> Penulis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Chapter -->
+    <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="bg-yellow-500 text-blue-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pertemuan 2</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-4 mb-2">Pengasutan Motor Listrik 3 Fasa Secara Otomatis Menggunakan PLC</h1>
+            <p class="text-blue-100 text-lg max-w-3xl mx-auto">
+                Bertransisi dari kontrol relay manual menuju otomasi modern. Mempelajari arsitektur <em>Programmable Logic Controller</em> (PLC), bahasa <em>Ladder Diagram</em>, dan penerapannya pada pengasutan DOL, Hidup Berurutan, serta Forward-Reverse yang lebih andal dan fleksibel.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <a href="1.html" class="bg-gray-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-600 transition border border-gray-500"><i class="fas fa-arrow-left mr-1"></i>Pertemuan 1</a>
+                <a href="#materi-inti" class="bg-white text-blue-900 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition">Mulai Membaca</a>
+                <a href="3.html" class="bg-blue-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-blue-600 transition border border-blue-500">Pertemuan 3 →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl" id="materi-inti">
+        
+        <!-- Pendahuluan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b-2 border-blue-200 pb-2">Pendahuluan</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Pada pertemuan sebelumnya, siswa telah mempelajari pengasutan motor listrik 3 fasa menggunakan rangkaian <strong>manual</strong> berbasis magnetik kontaktor dan relay. Meskipun masih banyak digunakan, sistem manual memiliki keterbatasan: sulit dimodifikasi, membutuhkan ruang panel yang besar, dan rentan terhadap keausan kontak mekanis. Di sinilah <strong>Programmable Logic Controller (PLC)</strong> hadir sebagai solusi otomasi modern yang menjadi standar industri manufaktur, perminyakan, dan pembangkit listrik.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                PLC adalah komputer industri yang dirancang untuk menggantikan ratusan relay fisik dengan program digital. Pada pertemuan ini, siswa akan mempelajari bagaimana konsep DOL, hidup berurutan, dan Forward-Reverse yang sebelumnya dirangkai secara fisik dengan kabel, kini diimplementasikan melalui <strong>Ladder Diagram</strong> (diagram tangga) — bahasa pemrograman grafis yang menyerupai skema rangkaian listrik.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Penguasaan PLC merupakan kompetensi inti bagi lulusan SMK Teknik Instalasi Tenaga Listrik maupun Teknik Otomasi Industri. Dengan memahami PLC, siswa tidak hanya mampu merangkai panel, tetapi juga "memprogram kecerdasan" di dalam panel tersebut.
+            </p>
+        </section>
+
+        <!-- Konsep Kunci -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-key text-yellow-500 mr-2"></i>Konsep Kunci</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">PLC (Programmable Logic Controller)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Komputer industri tahan banting yang menerima sinyal input, memproses program logika, dan menghasilkan sinyal output untuk mengendalikan perangkat seperti motor.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Ladder Diagram (LD)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Bahasa pemrograman grafis PLC yang bentuknya menyerupai rangkaian relay — terdiri dari "rel" kiri-kanan dan "anak tangga" (rung) yang berisi kontak & koil.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Scan Cycle</h4>
+                    <p class="text-sm text-gray-700 mt-1">Siklus kerja PLC: (1) Baca Input, (2) Eksekusi Program, (3) Update Output. Siklus ini diulang ribuan kali per detik, menghasilkan kendali real-time.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Studi Kasus -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-book-open text-yellow-500 mr-2"></i>Studi Kasus 1: Modernisasi Lini Produksi dengan PLC</h3>
+            <div class="warning-box p-6 rounded-r-lg">
+                <p class="text-gray-800 mb-3">
+                    Sebuah pabrik makanan di Jawa Barat memiliki lini pengemasan yang menggunakan 120 relay elektromekanik untuk mengendalikan 6 motor konveyor. Ketika permintaan produksi berubah (misalnya menambah conveyor baru), teknisi harus membongkar kabel, menambah relay, dan mengubah wiring secara fisik — memakan waktu 2 minggu downtime.
+                </p>
+                <p class="font-semibold text-red-700">
+                    <i class="fas fa-lightbulb mr-1"></i> Solusi dengan PLC:
+                </p>
+                <p class="text-gray-800 mt-1">
+                    Seluruh 120 relay diganti dengan 1 unit PLC. Modifikasi logika (misalnya menambah motor ke-7) hanya dilakukan dengan mengubah program Ladder Diagram di laptop — selesai dalam hitungan jam tanpa mengubah kabel daya. Biaya operasional turun drastis, dan fleksibilitas produksi meningkat signifikan.
+                </p>
+            </div>
+        </section>
+
+        <!-- Refleksi -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Refleksi untuk Siswa SMK</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Industri 4.0 menuntut teknisi yang tidak hanya mahir "menyambung kabel", tetapi juga mampu memprogram sistem cerdas. Seorang siswa SMK yang menguasai PLC memiliki nilai tambah tinggi di mata perekrut industri. Namun, PLC bukan pengganti total sistem manual — keduanya saling melengkapi. Pemahaman rangkaian relay tetap dibutuhkan untuk memahami "bahasa" yang digunakan PLC dalam Ladder Diagram.
+            </p>
+        </section>
+
+        <!-- Landasan Teoretis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">2.1 Landasan Teoretis: Arsitektur dan Cara Kerja PLC</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">2.1.1 Arsitektur Dasar PLC</h3>
+                    <p class="text-gray-700 mt-2">
+                        Secara umum, sebuah PLC terdiri dari 4 komponen utama:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 ml-4 space-y-1">
+                        <li><strong>Power Supply</strong> — Mengubah tegangan 220V AC menjadi 24V DC untuk menghidupi CPU dan modul I/O.</li>
+                        <li><strong>CPU (Central Processing Unit)</strong> — "Otak" PLC yang memproses program dan mengeksekusi logika berdasarkan input yang diterima.</li>
+                        <li><strong>Modul Input</strong> — Menerima sinyal dari perangkat lapangan seperti push button, limit switch, proximity sensor, dan thermocouple.</li>
+                        <li><strong>Modul Output</strong> — Mengirim sinyal ke aktuator seperti kontaktor, solenoid valve, lampu indikator, dan VFD (Variable Frequency Drive).</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">2.1.2 Siklus Scan (Scan Cycle)</h3>
+                    <p class="text-gray-700 mt-2">
+                        PLC bekerja secara siklikal dan terus-menerus. Satu siklus penuh biasanya memakan waktu 1–10 milidetik, terdiri dari 3 tahap:
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg mt-3 border-l-4 border-blue-400">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li><strong>Read Inputs</strong> — PLC membaca status semua terminal input (X0, X1, X2, dst.) dan menyimpannya di memori sementara.</li>
+                            <li><strong>Execute Program</strong> — PLC mengeksekusi Ladder Diagram dari rung pertama hingga terakhir, satu per satu, berdasarkan data input yang baru saja dibaca.</li>
+                            <li><strong>Update Outputs</strong> — PLC memperbarui status semua terminal output (Y0, Y1, Y2, dst.) sesuai hasil eksekusi program.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">2.1.3 Bahasa Pemrograman PLC (IEC 61131-3)</h3>
+                    <p class="text-gray-700 mt-2">
+                        Standar internasional IEC 61131-3 mendefinisikan 5 bahasa pemrograman PLC. Yang paling umum digunakan di industri (dan paling mudah dipelajari oleh siswa SMK yang terbiasa dengan skema relay) adalah:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 ml-4 space-y-1">
+                        <li><strong>Ladder Diagram (LD)</strong> — Bentuk grafis seperti diagram tangga relay.</li>
+                        <li><strong>Function Block Diagram (FBD)</strong> — Bentuk blok logika AND/OR/NOT.</li>
+                        <li><strong>Structured Text (ST)</strong> — Mirip bahasa Pascal/C.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementasi Pengasutan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">2.2 Implementasi Tiga Jenis Pengasutan Motor dengan PLC</h2>
+            
+            <div class="space-y-8">
+                <!-- DOL dengan PLC -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">2.2.1 Pengasutan DOL (Direct On Line) Menggunakan PLC</h3>
+                    <p class="text-gray-700 mb-4">
+                        Sistem DOL dengan PLC menggantikan fungsi rangkaian pengunci (holding circuit) yang sebelumnya dilakukan oleh kontak bantu NO kontaktor. Fungsi "pengunci" kini dilakukan secara <em>logis</em> di dalam program.
+                    </p>
+                    <p class="text-sm font-semibold text-gray-700 mb-2">Alokasi I/O:</p>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm border border-gray-200">
+                            <thead class="bg-blue-50">
+                                <tr>
+                                    <th class="py-2 px-3 text-left border-b">Alamat</th>
+                                    <th class="py-2 px-3 text-left border-b">Nama Perangkat</th>
+                                    <th class="py-2 px-3 text-left border-b">Tipe</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="py-2 px-3 border-b font-mono">X0</td><td class="py-2 px-3 border-b">Push Button START (NO)</td><td class="py-2 px-3 border-b">Input</td></tr>
+                                <tr><td class="py-2 px-3 border-b font-mono">X1</td><td class="py-2 px-3 border-b">Push Button STOP (NC fisik → NO logika)</td><td class="py-2 px-3 border-b">Input</td></tr>
+                                <tr><td class="py-2 px-3 border-b font-mono">X2</td><td class="py-2 px-3 border-b">Kontak TOR (NC fisik → NO logika)</td><td class="py-2 px-3 border-b">Input</td></tr>
+                                <tr><td class="py-2 px-3 font-mono">Y0</td><td class="py-2 px-3">Coil Kontaktor Motor</td><td class="py-2 px-3">Output</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-sm font-semibold text-gray-700 mt-4 mb-2">Program Ladder Diagram:</p>
+                    <div class="ladder">
+                        <div class="rung">
+                            <span class="comment">// Rung 1: Start-Stop dengan Self-Holding</span><br>
+                            |——<span class="contact">[ X0 ]</span>——+——<span class="contact">[ X1 ]</span>——<span class="contact">[ X2 ]</span>——<span class="coil">( Y0 )</span>——|<br>
+                            |           |                                     |<br>
+                            |           +——<span class="contact">[ Y0 ]</span>——+                        |
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-3">
+                        <strong>Cara kerja:</strong> Saat X0 (Start) ditekan, Y0 aktif. Kontak Y0 "menutup" secara logis dan mempertahankan arus ke coil meskipun tombol Start dilepas. Motor berhenti ketika X1 (Stop) atau X2 (TOR trip) terbuka.
+                    </p>
+                </div>
+
+                <!-- Sequential dengan PLC -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">2.2.2 Pengasutan 2 Motor Hidup Berurutan (Sequential) dengan PLC</h3>
+                    <p class="text-gray-700 mb-4">
+                        Pada sistem konveyor misalnya, Motor 1 harus menyala terlebih dahulu sebelum Motor 2 boleh dihidupkan. Logika ini sangat mudah diimplementasikan pada PLC dengan menambahkan <em>kontak bantu internal</em> Y0 pada rung yang mengendalikan Y1.
+                    </p>
+                    <p class="text-sm font-semibold text-gray-700 mb-2">Program Ladder Diagram:</p>
+                    <div class="ladder">
+                        <div class="rung">
+                            <span class="comment">// Rung 1: Motor 1 (Konveyor A)</span><br>
+                            |——<span class="contact">[ X0 ]</span>——+——<span class="contact">[ X1 ]</span>——<span class="contact">[ X2 ]</span>——<span class="coil">( Y0 )</span>——|<br>
+                            |           |                                     |<br>
+                            |           +——<span class="contact">[ Y0 ]</span>——+                        |
+                        </div>
+                        <div class="rung">
+                            <span class="comment">// Rung 2: Motor 2 (Konveyor B) — hanya aktif jika Y0 ON</span><br>
+                            |——<span class="contact">[ X3 ]</span>——+——<span class="contact">[ X4 ]</span>——<span class="contact">[ Y0 ]</span>——<span class="coil">( Y1 )</span>——|<br>
+                            |           |                                     |<br>
+                            |           +——<span class="contact">[ Y1 ]</span>——+                        |
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-3">
+                        <strong>Keunggulan:</strong> Jika operator mencoba menekan tombol start Motor 2 sebelum Motor 1 menyala, perintah diabaikan secara otomatis oleh PLC — tanpa perlu menambahkan kontak bantu fisik seperti pada rangkaian manual.
+                    </p>
+                </div>
+
+                <!-- Forward-Reverse dengan PLC -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">2.2.3 Pengasutan Forward-Reverse Menggunakan PLC</h3>
+                    <p class="text-gray-700 mb-4">
+                        Rangkaian Forward-Reverse pada sistem relay wajib memiliki interlock listrik (kontak NC silang) dan interlock mekanis. Pada PLC, interlock listrik diimplementasikan di dalam program menggunakan kontak bantu NC dari lawan arah — jauh lebih andal karena tidak ada keausan kontak.
+                    </p>
+                    <p class="text-sm font-semibold text-gray-700 mb-2">Program Ladder Diagram:</p>
+                    <div class="ladder">
+                        <div class="rung">
+                            <span class="comment">// Rung 1: FORWARD (Y0)</span><br>
+                            |——<span class="contact">[ X_For ]</span>——+——<span class="contact">[ /X_Stop ]</span>——<span class="contact">[ /Y1 ]</span>——<span class="coil">( Y0 )</span>——|<br>
+                            |                |                                          |<br>
+                            |                +——<span class="contact">[ Y0 ]</span>——+                             |
+                        </div>
+                        <div class="rung">
+                            <span class="comment">// Rung 2: REVERSE (Y1) — interlock via /Y0</span><br>
+                            |——<span class="contact">[ X_Rev ]</span>——+——<span class="contact">[ /X_Stop ]</span>——<span class="contact">[ /Y0 ]</span>——<span class="coil">( Y1 )</span>——|<br>
+                            |                |                                          |<br>
+                            |                +——<span class="contact">[ Y1 ]</span>——+                             |
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-3">
+                        <strong>Simbol <span class="font-mono">[ /... ]</span></strong> menunjukkan kontak <em>Normally Closed</em> logis (terbuka ketika koil aktif). Interlock dijamin secara logis — mustahil Y0 dan Y1 aktif bersamaan. Namun, pada praktiknya interlock mekanis di luar PLC tetap direkomendasikan sebagai lapisan keamanan tambahan.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Praktis -->
+        <section class="mb-12">
+            <div class="tip-box p-6 rounded-r-lg">
+                <h3 class="font-bold text-green-800 mb-2"><i class="fas fa-tools mr-2"></i>Tips Praktis Pemrograman PLC untuk Siswa SMK</h3>
+                <ul class="list-disc list-inside text-gray-800 space-y-2 text-sm">
+                    <li>Selalu buat <strong>tabel alokasi I/O</strong> terlebih dahulu sebelum menulis program. Ini mengurangi kesalahan wiring.</li>
+                    <li>Untuk perangkat pengaman fisik (Stop, TOR, Emergency Stop), gunakan kontak <strong>NC fisik</strong> di lapangan agar kegagalan kabel = berhenti aman (fail-safe).</li>
+                    <li>Manfaatkan <strong>internal relay</strong> (M0, M1, dst.) untuk menyimpan status sementara tanpa membebani output fisik.</li>
+                    <li>Gunakan <strong>Timer (T)</strong> dan <strong>Counter (C)</strong> untuk menambahkan kecerdasan — misalnya: motor menyala 5 detik setelah tombol Start ditekan.</li>
+                    <li>Simulasikan program terlebih dahulu di software PLC (seperti PLC Simulator, CX-Programmer, TIA Portal) sebelum mengunduhnya ke hardware.</li>
+                    <li>Dokumentasikan setiap rung dengan komentar — ini penting saat program harus dimodifikasi 6 bulan kemudian.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Kesimpulan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b-2 border-blue-200 pb-2">Kesimpulan</h2>
+            <p class="text-gray-700 leading-relaxed">
+                PLC merupakan evolusi alami dari sistem kontrol relay manual yang dipelajari pada pertemuan pertama. Dengan memahami arsitektur PLC, siklus scan, dan bahasa Ladder Diagram, siswa dapat mengimplementasikan tiga jenis pengasutan dasar (DOL, Sequential, Forward-Reverse) dengan cara yang lebih andal, fleksibel, dan mudah dimodifikasi. Transisi dari "merangkai kabel" ke "menulis logika" adalah kompetensi kunci yang membedakan teknisi level menengah dengan teknisi otomasi industri modern.
+            </p>
+        </section>
+
+        <!-- Daftar Pustaka -->
+        <section class="mb-16">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-book text-yellow-500 mr-2"></i>Daftar Pustaka</h3>
+            <ul class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                <li>IEC 61131-3. (2013). <em>Programmable controllers — Part 3: Programming languages</em>. International Electrotechnical Commission.</li>
+                <li>Petruzella, F. D. (2016). <em>Programmable Logic Controllers</em> (5th ed.). New York: McGraw-Hill Education.</li>
+                <li>Bolton, W. (2021). <em>Programmable Logic Controllers</em> (7th ed.). Oxford: Newnes.</li>
+                <li>Dokumentasi Teknis PLC Omron CP1E, Mitsubishi FX Series, dan Siemens S7-1200.</li>
+            </ul>
+        </section>
+
+        <!-- Navigasi Bawah -->
+        <div class="flex justify-between items-center border-t pt-6 mb-16 flex-wrap gap-3">
+            <a href="1.html" class="text-blue-600 hover:text-blue-800 font-semibold"><i class="fas fa-arrow-left mr-1"></i> Pertemuan 1</a>
+            <a href="#top" class="text-gray-500 hover:text-gray-700 font-semibold"><i class="fas fa-arrow-up mr-1"></i> Ke Atas</a>
+            <a href="3.html" class="text-blue-600 hover:text-blue-800 font-semibold">Pertemuan 3: Pengasutan Star-Delta <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN UJI FORMATIF -->
+        <!-- ========================================================= -->
+        <section id="uji-formatif" class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-blue-900">📋 Uji Formatif 2: Pengasutan Motor 3 Fasa Otomatis dengan PLC</h2>
+                <p class="text-gray-600 mt-2">Materi: PLC, Ladder Diagram, DOL, Sequential, dan Forward-Reverse berbasis PLC.</p>
+                <p class="text-red-600 text-sm font-semibold mt-2">⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu!</p>
+            </div>
+
+            <form id="quizForm" class="space-y-8">
+                <!-- Data Siswa -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">📋 Data Siswa</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Nama Lengkap</label>
+                            <input type="text" name="nama" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* NIS (Nomor Induk Siswa)</label>
+                            <input type="text" name="nis" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Tanggal Ujian</label>
+                            <input type="date" name="tanggal" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Kelas</label>
+                            <input type="text" name="kelas" placeholder="Contoh: XI TITL 1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Semester</label>
+                            <select name="semester" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                                <option value="">Pilih Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian A: Pilihan Ganda -->
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon lengkapi semua 10 soal pilihan ganda!</p>
+                    
+                    <div class="space-y-6 text-gray-800">
+                        <!-- Soal 1 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">1. PLC merupakan singkatan dari...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q1" value="a" class="mr-2"> a. Power Line Controller</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="b" class="mr-2"> b. Programmable Logic Controller</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="c" class="mr-2"> c. Process Level Circuit</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="d" class="mr-2"> d. Programmed Load Control</label>
+                            </div>
+                        </div>
+                        <!-- Soal 2 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">2. Komponen PLC yang berfungsi sebagai "otak" yang memproses program logika adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q2" value="a" class="mr-2"> a. Power Supply</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="b" class="mr-2"> b. Modul Output</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="c" class="mr-2"> c. CPU (Central Processing Unit)</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="d" class="mr-2"> d. Programming Device</label>
+                            </div>
+                        </div>
+                        <!-- Soal 3 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">3. Urutan siklus scan (scan cycle) PLC yang benar adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q3" value="a" class="mr-2"> a. Update Output → Eksekusi Program → Baca Input</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="b" class="mr-2"> b. Eksekusi Program → Baca Input → Update Output</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="c" class="mr-2"> c. Baca Input → Eksekusi Program → Update Output</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="d" class="mr-2"> d. Baca Input → Update Output → Eksekusi Program</label>
+                            </div>
+                        </div>
+                        <!-- Soal 4 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">4. Bahasa pemrograman PLC yang paling populer karena bentuknya menyerupai skema relay adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q4" value="a" class="mr-2"> a. Structured Text (ST)</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="b" class="mr-2"> b. Function Block Diagram (FBD)</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="c" class="mr-2"> c. Ladder Diagram (LD)</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="d" class="mr-2"> d. Instruction List (IL)</label>
+                            </div>
+                        </div>
+                        <!-- Soal 5 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">5. Pada pengasutan DOL berbasis PLC, fungsi "pengunci" (self-holding) yang sebelumnya dilakukan kontak bantu NO kontaktor kini dilakukan oleh...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q5" value="a" class="mr-2"> a. Timer internal</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="b" class="mr-2"> b. Kontak bantu logis dari output Y0 yang dipasang paralel dengan tombol Start</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="c" class="mr-2"> c. Sensor proximity</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="d" class="mr-2"> d. Power supply cadangan</label>
+                            </div>
+                        </div>
+                        <!-- Soal 6 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">6. Pada rangkaian Forward-Reverse dengan PLC, interlock listrik diimplementasikan melalui...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q6" value="a" class="mr-2"> a. Kontak NC fisik yang dipasang paralel</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="b" class="mr-2"> b. Kontak bantu NC logis dari lawan arah (/Y1 pada rung Forward dan /Y0 pada rung Reverse)</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="c" class="mr-2"> c. Timer penunda 5 detik</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="d" class="mr-2"> d. Counter hitungan mundur</label>
+                            </div>
+                        </div>
+                        <!-- Soal 7 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">7. Mengapa push button STOP pada sistem PLC sebaiknya menggunakan kontak NC fisik di lapangan?</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q7" value="a" class="mr-2"> a. Agar lebih hemat kabel</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="b" class="mr-2"> b. Agar jika kabel putus, sistem tetap berhenti secara aman (fail-safe)</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="c" class="mr-2"> c. Agar tegangan menjadi lebih tinggi</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="d" class="mr-2"> d. Agar program PLC lebih panjang</label>
+                            </div>
+                        </div>
+                        <!-- Soal 8 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">8. Untuk mengendalikan kontaktor motor berdaya tinggi, output PLC biasanya dihubungkan terlebih dahulu ke...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q8" value="a" class="mr-2"> a. Lampu indikator 5W</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="b" class="mr-2"> b. Relay perantara (interposing relay) sebelum coil kontaktor</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="c" class="mr-2"> c. Transformator step-down</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="d" class="mr-2"> d. MCB 3 fasa</label>
+                            </div>
+                        </div>
+                        <!-- Soal 9 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">9. Pada pengasutan Sequential 2 motor dengan PLC, syarat Motor 2 bisa menyala adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q9" value="a" class="mr-2"> a. Tombol Stop Motor 1 ditekan</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="b" class="mr-2"> b. Output Y0 (Motor 1) dalam keadaan aktif</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="c" class="mr-2"> c. TOR Motor 2 trip</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="d" class="mr-2"> d. Sensor suhu ruangan aktif</label>
+                            </div>
+                        </div>
+                        <!-- Soal 10 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">10. Keunggulan utama PLC dibanding rangkaian relay konvensional adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q10" value="a" class="mr-2"> a. Harga lebih murah dan tahan air</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="b" class="mr-2"> b. Mudah dimodifikasi via program, hemat ruang, dapat memantau status real-time</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="c" class="mr-2"> c. Tidak memerlukan power supply</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="d" class="mr-2"> d. Hanya bisa digunakan untuk motor DC</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Essay -->
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon isi semua 5 soal essay dengan jawaban yang jelas!</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <p class="font-semibold mb-2">1. Jelaskan arsitektur dasar PLC (Power Supply, CPU, Modul Input, Modul Output) beserta fungsi masing-masing komponennya dalam sistem pengasutan motor!</p>
+                            <textarea name="essay1" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">2. Deskripsikan 3 tahap siklus scan PLC (Read Inputs, Execute Program, Update Outputs) dan jelaskan mengapa pemahaman ini penting saat merancang program pengasutan motor!</p>
+                            <textarea name="essay2" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">3. Buatlah tabel alokasi I/O dan rancang Ladder Diagram untuk pengasutan DOL motor 3 fasa menggunakan PLC (dengan input Start, Stop, TOR, dan output kontaktor motor)!</p>
+                            <textarea name="essay3" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">4. Bandingkan kelebihan dan kekurangan sistem pengasutan Forward-Reverse menggunakan rangkaian relay konvensional versus menggunakan PLC. Sebutkan minimal 3 aspek perbandingan!</p>
+                            <textarea name="essay4" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">5. Sebuah pabrik ingin mengganti sistem kontrol konveyor berurutan yang tadinya menggunakan 20 relay dengan PLC. Rancang skenario implementasinya mulai dari analisis kebutuhan, pemilihan PLC, alokasi I/O, hingga commissioning!</p>
+                            <textarea name="essay5" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hasil & Tombol Aksi -->
+                <div class="bg-blue-50 p-6 rounded-lg border border-blue-200 text-center">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4">📊 Hasil Uji Formatif</h3>
+                    <div id="hasilSkor" class="text-3xl font-extrabold text-blue-700 mb-2">0</div>
+                    <p id="detailSkor" class="text-sm text-gray-600 mb-6">Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button type="button" onclick="hitungNilai()" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-paper-plane mr-2"></i>KIRIM JAWABAN & LIHAT HASIL
+                        </button>
+                        <button type="button" onclick="window.print()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-file-pdf mr-2"></i>UNDUH PDF LENGKAP
+                        </button>
+                        <button type="button" onclick="kirimEmail()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-envelope mr-2"></i>KIRIM EMAIL GURU
+                        </button>
+                        <button type="button" onclick="resetForm()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-redo mr-2"></i>MULAI ULANG
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-blue-200 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">&copy; 2026 UKI SAPUTRA - SMK N 1 Koto Balingka. Hak Cipta Dilindungi.</p>
+            <a href="respon-pembaca.html" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-2 px-6 rounded-full transition duration-300 text-sm">
+                <i class="fas fa-paper-plane mr-1"></i> Kirim Respon tentang Materi Ini
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Fungsi Uji Formatif -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const kunciJawaban = {
+            q1: 'b', // Programmable Logic Controller
+            q2: 'c', // CPU
+            q3: 'c', // Read, Execute, Update
+            q4: 'c', // Ladder Diagram
+            q5: 'b', // Kontak bantu logis
+            q6: 'b', // Kontak NC logis lawan arah
+            q7: 'b', // Fail-safe
+            q8: 'b', // Relay perantara
+            q9: 'b', // Y0 aktif
+            q10: 'b' // Mudah dimodifikasi, hemat ruang
+        };
+
+        function hitungNilai() {
+            const form = document.getElementById('quizForm');
+            if (!form.checkValidity()) {
+                alert("⚠️ Mohon lengkapi semua data siswa, 10 soal Pilihan Ganda, dan 5 soal Essay terlebih dahulu!");
+                form.reportValidity();
+                return;
+            }
+
+            let skorPG = 0;
+            let benar = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const jawabanSiswa = document.querySelector(`input[name="q${i}"]:checked`);
+                if (jawabanSiswa && jawabanSiswa.value === kunciJawaban[`q${i}`]) {
+                    benar++;
+                    skorPG += 10;
+                }
+            }
+
+            const hasilDiv = document.getElementById('hasilSkor');
+            const detailDiv = document.getElementById('detailSkor');
+            
+            hasilDiv.innerText = skorPG;
+            detailDiv.innerHTML = `Bagian A (PG): <strong>${skorPG}/100</strong> (${benar} jawaban benar) <br> Bagian B (Essay): <strong>Menunggu Penilaian Guru</strong> (Jawaban telah tersimpan di sistem)`;
+            
+            document.getElementById('hasilSkor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            alert(`✅ Jawaban berhasil dikirim!\nSkor Sementara Pilihan Ganda: ${skorPG}/100\n\nCatatan: Jawaban Essay akan dinilai oleh guru.`);
+        }
+
+        function kirimEmail() {
+            const nama = document.querySelector('input[name="nama"]').value || "Siswa";
+            const nis = document.querySelector('input[name="nis"]').value || "-";
+            const kelas = document.querySelector('input[name="kelas"]').value || "-";
+            
+            const subject = `Hasil Uji Formatif 2 (PLC) - ${nama} (${nis})`;
+            const body = `Yth. Bapak UKI SAPUTRA,\n\nBerikut adalah hasil uji formatif saya:\nNama: ${nama}\nNIS: ${nis}\nKelas: ${kelas}\nMateri: Pertemuan 2 - Pengasutan Otomatis Menggunakan PLC\n\nSaya telah menyelesaikan Bagian A (Pilihan Ganda) dan Bagian B (Essay) pada Pertemuan 2.\n\nTerima kasih.`;
+            
+            window.location.href = `mailto:trauky@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function resetForm() {
+            if(confirm("⚠️ Apakah Anda yakin ingin menghapus semua jawaban dan mulai ulang?")) {
+                document.getElementById('quizForm').reset();
+                document.getElementById('hasilSkor').innerText = "0";
+                document.getElementById('detailSkor').innerText = "Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

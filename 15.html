@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 15: Presentasi & Laporan Hasil Proyek Instalasi Motor Listrik - Instalasi Motor Listrik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .highlight-box { border-left: 4px solid #2563eb; background-color: #eff6ff; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .tip-box { border-left: 4px solid #16a34a; background-color: #f0fdf4; }
+        .formula-box { background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 0.5rem; font-family: 'Courier New', monospace; }
+        .report-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .report-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .slide-rule { background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border-left: 4px solid #7c3aed; padding: 1rem; border-radius: 0.5rem; }
+        .chapter-badge { display: inline-block; padding: 4px 12px; border-radius: 9999px; font-size: 0.75rem; font-weight: bold; margin: 2px; background-color: #ede9fe; color: #5b21b6; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans" id="top">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl font-bold tracking-wide">INSTALASI MOTOR LISTRIK</div>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0">
+                <a href="index.html" class="hover:text-yellow-400 transition"><i class="fas fa-home mr-1"></i> Beranda</a>
+                <a href="index.html#tentang" class="hover:text-yellow-400 transition"><i class="fas fa-info-circle mr-1"></i> Tentang</a>
+                <a href="index.html#daftar-isi" class="hover:text-yellow-400 transition"><i class="fas fa-list mr-1"></i> Daftar Bab</a>
+                <a href="index.html#kontak" class="hover:text-yellow-400 transition"><i class="fas fa-user mr-1"></i> Penulis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Chapter -->
+    <header class="bg-gradient-to-r from-violet-800 to-violet-600 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="bg-yellow-500 text-violet-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pertemuan 15 — Bab 6: Proyek Akhir & Evaluasi</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-4 mb-2">Presentasi & Laporan Hasil Proyek Instalasi Motor Listrik</h1>
+            <p class="text-violet-100 text-lg max-w-3xl mx-auto">
+                Mempelajari teknik penyusunan laporan proyek teknis yang sistematis, metode presentasi yang efektif di depan penguji/klien, teknik komunikasi visual dengan diagram dan data, strategi menjawab pertanyaan (Q&A), serta etika profesional dalam penyampaian hasil proyek instalasi motor listrik.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <a href="14.html" class="bg-gray-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-600 transition border border-gray-500"><i class="fas fa-arrow-left mr-1"></i>Pertemuan 14</a>
+                <a href="#materi-inti" class="bg-white text-violet-900 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition">Mulai Membaca</a>
+                <a href="16.html" class="bg-violet-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-violet-600 transition border border-violet-500">Pertemuan 16 (UAS) →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl" id="materi-inti">
+
+        <!-- Pendahuluan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-violet-900 mb-4 border-b-2 border-violet-200 pb-2">Pendahuluan</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Setelah merancang (Pertemuan 13) dan mengimplementasikan proyek (Pertemuan 14), kini siswa memasuki tahap akhir yang tak kalah penting: <strong>menyajikan dan mendokumentasikan hasil proyek</strong> melalui laporan tertulis dan presentasi lisan. Banyak teknisi brilian gagal mendapatkan pengakuan atas karya mereka karena tidak mampu mengomunikasikan hasilnya dengan baik. Di dunia profesional, kemampuan menulis laporan teknis dan mempresentasikan hasil kerja adalah <strong>kompetensi yang membedakan teknisi biasa dengan profesional yang dihargai</strong>.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Laporan proyek yang baik bukan sekadar formalitas akademis — ia adalah <strong>dokumen legal dan teknis</strong> yang menjadi acuan pemeliharaan di masa depan, bukti garansi, referensi untuk proyek serupa, dan portofolio profesional. Sementara presentasi yang efektif adalah <strong>jembatan komunikasi</strong> antara teknisi dengan klien, atasan, atau penguji — menyampaikan kompleksitas teknis dengan cara yang mudah dipahami dan meyakinkan.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Pada pertemuan ini, siswa akan mempelajari secara komprehensif: struktur laporan proyek standar industri, teknik penyusunan bab per bab, prinsip desain slide presentasi (aturan 10-20-30 Guy Kawasaki), teknik presentasi teknis yang meyakinkan, strategi menjawab pertanyaan (Q&A), teknik komunikasi visual dengan diagram dan data, serta etika profesional dalam penyampaian hasil proyek. Pemahaman ini akan membekali siswa untuk menjadi teknisi yang tidak hanya <em>bekerja dengan baik</em>, tetapi juga <em>mampu menceritakan karyanya dengan meyakinkan</em>.
+            </p>
+        </section>
+
+        <!-- Konsep Kunci -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-violet-900 mb-4"><i class="fas fa-key text-yellow-500 mr-2"></i>Konsep Kunci</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Laporan Proyek Teknis</h4>
+                    <p class="text-sm text-gray-700 mt-1">Dokumen tertulis sistematis yang memuat seluruh aspek proyek: latar belakang, metodologi, hasil, pembahasan, kesimpulan, dan rekomendasi. Disusun sesuai standar penulisan teknis industri.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Presentasi Teknis</h4>
+                    <p class="text-sm text-gray-700 mt-1">Penyampaian lisan hasil proyek dengan dukungan visual (slide, diagram, demo) kepada audiens (klien, penguji, tim). Tujuannya: menginformasikan, meyakinkan, dan mendapatkan persetujuan.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Komunikasi Visual</h4>
+                    <p class="text-sm text-gray-700 mt-1">Penggunaan diagram, grafik, foto, dan ilustrasi untuk menyampaikan informasi teknis kompleks secara cepat dan jelas. "A picture is worth a thousand words."</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Portofolio Teknisi</h4>
+                    <p class="text-sm text-gray-700 mt-1">Kumpulan dokumen proyek (laporan, foto, sertifikat) yang mendemonstrasikan kompetensi dan pengalaman teknisi. Berfungsi sebagai "CV visual" untuk karir profesional.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Landasan Teoretis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-violet-900 mb-6 border-b-2 border-violet-200 pb-2">15.1 Landasan Teoretis Penulisan Laporan dan Presentasi</h2>
+
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">15.1.1 Prinsip Komunikasi Teknik (Technical Communication)</h3>
+                    <p class="text-gray-700 mt-2">
+                        Komunikasi teknik memiliki karakteristik khusus yang berbeda dengan komunikasi umum. Menurut <em>Society for Technical Communication</em> (STC), komunikasi teknik yang efektif harus memenuhi 4 prinsip:
+                    </p>
+                    <div class="bg-violet-50 p-4 rounded-lg mt-3 border-l-4 border-violet-400">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li><strong>Akurasi (Accuracy):</strong> Informasi harus tepat, berdasarkan data, dan dapat dipertanggungjawabkan. Tidak boleh ada spekulasi tanpa dasar.</li>
+                            <li><strong>Kejelasan (Clarity):</strong> Disampaikan dengan bahasa yang mudah dipahami, struktur logis, dan istilah teknis yang konsisten.</li>
+                            <li><strong>Keringkasan (Conciseness):</strong> Langsung pada inti, tidak bertele-tele, menghargai waktu pembaca/audiens.</li>
+                            <li><strong>Keteraksesan (Accessibility):</strong> Mudah ditemukan, dibaca, dan dipahami oleh target audiens (teknisi, manajer, klien awam).</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">15.1.2 Aturan 10-20-30 Guy Kawasaki untuk Presentasi</h3>
+                    <p class="text-gray-700 mt-2">
+                        Guy Kawasaki, mantan evangelist Apple, merumuskan aturan presentasi yang menjadi standar industri:
+                    </p>
+                    <div class="slide-rule mt-3">
+                        <div class="grid md:grid-cols-3 gap-4 text-center">
+                            <div class="bg-white p-3 rounded-lg">
+                                <div class="text-3xl font-extrabold text-violet-700">10</div>
+                                <p class="text-sm text-gray-700 mt-1">Maksimal <strong>10 slide</strong> dalam satu presentasi</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg">
+                                <div class="text-3xl font-extrabold text-violet-700">20</div>
+                                <p class="text-sm text-gray-700 mt-1">Durasi maksimal <strong>20 menit</strong></p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg">
+                                <div class="text-3xl font-extrabold text-violet-700">30</div>
+                                <p class="text-sm text-gray-700 mt-1">Font minimal ukuran <strong>30 pt</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mt-3">
+                        <strong>Mengapa aturan ini penting?</strong> Audiens tidak dapat memproses informasi lebih dari 10 slide dengan baik. Durasi 20 menit menjaga konsentrasi. Font 30 pt memastikan teks terbaca dari belakang ruangan.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">15.1.3 Piramida Terbalik (Inverted Pyramid)</h3>
+                    <p class="text-gray-700 mt-2">
+                        Struktur penulisan laporan teknis mengikuti prinsip <strong>piramida terbalik</strong>: informasi paling penting di awal, detail di tengah, informasi pendukung di akhir.
+                    </p>
+                    <div class="bg-violet-50 p-4 rounded-lg mt-3 border-l-4 border-violet-400">
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li><strong>Bagian Atas (Paling Penting):</strong> Executive Summary / Abstrak — kesimpulan utama, rekomendasi, angka kunci.</li>
+                            <li><strong>Bagian Tengah (Penting):</strong> Metodologi, hasil, pembahasan — detail teknis untuk pembaca yang ingin memahami proses.</li>
+                            <li><strong>Bagian Bawah (Pendukung):</strong> Lampiran, data mentah, referensi — untuk pembaca yang ingin verifikasi mendalam.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Struktur Laporan Proyek -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-violet-900 mb-6 border-b-2 border-violet-200 pb-2">15.2 Struktur Laporan Proyek Instalasi Motor Listrik</h2>
+
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Laporan proyek instalasi motor listrik yang profesional harus mengikuti struktur sistematis berikut. Setiap bab memiliki fungsi spesifik dan tidak boleh dihilangkan.
+            </p>
+
+            <div class="space-y-6">
+                <!-- Halaman Awal -->
+                <div class="report-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-violet-800 mb-3"><i class="fas fa-file-alt text-violet-600 mr-2"></i>A. Halaman Awal (Front Matter)</h3>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-violet-50 p-3 rounded">
+                            <ul class="list-disc list-inside text-gray-700 space-y-1">
+                                <li><strong>Halaman Judul:</strong> Judul proyek, nama penyusun, instansi klien, tanggal, logo</li>
+                                <li><strong>Kata Pengantar:</strong> Ucapan syukur, tujuan laporan, ucapan terima kasih</li>
+                                <li><strong>Daftar Isi:</strong> Daftar bab, sub-bab, tabel, gambar, lampiran</li>
+                                <li><strong>Daftar Tabel & Gambar:</strong> Untuk laporan panjang (> 20 halaman)</li>
+                                <li><strong>Executive Summary / Abstrak:</strong> Ringkasan 1 halaman (maksimal) berisi tujuan, metode, hasil utama, kesimpulan</li>
+                            </ul>
+                        </div>
+                        <div class="bg-yellow-50 p-3 rounded">
+                            <p class="font-bold text-yellow-900 mb-2">💡 Tips:</p>
+                            <p class="text-gray-700">Executive summary adalah bagian PALING BANYAK DIBACA oleh manajer/klien. Tulis terakhir, setelah seluruh laporan selesai. Harus bisa dipahami tanpa membaca laporan lengkap.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bab 1 -->
+                <div class="report-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-violet-800 mb-3"><i class="fas fa-book text-violet-600 mr-2"></i>B. Bab 1 — Pendahuluan</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li><strong>1.1 Latar Belakang:</strong> Mengapa proyek ini diperlukan? Masalah apa yang ingin diatasi? Konteks industri.</li>
+                        <li><strong>1.2 Tujuan Proyek:</strong> Apa yang ingin dicapai? Gunakan SMART (Specific, Measurable, Achievable, Relevant, Time-bound).</li>
+                        <li><strong>1.3 Ruang Lingkup:</strong> Batasan proyek — apa yang termasuk dan tidak termasuk.</li>
+                        <li><strong>1.4 Manfaat Proyek:</strong> Bagi klien, industri, dan masyarakat.</li>
+                        <li><strong>1.5 Sistematika Laporan:</strong> Gambaran singkat isi tiap bab.</li>
+                    </ul>
+                </div>
+
+                <!-- Bab 2 -->
+                <div class="report-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-violet-800 mb-3"><i class="fas fa-graduation-cap text-violet-600 mr-2"></i>C. Bab 2 — Landasan Teori</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>Teori motor listrik yang relevan (3 fasa, 1 fasa, pengasutan)</li>
+                        <li>Prinsip komponen yang digunakan (MCB, kontaktor, TOR, PLC, VFD)</li>
+                        <li>Standar yang berlaku (PUIL 2011, IEC, IEEE)</li>
+                        <li>Studi literatur / referensi proyek sejenis</li>
+                    </ul>
+                    <p class="text-xs text-gray-600 mt-2">💡 Gunakan referensi terkini (5–10 tahun terakhir) dan sitasi dengan benar (APA/IEEE style).</p>
+                </div>
+
+                <!-- Bab 3 -->
+                <div class="report-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-violet-800 mb-3"><i class="fas fa-drafting-compass text-violet-600 mr-2"></i>D. Bab 3 — Metodologi / Perancangan</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li><strong>3.1 Analisis Kebutuhan:</strong> Spesifikasi motor, beban, lingkungan operasi</li>
+                        <li><strong>3.2 Perancangan Teknis:</strong> Pemilihan metode starting, komponen, kabel</li>
+                        <li><strong>3.3 Perhitungan:</strong> Arus nominal, ukuran kabel, rating proteksi</li>
+                        <li><strong>3.4 Gambar Teknik:</strong> SLD, wiring diagram, layout panel</li>
+                        <li><strong>3.5 Rencana Anggaran Biaya (RAB):</strong> Rekapitulasi biaya</li>
+                        <li><strong>3.6 Jadwal Pelaksanaan:</strong> Gantt chart / timeline</li>
+                    </ul>
+                </div>
+
+                <!-- Bab 4 -->
+                <div class="report-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-violet-800 mb-3"><i class="fas fa-tools text-violet-600 mr-2"></i>E. Bab 4 — Implementasi dan Hasil</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li><strong>4.1 Proses Instalasi:</strong> Tahapan pemasangan komponen, pengkabelan</li>
+                        <li><strong>4.2 Dokumentasi Foto:</strong> Foto progres (sebelum, saat, sesudah)</li>
+                        <li><strong>4.3 Hasil Pengujian:</strong> Data no-load test, load test, uji proteksi</li>
+                        <li><strong>4.4 Parameter Kinerja:</strong> Arus, tegangan, isolasi, efisiensi, cos φ</li>
+                        <li><strong>4.5 Kendala dan Solusi:</strong> Masalah yang dihadapi saat implementasi dan cara mengatasinya</li>
+                    </ul>
+                </div>
+
+                <!-- Bab 5 -->
+                <div class="report-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-violet-800 mb-3"><i class="fas fa-chart-line text-violet-600 mr-2"></i>F. Bab 5 — Pembahasan</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>Analisis hasil pengujian dibandingkan dengan standar/target</li>
+                        <li>Perbandingan dengan teori dan studi literatur</li>
+                        <li>Evaluasi efisiensi energi dan keandalan sistem</li>
+                        <li>Identifikasi area perbaikan untuk proyek selanjutnya</li>
+                        <li>Dampak proyek terhadap klien/industri</li>
+                    </ul>
+                </div>
+
+                <!-- Bab 6 -->
+                <div class="report-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-violet-800 mb-3"><i class="fas fa-flag-checkered text-violet-600 mr-2"></i>G. Bab 6 — Kesimpulan dan Saran</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li><strong>Kesimpulan:</strong> Jawaban singkat atas tujuan proyek (poin per poin)</li>
+                        <li><strong>Saran/Rekomendasi:</strong> Untuk perbaikan proyek, penelitian lanjutan, atau implementasi di tempat lain</li>
+                    </ul>
+                </div>
+
+                <!-- Bagian Akhir -->
+                <div class="report-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-violet-800 mb-3"><i class="fas fa-paperclip text-violet-600 mr-2"></i>H. Bagian Akhir</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li><strong>Daftar Pustaka:</strong> Semua referensi yang disitasi (format APA/IEEE)</li>
+                        <li><strong>Lampiran:</strong>
+                            <ul class="list-circle list-inside ml-4 mt-1">
+                                <li>As-built drawing</li>
+                                <li>Data mentah pengukuran</li>
+                                <li>Spesifikasi komponen (datasheet)</li>
+                                <li>Foto-foto dokumentasi</li>
+                                <li>Berita acara serah terima</li>
+                                <li>Surat keterangan dari klien</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Struktur Presentasi -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-violet-900 mb-6 border-b-2 border-violet-200 pb-2">15.3 Struktur Presentasi Proyek yang Efektif</h2>
+
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Presentasi proyek berbeda dengan laporan tertulis. Presentasi harus <strong>ringkas, visual, dan persuasif</strong>. Berikut adalah struktur 10 slide standar untuk presentasi proyek instalasi motor listrik:
+            </p>
+
+            <div class="space-y-3">
+                <div class="slide-rule">
+                    <p class="font-bold text-violet-900">Slide 1 — Judul</p>
+                    <p class="text-sm text-gray-700">Judul proyek, nama penyusun, instansi, tanggal. Tambahkan foto hasil proyek sebagai background.</p>
+                </div>
+                <div class="slide-rule">
+                    <p class="font-bold text-violet-900">Slide 2 — Latar Belakang & Masalah</p>
+                    <p class="text-sm text-gray-700">Mengapa proyek ini penting? Masalah apa yang ingin diatasi? Gunakan data/fakta.</p>
+                </div>
+                <div class="slide-rule">
+                    <p class="font-bold text-violet-900">Slide 3 — Tujuan & Ruang Lingkup</p>
+                    <p class="text-sm text-gray-700">Apa yang ingin dicapai? Batasan proyek? Gunakan bullet points, bukan paragraf panjang.</p>
+                </div>
+                <div class="slide-rule">
+                    <p class="font-bold text-violet-900">Slide 4 — Metodologi / Pendekatan</p>
+                    <p class="text-sm text-gray-700">Diagram alir proses perancangan. Metode starting yang dipilih dan alasannya.</p>
+                </div>
+                <div class="slide-rule">
+                    <p class="font-bold text-violet-900">Slide 5 — Perancangan Teknis</p>
+                    <p class="text-sm text-gray-700">Tampilkan SLD, wiring diagram, atau layout panel. Satu diagram lebih baik dari 1000 kata.</p>
+                </div>
+                <div class="slide-rule">
+                    <p class="font-bold text-violet-900">Slide 6 — Implementasi (Foto Progres)</p>
+                    <p class="text-sm text-gray-700">Kolase foto: sebelum, saat, dan sesudah instalasi. Tunjukkan transformasi.</p>
+                </div>
+                <div class="slide-rule">
+                    <p class="font-bold text-violet-900">Slide 7 — Hasil Pengujian</p>
+                    <p class="text-sm text-gray-700">Tabel/grafik hasil pengukuran: arus, tegangan, isolasi, efisiensi. Bandingkan dengan standar.</p>
+                </div>
+                <div class="slide-rule">
+                    <p class="font-bold text-violet-900">Slide 8 — Analisis & Pembahasan</p>
+                    <p class="text-sm text-gray-700">Interpretasi hasil. Apakah sesuai target? Kendala dan solusinya.</p>
+                </div>
+                <div class="slide-rule">
+                    <p class="font-bold text-violet-900">Slide 9 — Kesimpulan & Rekomendasi</p>
+                    <p class="text-sm text-gray-700">3–5 poin kesimpulan. Saran untuk pengembangan selanjutnya.</p>
+                </div>
+                <div class="slide-rule">
+                    <p class="font-bold text-violet-900">Slide 10 — Penutup & Q&A</p>
+                    <p class="text-sm text-gray-700">Ucapan terima kasih. Kontak. Undangan untuk pertanyaan. Kutipan inspiratif (opsional).</p>
+                </div>
+            </div>
+
+            <div class="tip-box p-4 rounded-r-lg mt-4">
+                <p class="text-sm text-gray-800">
+                    <strong>💡 Aturan Emas Slide:</strong> Satu slide = satu ide utama. Jangan menumpuk banyak informasi. Gunakan visual (foto, diagram, grafik) lebih banyak daripada teks. Font minimal 30 pt. Kontras tinggi (teks gelap di latar terang atau sebaliknya).
+                </p>
+            </div>
+        </section>
+
+        <!-- Teknik Presentasi -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-violet-900 mb-6 border-b-2 border-violet-200 pb-2">15.4 Teknik Presentasi Teknis yang Meyakinkan</h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="report-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-violet-900 mb-2"><i class="fas fa-microphone text-violet-600 mr-2"></i>A. Bahasa Tubuh (Body Language)</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li><strong>Kontak mata:</strong> Sapu pandangan ke seluruh audiens, jangan fokus ke satu titik</li>
+                        <li><strong>Postur tegap:</strong> Berdiri tegak, bahu terbuka, tangan tidak bersedekap</li>
+                        <li><strong>Gestur tangan:</strong> Gunakan untuk menekankan poin penting</li>
+                        <li><strong>Pergerakan:</strong> Berjalan perlahan, jangan mondar-mandar gelisah</li>
+                        <li><strong>Ekspresi wajah:</strong> Senyum natural, antusiasme terlihat</li>
+                    </ul>
+                </div>
+                <div class="report-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-violet-900 mb-2"><i class="fas fa-volume-up text-violet-600 mr-2"></i>B. Vokal (Voice)</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li><strong>Volume:</strong> Cukup keras agar terdengar sampai belakang ruangan</li>
+                        <li><strong>Intonasi:</strong> Variasikan nada — jangan monoton</li>
+                        <li><strong>Kecepatan:</strong> Sedang (120–150 kata/menit), perlambat saat poin penting</li>
+                        <li><strong>Jeda (pause):</strong> Gunakan setelah poin penting untuk penekanan</li>
+                        <li><strong>Artikulasi:</strong> Ucapkan jelas, jangan bergumam</li>
+                    </ul>
+                </div>
+                <div class="report-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-violet-900 mb-2"><i class="fas fa-eye text-violet-600 mr-2"></i>C. Komunikasi Visual</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li><strong>Diagram:</strong> SLD, wiring diagram, flowchart</li>
+                        <li><strong>Grafik:</strong> Line chart untuk tren, bar chart untuk perbandingan</li>
+                        <li><strong>Foto:</strong> High resolution, diberi label/keterangan</li>
+                        <li><strong>Tabel:</strong> Sederhana, tidak terlalu banyak kolom</li>
+                        <li><strong>Ikon:</strong> Gunakan untuk poin-poin penting</li>
+                        <li><strong>Animasi:</strong> Minimal, hanya untuk menekankan alur</li>
+                    </ul>
+                </div>
+                <div class="report-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-violet-900 mb-2"><i class="fas fa-comments text-violet-600 mr-2"></i>D. Strategi Q&A</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li><strong>Dengarkan sampai selesai:</strong> Jangan memotong pertanyaan</li>
+                        <li><strong>Ulangi pertanyaan:</strong> Untuk memastikan pemahaman dan memberi waktu berpikir</li>
+                        <li><strong>Jawab ringkas:</strong> Langsung ke inti, didukung data</li>
+                        <li><strong>Jika tidak tahu:</strong> Jujur — "Saya akan pelajari lebih lanjut dan sampaikan nanti"</li>
+                        <li><strong>Jika ditanya hostile:</strong> Tetap tenang, jawab dengan fakta</li>
+                        <li><strong>Siapkan backup slide:</strong> Data tambahan untuk antisipasi pertanyaan mendalam</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Komunikasi Visual -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-violet-900 mb-6 border-b-2 border-violet-200 pb-2">15.5 Teknik Komunikasi Visual dalam Laporan dan Presentasi</h2>
+
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Visual yang baik dapat menyampaikan informasi teknis kompleks dalam hitungan detik. Berikut panduan pemilihan visual yang tepat:
+            </p>
+
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm text-sm">
+                    <thead class="bg-violet-100 text-violet-900">
+                        <tr>
+                            <th class="py-3 px-3 text-left font-bold border-b">Jenis Data</th>
+                            <th class="py-3 px-3 text-left font-bold border-b">Visual yang Tepat</th>
+                            <th class="py-3 px-3 text-left font-bold border-b">Contoh Aplikasi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Perbandingan nilai</td>
+                            <td class="py-3 px-3">Bar chart / Column chart</td>
+                            <td class="py-3 px-3">Perbandingan arus 3 fasa, efisiensi motor IE1-IE4</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Tren waktu</td>
+                            <td class="py-3 px-3">Line chart</td>
+                            <td class="py-3 px-3">Trend tahanan isolasi 6 bulan, suhu bearing</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Komposisi / proporsi</td>
+                            <td class="py-3 px-3">Pie chart / Donut chart</td>
+                            <td class="py-3 px-3">Komposisi biaya proyek, penyebab kegagalan motor</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Hubungan antar variabel</td>
+                            <td class="py-3 px-3">Scatter plot</td>
+                            <td class="py-3 px-3">Hubungan beban vs efisiensi motor</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Alur proses</td>
+                            <td class="py-3 px-3">Flowchart / Diagram alir</td>
+                            <td class="py-3 px-3">Prosedur commissioning, troubleshooting</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Struktur sistem</td>
+                            <td class="py-3 px-3">Single Line Diagram / Wiring diagram</td>
+                            <td class="py-3 px-3">Rangkaian Star-Delta, DOL, Forward-Reverse</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Distribusi spasial</td>
+                            <td class="py-3 px-3">Layout / Thermal image</td>
+                            <td class="py-3 px-3">Layout panel, distribusi suhu motor</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="warning-box p-4 rounded-r-lg mt-4">
+                <p class="text-sm text-gray-800">
+                    <strong>⚠️ Kesalahan Umum Visual:</strong> Pie chart 3D yang sulit dibaca, grafik tanpa label sumbu, foto buram/tidak relevan, tabel dengan terlalu banyak angka, warna yang tidak konsisten, animasi berlebihan yang mengganggu.
+                </p>
+            </div>
+        </section>
+
+        <!-- Studi Kasus -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-violet-900 mb-4"><i class="fas fa-book-open text-yellow-500 mr-2"></i>Studi Kasus 1: Presentasi Proyek Instalasi Panel Star-Delta di Depan Klien</h3>
+            <div class="bg-violet-50 p-6 rounded-r-lg border-l-4 border-violet-600">
+                <p class="text-gray-800 mb-3">
+                    <strong>Situasi:</strong> Tim teknisi SMK N 1 Koto Balingka menyelesaikan proyek instalasi panel Star-Delta untuk pompa air 15 kW di sebuah pabrik. Mereka harus mempresentasikan hasil proyek kepada manajer pabrik (klien) dan guru penguji.
+                </p>
+                <p class="font-semibold text-violet-700">
+                    <i class="fas fa-tasks mr-1"></i> Strategi Presentasi yang Dilakukan:
+                </p>
+                <ol class="list-decimal list-inside text-gray-800 ml-4 space-y-2 mt-2">
+                    <li><strong>Persiapan:</strong> Tim berlatih 3 kali sebelum hari-H. Slide disiapkan sesuai aturan 10-20-30. Backup slide disiapkan untuk data detail.</li>
+                    <li><strong>Pembukaan:</strong> Dimulai dengan foto "before-after" panel — langsung menarik perhatian klien.</li>
+                    <li><strong>Isi:</strong> Penjelasan metodologi singkat (2 menit), fokus pada hasil pengujian (5 menit) dengan grafik perbandingan arus starting sebelum dan sesudah Star-Delta.</li>
+                    <li><strong>Demo:</strong> Tim membawa panel mini untuk demonstrasi langsung — klien dapat melihat transisi Star-Delta secara real-time.</li>
+                    <li><strong>Q&A:</strong> Manajer bertanya tentang penghematan energi. Tim menjawab dengan data: "Arus starting turun dari 90A menjadi 30A, penghematan energi 12%, ROI 14 bulan."</li>
+                    <li><strong>Penutupan:</strong> Kesimpulan 3 poin, rekomendasi pemeliharaan berkala, ucapan terima kasih, kontak untuk konsultasi lanjutan.</li>
+                </ol>
+                <p class="font-semibold text-green-700 mt-3">
+                    <i class="fas fa-check-circle mr-1"></i> Hasil:
+                </p>
+                <p class="text-gray-800 mt-1">
+                    Klien sangat puas dan memberikan nilai A untuk proyek. Manajer pabrik bahkan menawarkan proyek lanjutan untuk instalasi konveyor. Guru penguji memuji struktur presentasi yang sistematis dan penguasaan data yang mendalam.
+                </p>
+                <p class="font-semibold text-violet-700 mt-3">
+                    <i class="fas fa-lightbulb mr-1"></i> Pembelajaran:
+                </p>
+                <p class="text-gray-800 mt-1">
+                    Kunci sukses presentasi ini: (1) persiapan matang, (2) fokus pada data dan hasil, (3) demo produk yang meyakinkan, (4) jawaban berbasis angka, (5) penutupan yang profesional. Presentasi bukan tentang "seberapa banyak yang kita ketahui", tetapi "seberapa baik kita menyampaikan yang klien butuhkan".
+                </p>
+            </div>
+        </section>
+
+        <!-- Etika Profesional -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-violet-900 mb-6 border-b-2 border-violet-200 pb-2">15.6 Etika Profesional dalam Presentasi dan Laporan</h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="report-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-green-800 mb-2"><i class="fas fa-check-circle text-green-600 mr-2"></i>Yang HARUS Dilakukan</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>Jujur tentang data dan hasil — jangan memanipulasi</li>
+                        <li>Sitasi sumber dengan benar (hargai karya orang lain)</li>
+                        <li>Akui keterbatasan proyek secara terbuka</li>
+                        <li>Gunakan bahasa yang sopan dan profesional</li>
+                        <li>Datang tepat waktu dan berpakaian rapi</li>
+                        <li>Hargai pertanyaan audiens — jangan meremehkan</li>
+                        <li>Berikan kredit kepada anggota tim</li>
+                        <li>Siapkan backup data untuk verifikasi</li>
+                    </ul>
+                </div>
+                <div class="report-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-red-800 mb-2"><i class="fas fa-times-circle text-red-600 mr-2"></i>Yang TIDAK BOLEH Dilakukan</h4>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                        <li>Plagiarisme (mengklaim karya orang lain)</li>
+                        <li>Memalsukan data atau hasil pengujian</li>
+                        <li>Menyembunyikan kegagalan atau masalah</li>
+                        <li>Merendahkan audiens atau pertanyaan mereka</li>
+                        <li>Membaca slide secara kata per kata</li>
+                        <li>Menggunakan bahasa teknis berlebihan tanpa penjelasan</li>
+                        <li>Menyalahkan anggota tim di depan umum</li>
+                        <li>Terlalu defensif saat dikritik</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Praktis -->
+        <section class="mb-12">
+            <div class="tip-box p-6 rounded-r-lg">
+                <h3 class="font-bold text-green-800 mb-2"><i class="fas fa-tools mr-2"></i>10 Aturan Emas Presentasi & Laporan Proyek untuk Siswa SMK</h3>
+                <ol class="list-decimal list-inside text-gray-800 space-y-2 text-sm">
+                    <li><strong>Mulai dari outline:</strong> Buat kerangka laporan/presentasi sebelum menulis detail.</li>
+                    <li><strong>Executive summary dulu:</strong> Tulis ringkasan eksekutif untuk klien yang sibuk.</li>
+                    <li><strong>Visual > Teks:</strong> Gunakan diagram, grafik, foto. Satu gambar = 1000 kata.</li>
+                    <li><strong>Latihan berulang:</strong> Presentasi minimal 3 kali sebelum hari-H. Rekam diri sendiri untuk evaluasi.</li>
+                    <li><strong>Kenali audiens:</strong> Sesuaikan bahasa dengan latar belakang mereka (teknis vs awam).</li>
+                    <li><strong>Backup data:</strong> Siapkan slide tambahan untuk pertanyaan mendalam.</li>
+                    <li><strong>Datang lebih awal:</strong> Cek proyektor, sound system, dan ruangan.</li>
+                    <li><strong>Catat umpan balik:</strong> Setiap presentasi adalah kesempatan belajar — catat masukan untuk perbaikan.</li>
+                    <li><strong>Simpan dokumen:</strong> Backup laporan di cloud, USB, dan cetak. Jangan hanya satu salinan.</li>
+                    <li><strong>Bangun portofolio:</strong> Kumpulkan semua laporan proyek sebagai bukti kompetensi untuk karir.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Refleksi -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-violet-900 mb-4"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Refleksi untuk Siswa SMK</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Presentasi dan laporan proyek bukan sekadar tugas sekolah — ini adalah latihan untuk dunia profesional yang sesungguhnya. Di industri, setiap proyek besar harus dipertanggungjawabkan melalui laporan tertulis dan presentasi kepada manajemen, klien, atau regulator. Teknisi yang mampu menulis laporan dengan jelas dan presentasi dengan meyakinkan akan lebih dihargai, lebih cepat naik jabatan, dan lebih dipercaya menangani proyek-proyek besar. Ingatlah: <strong>pekerjaan yang tidak didokumentasikan adalah pekerjaan yang tidak pernah terjadi</strong>. Jadikan setiap laporan dan presentasi sebagai investasi untuk reputasi profesional Anda.
+            </p>
+        </section>
+
+        <!-- Kesimpulan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-violet-900 mb-4 border-b-2 border-violet-200 pb-2">Kesimpulan</h2>
+            <p class="text-gray-700 leading-relaxed">
+                Presentasi dan laporan hasil proyek adalah tahap akhir yang krusial dalam siklus proyek instalasi motor listrik. Laporan yang baik mengikuti struktur sistematis (halaman awal, 6 bab utama, bagian akhir) dengan executive summary yang padat. Presentasi yang efektif mengikuti aturan 10-20-30 Guy Kawasaki, menggunakan komunikasi visual yang tepat (diagram, grafik, foto), dan disampaikan dengan bahasa tubuh, vokal, serta strategi Q&A yang profesional. Etika profesional — kejujuran, sitasi yang benar, pengakuan keterbatasan — adalah fondasi yang tidak boleh dikompromikan. Kombinasi antara kompetensi teknis (yang dipelajari dari Pertemuan 1–14) dan kompetensi komunikasi (Pertemuan 15 ini) akan membentuk teknisi profesional yang utuh: mampu bekerja dengan baik DAN mampu menceritakan karyanya dengan meyakinkan.
+            </p>
+        </section>
+
+        <!-- Daftar Pustaka -->
+        <section class="mb-16">
+            <h3 class="text-xl font-bold text-violet-900 mb-4"><i class="fas fa-book text-yellow-500 mr-2"></i>Daftar Pustaka</h3>
+            <ul class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                <li>Kawasaki, G. (2012). <em>Enchantment: The Art of Changing Hearts, Minds, and Actions</em>. New York: Portfolio/Penguin.</li>
+                <li>Garr, R. (2008). <em>The Presentation Zen: Simple Ideas on Presentation Design and Delivery</em>. Berkeley: New Riders.</li>
+                <li>STC (Society for Technical Communication). (2020). <em>Technical Communication: A Practical Guide</em>. Washington DC: STC.</li>
+                <li>IEEE. (2020). <em>IEEE Editorial Style Manual for Authors</em>. New York: IEEE Press.</li>
+                <li>American Psychological Association. (2020). <em>Publication Manual of the APA</em> (7th ed.). Washington DC: APA.</li>
+                <li>Zuraida, dkk. (2021). <em>Instalasi Motor Listrik Jilid 1 untuk SMK</em>. Jakarta: Direktorat Pembinaan SMK.</li>
+                <li>PUIL 2011. <em>Persyaratan Umum Instalasi Listrik 2011</em>. Jakarta: Badan Standardisasi Nasional.</li>
+                <li>Duarte, N. (2010). <em>Resonate: Present Visual Stories that Transform Audiences</em>. Hoboken: Wiley.</li>
+            </ul>
+        </section>
+
+        <!-- Navigasi Bawah -->
+        <div class="flex justify-between items-center border-t pt-6 mb-16 flex-wrap gap-3">
+            <a href="14.html" class="text-violet-600 hover:text-violet-800 font-semibold"><i class="fas fa-arrow-left mr-1"></i> Pertemuan 14</a>
+            <a href="#top" class="text-gray-500 hover:text-gray-700 font-semibold"><i class="fas fa-arrow-up mr-1"></i> Ke Atas</a>
+            <a href="16.html" class="text-violet-600 hover:text-violet-800 font-semibold">Pertemuan 16 (UAS) <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN UJI FORMATIF -->
+        <!-- ========================================================= -->
+        <section id="uji-formatif" class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-violet-900">📋 Uji Formatif 15: Presentasi & Laporan Hasil Proyek</h2>
+                <p class="text-gray-600 mt-2">Materi: Struktur laporan, teknik presentasi, komunikasi visual, Q&A, etika profesional.</p>
+                <p class="text-red-600 text-sm font-semibold mt-2">⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu!</p>
+            </div>
+
+            <form id="quizForm" class="space-y-8">
+                <!-- Data Siswa -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-violet-900 mb-4 border-b pb-2">📋 Data Siswa</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Nama Lengkap</label>
+                            <input type="text" name="nama" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-violet-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* NIS (Nomor Induk Siswa)</label>
+                            <input type="text" name="nis" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-violet-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Tanggal Ujian</label>
+                            <input type="date" name="tanggal" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-violet-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Kelas</label>
+                            <input type="text" name="kelas" placeholder="Contoh: XI TITL 1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-violet-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Semester</label>
+                            <select name="semester" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-violet-500 outline-none">
+                                <option value="">Pilih Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian A: Pilihan Ganda -->
+                <div>
+                    <h3 class="text-lg font-bold text-violet-900 mb-4 border-b pb-2">📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon lengkapi semua 10 soal pilihan ganda!</p>
+
+                    <div class="space-y-6 text-gray-800">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">1. Aturan 10-20-30 Guy Kawasaki untuk presentasi yang efektif berarti...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q1" value="a" class="mr-2"> a. 10 menit, 20 slide, font 30 pt</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="b" class="mr-2"> b. 10 slide, 20 menit, font minimal 30 pt</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="c" class="mr-2"> c. 10 audiens, 20 pertanyaan, 30 jawaban</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="d" class="mr-2"> d. 10 gambar, 20 teks, 30 animasi</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">2. Bagian laporan yang berisi ringkasan singkat tujuan, metode, hasil utama, dan kesimpulan (maksimal 1 halaman) disebut...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q2" value="a" class="mr-2"> a. Kata Pengantar</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="b" class="mr-2"> b. Daftar Isi</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="c" class="mr-2"> c. Executive Summary / Abstrak</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="d" class="mr-2"> d. Lampiran</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">3. Prinsip komunikasi teknik yang menyatakan informasi harus tepat dan berdasarkan data disebut...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q3" value="a" class="mr-2"> a. Accuracy (Akurasi)</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="b" class="mr-2"> b. Clarity (Kejelasan)</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="c" class="mr-2"> c. Conciseness (Keringkasan)</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="d" class="mr-2"> d. Accessibility (Keteraksesan)</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">4. Visual yang PALING TEPAT untuk menampilkan perbandingan arus 3 fasa (L1, L2, L3) adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q4" value="a" class="mr-2"> a. Pie chart</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="b" class="mr-2"> b. Bar chart / Column chart</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="c" class="mr-2"> c. Line chart</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="d" class="mr-2"> d. Scatter plot</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">5. Struktur penulisan laporan teknis yang menempatkan informasi paling penting di awal disebut...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q5" value="a" class="mr-2"> a. Piramida tegak</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="b" class="mr-2"> b. Piramida terbalik (Inverted Pyramid)</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="c" class="mr-2"> c. Struktur kronologis</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="d" class="mr-2"> d. Struktur acak</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">6. Bab dalam laporan proyek yang memuat SLD, wiring diagram, perhitungan, dan RAB adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q6" value="a" class="mr-2"> a. Bab 1 — Pendahuluan</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="b" class="mr-2"> b. Bab 2 — Landasan Teori</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="c" class="mr-2"> c. Bab 3 — Metodologi / Perancangan</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="d" class="mr-2"> d. Bab 6 — Kesimpulan</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">7. Dalam strategi Q&A, jika presenter tidak tahu jawaban pertanyaan yang diajukan, sikap yang PALING TEPAT adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q7" value="a" class="mr-2"> a. Mengarang jawaban agar terlihat pintar</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="b" class="mr-2"> b. Mengabaikan pertanyaan dan lanjut ke slide berikutnya</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="c" class="mr-2"> c. Jujur mengakui belum tahu dan berjanji mempelajari lebih lanjut</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="d" class="mr-2"> d. Menyalahkan audiens karena bertanya hal sulit</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">8. Kecepatan bicara yang ideal saat presentasi adalah sekitar...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q8" value="a" class="mr-2"> a. 50–80 kata/menit (sangat lambat)</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="b" class="mr-2"> b. 120–150 kata/menit (sedang)</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="c" class="mr-2"> c. 200–250 kata/menit (sangat cepat)</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="d" class="mr-2"> d. Tidak ada aturan kecepatan</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">9. Dokumen dalam laporan proyek yang berisi gambar teknik aktual setelah instalasi selesai (mencerminkan perubahan di lapangan) disebut...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q9" value="a" class="mr-2"> a. Draft drawing</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="b" class="mr-2"> b. As-built drawing</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="c" class="mr-2"> c. Conceptual drawing</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="d" class="mr-2"> d. Sketch drawing</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">10. Berikut adalah etika profesional dalam presentasi dan laporan, KECUALI...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q10" value="a" class="mr-2"> a. Jujur tentang data dan hasil</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="b" class="mr-2"> b. Menyitasi sumber dengan benar</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="c" class="mr-2"> c. Memanipulasi data agar hasil terlihat bagus</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="d" class="mr-2"> d. Mengakui keterbatasan proyek secara terbuka</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Essay -->
+                <div>
+                    <h3 class="text-lg font-bold text-violet-900 mb-4 border-b pb-2">✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon isi semua 5 soal essay dengan jawaban yang jelas!</p>
+
+                    <div class="space-y-6">
+                        <div>
+                            <p class="font-semibold mb-2">1. Uraikan struktur lengkap laporan proyek instalasi motor listrik (dari halaman awal hingga bagian akhir)! Jelaskan fungsi masing-masing bab dan mengapa setiap bab tidak boleh dihilangkan!</p>
+                            <textarea name="essay1" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-violet-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">2. Jelaskan aturan 10-20-30 Guy Kawasaki dan prinsip piramida terbalik dalam penulisan laporan! Mengapa kedua prinsip ini penting dalam komunikasi teknik? Berikan contoh penerapannya dalam laporan proyek instalasi motor listrik!</p>
+                            <textarea name="essay2" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-violet-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">3. Rancanglah outline presentasi 10 slide untuk proyek instalasi panel Star-Delta pompa 15 kW! Untuk setiap slide, jelaskan: judul slide, isi utama, dan visual yang akan ditampilkan! Mengapa urutan slide tersebut dipilih?</p>
+                            <textarea name="essay3" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-violet-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">4. Berdasarkan studi kasus presentasi proyek di depan klien pabrik, analisislah strategi yang membuat presentasi tersebut sukses! Identifikasi minimal 5 faktor kunci keberhasilan! Bagaimana strategi Q&A yang efektif dapat memperkuat kredibilitas presenter?</p>
+                            <textarea name="essay4" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-violet-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">5. Bandingkan etika profesional dalam presentasi dan laporan: 4 hal yang HARUS dilakukan dan 4 hal yang TIDAK BOLEH dilakukan! Jelaskan konsekuensi jika etika ini dilanggar — baik bagi presenter, klien, maupun reputasi institusi!</p>
+                            <textarea name="essay5" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-violet-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hasil & Tombol Aksi -->
+                <div class="bg-violet-50 p-6 rounded-lg border border-violet-200 text-center">
+                    <h3 class="text-lg font-bold text-violet-900 mb-4">📊 Hasil Uji Formatif</h3>
+                    <div id="hasilSkor" class="text-3xl font-extrabold text-violet-700 mb-2">0</div>
+                    <p id="detailSkor" class="text-sm text-gray-600 mb-6">Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru</p>
+
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button type="button" onclick="hitungNilai()" class="bg-violet-900 hover:bg-violet-800 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-paper-plane mr-2"></i>KIRIM JAWABAN & LIHAT HASIL
+                        </button>
+                        <button type="button" onclick="window.print()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-file-pdf mr-2"></i>UNDUH PDF LENGKAP
+                        </button>
+                        <button type="button" onclick="kirimEmail()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-envelope mr-2"></i>KIRIM EMAIL GURU
+                        </button>
+                        <button type="button" onclick="resetForm()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-redo mr-2"></i>MULAI ULANG
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-blue-200 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">&copy; 2026 UKI SAPUTRA - SMK N 1 Koto Balingka. Hak Cipta Dilindungi.</p>
+            <p class="text-sm mb-3 italic">"Present with confidence, report with integrity — your work deserves to be seen"</p>
+            <a href="respon-pembaca.html" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-2 px-6 rounded-full transition duration-300 text-sm">
+                <i class="fas fa-paper-plane mr-1"></i> Kirim Respon tentang Materi Ini
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Fungsi Uji Formatif -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const kunciJawaban = {
+            q1: 'b',  // 10 slide, 20 menit, font 30 pt
+            q2: 'c',  // Executive Summary
+            q3: 'a',  // Accuracy
+            q4: 'b',  // Bar chart
+            q5: 'b',  // Piramida terbalik
+            q6: 'c',  // Bab 3 Metodologi
+            q7: 'c',  // Jujur mengakui belum tahu
+            q8: 'b',  // 120-150 kata/menit
+            q9: 'b',  // As-built drawing
+            q10: 'c'  // Memanipulasi data
+        };
+
+        function hitungNilai() {
+            const form = document.getElementById('quizForm');
+            if (!form.checkValidity()) {
+                alert("⚠️ Mohon lengkapi semua data siswa, 10 soal Pilihan Ganda, dan 5 soal Essay terlebih dahulu!");
+                form.reportValidity();
+                return;
+            }
+
+            let skorPG = 0;
+            let benar = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const jawabanSiswa = document.querySelector(`input[name="q${i}"]:checked`);
+                if (jawabanSiswa && jawabanSiswa.value === kunciJawaban[`q${i}`]) {
+                    benar++;
+                    skorPG += 10;
+                }
+            }
+
+            const hasilDiv = document.getElementById('hasilSkor');
+            const detailDiv = document.getElementById('detailSkor');
+
+            hasilDiv.innerText = skorPG;
+            detailDiv.innerHTML = `Bagian A (PG): <strong>${skorPG}/100</strong> (${benar} jawaban benar) <br> Bagian B (Essay): <strong>Menunggu Penilaian Guru</strong> (Jawaban telah tersimpan di sistem)`;
+
+            document.getElementById('hasilSkor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            let pesan = `✅ Jawaban berhasil dikirim!\nSkor Sementara Pilihan Ganda: ${skorPG}/100\n\nCatatan: Jawaban Essay akan dinilai oleh guru.`;
+            if (skorPG >= 80) pesan += `\n\n🎤 Excellent! Anda memahami presentasi & laporan proyek dengan sangat baik!`;
+            else if (skorPG >= 60) pesan += `\n\n👍 Bagus! Terus asah kemampuan komunikasi teknis Anda.`;
+            else pesan += `\n\n⚠️ Pelajari kembali struktur laporan, aturan presentasi, dan etika profesional.`;
+
+            alert(pesan);
+        }
+
+        function kirimEmail() {
+            const nama = document.querySelector('input[name="nama"]').value || "Siswa";
+            const nis = document.querySelector('input[name="nis"]').value || "-";
+            const kelas = document.querySelector('input[name="kelas"]').value || "-";
+
+            const subject = `Hasil Uji Formatif 15 (Presentasi & Laporan Proyek) - ${nama} (${nis})`;
+            const body = `Yth. Bapak UKI SAPUTRA,\n\nBerikut adalah hasil uji formatif saya:\nNama: ${nama}\nNIS: ${nis}\nKelas: ${kelas}\nMateri: Pertemuan 15 - Presentasi & Laporan Hasil Proyek Instalasi Motor Listrik\n\nSaya telah menyelesaikan Bagian A (Pilihan Ganda) dan Bagian B (Essay) pada Pertemuan 15.\n\nTerima kasih.`;
+
+            window.location.href = `mailto:trauky@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function resetForm() {
+            if (confirm("⚠️ Apakah Anda yakin ingin menghapus semua jawaban dan mulai ulang?")) {
+                document.getElementById('quizForm').reset();
+                document.getElementById('hasilSkor').innerText = "0";
+                document.getElementById('detailSkor').innerText = "Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

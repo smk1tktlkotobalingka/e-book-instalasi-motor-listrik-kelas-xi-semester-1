@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 9: Prosedur K3 dalam Pemeliharaan Motor Listrik - Instalasi Motor Listrik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .highlight-box { border-left: 4px solid #2563eb; background-color: #eff6ff; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .tip-box { border-left: 4px solid #16a34a; background-color: #f0fdf4; }
+        .danger-box { border-left: 4px solid #991b1b; background-color: #fee2e2; }
+        .safety-step { position: relative; padding-left: 3rem; }
+        .safety-step::before { 
+            content: counter(step); 
+            counter-increment: step;
+            position: absolute; left: 0; top: 0;
+            width: 2rem; height: 2rem;
+            background: #1e3a8a; color: white;
+            border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+            font-weight: bold;
+        }
+        .safety-list { counter-reset: step; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans" id="top">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl font-bold tracking-wide">INSTALASI MOTOR LISTRIK</div>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0">
+                <a href="index.html" class="hover:text-yellow-400 transition"><i class="fas fa-home mr-1"></i> Beranda</a>
+                <a href="index.html#tentang" class="hover:text-yellow-400 transition"><i class="fas fa-info-circle mr-1"></i> Tentang</a>
+                <a href="index.html#daftar-isi" class="hover:text-yellow-400 transition"><i class="fas fa-list mr-1"></i> Daftar Bab</a>
+                <a href="index.html#kontak" class="hover:text-yellow-400 transition"><i class="fas fa-user mr-1"></i> Penulis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Chapter -->
+    <header class="bg-gradient-to-r from-red-800 to-red-600 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="bg-yellow-500 text-red-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pertemuan 9 — Bab 5: Pemeliharaan & Troubleshooting</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-4 mb-2">Prosedur K3 dalam Pemeliharaan Motor Listrik</h1>
+            <p class="text-red-100 text-lg max-w-3xl mx-auto">
+                Memahami prinsip Keselamatan dan Kesehatan Kerja (K3) listrik, identifikasi bahaya, prosedur <em>Lock Out Tag Out</em> (LOTO), penggunaan Alat Pelindung Diri (APD), izin kerja, dan respons darurat — fondasi mutlak sebelum melakukan pemeliharaan motor listrik yang aman dan sesuai standar PUIL 2011 serta NFPA 70E.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <a href="8.html" class="bg-gray-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-600 transition border border-gray-500"><i class="fas fa-arrow-left mr-1"></i>Pertemuan 8 (UTS)</a>
+                <a href="#materi-inti" class="bg-white text-red-900 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition">Mulai Membaca</a>
+                <a href="10.html" class="bg-red-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-red-600 transition border border-red-500">Pertemuan 10 →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl" id="materi-inti">
+        
+        <!-- Pendahuluan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-red-900 mb-4 border-b-2 border-red-200 pb-2">Pendahuluan</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Setelah melewati Ujian Tengah Semester (UTS) pada pertemuan sebelumnya, siswa kini memasuki babak baru: <strong>pemeliharaan dan troubleshooting motor listrik</strong>. Namun, sebelum tangan siswa menyentuh komponen motor atau panel kontrol, ada satu hal yang <strong>lebih penting dari segala keterampilan teknis</strong> — yaitu pemahaman mendalam tentang <strong>Keselamatan dan Kesehatan Kerja (K3) listrik</strong>.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Data dari <em>International Labour Organization</em> (ILO) mencatat bahwa setiap tahun lebih dari <strong>11.000 pekerja meninggal akibat kecelakaan listrik</strong> di seluruh dunia. Di Indonesia, Direktorat Pengawasan Ketenagalistrikan Kementerian ESDM mencatat ratusan kecelakaan kerja listrik setiap tahunnya, dengan penyebab utama: tidak mengikuti prosedur K3, tidak menggunakan APD, dan mengabaikan sistem LOTO. Sebagai calon teknisi listrik profesional, siswa harus memahami bahwa <strong>keselamatan adalah kompetensi pertama</strong> yang harus dikuasai — sebelum keterampilan teknis lainnya.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Pada pertemuan ini, siswa akan mempelajari secara komprehensif prosedur K3 dalam pemeliharaan motor listrik: mulai dari identifikasi bahaya listrik, prinsip LOTO (Lock Out Tag Out), pemilihan dan penggunaan APD listrik, sistem izin kerja (<em>work permit</em>), prosedur kerja aman pada panel motor, hingga respons darurat dan pertolongan pertama pada kecelakaan listrik. Seluruh materi mengacu pada standar <strong>PUIL 2011</strong>, <strong>NFPA 70E</strong>, dan <strong>UU No. 1 Tahun 1970 tentang Keselamatan Kerja</strong>.
+            </p>
+        </section>
+
+        <!-- Konsep Kunci -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-red-900 mb-4"><i class="fas fa-key text-yellow-500 mr-2"></i>Konsep Kunci</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">K3 Listrik</h4>
+                    <p class="text-sm text-gray-700 mt-1">Upaya sistematis untuk menjamin keselamatan dan kesehatan pekerja yang terpapar bahaya listrik melalui pengendalian risiko, penggunaan APD, dan penerapan prosedur kerja aman.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">LOTO (Lock Out Tag Out)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Prosedur penguncian dan pemberian tanda pada sumber energi sebelum pekerjaan dilakukan, untuk mencegah penyalaan tak terduga yang dapat menyebabkan cedera fatal.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Arc Flash</h4>
+                    <p class="text-sm text-gray-700 mt-1">Ledakan energi listrik yang menghasilkan cahaya sangat terang, panas ekstrem (>19.000°C), gelombang tekanan, dan serpihan logam — dapat berakibat fatal pada jarak dekat.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">APD Listrik</h4>
+                    <p class="text-sm text-gray-700 mt-1">Alat Pelindung Diri khusus untuk pekerjaan listrik: sarung tangan isolasi, face shield arc-rated, pakaian FR (Fire Resistant), sepatu safety dielektrik, dan matras isolasi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Landasan Teoretis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-red-900 mb-6 border-b-2 border-red-200 pb-2">9.1 Landasan Teoretis K3 Listrik</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">9.1.1 Dasar Hukum K3 Listrik di Indonesia</h3>
+                    <p class="text-gray-700 mt-2">
+                        K3 listrik di Indonesia diatur oleh beberapa regulasi utama:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 ml-4 space-y-1">
+                        <li><strong>UU No. 1 Tahun 1970</strong> tentang Keselamatan Kerja — payung hukum utama K3 di Indonesia.</li>
+                        <li><strong>PUIL 2011</strong> (Persyaratan Umum Instalasi Listrik) — standar teknis instalasi listrik nasional.</li>
+                        <li><strong>Permenaker No. PER.02/MEN/1983</strong> tentang Instalasi Listrik dan Penyalur Petir.</li>
+                        <li><strong>Permen ESDM No. 12 Tahun 2021</strong> tentang K3 dalam pemanfaatan instalasi listrik.</li>
+                        <li><strong>NFPA 70E</strong> (standar internasional) — panduan kerja aman pada peralatan listrik, diadopsi oleh banyak industri di Indonesia.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">9.1.2 Hierarki Pengendalian Bahaya (Hierarchy of Controls)</h3>
+                    <p class="text-gray-700 mt-2">
+                        Menurut NIOSH dan NFPA 70E, pengendalian bahaya dilakukan dengan urutan prioritas dari yang paling efektif:
+                    </p>
+                    <div class="bg-red-50 p-4 rounded-lg mt-3 border-l-4 border-red-400">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li><strong>Eliminasi:</strong> Hilangkan bahaya sepenuhnya (contoh: matikan sumber listrik sebelum bekerja).</li>
+                            <li><strong>Substitusi:</strong> Ganti dengan yang kurang berbahaya (contoh: gunakan tegangan 24V untuk kontrol).</li>
+                            <li><strong>Rekayasa Teknik:</strong> Modifikasi desain (contoh: pasang interlock, enclosure IP54).</li>
+                            <li><strong>Kontrol Administratif:</strong> Prosedur, pelatihan, izin kerja, LOTO.</li>
+                            <li><strong>APD:</strong> Lapisan pertahanan terakhir — sarung tangan isolasi, face shield, dll.</li>
+                        </ol>
+                    </div>
+                    <p class="text-gray-700 mt-3">
+                        <strong>Penting:</strong> APD adalah lapisan terakhir, bukan yang pertama! Prioritas utama adalah menghilangkan bahaya dari sumbernya.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Identifikasi Bahaya Listrik -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-red-900 mb-6 border-b-2 border-red-200 pb-2">9.2 Identifikasi Bahaya Listrik dalam Pemeliharaan Motor</h2>
+            
+            <div class="space-y-6">
+                <div class="danger-box p-5 rounded-r-lg">
+                    <h3 class="font-bold text-red-900 mb-3"><i class="fas fa-bolt mr-2"></i>Empat Bahaya Utama Listrik</h3>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-white p-3 rounded border-l-4 border-red-600">
+                            <p class="font-bold text-red-800">1. Sengatan Listrik (Electric Shock)</p>
+                            <p class="text-gray-700 mt-1">Arus listrik yang mengalir melalui tubuh manusia. Arus 30–50 mA (AC 50Hz) sudah dapat menyebabkan fibrilasi ventrikel (henti jantung). Tegangan > 50V AC sudah dianggap berbahaya.</p>
+                        </div>
+                        <div class="bg-white p-3 rounded border-l-4 border-orange-600">
+                            <p class="font-bold text-orange-800">2. Busur Api Listrik (Arc Flash)</p>
+                            <p class="text-gray-700 mt-1">Ledakan energi listrik saat terjadi hubung singkat melalui udara. Suhu dapat mencapai 19.000°C (4× lebih panas dari permukaan matahari). Menyebabkan luka bakar parah, kebutaan, dan kematian.</p>
+                        </div>
+                        <div class="bg-white p-3 rounded border-l-4 border-yellow-600">
+                            <p class="font-bold text-yellow-800">3. Ledakan Busur Api (Arc Blast)</p>
+                            <p class="text-gray-700 mt-1">Gelombang tekanan eksplosif akibat arc flash. Dapat melempar tubuh manusia, menghancurkan peralatan, dan menghasilkan serpihan logam berkecepatan tinggi.</p>
+                        </div>
+                        <div class="bg-white p-3 rounded border-l-4 border-purple-600">
+                            <p class="font-bold text-purple-800">4. Kebakaran Listrik</p>
+                            <p class="text-gray-700 mt-1">Korsleting, kontak longgar, atau beban lebih yang memicu api. Motor yang beroperasi dengan isolasi rusak dapat menjadi sumber kebakaran industri.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">9.2.1 Efek Arus Listrik pada Tubuh Manusia</h3>
+                    <div class="overflow-x-auto mt-3">
+                        <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm text-sm">
+                            <thead class="bg-red-100 text-red-900">
+                                <tr>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Arus (mA, AC 50Hz)</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Efek pada Tubuh</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3">1–5</td>
+                                    <td class="py-2 px-3">Sensasi kesemutan</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3">6–10</td>
+                                    <td class="py-2 px-3">Nyeri, tangan sulit dilepas</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3">10–20</td>
+                                    <td class="py-2 px-3">Otot berkontraksi kuat, tidak dapat melepaskan diri</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3">20–50</td>
+                                    <td class="py-2 px-3">Sesak napas, kontraksi otot hebat</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-bold text-red-700">50–100</td>
+                                    <td class="py-2 px-3 font-bold text-red-700">Fibrilasi ventrikel (henti jantung) — FATAL</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-bold text-red-700">> 100</td>
+                                    <td class="py-2 px-3 font-bold text-red-700">Henti jantung, luka bakar internal, kematian</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2">
+                        <strong>Catatan:</strong> Tubuh manusia memiliki tahanan sekitar 1.000–100.000 Ω (tergantung kondisi kulit). Dengan hukum Ohm (I = V/R), tegangan 220V dapat menghasilkan arus 220 mA — jauh di atas ambang fatal!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prosedur LOTO -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-red-900 mb-6 border-b-2 border-red-200 pb-2">9.3 Prosedur LOTO (Lock Out Tag Out)</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        LOTO adalah prosedur keselamatan <strong>WAJIB</strong> sebelum melakukan pekerjaan pada peralatan listrik. Prosedur ini mencegah penyalaan tak terduga yang dapat menyebabkan cedera fatal. Menurut OSHA, penerapan LOTO yang benar dapat mencegah <strong>120 kematian dan 50.000 cedera</strong> setiap tahun di AS saja.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-red-600">
+                    <h3 class="text-lg font-bold text-red-900 mb-4"><i class="fas fa-lock mr-2"></i>7 Langkah Prosedur LOTO</h3>
+                    <div class="safety-list space-y-6">
+                        <div class="safety-step">
+                            <h4 class="font-bold text-gray-800">Persiapan Pemutusan (Preparation)</h4>
+                            <p class="text-sm text-gray-700 mt-1">Identifikasi semua sumber energi (listrik, mekanik, pneumatik, hidrolik, gravitasi). Pelajari jenis dan magnitudo bahaya. Beri tahu semua pihak terdampak.</p>
+                        </div>
+                        <div class="safety-step">
+                            <h4 class="font-bold text-gray-800">Pemutusan Daya (Shutdown)</h4>
+                            <p class="text-sm text-gray-700 mt-1">Matikan motor melalui prosedur normal (tombol STOP). Buka MCB/MCCB pengumpan motor. Pastikan semua sumber energi terputus.</p>
+                        </div>
+                        <div class="safety-step">
+                            <h4 class="font-bold text-gray-800">Isolasi Energi (Isolation)</h4>
+                            <p class="text-sm text-gray-700 mt-1">Pastikan isolasi fisik: MCB dalam posisi OFF, saklar pemisah terbuka, plug dicabut. Jangan mengandalkan tombol STOP saja — itu bukan isolasi!</p>
+                        </div>
+                        <div class="safety-step">
+                            <h4 class="font-bold text-gray-800">Penerapan Lock & Tag</h4>
+                            <p class="text-sm text-gray-700 mt-1">Pasang <strong>gembok pribadi</strong> pada setiap titik isolasi. Pasang <strong>tag</strong> berisi: nama pekerja, tanggal, alasan, kontak darurat. Satu pekerja = satu gembok = satu kunci.</p>
+                        </div>
+                        <div class="safety-step">
+                            <h4 class="font-bold text-gray-800">Pelepasan Energi Sisa (Stored Energy)</h4>
+                            <p class="text-sm text-gray-700 mt-1">Lepaskan energi tersimpan: kapasitor bank (discharge), pegas mekanis, tekanan hidrolik/pneumatik, beban tergantung (block/chock).</p>
+                        </div>
+                        <div class="safety-step">
+                            <h4 class="font-bold text-gray-800">Verifikasi Zero Energy</h4>
+                            <p class="text-sm text-gray-700 mt-1">Uji dengan multimeter/voltage tester bahwa tegangan benar-benar NOL. <strong>Uji tester pada sumber hidup terlebih dahulu</strong> (live-dead-live test) untuk memastikan alat berfungsi.</p>
+                        </div>
+                        <div class="safety-step">
+                            <h4 class="font-bold text-gray-800">Pelaksanaan Pekerjaan & Pengembalian</h4>
+                            <p class="text-sm text-gray-700 mt-1">Lakukan pekerjaan. Setelah selesai, periksa area, lepas semua alat, beri tahu pekerja lain, lepas gembok (oleh pemiliknya sendiri), dan lakukan energizing ulang secara bertahap.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-box p-4 rounded-r-lg">
+                    <p class="text-sm text-gray-800">
+                        <strong>⚠️ PERINGATAN KERAS:</strong> Jangan pernah membuka gembok orang lain! Hanya pemilik gembok yang berhak melepaskannya. Dalam kasus darurat (pemilik tidak ada), hanya supervisor berwenang yang dapat membuka gembok setelah mengikuti prosedur ketat (pemotongan gembok, upaya menghubungi pemilik, dll.).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- APD Listrik -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-red-900 mb-6 border-b-2 border-red-200 pb-2">9.4 Alat Pelindung Diri (APD) untuk Pekerjaan Listrik</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-red-900 mb-2"><i class="fas fa-hand-paper text-red-600 mr-2"></i>Sarung Tangan Isolasi</h4>
+                    <p class="text-sm text-gray-700">Terbuat dari karet isolasi (kelas 00–4, sesuai tegangan kerja). WAJIB digunakan saat bekerja pada panel bertegangan. Periksa kebocoran dengan uji udara sebelum dipakai. Gunakan leather protector di luarnya.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-red-900 mb-2"><i class="fas fa-face-smile text-red-600 mr-2"></i>Face Shield Arc-Rated</h4>
+                    <p class="text-sm text-gray-700">Pelindung wajah dari arc flash dengan rating ATPV (Arc Thermal Performance Value) minimal 8 cal/cm² untuk panel 600V. Mencegah luka bakar wajah dan kebutaan akibat kilatan arc.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-red-900 mb-2"><i class="fas fa-shirt text-red-600 mr-2"></i>Pakaian FR (Fire Resistant)</h4>
+                    <p class="text-sm text-gray-700">Pakaian tahan api yang tidak meleleh saat terkena arc flash. Bahan: Nomex, Indura cotton. Rating minimal 4 cal/cm² untuk pekerjaan panel rendah, 40 cal/cm² untuk pekerjaan switchgear.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-red-900 mb-2"><i class="fas fa-shoe-prints text-red-600 mr-2"></i>Sepatu Safety Dielektrik</h4>
+                    <p class="text-sm text-gray-700">Sepatu dengan sol isolasi (EH - Electrical Hazard rated). Mencegah aliran arus dari tanah ke tubuh. Sol harus bersih dan kering — sol basah kehilangan sifat isolasi.</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-red-900 mb-2"><i class="fas fa-mattress text-red-600 mr-2"></i>Matras Isolasi</h4>
+                    <p class="text-sm text-gray-700">Alas karet isolasi yang diletakkan di depan panel. Mencegah aliran arus melalui kaki ke tanah saat bekerja. Rating: kelas 1 (7.5kV), kelas 2 (17kV), kelas 3 (26.5kV), kelas 4 (36kV).</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-red-900 mb-2"><i class="fas fa-toolbox text-red-600 mr-2"></i>Alat Tangan Terisolasi</h4>
+                    <p class="text-sm text-gray-700">Obeng, tang, kunci yang dilapisi isolasi 1000V. Standar IEC 60900. Periksa integritas lapisan isolasi sebelum digunakan — retak atau terkelupas = tidak aman.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Studi Kasus -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-red-900 mb-4"><i class="fas fa-book-open text-yellow-500 mr-2"></i>Studi Kasus 1: Kecelakaan Fatal Akibat Tidak LOTO</h3>
+            <div class="danger-box p-6 rounded-r-lg">
+                <p class="text-gray-800 mb-3">
+                    Di sebuah pabrik semen di Sumatra Barat, seorang teknisi listrik melakukan pemeliharaan motor konveyor 30 kW. Ia mematikan motor dengan tombol STOP di panel lokal, lalu membuka pintu panel untuk memeriksa kontaktor. Tanpa disadarinya, <strong>operator lain di ruang kontrol menghidupkan kembali motor</strong> melalui sistem SCADA karena mengira pekerjaan sudah selesai.
+                </p>
+                <p class="text-gray-800 mb-3">
+                    Akibatnya, kontaktor menutup dan teknisi yang sedang memegang terminal tersengat arus 380V. Ia mengalami <strong>henti jantung dan meninggal di tempat</strong>. Penyelidikan mengungkapkan: <strong>tidak ada prosedur LOTO yang diterapkan</strong>, tidak ada gembok, tidak ada tag, dan tidak ada komunikasi antar pekerja.
+                </p>
+                <p class="font-semibold text-red-700">
+                    <i class="fas fa-exclamation-triangle mr-1"></i> Pembelajaran:
+                </p>
+                <p class="text-gray-800 mt-1">
+                    Tombol STOP <strong>BUKAN</strong> isolasi energi — ia hanya sinyal kontrol. Isolasi sejati adalah pemutusan fisik sumber daya (MCB OFF + digembok). Penerapan prosedur LOTO yang ketat akan mencegah tragedi ini. Nyawa manusia jauh lebih berharga daripada waktu yang dihemat dengan memotong prosedur.
+                </p>
+            </div>
+        </section>
+
+        <!-- Izin Kerja -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-red-900 mb-6 border-b-2 border-red-200 pb-2">9.5 Sistem Izin Kerja (Work Permit)</h2>
+            
+            <div class="space-y-6">
+                <p class="text-gray-700 leading-relaxed">
+                    Untuk pekerjaan berisiko tinggi (pekerjaan pada panel bertegangan, pekerjaan di ruang terbatas, pekerjaan panas), diperlukan <strong>Sistem Izin Kerja (Permit to Work)</strong>. Izin kerja adalah dokumen resmi yang:
+                </p>
+                <ul class="list-disc list-inside text-gray-700 ml-4 space-y-1">
+                    <li>Mengidentifikasi bahaya spesifik pekerjaan</li>
+                    <li>Menetapkan langkah pengendalian risiko</li>
+                    <li>Menyebutkan APD yang wajib digunakan</li>
+                    <li>Disetujui oleh supervisor/pejabat berwenang</li>
+                    <li>Berlaku untuk jangka waktu tertentu</li>
+                    <li>Harus ditutup (closed) setelah pekerjaan selesai</li>
+                </ul>
+                <div class="tip-box p-4 rounded-r-lg mt-3">
+                    <p class="text-sm text-gray-800">
+                        <strong>💡 Tips:</strong> Di industri besar, izin kerja sering terintegrasi dengan sistem digital. Namun, prinsip dasarnya tetap sama: <strong>tidak ada izin = tidak ada pekerjaan</strong>. Siswa SMK harus membiasakan diri dengan budaya ini sejak dini.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prosedur Kerja Aman -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-red-900 mb-6 border-b-2 border-red-200 pb-2">9.6 Prosedur Kerja Aman pada Panel Motor</h2>
+            
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                <div class="safety-list space-y-4">
+                    <div class="safety-step">
+                        <h4 class="font-bold text-gray-800">Briefing Keselamatan (Toolbox Meeting)</h4>
+                        <p class="text-sm text-gray-700 mt-1">Sebelum bekerja, lakukan briefing singkat: identifikasi bahaya, tetapkan peran, pastikan semua pekerja paham prosedur.</p>
+                    </div>
+                    <div class="safety-step">
+                        <h4 class="font-bold text-gray-800">Pemeriksaan APD</h4>
+                        <p class="text-sm text-gray-700 mt-1">Pastikan semua APD dalam kondisi baik: sarung tangan tidak bocor, face shield tidak retak, sepatu safety utuh.</p>
+                    </div>
+                    <div class="safety-step">
+                        <h4 class="font-bold text-gray-800">Penerapan LOTO</h4>
+                        <p class="text-sm text-gray-700 mt-1">Ikuti 7 langkah LOTO secara lengkap. Jangan pernah melewatkan satu langkah pun.</p>
+                    </div>
+                    <div class="safety-step">
+                        <h4 class="font-bold text-gray-800">Verifikasi Zero Energy</h4>
+                        <p class="text-sm text-gray-700 mt-1">Uji tegangan dengan multimeter yang terkalibrasi. Lakukan live-dead-live test untuk memastikan alat berfungsi.</p>
+                    </div>
+                    <div class="safety-step">
+                        <h4 class="font-bold text-gray-800">Pekerjaan dengan Buddy System</h4>
+                        <p class="text-sm text-gray-700 mt-1">Jangan bekerja sendirian! Selalu ada rekan kerja yang siap memberikan pertolongan darurat.</p>
+                    </div>
+                    <div class="safety-step">
+                        <h4 class="font-bold text-gray-800">Dokumentasi</h4>
+                        <p class="text-sm text-gray-700 mt-1">Catat semua pekerjaan yang dilakukan, penggantian komponen, dan pengukuran dalam log book panel.</p>
+                    </div>
+                    <div class="safety-step">
+                        <h4 class="font-bold text-gray-800">Pembersihan & Penutupan</h4>
+                        <p class="text-sm text-gray-700 mt-1">Pastikan tidak ada alat tertinggal, semua tutup panel terpasang, lalu lepas LOTO secara berurutan.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Respons Darurat -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-red-900 mb-6 border-b-2 border-red-200 pb-2">9.7 Respons Darurat dan Pertolongan Pertama</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">9.7.1 Jika Terjadi Sengatan Listrik</h3>
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li><strong>JANGAN sentuh korban</strong> sebelum sumber listrik diputus! Anda bisa ikut tersengat.</li>
+                            <li><strong>Matikan sumber listrik</strong> segera: tekan E-Stop, buka MCB, atau cabut plug.</li>
+                            <li>Jika tidak bisa mematikan sumber, <strong>gunakan benda isolator kering</strong> (kayu, plastik, karet) untuk memisahkan korban dari sumber.</li>
+                            <li>Setelah korban terlepas, <strong>periksa kesadaran dan pernapasan</strong>.</li>
+                            <li>Jika tidak bernapas, <strong>lakukan CPR</strong> (Cardiopulmonary Resuscitation) segera.</li>
+                            <li><strong>Hubungi ambulans</strong> (118/119) dan minta bantuan medis.</li>
+                            <li>Tangani luka bakar dengan air mengalir (jangan pakai es atau salep).</li>
+                            <li>Tetap dampingi korban sampai bantuan medis tiba.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">9.7.2 Jika Terjadi Kebakaran Listrik</h3>
+                    <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-400">
+                        <ul class="list-disc list-inside text-gray-700 space-y-2">
+                            <li><strong>Matikan sumber listrik</strong> terlebih dahulu.</li>
+                            <li>Gunakan <strong>APAR jenis C (CO₂ atau Dry Chemical)</strong> — JANGAN gunakan air!</li>
+                            <li>Jika api besar, <strong>evakuasi area</strong> dan hubungi pemadam kebakaran (113).</li>
+                            <li>Tutup pintu untuk membatasi penyebaran api.</li>
+                            <li>Jangan masuk kembali ke area terbakar sampai dinyatakan aman.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">9.7.3 Nomor Darurat Penting</h3>
+                    <div class="grid md:grid-cols-2 gap-3 text-sm">
+                        <div class="bg-blue-50 p-3 rounded border-l-4 border-blue-400">
+                            <p><strong>Ambulans:</strong> 118 / 119</p>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded border-l-4 border-red-400">
+                            <p><strong>Pemadam Kebakaran:</strong> 113</p>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded border-l-4 border-green-400">
+                            <p><strong>Polisi:</strong> 110</p>
+                        </div>
+                        <div class="bg-yellow-50 p-3 rounded border-l-4 border-yellow-400">
+                            <p><strong>Basarnas (SAR):</strong> 115</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Praktis -->
+        <section class="mb-12">
+            <div class="tip-box p-6 rounded-r-lg">
+                <h3 class="font-bold text-green-800 mb-2"><i class="fas fa-tools mr-2"></i>10 Aturan Emas K3 Listrik untuk Siswa SMK</h3>
+                <ol class="list-decimal list-inside text-gray-800 space-y-2 text-sm">
+                    <li><strong>Anggap semua kabel hidup</strong> sampai Anda sendiri yang memverifikasi dengan alat ukur bahwa tegangan = 0.</li>
+                    <li><strong>Jangan pernah bekerja sendirian</strong> pada panel bertegangan — selalu ada buddy system.</li>
+                    <li><strong>Gunakan APD lengkap</strong> sebelum menyentuh panel — sarung tangan isolasi, face shield, sepatu safety.</li>
+                    <li><strong>Terapkan LOTO 100%</strong> — tidak ada kompromi untuk prosedur ini.</li>
+                    <li><strong>Periksa alat ukur</strong> sebelum digunakan — lakukan live-dead-live test.</li>
+                    <li><strong>Jangan pakai perhiasan logam</strong> (cincin, jam tangan, kalung) saat bekerja listrik.</li>
+                    <li><strong>Pastikan area kerja kering</strong> — air + listrik = kematian.</li>
+                    <li><strong>Pelajari jalur evakuasi</strong> dan lokasi APAR sebelum mulai bekerja.</li>
+                    <li><strong>Laporkan setiap kondisi tidak aman</strong> — jangan diam! Keselamatan adalah tanggung jawab bersama.</li>
+                    <li><strong>Jangan pernah terburu-buru</strong> — kecelakaan terjadi karena tergesa-gesa dan mengabaikan prosedur.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Refleksi -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-red-900 mb-4"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Refleksi untuk Siswa SMK</h3>
+            <p class="text-gray-700 leading-relaxed">
+                K3 listrik bukan sekadar hafalan prosedur — ini adalah <strong>budaya keselamatan</strong> yang harus mendarah daging. Setiap kali Anda membuka panel motor, setiap kali Anda memegang obeng di dekat terminal, ingatlah: di balik setiap prosedur ada darah dan air mata korban kecelakaan yang mendahului Anda. Sebagai calon teknisi profesional, Anda memiliki tanggung jawab moral untuk melindungi diri sendiri, rekan kerja, dan pengguna sistem. Keterampilan teknis tanpa kesadaran K3 adalah bom waktu. Jadilah teknisi yang tidak hanya kompeten, tetapi juga <strong>selalu pulang dengan selamat</strong> setiap hari.
+            </p>
+        </section>
+
+        <!-- Kesimpulan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-red-900 mb-4 border-b-2 border-red-200 pb-2">Kesimpulan</h2>
+            <p class="text-gray-700 leading-relaxed">
+                K3 listrik adalah fondasi mutlak dalam pemeliharaan motor listrik. Pemahaman tentang bahaya listrik (sengatan, arc flash, arc blast, kebakaran), hierarki pengendalian bahaya, prosedur LOTO 7 langkah, penggunaan APD listrik yang tepat, sistem izin kerja, prosedur kerja aman, dan respons darurat merupakan kompetensi wajib bagi setiap teknisi. Standar PUIL 2011, NFPA 70E, dan UU No. 1 Tahun 1970 menjadi landasan hukum yang harus dipatuhi. Ingat: <strong>tidak ada pekerjaan yang begitu mendesak sehingga tidak boleh dilakukan dengan aman</strong>. Keselamatan adalah investasi, bukan beban.
+            </p>
+        </section>
+
+        <!-- Daftar Pustaka -->
+        <section class="mb-16">
+            <h3 class="text-xl font-bold text-red-900 mb-4"><i class="fas fa-book text-yellow-500 mr-2"></i>Daftar Pustaka</h3>
+            <ul class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                <li>PUIL 2011. <em>Persyaratan Umum Instalasi Listrik 2011</em>. Jakarta: Badan Standardisasi Nasional.</li>
+                <li>NFPA. (2021). <em>NFPA 70E: Standard for Electrical Safety in the Workplace</em>. Quincy: National Fire Protection Association.</li>
+                <li>Republik Indonesia. <em>Undang-Undang No. 1 Tahun 1970 tentang Keselamatan Kerja</em>.</li>
+                <li>Permenaker RI No. PER.02/MEN/1983 tentang Instalasi Listrik dan Penyalur Petir.</li>
+                <li>Permen ESDM No. 12 Tahun 2021 tentang K3 dalam Pemanfaatan Instalasi Listrik.</li>
+                <li>OSHA. (2023). <em>Control of Hazardous Energy — Lockout/Tagout</em>. U.S. Department of Labor.</li>
+                <li>Zuraida, dkk. (2021). <em>Instalasi Motor Listrik Jilid 1 untuk SMK</em>. Jakarta: Direktorat Pembinaan SMK.</li>
+                <li>IEC 60900. (2018). <em>Hand tools for live working — Up to AC 1000V and DC 1500V</em>.</li>
+            </ul>
+        </section>
+
+        <!-- Navigasi Bawah -->
+        <div class="flex justify-between items-center border-t pt-6 mb-16 flex-wrap gap-3">
+            <a href="8.html" class="text-red-600 hover:text-red-800 font-semibold"><i class="fas fa-arrow-left mr-1"></i> Pertemuan 8 (UTS)</a>
+            <a href="#top" class="text-gray-500 hover:text-gray-700 font-semibold"><i class="fas fa-arrow-up mr-1"></i> Ke Atas</a>
+            <a href="10.html" class="text-red-600 hover:text-red-800 font-semibold">Pertemuan 10: Pemeliharaan Preventif <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN UJI FORMATIF -->
+        <!-- ========================================================= -->
+        <section id="uji-formatif" class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-red-900">📋 Uji Formatif 9: Prosedur K3 dalam Pemeliharaan Motor Listrik</h2>
+                <p class="text-gray-600 mt-2">Materi: Identifikasi bahaya, LOTO, APD, izin kerja, prosedur kerja aman, respons darurat.</p>
+                <p class="text-red-600 text-sm font-semibold mt-2">⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu!</p>
+            </div>
+
+            <form id="quizForm" class="space-y-8">
+                <!-- Data Siswa -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-red-900 mb-4 border-b pb-2">📋 Data Siswa</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Nama Lengkap</label>
+                            <input type="text" name="nama" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-red-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* NIS (Nomor Induk Siswa)</label>
+                            <input type="text" name="nis" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-red-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Tanggal Ujian</label>
+                            <input type="date" name="tanggal" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-red-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Kelas</label>
+                            <input type="text" name="kelas" placeholder="Contoh: XI TITL 1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-red-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Semester</label>
+                            <select name="semester" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-red-500 outline-none">
+                                <option value="">Pilih Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian A: Pilihan Ganda -->
+                <div>
+                    <h3 class="text-lg font-bold text-red-900 mb-4 border-b pb-2">📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon lengkapi semua 10 soal pilihan ganda!</p>
+                    
+                    <div class="space-y-6 text-gray-800">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">1. Arus listrik AC 50Hz yang mulai dapat menyebabkan fibrilasi ventrikel (henti jantung) pada tubuh manusia adalah sekitar...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q1" value="a" class="mr-2"> a. 1–5 mA</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="b" class="mr-2"> b. 10–20 mA</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="c" class="mr-2"> c. 50–100 mA</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="d" class="mr-2"> d. 500 mA</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">2. Dalam hierarki pengendalian bahaya (Hierarchy of Controls), langkah yang PALING EFEKTIF adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q2" value="a" class="mr-2"> a. Penggunaan APD</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="b" class="mr-2"> b. Kontrol administratif</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="c" class="mr-2"> c. Eliminasi bahaya</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="d" class="mr-2"> d. Rekayasa teknik</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">3. Langkah pertama dalam prosedur LOTO (Lock Out Tag Out) adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q3" value="a" class="mr-2"> a. Pasang gembok dan tag</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="b" class="mr-2"> b. Persiapan pemutusan — identifikasi semua sumber energi</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="c" class="mr-2"> c. Verifikasi zero energy</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="d" class="mr-2"> d. Lepaskan energi sisa</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">4. Arc flash dapat menghasilkan suhu ekstrem mencapai...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q4" value="a" class="mr-2"> a. 1.000°C</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="b" class="mr-2"> b. 5.000°C</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="c" class="mr-2"> c. 19.000°C</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="d" class="mr-2"> d. 100.000°C</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">5. APD yang WAJIB digunakan saat bekerja pada panel bertegangan untuk melindungi tangan dari sengatan listrik adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q5" value="a" class="mr-2"> a. Sarung tangan kulit</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="b" class="mr-2"> b. Sarung tangan karet isolasi</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="c" class="mr-2"> c. Sarung tangan lateks medis</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="d" class="mr-2"> d. Sarung tangan kain</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">6. Standar internasional yang menjadi panduan kerja aman pada peralatan listrik adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q6" value="a" class="mr-2"> a. ISO 9001</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="b" class="mr-2"> b. NFPA 70E</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="c" class="mr-2"> c. IEC 61131</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="d" class="mr-2"> d. IEEE 802</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">7. Prosedur live-dead-live test bertujuan untuk...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q7" value="a" class="mr-2"> a. Mematikan motor secara bertahap</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="b" class="mr-2"> b. Memastikan alat ukur berfungsi dengan benar sebelum digunakan</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="c" class="mr-2"> c. Mengukur tahanan isolasi motor</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="d" class="mr-2"> d. Menghidupkan motor secara bertahap</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">8. Jika terjadi kebakaran listrik, APAR yang PALING TEPAT digunakan adalah jenis...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q8" value="a" class="mr-2"> a. Air (jenis A)</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="b" class="mr-2"> b. Busa (jenis B)</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="c" class="mr-2"> c. CO₂ atau Dry Chemical (jenis C)</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="d" class="mr-2"> d. Pasir basah</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">9. Dalam prosedur LOTO, siapa yang BERWENANG membuka gembok yang telah dipasang?</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q9" value="a" class="mr-2"> a. Supervisor mana saja</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="b" class="mr-2"> b. Rekan kerja yang melihat pekerjaan sudah selesai</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="c" class="mr-2"> c. Hanya pemilik gembok itu sendiri</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="d" class="mr-2"> d. Operator yang akan menghidupkan mesin</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">10. Langkah PERTAMA yang harus dilakukan jika menemukan rekan kerja tersengat listrik adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q10" value="a" class="mr-2"> a. Segera menarik tubuh korban</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="b" class="mr-2"> b. Memutus sumber listrik terlebih dahulu</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="c" class="mr-2"> c. Menyiram korban dengan air</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="d" class="mr-2"> d. Menepuk-nepuk wajah korban</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Essay -->
+                <div>
+                    <h3 class="text-lg font-bold text-red-900 mb-4 border-b pb-2">✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon isi semua 5 soal essay dengan jawaban yang jelas!</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <p class="font-semibold mb-2">1. Jelaskan hierarki pengendalian bahaya (Hierarchy of Controls) menurut NFPA 70E! Berikan contoh konkret penerapan masing-masing tingkat dalam pekerjaan pemeliharaan motor listrik!</p>
+                            <textarea name="essay1" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-red-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">2. Uraikan 7 langkah prosedur LOTO (Lock Out Tag Out) secara lengkap! Mengapa setiap langkah tidak boleh dilewatkan? Jelaskan konsekuensi jika salah satu langkah diabaikan!</p>
+                            <textarea name="essay2" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-red-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">3. Berdasarkan studi kasus kecelakaan fatal di pabrik semen, analisislah faktor-faktor penyebab kecelakaan dan jelaskan bagaimana prosedur LOTO yang benar dapat mencegah tragedi tersebut!</p>
+                            <textarea name="essay3" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-red-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">4. Sebutkan dan jelaskan minimal 5 jenis APD listrik yang wajib digunakan saat melakukan pemeliharaan panel motor! Jelaskan fungsi dan spesifikasi masing-masing APD!</p>
+                            <textarea name="essay4" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-red-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">5. Rancanglah prosedur respons darurat lengkap jika terjadi kecelakaan listrik di bengkel praktik SMK! Sertakan langkah pertolongan pertama, nomor darurat yang harus dihubungi, dan tindakan yang TIDAK BOLEH dilakukan!</p>
+                            <textarea name="essay5" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-red-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hasil & Tombol Aksi -->
+                <div class="bg-red-50 p-6 rounded-lg border border-red-200 text-center">
+                    <h3 class="text-lg font-bold text-red-900 mb-4">📊 Hasil Uji Formatif</h3>
+                    <div id="hasilSkor" class="text-3xl font-extrabold text-red-700 mb-2">0</div>
+                    <p id="detailSkor" class="text-sm text-gray-600 mb-6">Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button type="button" onclick="hitungNilai()" class="bg-red-900 hover:bg-red-800 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-paper-plane mr-2"></i>KIRIM JAWABAN & LIHAT HASIL
+                        </button>
+                        <button type="button" onclick="window.print()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-file-pdf mr-2"></i>UNDUH PDF LENGKAP
+                        </button>
+                        <button type="button" onclick="kirimEmail()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-envelope mr-2"></i>KIRIM EMAIL GURU
+                        </button>
+                        <button type="button" onclick="resetForm()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-redo mr-2"></i>MULAI ULANG
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-blue-200 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">&copy; 2026 UKI SAPUTRA - SMK N 1 Koto Balingka. Hak Cipta Dilindungi.</p>
+            <p class="text-sm mb-3 italic">"Safety First — Pulang Selamat Setiap Hari"</p>
+            <a href="respon-pembaca.html" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-2 px-6 rounded-full transition duration-300 text-sm">
+                <i class="fas fa-paper-plane mr-1"></i> Kirim Respon tentang Materi Ini
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Fungsi Uji Formatif -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const kunciJawaban = {
+            q1: 'c', // 50-100 mA
+            q2: 'c', // Eliminasi bahaya
+            q3: 'b', // Persiapan pemutusan
+            q4: 'c', // 19.000°C
+            q5: 'b', // Sarung tangan karet isolasi
+            q6: 'b', // NFPA 70E
+            q7: 'b', // Memastikan alat ukur berfungsi
+            q8: 'c', // CO2 atau Dry Chemical
+            q9: 'c', // Hanya pemilik gembok
+            q10: 'b' // Memutus sumber listrik
+        };
+
+        function hitungNilai() {
+            const form = document.getElementById('quizForm');
+            if (!form.checkValidity()) {
+                alert("⚠️ Mohon lengkapi semua data siswa, 10 soal Pilihan Ganda, dan 5 soal Essay terlebih dahulu!");
+                form.reportValidity();
+                return;
+            }
+
+            let skorPG = 0;
+            let benar = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const jawabanSiswa = document.querySelector(`input[name="q${i}"]:checked`);
+                if (jawabanSiswa && jawabanSiswa.value === kunciJawaban[`q${i}`]) {
+                    benar++;
+                    skorPG += 10;
+                }
+            }
+
+            const hasilDiv = document.getElementById('hasilSkor');
+            const detailDiv = document.getElementById('detailSkor');
+            
+            hasilDiv.innerText = skorPG;
+            detailDiv.innerHTML = `Bagian A (PG): <strong>${skorPG}/100</strong> (${benar} jawaban benar) <br> Bagian B (Essay): <strong>Menunggu Penilaian Guru</strong> (Jawaban telah tersimpan di sistem)`;
+            
+            document.getElementById('hasilSkor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            let pesan = `✅ Jawaban berhasil dikirim!\nSkor Sementara Pilihan Ganda: ${skorPG}/100\n\nCatatan: Jawaban Essay akan dinilai oleh guru.`;
+            if (skorPG >= 80) pesan += `\n\n🏆 Luar biasa! Anda memiliki kesadaran K3 yang sangat baik!`;
+            else if (skorPG >= 60) pesan += `\n\n👍 Bagus! Terus pelajari prosedur K3 dengan lebih mendalam.`;
+            else pesan += `\n\n⚠️ Perhatian! Pelajari kembali materi K3 — keselamatan adalah prioritas utama!`;
+            
+            alert(pesan);
+        }
+
+        function kirimEmail() {
+            const nama = document.querySelector('input[name="nama"]').value || "Siswa";
+            const nis = document.querySelector('input[name="nis"]').value || "-";
+            const kelas = document.querySelector('input[name="kelas"]').value || "-";
+            
+            const subject = `Hasil Uji Formatif 9 (K3 Listrik) - ${nama} (${nis})`;
+            const body = `Yth. Bapak UKI SAPUTRA,\n\nBerikut adalah hasil uji formatif saya:\nNama: ${nama}\nNIS: ${nis}\nKelas: ${kelas}\nMateri: Pertemuan 9 - Prosedur K3 dalam Pemeliharaan Motor Listrik\n\nSaya telah menyelesaikan Bagian A (Pilihan Ganda) dan Bagian B (Essay) pada Pertemuan 9.\n\nTerima kasih.`;
+            
+            window.location.href = `mailto:trauky@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function resetForm() {
+            if(confirm("⚠️ Apakah Anda yakin ingin menghapus semua jawaban dan mulai ulang?")) {
+                document.getElementById('quizForm').reset();
+                document.getElementById('hasilSkor').innerText = "0";
+                document.getElementById('detailSkor').innerText = "Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

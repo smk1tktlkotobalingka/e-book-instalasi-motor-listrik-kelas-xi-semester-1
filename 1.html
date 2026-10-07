@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 1: Pengasutan Motor 3 Fasa Secara Manual - Instalasi Motor Listrik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .highlight-box { border-left: 4px solid #2563eb; background-color: #eff6ff; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .tip-box { border-left: 4px solid #16a34a; background-color: #f0fdf4; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans" id="top">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl font-bold tracking-wide">INSTALASI MOTOR LISTRIK</div>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0">
+                <a href="index.html" class="hover:text-yellow-400 transition"><i class="fas fa-home mr-1"></i> Beranda</a>
+                <a href="index.html#tentang" class="hover:text-yellow-400 transition"><i class="fas fa-info-circle mr-1"></i> Tentang</a>
+                <a href="index.html#daftar-isi" class="hover:text-yellow-400 transition"><i class="fas fa-list mr-1"></i> Daftar Bab</a>
+                <a href="index.html#kontak" class="hover:text-yellow-400 transition"><i class="fas fa-user mr-1"></i> Penulis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Chapter -->
+    <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="bg-yellow-500 text-blue-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pertemuan 1</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-4 mb-2">Pengasutan Motor Listrik 3 Fasa Secara Manual</h1>
+            <p class="text-blue-100 text-lg max-w-3xl mx-auto">
+                Memahami prinsip, komponen, dan teknik merangkai pengasutan Direct On Line (DOL), Hidup Berurutan, dan Forward-Reverse menggunakan magnetik kontaktor untuk menciptakan sistem kontrol yang aman dan andal.
+            </p>
+            <div class="mt-6 flex justify-center gap-4">
+                <a href="#materi-inti" class="bg-white text-blue-900 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition">Mulai Membaca</a>
+                <a href="2.html" class="bg-blue-700 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-600 transition border border-blue-500">Bab Selanjutnya →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl" id="materi-inti">
+        
+        <!-- Pendahuluan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b-2 border-blue-200 pb-2">Pendahuluan</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Keterampilan merangkai dan mengoperasikan pengasutan motor listrik 3 fasa secara manual merupakan fondasi utama dalam bidang Instalasi Motor Listrik. Sebelum melangkah ke sistem otomatisasi menggunakan PLC (Pertemuan 2), seorang siswa SMK harus menguasai terlebih dahulu logika rangkaian kontrol manual menggunakan <strong>magnetik kontaktor</strong>.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Pengasutan manual mencakup tiga konfigurasi dasar yang paling sering digunakan di industri: <em>Direct On Line</em> (DOL) untuk starting langsung, rangkaian hidup berurutan untuk sistem konveyor, dan rangkaian <em>Forward-Reverse</em> (Maju-Mundur) untuk aplikasi lift atau mesin produksi. Penguasaan komponen seperti <em>Push Button</em>, Kontaktor (MC), dan <em>Thermal Overload Relay</em> (TOR) menjadi kunci keselamatan dan keberhasilan operasional.
+            </p>
+        </section>
+
+        <!-- Konsep Kunci -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-key text-yellow-500 mr-2"></i>Konsep Kunci</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Magnetik Kontaktor (MC)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Saklar elektromagnetik yang bekerja berdasarkan prinsip induksi elektromagnetik. Memiliki kontak Utama (NO) untuk daya dan kontak Bantu (NO/NC) untuk rangkaian kontrol.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Interlock (Penguncian)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Mekanisme pengaman (mekanis atau elektris) yang mencegah dua kontaktor bekerja secara bersamaan, sangat krusial pada rangkaian Forward-Reverse untuk mencegah hubung singkat antar fasa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Studi Kasus -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-book-open text-yellow-500 mr-2"></i>Studi Kasus 1: Bahaya Rangkaian Tanpa Interlock</h3>
+            <div class="warning-box p-6 rounded-r-lg">
+                <p class="text-gray-800 mb-3">
+                    Di sebuah bengkel praktik SMK, seorang siswa merangkai panel kontrol Forward-Reverse untuk motor bor meja. Karena terburu-buru, siswa tersebut melewatkan pemasangan kontak NC (Normally Closed) sebagai pengunci elektris antar kontaktor Forward dan Reverse. Saat operator menekan tombol Forward dan Reverse secara hampir bersamaan, terjadi ledakan kecil dan MCB utama trip (jatuh).
+                </p>
+                <p class="font-semibold text-red-700">
+                    <i class="fas fa-exclamation-triangle mr-1"></i> Pembelajaran: 
+                </p>
+                <p class="text-gray-800 mt-1">
+                    Kegagalan memasang sistem <em>interlock</em> (saling mengunci) pada rangkaian Forward-Reverse akan menyebabkan hubung singkat langsung antar fasa (L1 ke L3, dll). Keamanan rangkaian kontrol harus selalu diprioritaskan di atas kecepatan perakitan.
+                </p>
+            </div>
+        </section>
+
+        <!-- Refleksi -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Refleksi untuk Siswa SMK</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Dalam dunia industri nyata, kesalahan kecil dalam pemasangan kabel kontrol dapat berakibat fatal, mulai dari kerusakan motor hingga cedera pada operator. Sebagai calon teknisi listrik, ketelitian, pemahaman simbol diagram rangkaian, dan disiplin terhadap Prosedur Keselamatan dan Kesehatan Kerja (K3) adalah modal utama yang harus dibangun sejak di bangku sekolah.
+            </p>
+        </section>
+
+        <!-- Landasan Teoretis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">1.1 Landasan Teoretis Pengasutan Motor</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">1.1.1 Prinsip Kerja Magnetik Kontaktor</h3>
+                    <p class="text-gray-700 mt-2">
+                        Magnetik kontaktor bekerja berdasarkan hukum elektromagnetisme. Ketika kumparan (coil) dialiri arus listrik, akan timbul medan magnet yang menarik armature (jangkar), sehingga kontak-kontak yang terhubung berubah keadaan: kontak NO (Normally Open) menjadi tertutup (ON), dan kontak NC (Normally Closed) menjadi terbuka (OFF). Ketika arus diputus, pegas mengembalikan kontak ke posisi semula.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">1.1.2 Prinsip Pengasutan Direct On Line (DOL)</h3>
+                    <p class="text-gray-700 mt-2">
+                        Metode DOL menghubungkan motor langsung ke sumber tegangan 3 fasa. Arus starting (Ist) bisa mencapai 5-7 kali arus nominal (In). Metode ini hanya diperbolehkan untuk motor dengan daya kecil (biasanya di bawah 4 kW) atau jika sumber daya (transformator) memiliki kapasitas yang cukup besar untuk menahan lonjakan arus tanpa menjatuhkan tegangan secara signifikan.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Komponen Rangkaian -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">1.2 Komponen dan Jenis Rangkaian Pengasutan Manual</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+                    <thead class="bg-blue-100 text-blue-900">
+                        <tr>
+                            <th class="py-3 px-4 text-left font-bold border-b">Jenis Rangkaian</th>
+                            <th class="py-3 px-4 text-left font-bold border-b">Komponen Utama</th>
+                            <th class="py-3 px-4 text-left font-bold border-b">Aplikasi Industri</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700 text-sm">
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Start DOL (Direct On Line)</td>
+                            <td class="py-3 px-4">1 MCB, 1 Kontaktor, 1 TOR, 2 Push Button (NO Start, NC Stop)</td>
+                            <td class="py-3 px-4">Pompa air kecil, kipas angin industri, kompresor daya rendah.</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Hidup Berurutan (Sequential)</td>
+                            <td class="py-3 px-4">2 Kontaktor, 1 TOR, Push Button, Kontak Bantu NO untuk pengunci urutan.</td>
+                            <td class="py-3 px-4">Sistem konveyor (Konveyor A harus hidup sebelum Konveyor B).</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Forward - Reverse (Maju - Mundur)</td>
+                            <td class="py-3 px-4">2 Kontaktor, 1 TOR, 3 Push Button, Kontak Bantu NC untuk <em>Interlock</em>.</td>
+                            <td class="py-3 px-4">Mesin bubut, lift barang, pintu gerbang otomatis, crane.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Tips Praktis -->
+        <section class="mb-12">
+            <div class="tip-box p-6 rounded-r-lg">
+                <h3 class="font-bold text-green-800 mb-2"><i class="fas fa-tools mr-2"></i>Tips Praktis Perakitan Panel</h3>
+                <ul class="list-disc list-inside text-gray-800 space-y-2 text-sm">
+                    <li>Selalu gunakan diagram rangkaian kontrol dan daya yang sesuai standar PUIL 2011 sebelum memulai perakitan.</li>
+                    <li>Periksa kondisi kontak kontaktor menggunakan multimeter (mode continuity) sebelum dirangkai.</li>
+                    <li>Pastikan setting arus pada Thermal Overload Relay (TOR) sesuai dengan arus nominal (In) motor yang tertera di nameplate.</li>
+                    <li>Lakukan pengecekan visual (tanpa tegangan) dan pengukuran tahanan (dengan multimeter) sebelum menghubungkan ke sumber listrik 3 fasa.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Kesimpulan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b-2 border-blue-200 pb-2">Kesimpulan</h2>
+            <p class="text-gray-700 leading-relaxed">
+                Penguasaan pengasutan motor 3 fasa secara manual menggunakan magnetik kontaktor adalah prasyarat mutlak sebelum mempelajari sistem otomatisasi. Rangkaian DOL, Hidup Berurutan, dan Forward-Reverse masing-masing memiliki logika kontrol dan komponen pengaman (seperti interlock dan TOR) yang spesifik. Ketelitian dalam membaca diagram, merangkai, dan troubleshooting akan membentuk kompetensi dasar yang kuat bagi siswa dalam menghadapi tantangan instalasi listrik industri.
+            </p>
+        </section>
+
+        <!-- Daftar Pustaka -->
+        <section class="mb-16">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-book text-yellow-500 mr-2"></i>Daftar Pustaka</h3>
+            <ul class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                <li>PUIL 2011. <em>Persyaratan Umum Instalasi Listrik 2011</em>. Jakarta: SNI.</li>
+                <li>Zuraida, dkk. (2021). <em>Instalasi Motor Listrik Jilid 1 untuk SMK</em>. Jakarta: Direktorat Pembinaan SMK.</li>
+                <li>Manual Book Komponen Listrik (Schneider Electric / ABB) untuk Spesifikasi Kontaktor dan TOR.</li>
+            </ul>
+        </section>
+
+        <!-- Navigasi Bawah -->
+        <div class="flex justify-between items-center border-t pt-6 mb-16">
+            <a href="index.html" class="text-blue-600 hover:text-blue-800 font-semibold"><i class="fas fa-arrow-left mr-1"></i> Kembali ke Daftar Bab</a>
+            <a href="#top" class="text-gray-500 hover:text-gray-700 font-semibold"><i class="fas fa-arrow-up mr-1"></i> Ke Atas</a>
+            <a href="2.html" class="text-blue-600 hover:text-blue-800 font-semibold">Pertemuan 2: Pengasutan Otomatis (PLC) <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN UJI FORMATIF (Disesuaikan: Siswa, NIS, Hapus Jurusan) -->
+        <!-- ========================================================= -->
+        <section id="uji-formatif" class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-blue-900">📋 Uji Formatif 1: Pengasutan Motor 3 Fasa Manual</h2>
+                <p class="text-gray-600 mt-2">Materi: Konsep, komponen, prinsip, dan teknik merangkai DOL, Berurutan, dan Forward-Reverse.</p>
+                <p class="text-red-600 text-sm font-semibold mt-2">⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu!</p>
+            </div>
+
+            <form id="quizForm" class="space-y-8">
+                <!-- Data Siswa -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">📋 Data Siswa</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Nama Lengkap</label>
+                            <input type="text" name="nama" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* NIS (Nomor Induk Siswa)</label>
+                            <input type="text" name="nis" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Tanggal Ujian</label>
+                            <input type="date" name="tanggal" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Kelas</label>
+                            <input type="text" name="kelas" placeholder="Contoh: XI TITL 1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Semester</label>
+                            <select name="semester" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                                <option value="">Pilih Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian A: Pilihan Ganda -->
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon lengkapi semua 10 soal pilihan ganda!</p>
+                    
+                    <div class="space-y-6 text-gray-800">
+                        <!-- Soal 1 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">1. Komponen yang berfungsi sebagai pengaman beban lebih (overload) pada rangkaian motor listrik adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q1" value="a" class="mr-2"> a. MCB (Miniature Circuit Breaker)</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="b" class="mr-2"> b. TOR (Thermal Overload Relay)</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="c" class="mr-2"> c. Kontaktor</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="d" class="mr-2"> d. Push Button</label>
+                            </div>
+                        </div>
+                        <!-- Soal 2 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">2. Pada rangkaian Forward-Reverse, fungsi kontak bantu NC (Normally Closed) yang dipasang seri dengan coil kontaktor lawan adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q2" value="a" class="mr-2"> a. Sebagai pengunci mekanis (Interlock)</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="b" class="mr-2"> b. Sebagai indikator lampu</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="c" class="mr-2"> c. Untuk menunda waktu (timer)</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="d" class="mr-2"> d. Untuk meningkatkan arus starting</label>
+                            </div>
+                        </div>
+                        <!-- Soal 3 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">3. Arus starting (Ist) pada pengasutan Direct On Line (DOL) umumnya mencapai berapa kali arus nominal (In)?</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q3" value="a" class="mr-2"> a. 1 - 2 kali In</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="b" class="mr-2"> b. 5 - 7 kali In</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="c" class="mr-2"> c. 10 - 15 kali In</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="d" class="mr-2"> d. Sama dengan In</label>
+                            </div>
+                        </div>
+                        <!-- Soal 4 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">4. Dalam rangkaian hidup berurutan (sequential), kontaktor kedua baru dapat bekerja jika...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q4" value="a" class="mr-2"> a. Tombol Stop ditekan</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="b" class="mr-2"> b. Kontaktor pertama sudah dalam keadaan ON (kontak NO bantu menutup)</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="c" class="mr-2"> c. TOR trip</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="d" class="mr-2"> d. Sumber daya dimatikan</label>
+                            </div>
+                        </div>
+                        <!-- Soal 5 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">5. Simbol gambar kontak yang menunjukkan kondisi "Normally Open" (NO) adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q5" value="a" class="mr-2"> a. Kontak yang tertutup saat coil tidak dialiri arus</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="b" class="mr-2"> b. Kontak yang terbuka saat coil tidak dialiri arus, dan menutup saat coil aktif</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="c" class="mr-2"> c. Kontak yang selalu terhubung langsung ke netral</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="d" class="mr-2"> d. Kontak khusus untuk rangkaian lampu indikator</label>
+                            </div>
+                        </div>
+                        <!-- Soal 6 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">6. Jika motor 3 fasa berputar terbalik dari yang diinginkan pada rangkaian DOL, cara memperbaikinya adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q6" value="a" class="mr-2"> a. Meningkatkan setting arus pada TOR</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="b" class="mr-2"> b. Menukar dua dari tiga kabel fasa (misal: L1 dan L3) yang masuk ke motor</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="c" class="mr-2"> c. Menambah kontaktor baru</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="d" class="mr-2"> d. Mengganti MCB dengan rating yang lebih besar</label>
+                            </div>
+                        </div>
+                        <!-- Soal 7 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">7. Fungsi utama dari kontak bantu NO (Normally Open) yang dipasang paralel dengan tombol Start adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q7" value="a" class="mr-2"> a. Sebagai pengaman hubung singkat</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="b" class="mr-2"> b. Sebagai rangkaian pengunci (holding circuit) agar kontaktor tetap ON setelah tombol Start dilepas</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="c" class="mr-2"> c. Untuk mematikan rangkaian secara otomatis</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="d" class="mr-2"> d. Untuk mengaktifkan lampu tanda beban lebih</label>
+                            </div>
+                        </div>
+                        <!-- Soal 8 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">8. Sebelum melakukan pengujian rangkaian dengan tegangan 380V/220V, langkah keselamatan pertama yang wajib dilakukan adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q8" value="a" class="mr-2"> a. Langsung menekan tombol Start</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="b" class="mr-2"> b. Melakukan pengecekan kontinuitas/ketahanan rangkaian menggunakan multimeter dalam kondisi MCB OFF</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="c" class="mr-2"> c. Melepas semua kabel grounding</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="d" class="mr-2"> d. Menyetel TOR ke nilai maksimum</label>
+                            </div>
+                        </div>
+                        <!-- Soal 9 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">9. Aplikasi industri yang paling tepat menggunakan rangkaian kontrol Hidup Berurutan (Sequential) adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q9" value="a" class="mr-2"> a. Pompa air tunggal</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="b" class="mr-2"> b. Sistem konveyor material (Konveyor 1 harus hidup sebelum Konveyor 2)</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="c" class="mr-2"> c. Mesin gerinda duduk</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="d" class="mr-2"> d. Lampu penerangan gudang</label>
+                            </div>
+                        </div>
+                        <!-- Soal 10 -->
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">10. Jika TOR (Thermal Overload Relay) trip saat pengujian, tindakan yang benar adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q10" value="a" class="mr-2"> a. Menekan tombol Reset pada TOR setelah mendingin dan mencari penyebab beban lebih</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="b" class="mr-2"> b. Mengganti TOR dengan kabel jumper (hubungan langsung)</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="c" class="mr-2"> c. Memaksa tombol Start terus menerus</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="d" class="mr-2"> d. Meningkatkan tegangan sumber</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Essay -->
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon isi semua 5 soal essay dengan jawaban yang jelas!</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <p class="font-semibold mb-2">1. Jelaskan prinsip kerja magnetik kontaktor dan sebutkan perbedaan mendasar antara kontak Utama dan kontak Bantu!</p>
+                            <textarea name="essay1" rows="3" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">2. Mengapa sistem penguncian (interlock) sangat wajib ada pada rangkaian Forward-Reverse? Jelaskan akibat yang terjadi jika interlock diabaikan!</p>
+                            <textarea name="essay2" rows="3" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">3. Gambarkan (jelaskan secara naratif) urutan langkah kerja merangkai panel kontrol DOL mulai dari pemasangan komponen hingga pengecekan akhir!</p>
+                            <textarea name="essay3" rows="3" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">4. Sebuah motor 3 fasa berputar mundur saat tombol Start ditekan pada rangkaian DOL. Analisislah penyebabnya dan berikan solusi perbaikan yang tepat!</p>
+                            <textarea name="essay4" rows="3" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">5. Sebutkan 3 prosedur Keselamatan dan Kesehatan Kerja (K3) yang wajib diterapkan saat melakukan praktik perakitan panel motor listrik!</p>
+                            <textarea name="essay5" rows="3" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hasil & Tombol Aksi -->
+                <div class="bg-blue-50 p-6 rounded-lg border border-blue-200 text-center">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4">📊 Hasil Uji Formatif</h3>
+                    <div id="hasilSkor" class="text-3xl font-extrabold text-blue-700 mb-2">0</div>
+                    <p id="detailSkor" class="text-sm text-gray-600 mb-6">Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button type="button" onclick="hitungNilai()" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-paper-plane mr-2"></i>KIRIM JAWABAN & LIHAT HASIL
+                        </button>
+                        <button type="button" onclick="window.print()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-file-pdf mr-2"></i>UNDUH PDF LENGKAP
+                        </button>
+                        <button type="button" onclick="kirimEmail()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-envelope mr-2"></i>KIRIM EMAIL GURU
+                        </button>
+                        <button type="button" onclick="resetForm()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-redo mr-2"></i>MULAI ULANG
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-blue-200 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">&copy; 2026 UKI SAPUTRA - SMK N 1 Koto Balingka. Hak Cipta Dilindungi.</p>
+            <a href="respon-pembaca.html" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-2 px-6 rounded-full transition duration-300 text-sm">
+                <i class="fas fa-paper-plane mr-1"></i> Kirim Respon tentang Materi Ini
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Fungsi Uji Formatif -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const kunciJawaban = {
+            q1: 'b', // TOR
+            q2: 'a', // Interlock
+            q3: 'b', // 5-7 kali In
+            q4: 'b', // Kontaktor pertama ON
+            q5: 'b', // NO description
+            q6: 'b', // Tukar 2 fasa
+            q7: 'b', // Holding circuit
+            q8: 'b', // Cek kontinuitas
+            q9: 'b', // Konveyor
+            q10: 'a' // Reset dan cari penyebab
+        };
+
+        function hitungNilai() {
+            // Validasi Data Siswa
+            const form = document.getElementById('quizForm');
+            if (!form.checkValidity()) {
+                alert("⚠️ Mohon lengkapi semua data siswa, 10 soal Pilihan Ganda, dan 5 soal Essay terlebih dahulu!");
+                form.reportValidity();
+                return;
+            }
+
+            let skorPG = 0;
+            let benar = 0;
+
+            // Hitung Skor Pilihan Ganda
+            for (let i = 1; i <= 10; i++) {
+                const jawabanSiswa = document.querySelector(`input[name="q${i}"]:checked`);
+                if (jawabanSiswa && jawabanSiswa.value === kunciJawaban[`q${i}`]) {
+                    benar++;
+                    skorPG += 10;
+                }
+            }
+
+            // Tampilkan Hasil
+            const hasilDiv = document.getElementById('hasilSkor');
+            const detailDiv = document.getElementById('detailSkor');
+            
+            hasilDiv.innerText = skorPG;
+            detailDiv.innerHTML = `Bagian A (PG): <strong>${skorPG}/100</strong> (${benar} jawaban benar) <br> Bagian B (Essay): <strong>Menunggu Penilaian Guru</strong> (Jawaban telah tersimpan di sistem)`;
+            
+            // Scroll ke hasil
+            document.getElementById('hasilSkor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            alert(`✅ Jawaban berhasil dikirim!\nSkor Sementara Pilihan Ganda: ${skorPG}/100\n\nCatatan: Jawaban Essay akan dinilai oleh guru.`);
+        }
+
+        function kirimEmail() {
+            const nama = document.querySelector('input[name="nama"]').value || "Siswa";
+            const nis = document.querySelector('input[name="nis"]').value || "-";
+            const kelas = document.querySelector('input[name="kelas"]').value || "-";
+            
+            const subject = `Hasil Uji Formatif 1 - ${nama} (${nis})`;
+            const body = `Yth. Bapak UKI SAPUTRA,\n\nBerikut adalah hasil uji formatif saya:\nNama: ${nama}\nNIS: ${nis}\nKelas: ${kelas}\n\nSaya telah menyelesaikan Bagian A (Pilihan Ganda) dan Bagian B (Essay) pada Pertemuan 1.\n\nTerima kasih.`;
+            
+            window.location.href = `mailto:trauky@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function resetForm() {
+            if(confirm("⚠️ Apakah Anda yakin ingin menghapus semua jawaban dan mulai ulang?")) {
+                document.getElementById('quizForm').reset();
+                document.getElementById('hasilSkor').innerText = "0";
+                document.getElementById('detailSkor').innerText = "Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

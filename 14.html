@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 14: Implementasi & Pengujian Proyek Instalasi Motor Listrik - Instalasi Motor Listrik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .highlight-box { border-left: 4px solid #2563eb; background-color: #eff6ff; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .tip-box { border-left: 4px solid #16a34a; background-color: #f0fdf4; }
+        .formula-box { background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 0.5rem; font-family: 'Courier New', monospace; }
+        .impl-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .impl-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .phase-step { position: relative; padding-left: 3rem; }
+        .phase-step::before {
+            content: counter(step);
+            counter-increment: step;
+            position: absolute; left: 0; top: 0;
+            width: 2rem; height: 2rem;
+            background: #9f1239; color: white;
+            border-radius: 50%; display: flex;
+            align-items: center; justify-content: center;
+            font-weight: bold; font-size: 0.875rem;
+        }
+        .phase-list { counter-reset: step; }
+        .checklist-item { transition: background 0.2s; }
+        .checklist-item:hover { background-color: #fff1f2; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans" id="top">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl font-bold tracking-wide">INSTALASI MOTOR LISTRIK</div>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0">
+                <a href="index.html" class="hover:text-yellow-400 transition"><i class="fas fa-home mr-1"></i> Beranda</a>
+                <a href="index.html#tentang" class="hover:text-yellow-400 transition"><i class="fas fa-info-circle mr-1"></i> Tentang</a>
+                <a href="index.html#daftar-isi" class="hover:text-yellow-400 transition"><i class="fas fa-list mr-1"></i> Daftar Bab</a>
+                <a href="index.html#kontak" class="hover:text-yellow-400 transition"><i class="fas fa-user mr-1"></i> Penulis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Chapter -->
+    <header class="bg-gradient-to-r from-rose-800 to-rose-600 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="bg-yellow-500 text-rose-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pertemuan 14 — Bab 6: Proyek Akhir & Evaluasi</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-4 mb-2">Implementasi & Pengujian Proyek Instalasi Motor Listrik</h1>
+            <p class="text-rose-100 text-lg max-w-3xl mx-auto">
+                Mempelajari tahapan implementasi fisik proyek instalasi motor listrik — mulai dari persiapan alat dan material, pemasangan komponen, pengkabelan, pengujian tanpa beban (no-load test), pengujian dengan beban (load test), uji proteksi, commissioning, dokumentasi as-built, hingga serah terima dan pelatihan operator sesuai standar PUIL 2011 dan IEC 60204-1.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <a href="13.html" class="bg-gray-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-600 transition border border-gray-500"><i class="fas fa-arrow-left mr-1"></i>Pertemuan 13</a>
+                <a href="#materi-inti" class="bg-white text-rose-900 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition">Mulai Membaca</a>
+                <a href="15.html" class="bg-rose-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-rose-600 transition border border-rose-500">Pertemuan 15 →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl" id="materi-inti">
+
+        <!-- Pendahuluan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-rose-900 mb-4 border-b-2 border-rose-200 pb-2">Pendahuluan</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Setelah merancang proyek instalasi motor listrik secara komprehensif pada pertemuan sebelumnya — lengkap dengan analisis kebutuhan, gambar teknik (SLD, wiring diagram), pemilihan komponen, dan RAB — kini siswa melangkah ke tahap yang paling menantang sekaligus paling memuaskan: <strong>implementasi fisik dan pengujian proyek</strong>. Inilah saatnya rancangan di atas kertas diwujudkan menjadi sistem yang nyata, berfungsi, aman, dan andal.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Implementasi proyek instalasi motor listrik bukan sekadar "menyambung kabel". Ia merupakan proses sistematis yang memerlukan ketelitian tinggi, kepatuhan terhadap standar (PUIL 2011, IEC 60204-1), disiplin K3, dan metodologi pengujian yang terstruktur. Data dari <em>National Electrical Contractors Association</em> (NECA) menunjukkan bahwa <strong>lebih dari 60% kegagalan instalasi listrik di industri disebabkan oleh kesalahan saat implementasi</strong> — bukan karena rancangan yang buruk. Kesalahan terminasi, pengencangan torsi yang tidak tepat, urutan fasa yang keliru, atau pengabaian prosedur commissioning dapat berakibat fatal: kebakaran, cedera, hingga kerugian miliaran rupiah.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Pada pertemuan ini, siswa akan mempelajari secara komprehensif tahapan implementasi proyek: mulai dari persiapan alat dan material, pemasangan komponen pada panel, teknik pengkabelan daya dan kontrol, checklist pra-energizing, pengujian tanpa beban (no-load test), pengujian dengan beban (load test), uji fungsi proteksi (TOR, MCB, E-Stop), pengukuran parameter kinerja saat commissioning, dokumentasi as-built, hingga serah terima dan pelatihan operator. Pemahaman ini akan membekali siswa untuk menjadi teknisi pelaksana yang tidak hanya mampu membangun, tetapi juga <em>memvalidasi</em> bahwa sistem yang dibangun berfungsi sesuai rancangan dan standar keselamatan.
+            </p>
+        </section>
+
+        <!-- Konsep Kunci -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-rose-900 mb-4"><i class="fas fa-key text-yellow-500 mr-2"></i>Konsep Kunci</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Implementasi Proyek</h4>
+                    <p class="text-sm text-gray-700 mt-1">Tahap eksekusi fisik dari rancangan proyek — meliputi pemasangan komponen, pengkabelan, perakitan panel, instalasi motor, dan integrasi sistem secara menyeluruh sesuai gambar teknik.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Commissioning</h4>
+                    <p class="text-sm text-gray-700 mt-1">Proses pengujian sistematis untuk memverifikasi bahwa instalasi berfungsi sesuai rancangan, standar, dan persyaratan operasional. Dilakukan bertahap: tanpa beban → dengan beban → penuh.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">No-Load Test</h4>
+                    <p class="text-sm text-gray-700 mt-1">Pengujian motor tanpa beban mekanis untuk memverifikasi arah putaran, arus no-load, getaran, dan suara. Arus no-load biasanya 20–40% dari arus nominal.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">As-Built Drawing</h4>
+                    <p class="text-sm text-gray-700 mt-1">Gambar teknik yang diperbarui sesuai kondisi aktual setelah instalasi selesai — mencerminkan perubahan yang terjadi selama implementasi. Dokumen wajib untuk pemeliharaan masa depan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Landasan Teoretis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-rose-900 mb-6 border-b-2 border-rose-200 pb-2">14.1 Landasan Teoretis Implementasi Proyek</h2>
+
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">14.1.1 Siklus Implementasi Proyek Instalasi</h3>
+                    <p class="text-gray-700 mt-2">
+                        Implementasi proyek instalasi motor listrik mengikuti siklus yang terstruktur untuk menjamin kualitas dan keselamatan:
+                    </p>
+                    <div class="bg-rose-50 p-4 rounded-lg mt-3 border-l-4 border-rose-400">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li><strong>Persiapan (Preparation):</strong> Mobilisasi alat, material, dan tenaga kerja. Briefing K3. Pemeriksaan material incoming.</li>
+                            <li><strong>Pemasangan Komponen (Component Installation):</strong> Pemasangan komponen pada din rail, layout panel, pemasangan motor di lokasi.</li>
+                            <li><strong>Pengkabelan (Wiring):</strong> Pengkabelan rangkaian daya dan kontrol sesuai wiring diagram, terminasi, labeling.</li>
+                            <li><strong>Pemeriksaan Awal (Pre-Commissioning):</strong> Visual inspection, pengukuran tahanan isolasi, uji kontinuitas, verifikasi grounding.</li>
+                            <li><strong>Energizing & No-Load Test:</strong> Pengujian tanpa beban untuk verifikasi fungsi dasar.</li>
+                            <li><strong>Load Test:</strong> Pengujian dengan beban bertahap (25% → 50% → 75% → 100%).</li>
+                            <li><strong>Uji Proteksi:</strong> Verifikasi fungsi TOR, MCB, E-Stop, dan proteksi lainnya.</li>
+                            <li><strong>Dokumentasi & Serah Terima:</strong> As-built drawing, manual operasi, pelatihan operator, garansi.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">14.1.2 Standar yang Berlaku</h3>
+                    <p class="text-gray-700 mt-2">
+                        Implementasi proyek instalasi motor listrik wajib mengacu pada:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 ml-4 space-y-1">
+                        <li><strong>PUIL 2011</strong> — Persyaratan Umum Instalasi Listrik (nasional, wajib).</li>
+                        <li><strong>IEC 60204-1</strong> — Keselamatan mesin — peralatan listrik mesin.</li>
+                        <li><strong>IEC 61439</strong> — Standar panel switchgear dan controlgear.</li>
+                        <li><strong>NECA/NETA ATS</strong> — Standar acceptance testing untuk peralatan listrik.</li>
+                        <li><strong>SNI ISO 10816</strong> — Evaluasi getaran mesin.</li>
+                        <li><strong>Permen ESDM No. 12/2021</strong> — K3 dalam pemanfaatan instalasi listrik.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tahapan Implementasi -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-rose-900 mb-6 border-b-2 border-rose-200 pb-2">14.2 Tahapan Implementasi Fisik Proyek</h2>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                <div class="phase-list space-y-8">
+                    <div class="phase-step">
+                        <h4 class="font-bold text-gray-800">Persiapan Alat, Material, dan Tenaga Kerja</h4>
+                        <p class="text-sm text-gray-700 mt-1">Mobilisasi semua alat kerja (obeng, tang, crimping tool, multimeter, megger, clamp meter), material (komponen panel, kabel, terminal, ducting, din rail), dan APD (sarung tangan isolasi, face shield, sepatu safety). Lakukan <strong>incoming inspection</strong> — periksa semua material sesuai daftar (spec, qty, kondisi).</p>
+                    </div>
+                    <div class="phase-step">
+                        <h4 class="font-bold text-gray-800">Briefing K3 dan Toolbox Meeting</h4>
+                        <p class="text-sm text-gray-700 mt-1">Sebelum pekerjaan dimulai, lakukan briefing keselamatan: identifikasi bahaya, tetapkan prosedur LOTO, tentukan peran dan tanggung jawab, pastikan semua pekerja memahami gambar teknik dan RKS.</p>
+                    </div>
+                    <div class="phase-step">
+                        <h4 class="font-bold text-gray-800">Pemasangan Komponen pada Panel</h4>
+                        <p class="text-sm text-gray-700 mt-1">Pasang din rail pada backplate panel sesuai layout. Klik komponen (MCB, kontaktor, TOR, timer, relay) ke din rail. Pastikan jarak antar komponen sesuai standar (minimal 10 mm untuk ventilasi). Pasang ducting untuk routing kabel.</p>
+                    </div>
+                    <div class="phase-step">
+                        <h4 class="font-bold text-gray-800">Pengkabelan Rangkaian Daya (Power Wiring)</h4>
+                        <p class="text-sm text-gray-700 mt-1">Kabel rangkaian daya (NYAF ukuran besar) dipasang dari incoming MCB → kontaktor utama → TOR → terminal output motor. Gunakan ferrule untuk kabel serabut. Kencangkan terminal dengan torsi yang tepat. Perhatikan warna kabel sesuai PUIL (R=merah, S=kuning, T=biru, N=hitam, PE=kuning-hijau).</p>
+                    </div>
+                    <div class="phase-step">
+                        <h4 class="font-bold text-gray-800">Pengkabelan Rangkaian Kontrol (Control Wiring)</h4>
+                        <p class="text-sm text-gray-700 mt-1">Kabel rangkaian kontrol (NYAF 1.5 mm²) dipasang untuk logika: push button → relay → coil kontaktor → timer → lampu indikator. Pisahkan dari kabel daya (minimal 10 cm atau gunakan sekat) untuk menghindari interferensi. Label setiap kabel sesuai diagram.</p>
+                    </div>
+                    <div class="phase-step">
+                        <h4 class="font-bold text-gray-800">Pemasangan Motor di Lokasi</h4>
+                        <p class="text-sm text-gray-700 mt-1">Pasang motor pada fondasi/base frame dengan baut anchor. Lakukan <strong>alignment</strong> dengan beban (menggunakan laser alignment tool atau dial indicator). Pastikan coupling/belt terpasang dengan kekencangan yang tepat. Hubungkan kabel motor ke terminal box.</p>
+                    </div>
+                    <div class="phase-step">
+                        <h4 class="font-bold text-gray-800">Pemasangan Grounding</h4>
+                        <p class="text-sm text-gray-700 mt-1">Hubungkan semua bagian logam (panel, motor, enclosure) ke ground bar menggunakan kabel kuning-hijau. Hubungkan ground bar ke electrode grounding dengan kabel NYY minimal 16 mm². Ukur tahanan grounding — harus < 5 Ω.</p>
+                    </div>
+                    <div class="phase-step">
+                        <h4 class="font-bold text-gray-800">Labeling dan Dokumentasi</h4>
+                        <p class="text-sm text-gray-700 mt-1">Label semua komponen, kabel, dan terminal sesuai diagram. Pasang label peringatan (DANGER, HIGH VOLTAGE, EARTH CONNECTION). Dokumentasikan setiap tahap dengan foto untuk referensi as-built.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pra-Commissioning -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-rose-900 mb-6 border-b-2 border-rose-200 pb-2">14.3 Pemeriksaan Pra-Commissioning (Pre-Energizing Check)</h2>
+
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Sebelum panel di-energize (dihubungkan ke sumber listrik), serangkaian pemeriksaan WAJIB dilakukan untuk mencegah kecelakaan dan kerusakan. Pemeriksaan ini sering diabaikan oleh teknisi terburu-buru — padahal inilah tahap paling kritis.
+            </p>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border-l-4 border-rose-600">
+                <h3 class="text-lg font-bold text-rose-900 mb-4"><i class="fas fa-clipboard-check mr-2"></i>Checklist Pra-Commissioning</h3>
+                <div class="space-y-2">
+                    <div class="checklist-item flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-square text-rose-600 mt-1"></i>
+                        <div><strong>Visual Inspection:</strong> Tidak ada benda asing (baut, potongan kabel) tertinggal di panel. Semua komponen terpasang kencang. Kabel tidak terjepit atau terlilit.</div>
+                    </div>
+                    <div class="checklist-item flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-square text-rose-600 mt-1"></i>
+                        <div><strong>Pemeriksaan Terminasi:</strong> Semua terminal dikencangkan dengan torsi tepat. Tarik kabel untuk memastikan tidak lepas. Kabel serabut menggunakan ferrule.</div>
+                    </div>
+                    <div class="checklist-item flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-square text-rose-600 mt-1"></i>
+                        <div><strong>Pemeriksaan Warna Kabel:</strong> Sesuai PUIL 2011 — R=merah, S=kuning, T=biru, N=hitam, PE=kuning-hijau.</div>
+                    </div>
+                    <div class="checklist-item flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-square text-rose-600 mt-1"></i>
+                        <div><strong>Pemeriksaan Labeling:</strong> Semua komponen, kabel, dan terminal terlabel sesuai diagram.</div>
+                    </div>
+                    <div class="checklist-item flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-square text-rose-600 mt-1"></i>
+                        <div><strong>Pemeriksaan Grounding:</strong> Semua bagian logam ter-grounding. Kabel ground terhubung ke ground bar dan electrode.</div>
+                    </div>
+                    <div class="checklist-item flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-square text-rose-600 mt-1"></i>
+                        <div><strong>Pengukuran Tahanan Isolasi (Megger Test):</strong> Semua MCB OFF. Ukur tahanan isolasi kabel dan lilitan motor dengan Megger 500V DC. Nilai minimum ≥ 1 MΩ (idealnya > 10 MΩ).</div>
+                    </div>
+                    <div class="checklist-item flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-square text-rose-600 mt-1"></i>
+                        <div><strong>Uji Kontinuitas:</strong> Cek kontinuitas rangkaian kontrol (tidak ada kabel putus). Cek tidak ada hubung singkat antar fasa dan fasa ke ground (tahanan harus tak terhingga).</div>
+                    </div>
+                    <div class="checklist-item flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-square text-rose-600 mt-1"></i>
+                        <div><strong>Pemeriksaan Setting Komponen:</strong> TOR diset sesuai In motor. Timer diset sesuai kebutuhan. MCB pada posisi OFF.</div>
+                    </div>
+                    <div class="checklist-item flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-square text-rose-600 mt-1"></i>
+                        <div><strong>Rotasi Manual Motor:</strong> Putar shaft motor dengan tangan — harus lancar tanpa hambatan atau suara kasar.</div>
+                    </div>
+                    <div class="checklist-item flex items-start gap-3 p-2 bg-gray-50 rounded">
+                        <i class="fas fa-check-square text-rose-600 mt-1"></i>
+                        <div><strong>Pemeriksaan Alignment:</strong> Motor dan beban ter-align dengan baik (deviasi ≤ 0.05 mm untuk coupling langsung).</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box p-4 rounded-r-lg mt-4">
+                <p class="text-sm text-gray-800">
+                    <strong>⚠️ PERINGATAN:</strong> Jangan pernah meng-energize panel sebelum semua item checklist di atas terpenuhi! Melewatkan satu item saja dapat menyebabkan ledakan, kebakaran, atau cedera fatal. KESELAMATAN ADALAH HARGA MATI.
+                </p>
+            </div>
+        </section>
+
+        <!-- Pengujian -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-rose-900 mb-6 border-b-2 border-rose-200 pb-2">14.4 Tahapan Pengujian (Testing & Commissioning)</h2>
+
+            <div class="space-y-8">
+                <!-- No-Load Test -->
+                <div class="impl-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-blue-100 text-blue-700 p-3 rounded-full"><i class="fas fa-tachometer-alt text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">14.4.1 Pengujian Tanpa Beban (No-Load Test)</h3>
+                            <p class="text-sm text-gray-600">Verifikasi fungsi dasar motor dan rangkaian kontrol</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold text-blue-900 mb-2">Prosedur:</p>
+                        <ol class="list-decimal list-inside text-gray-700 space-y-1 text-sm">
+                            <li>Pastikan semua MCB OFF. Hubungkan panel ke sumber daya.</li>
+                            <li>Ukur tegangan incoming — harus dalam range ±10% nameplate.</li>
+                            <li>ON-kan MCB incoming → periksa lampu indikator power.</li>
+                            <li>Lepas kopling/belt motor dari beban (decoupled).</li>
+                            <li>Tekan tombol START — motor harus berputar sesuai arah.</li>
+                            <li>Ukur <strong>arus no-load</strong> dengan clamp meter — harus 20–40% In.</li>
+                            <li>Periksa <strong>arah putaran</strong> — jika terbalik, tukar 2 fasa.</li>
+                            <li>Dengarkan <strong>suara motor</strong> — harus halus, tidak ada grinding/squealing.</li>
+                            <li>Ukur <strong>getaran</strong> dengan vibration meter — harus < 1.8 mm/s (excellent).</li>
+                            <li>Tekan tombol STOP — motor harus berhenti segera.</li>
+                            <li>Uji fungsi Forward-Reverse (jika ada) — motor harus berputar kedua arah.</li>
+                            <li>Uji fungsi Star-Delta (jika ada) — transisi harus mulus, tidak ada trip.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Load Test -->
+                <div class="impl-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-orange-100 text-orange-700 p-3 rounded-full"><i class="fas fa-weight-hanging text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">14.4.2 Pengujian Dengan Beban (Load Test)</h3>
+                            <p class="text-sm text-gray-600">Verifikasi kinerja motor di bawah kondisi operasi nyata</p>
+                        </div>
+                    </div>
+                    <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-400">
+                        <p class="font-semibold text-orange-900 mb-2">Prosedur Bertahap:</p>
+                        <ol class="list-decimal list-inside text-gray-700 space-y-1 text-sm">
+                            <li><strong>Beban 25%:</strong> Hubungkan beban parsial. Ukur arus, tegangan, suhu, getaran. Operasi 15 menit.</li>
+                            <li><strong>Beban 50%:</strong> Tambah beban. Ukur parameter. Operasi 15 menit.</li>
+                            <li><strong>Beban 75%:</strong> Tambah beban. Ukur parameter. Operasi 15 menit.</li>
+                            <li><strong>Beban 100%:</strong> Beban penuh sesuai nameplate. Ukur parameter. Operasi minimal 1 jam.</li>
+                        </ol>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400 mt-3">
+                        <p class="font-semibold text-yellow-900 mb-2">Parameter yang Diukur pada Setiap Tahap:</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                            <li>Arus tiap fasa (I<sub>L1</sub>, I<sub>L2</sub>, I<sub>L3</sub>) — harus ≤ In, unbalance ≤ 10%</li>
+                            <li>Tegangan suplai — unbalance ≤ 1%</li>
+                            <li>Suhu bearing DE & NDE — harus < 80°C</li>
+                            <li>Suhu body motor — sesuai kelas isolasi</li>
+                            <li>Getaran (mm/s) — harus < 4.5 mm/s (good)</li>
+                            <li>Faktor daya (cos φ) — 0.85–0.90 pada beban penuh</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Uji Proteksi -->
+                <div class="impl-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-red-100 text-red-700 p-3 rounded-full"><i class="fas fa-shield-alt text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">14.4.3 Pengujian Fungsi Proteksi</h3>
+                            <p class="text-sm text-gray-600">Verifikasi semua sistem proteksi berfungsi dengan benar</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                        <p class="font-semibold text-red-900 mb-2">Uji yang Wajib Dilakukan:</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-2 text-sm">
+                            <li><strong>Uji TOR:</strong> Tekan tombol test pada TOR → kontaktor harus trip dan motor berhenti. Reset TOR → motor dapat start kembali.</li>
+                            <li><strong>Uji MCB:</strong> Simulasikan overload dengan injeksi arus tinggi (jika ada alat) → MCB harus trip. Atau verifikasi rating MCB sesuai perhitungan.</li>
+                            <li><strong>Uji E-Stop:</strong> Tekan tombol emergency stop dari kondisi operasi → motor harus berhenti SEGERA (dalam < 0.5 detik). E-Stop harus latching — tidak dapat reset tanpa diputar.</li>
+                            <li><strong>Uji Phasing Loss:</strong> Jika ada relay proteksi fase, matikan satu fasa → motor harus trip.</li>
+                            <li><strong>Uji Under/Over Voltage:</strong> Jika ada relay proteksi tegangan, simulasi tegangan abnormal → motor harus trip.</li>
+                            <li><strong>Uji Interlock:</strong> Pada rangkaian Star-Delta, pastikan KM2 dan KM3 tidak dapat aktif bersamaan. Pada Fwd-Rev, pastikan kedua kontaktor tidak dapat aktif bersamaan.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dokumentasi As-Built -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-rose-900 mb-6 border-b-2 border-rose-200 pb-2">14.5 Dokumentasi As-Built dan Serah Terima</h2>
+
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">14.5.1 Dokumen As-Built</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Setelah pengujian selesai dan sistem dinyatakan layak operasi, dokumentasi as-built harus disusun. Dokumen ini mencerminkan kondisi aktual instalasi (mungkin berbeda dari rancangan awal karena penyesuaian di lapangan).
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="impl-card bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                            <p class="font-bold text-rose-900 mb-2">Dokumen Wajib:</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li>As-built Single Line Diagram (SLD)</li>
+                                <li>As-built wiring diagram (daya & kontrol)</li>
+                                <li>As-built layout panel</li>
+                                <li>Daftar komponen terpasang (dengan seri & rating)</li>
+                                <li>Hasil pengukuran commissioning</li>
+                                <li>Foto instalasi (panel, motor, kabel, grounding)</li>
+                            </ul>
+                        </div>
+                        <div class="impl-card bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                            <p class="font-bold text-rose-900 mb-2">Dokumen Pendukung:</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li>Manual operasi (SOP start/stop)</li>
+                                <li>Jadwal pemeliharaan preventif</li>
+                                <li>Daftar suku cadang rekomendasi</li>
+                                <li>Sertifikat kalibrasi alat ukur</li>
+                                <li>Berita acara pengujian & serah terima</li>
+                                <li>Garansi pekerjaan & komponen</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">14.5.2 Pelatihan Operator</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Sebelum sistem diserahkan, operator dan teknisi pemelihara klien WAJIB dilatih. Materi pelatihan meliputi:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 ml-4 space-y-1">
+                        <li>Cara mengoperasikan motor (start, stop, emergency)</li>
+                        <li>Pemahaman indikator dan alarm pada panel</li>
+                        <li>Prosedur K3 (LOTO, APD, respons darurat)</li>
+                        <li>Pemeliharaan preventif harian/mingguan</li>
+                        <li>Troubleshooting dasar (gejala umum & tindakan awal)</li>
+                        <li>Kapan harus memanggil teknisi ahli</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">14.5.3 Berita Acara Serah Terima</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Dokumen resmi yang ditandatangani oleh kedua belah pihak (kontraktor dan klien) yang menyatakan:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 ml-4 space-y-1">
+                        <li>Pekerjaan telah selesai sesuai RKS</li>
+                        <li>Sistem telah diuji dan berfungsi dengan baik</li>
+                        <li>Dokumen as-built telah diserahkan</li>
+                        <li>Pelatihan operator telah dilaksanakan</li>
+                        <li>Masa garansi dimulai (biasanya 3–12 bulan)</li>
+                        <li>Tanggal serah terima resmi</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Studi Kasus -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-rose-900 mb-4"><i class="fas fa-book-open text-yellow-500 mr-2"></i>Studi Kasus 1: Implementasi Panel Star-Delta Pompa 15 kW di Pabrik</h3>
+            <div class="warning-box p-6 rounded-r-lg">
+                <p class="text-gray-800 mb-3">
+                    <strong>Situasi:</strong> Sebuah pabrik di Padang mengimplementasikan panel Star-Delta untuk motor pompa 15 kW berdasarkan rancangan dari pertemuan 13. Tim pelaksana terdiri dari 2 teknisi dan 1 supervisor.
+                </p>
+                <p class="font-semibold text-rose-700">
+                    <i class="fas fa-tasks mr-1"></i> Tahapan Implementasi yang Dilakukan:
+                </p>
+                <ol class="list-decimal list-inside text-gray-800 ml-4 space-y-2 mt-2">
+                    <li><strong>Hari 1 — Persiapan:</strong> Briefing K3, incoming inspection material (ternyata 1 kontaktor Delta rusak saat pengiriman → segera diganti), mobilisasi alat.</li>
+                    <li><strong>Hari 2 — Pemasangan Komponen:</strong> Pasang din rail, MCB 40A tipe D, 3 kontaktor (Main 32A, Star 22A, Delta 32A), TOR 28A, Timer On-Delay. Layout sesuai gambar.</li>
+                    <li><strong>Hari 3 — Pengkabelan:</strong> Kabel daya NYAF 10 mm² (R/S/T), kabel kontrol NYAF 1.5 mm². Semua terminasi dengan ferrule. Labeling sesuai diagram.</li>
+                    <li><strong>Hari 4 — Pra-Commissioning:</strong> Checklist 10 item dilakukan. Megger test: isolasi 250 MΩ (sangat baik). Grounding: 2.3 Ω (memenuhi).</li>
+                    <li><strong>Hari 5 — No-Load Test:</strong> Motor decoupled. Start berhasil. Arus no-load: 12A (normal, 25% dari In 48A). Putaran searah jarum jam. Suara halus. Getaran 1.2 mm/s (excellent).</li>
+                    <li><strong>Hari 5 — Load Test Bertahap:</strong> 25% → 50% → 75% → 100%. Pada beban penuh: arus 46A (≤ In 48A), suhu bearing 68°C, cos φ 0.87.</li>
+                    <li><strong>Hari 5 — Uji Proteksi:</strong> TOR trip pada test button ✓. E-Stop berfungsi ✓. Interlock Star-Delta berfungsi ✓. Transisi Star-Delta pada 8 detik mulus ✓.</li>
+                    <li><strong>Hari 6 — Dokumentasi & Serah Terima:</strong> As-built drawing disusun. Manual operasi dibuat. Operator dilatih 4 jam. Berita acara ditandatangani.</li>
+                </ol>
+                <p class="font-semibold text-green-700 mt-3">
+                    <i class="fas fa-check-circle mr-1"></i> Hasil:
+                </p>
+                <p class="text-gray-800 mt-1">
+                    Proyek selesai tepat waktu (6 hari kerja), dalam budget (Rp 32 juta dari RAB Rp 33 juta), dan zero accident. Sistem beroperasi stabil selama 1 tahun tanpa gangguan. Klien sangat puas dan memberikan proyek lanjutan.
+                </p>
+                <p class="font-semibold text-rose-700 mt-3">
+                    <i class="fas fa-lightbulb mr-1"></i> Pembelajaran:
+                </p>
+                <p class="text-gray-800 mt-1">
+                    Kesuksesan proyek ini ditentukan oleh: (1) perencanaan matang, (2) kepatuhan pada checklist pra-commissioning, (3) pengujian bertahap, (4) dokumentasi lengkap, dan (5) pelatihan operator. Melewatkan salah satu tahap dapat berakibat fatal.
+                </p>
+            </div>
+        </section>
+
+        <!-- Tips Praktis -->
+        <section class="mb-12">
+            <div class="tip-box p-6 rounded-r-lg">
+                <h3 class="font-bold text-green-800 mb-2"><i class="fas fa-tools mr-2"></i>10 Aturan Emas Implementasi Proyek untuk Siswa SMK</h3>
+                <ol class="list-decimal list-inside text-gray-800 space-y-2 text-sm">
+                    <li><strong>Ikuti gambar teknik:</strong> Jangan menyimpang dari wiring diagram tanpa persetujuan supervisor/engineer.</li>
+                    <li><strong>Gunakan ferrule:</strong> Semua kabel serabut WAJIB menggunakan ferrule sebelum masuk terminal.</li>
+                    <li><strong>Kencangkan dengan torsi tepat:</strong> Terminal longgar = hotspot = kebakaran. Gunakan obeng/torque wrench yang tepat.</li>
+                    <li><strong>Pisahkan kabel daya & kontrol:</strong> Minimal 10 cm atau gunakan sekat untuk menghindari interferensi.</li>
+                    <li><strong>Jangan pernah skip pra-commissioning:</strong> Checklist 10 item adalah nyawa Anda. LAKUKAN SEMUA.</li>
+                    <li><strong>Uji bertahap:</strong> No-load dulu, baru load bertahap (25% → 50% → 75% → 100%).</li>
+                    <li><strong>LOTO selalu:</strong> Saat bekerja di panel, LOTO adalah harga mati.</li>
+                    <li><strong>Dokumentasikan setiap tahap:</strong> Foto, catatan, hasil ukur — semua menjadi referensi berharga.</li>
+                    <li><strong>Latih operator dengan sabar:</strong> Operator yang terlatih = sistem yang awet.</li>
+                    <li><strong>Jangan terburu-buru:</strong> Proyek yang baik tidak pernah selesai dengan tergesa-gesa.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Refleksi -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-rose-900 mb-4"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Refleksi untuk Siswa SMK</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Implementasi dan pengujian proyek adalah puncak dari seluruh kompetensi yang telah Anda pelajari. Di sinilah teori bertemu dengan praktik, di sinilah rancangan di atas kertas berubah menjadi sistem yang nyata dan berfungsi. Setiap kabel yang Anda pasang, setiap terminal yang Anda kencangkan, setiap pengujian yang Anda lakukan memiliki dampak nyata: keselamatan operator, keandalan sistem, dan reputasi Anda sebagai teknisi. Ketika Anda berdiri di depan panel yang telah Anda rakit, menekan tombol START, dan melihat motor berputar dengan mulus — itulah momen kepuasan tertinggi seorang teknisi. Namun ingat, kepuasan itu hanya datang setelah kerja keras, ketelitian, dan kepatuhan pada prosedur. Jadilah teknisi yang bangga dengan pekerjaannya — bukan karena cepat selesai, tetapi karena <strong>selesai dengan benar, aman, dan berkualitas</strong>.
+            </p>
+        </section>
+
+        <!-- Kesimpulan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-rose-900 mb-4 border-b-2 border-rose-200 pb-2">Kesimpulan</h2>
+            <p class="text-gray-700 leading-relaxed">
+                Implementasi dan pengujian proyek instalasi motor listrik adalah proses sistematis yang meliputi persiapan alat dan material, pemasangan komponen, pengkabelan daya dan kontrol, pemeriksaan pra-commissioning (checklist 10 item), pengujian tanpa beban (no-load test), pengujian dengan beban bertahap (load test 25%–100%), uji fungsi proteksi (TOR, MCB, E-Stop, interlock), dokumentasi as-built, pelatihan operator, dan serah terima resmi. Seluruh tahapan wajib mengacu pada standar PUIL 2011, IEC 60204-1, dan IEC 61439. Kepatuhan terhadap prosedur K3 (LOTO, APD, briefing) adalah harga mati. Pengujian bertahap dan dokumentasi yang lengkap menjamin sistem yang dibangun tidak hanya berfungsi, tetapi juga aman, andal, dan mudah dipelihara di masa depan. Kompetensi implementasi dan commissioning ini adalah pembeda utama antara teknisi biasa dengan teknisi profesional yang siap bekerja di industri.
+            </p>
+        </section>
+
+        <!-- Daftar Pustaka -->
+        <section class="mb-16">
+            <h3 class="text-xl font-bold text-rose-900 mb-4"><i class="fas fa-book text-yellow-500 mr-2"></i>Daftar Pustaka</h3>
+            <ul class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                <li>PUIL 2011. <em>Persyaratan Umum Instalasi Listrik 2011</em>. Jakarta: Badan Standardisasi Nasional.</li>
+                <li>IEC 60204-1. (2016). <em>Safety of machinery — Electrical equipment of machines</em>. International Electrotechnical Commission.</li>
+                <li>IEC 61439-1. (2020). <em>Low-voltage switchgear and controlgear assemblies</em>. International Electrotechnical Commission.</li>
+                <li>NETA. (2019). <em>ANSI/NETA ATS: Standard for Acceptance Testing Specifications for Electrical Power Equipment and Systems</em>. InterNational Electrical Testing Association.</li>
+                <li>NECA. (2020). <em>NECA 100: Standard for Installing Electrical Equipment</em>. National Electrical Contractors Association.</li>
+                <li>Zuraida, dkk. (2021). <em>Instalasi Motor Listrik Jilid 1 untuk SMK</em>. Jakarta: Direktorat Pembinaan SMK.</li>
+                <li>Permen ESDM No. 12 Tahun 2021 tentang K3 dalam Pemanfaatan Instalasi Listrik.</li>
+                <li>Manual Book Schneider Electric, ABB, Siemens — untuk panduan commissioning kontaktor, TOR, dan VFD.</li>
+            </ul>
+        </section>
+
+        <!-- Navigasi Bawah -->
+        <div class="flex justify-between items-center border-t pt-6 mb-16 flex-wrap gap-3">
+            <a href="13.html" class="text-rose-600 hover:text-rose-800 font-semibold"><i class="fas fa-arrow-left mr-1"></i> Pertemuan 13</a>
+            <a href="#top" class="text-gray-500 hover:text-gray-700 font-semibold"><i class="fas fa-arrow-up mr-1"></i> Ke Atas</a>
+            <a href="15.html" class="text-rose-600 hover:text-rose-800 font-semibold">Pertemuan 15: Presentasi & Laporan Proyek <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN UJI FORMATIF -->
+        <!-- ========================================================= -->
+        <section id="uji-formatif" class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-rose-900">📋 Uji Formatif 14: Implementasi & Pengujian Proyek Instalasi Motor Listrik</h2>
+                <p class="text-gray-600 mt-2">Materi: Tahapan implementasi, checklist pra-commissioning, no-load test, load test, uji proteksi, as-built, serah terima.</p>
+                <p class="text-red-600 text-sm font-semibold mt-2">⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu!</p>
+            </div>
+
+            <form id="quizForm" class="space-y-8">
+                <!-- Data Siswa -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-rose-900 mb-4 border-b pb-2">📋 Data Siswa</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Nama Lengkap</label>
+                            <input type="text" name="nama" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-rose-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* NIS (Nomor Induk Siswa)</label>
+                            <input type="text" name="nis" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-rose-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Tanggal Ujian</label>
+                            <input type="date" name="tanggal" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-rose-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Kelas</label>
+                            <input type="text" name="kelas" placeholder="Contoh: XI TITL 1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-rose-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Semester</label>
+                            <select name="semester" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-rose-500 outline-none">
+                                <option value="">Pilih Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian A: Pilihan Ganda -->
+                <div>
+                    <h3 class="text-lg font-bold text-rose-900 mb-4 border-b pb-2">📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon lengkapi semua 10 soal pilihan ganda!</p>
+
+                    <div class="space-y-6 text-gray-800">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">1. Proses pengujian sistematis untuk memverifikasi bahwa instalasi berfungsi sesuai rancangan dan standar disebut...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q1" value="a" class="mr-2"> a. Implementasi</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="b" class="mr-2"> b. Commissioning</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="c" class="mr-2"> c. Perancangan</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="d" class="mr-2"> d. Survei lapangan</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">2. Pengujian motor tanpa beban mekanis untuk memverifikasi arah putaran, arus, dan getaran disebut...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q2" value="a" class="mr-2"> a. Load test</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="b" class="mr-2"> b. No-load test</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="c" class="mr-2"> c. Megger test</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="d" class="mr-2"> d. Continuity test</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">3. Arus no-load motor induksi 3 fasa biasanya berada pada range berapa persen dari arus nominal (In)?</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q3" value="a" class="mr-2"> a. 5–10%</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="b" class="mr-2"> b. 20–40%</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="c" class="mr-2"> c. 60–80%</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="d" class="mr-2"> d. 100–120%</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">4. Nilai tahanan isolasi minimum yang dipersyaratkan saat pra-commissioning dengan Megger 500V DC adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q4" value="a" class="mr-2"> a. 0,1 MΩ</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="b" class="mr-2"> b. 1 MΩ</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="c" class="mr-2"> c. 10 MΩ</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="d" class="mr-2"> d. 100 MΩ</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">5. Pada pengujian load test bertahap, urutan penambahan beban yang BENAR adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q5" value="a" class="mr-2"> a. 100% → 75% → 50% → 25%</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="b" class="mr-2"> b. 25% → 50% → 75% → 100%</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="c" class="mr-2"> c. Langsung 100% tanpa bertahap</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="d" class="mr-2"> d. 50% → 100% saja</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">6. Dokumen teknik yang diperbarui sesuai kondisi aktual setelah instalasi selesai disebut...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q6" value="a" class="mr-2"> a. Single Line Diagram</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="b" class="mr-2"> b. Wiring diagram</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="c" class="mr-2"> c. As-built drawing</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="d" class="mr-2"> d. Block diagram</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">7. Nilai tahanan grounding yang dipersyaratkan untuk panel motor listrik adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q7" value="a" class="mr-2"> a. < 5 Ω</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="b" class="mr-2"> b. 10–20 Ω</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="c" class="mr-2"> c. 50–100 Ω</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="d" class="mr-2"> d. Tidak ada persyaratan</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">8. Batas getaran motor yang termasuk kategori "Excellent" menurut ISO 10816 adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q8" value="a" class="mr-2"> a. < 1.8 mm/s</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="b" class="mr-2"> b. 1.8–4.5 mm/s</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="c" class="mr-2"> c. 4.5–11.2 mm/s</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="d" class="mr-2"> d. > 11.2 mm/s</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">9. Pada uji fungsi E-Stop (Emergency Stop), motor harus berhenti dalam waktu...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q9" value="a" class="mr-2"> a. < 0.5 detik</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="b" class="mr-2"> b. 1–2 detik</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="c" class="mr-2"> c. 5–10 detik</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="d" class="mr-2"> d. Tidak ada batasan waktu</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">10. Faktor daya (cos φ) motor induksi pada kondisi beban penuh yang normal adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q10" value="a" class="mr-2"> a. 0.10–0.20</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="b" class="mr-2"> b. 0.50–0.60</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="c" class="mr-2"> c. 0.70–0.75</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="d" class="mr-2"> d. 0.85–0.90</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Essay -->
+                <div>
+                    <h3 class="text-lg font-bold text-rose-900 mb-4 border-b pb-2">✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon isi semua 5 soal essay dengan jawaban yang jelas!</p>
+
+                    <div class="space-y-6">
+                        <div>
+                            <p class="font-semibold mb-2">1. Uraikan 8 tahapan implementasi fisik proyek instalasi motor listrik secara lengkap! Jelaskan mengapa setiap tahapan penting dan apa risiko jika suatu tahapan dilewatkan!</p>
+                            <textarea name="essay1" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-rose-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">2. Jelaskan 10 item checklist pra-commissioning yang WAJIB dilakukan sebelum panel di-energize! Mengapa checklist ini disebut "nyawa" teknisi? Apa konsekuensi fatal jika salah satu item dilewatkan?</p>
+                            <textarea name="essay2" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-rose-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">3. Bandingkan pengujian no-load test dan load test dari segi: tujuan, prosedur, parameter yang diukur, dan standar penilaian! Mengapa load test harus dilakukan bertahap (25% → 50% → 75% → 100%)? Jelaskan risikonya jika langsung dibebani 100%!</p>
+                            <textarea name="essay3" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-rose-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">4. Berdasarkan studi kasus implementasi panel Star-Delta pompa 15 kW, analisislah tahapan implementasi yang dilakukan! Identifikasi minimal 3 faktor kunci yang membuat proyek tersebut sukses! Mengapa incoming inspection material sangat penting?</p>
+                            <textarea name="essay4" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-rose-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">5. Rancanglah prosedur commissioning lengkap untuk proyek instalasi motor Forward-Reverse 3 kW di bengkel SMK! Sertakan: checklist pra-commissioning, prosedur no-load test, prosedur load test, uji proteksi yang dilakukan, dan dokumentasi yang harus disusun! Jelaskan aspek K3 yang harus diperhatikan!</p>
+                            <textarea name="essay5" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-rose-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hasil & Tombol Aksi -->
+                <div class="bg-rose-50 p-6 rounded-lg border border-rose-200 text-center">
+                    <h3 class="text-lg font-bold text-rose-900 mb-4">📊 Hasil Uji Formatif</h3>
+                    <div id="hasilSkor" class="text-3xl font-extrabold text-rose-700 mb-2">0</div>
+                    <p id="detailSkor" class="text-sm text-gray-600 mb-6">Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru</p>
+
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button type="button" onclick="hitungNilai()" class="bg-rose-900 hover:bg-rose-800 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-paper-plane mr-2"></i>KIRIM JAWABAN & LIHAT HASIL
+                        </button>
+                        <button type="button" onclick="window.print()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-file-pdf mr-2"></i>UNDUH PDF LENGKAP
+                        </button>
+                        <button type="button" onclick="kirimEmail()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-envelope mr-2"></i>KIRIM EMAIL GURU
+                        </button>
+                        <button type="button" onclick="resetForm()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-redo mr-2"></i>MULAI ULANG
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-blue-200 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">&copy; 2026 UKI SAPUTRA - SMK N 1 Koto Balingka. Hak Cipta Dilindungi.</p>
+            <p class="text-sm mb-3 italic">"Implement with precision, test with patience — quality is never an accident"</p>
+            <a href="respon-pembaca.html" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-2 px-6 rounded-full transition duration-300 text-sm">
+                <i class="fas fa-paper-plane mr-1"></i> Kirim Respon tentang Materi Ini
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Fungsi Uji Formatif -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const kunciJawaban = {
+            q1: 'b',  // Commissioning
+            q2: 'b',  // No-load test
+            q3: 'b',  // 20-40%
+            q4: 'b',  // 1 MΩ
+            q5: 'b',  // 25% → 50% → 75% → 100%
+            q6: 'c',  // As-built drawing
+            q7: 'a',  // < 5 Ω
+            q8: 'a',  // < 1.8 mm/s
+            q9: 'a',  // < 0.5 detik
+            q10: 'd'  // 0.85-0.90
+        };
+
+        function hitungNilai() {
+            const form = document.getElementById('quizForm');
+            if (!form.checkValidity()) {
+                alert("⚠️ Mohon lengkapi semua data siswa, 10 soal Pilihan Ganda, dan 5 soal Essay terlebih dahulu!");
+                form.reportValidity();
+                return;
+            }
+
+            let skorPG = 0;
+            let benar = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const jawabanSiswa = document.querySelector(`input[name="q${i}"]:checked`);
+                if (jawabanSiswa && jawabanSiswa.value === kunciJawaban[`q${i}`]) {
+                    benar++;
+                    skorPG += 10;
+                }
+            }
+
+            const hasilDiv = document.getElementById('hasilSkor');
+            const detailDiv = document.getElementById('detailSkor');
+
+            hasilDiv.innerText = skorPG;
+            detailDiv.innerHTML = `Bagian A (PG): <strong>${skorPG}/100</strong> (${benar} jawaban benar) <br> Bagian B (Essay): <strong>Menunggu Penilaian Guru</strong> (Jawaban telah tersimpan di sistem)`;
+
+            document.getElementById('hasilSkor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            let pesan = `✅ Jawaban berhasil dikirim!\nSkor Sementara Pilihan Ganda: ${skorPG}/100\n\nCatatan: Jawaban Essay akan dinilai oleh guru.`;
+            if (skorPG >= 80) pesan += `\n\n🏗️ Excellent! Anda memahami implementasi & commissioning dengan sangat baik!`;
+            else if (skorPG >= 60) pesan += `\n\n👍 Bagus! Terus perdalam pemahaman tentang prosedur pengujian.`;
+            else pesan += `\n\n⚠️ Pelajari kembali tahapan implementasi, checklist pra-commissioning, dan prosedur commissioning.`;
+
+            alert(pesan);
+        }
+
+        function kirimEmail() {
+            const nama = document.querySelector('input[name="nama"]').value || "Siswa";
+            const nis = document.querySelector('input[name="nis"]').value || "-";
+            const kelas = document.querySelector('input[name="kelas"]').value || "-";
+
+            const subject = `Hasil Uji Formatif 14 (Implementasi & Pengujian Proyek) - ${nama} (${nis})`;
+            const body = `Yth. Bapak UKI SAPUTRA,\n\nBerikut adalah hasil uji formatif saya:\nNama: ${nama}\nNIS: ${nis}\nKelas: ${kelas}\nMateri: Pertemuan 14 - Implementasi & Pengujian Proyek Instalasi Motor Listrik\n\nSaya telah menyelesaikan Bagian A (Pilihan Ganda) dan Bagian B (Essay) pada Pertemuan 14.\n\nTerima kasih.`;
+
+            window.location.href = `mailto:trauky@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function resetForm() {
+            if (confirm("⚠️ Apakah Anda yakin ingin menghapus semua jawaban dan mulai ulang?")) {
+                document.getElementById('quizForm').reset();
+                document.getElementById('hasilSkor').innerText = "0";
+                document.getElementById('detailSkor').innerText = "Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 6: Komponen Panel Kontrol - Instalasi Motor Listrik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .highlight-box { border-left: 4px solid #2563eb; background-color: #eff6ff; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .tip-box { border-left: 4px solid #16a34a; background-color: #f0fdf4; }
+        .component-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .component-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans" id="top">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl font-bold tracking-wide">INSTALASI MOTOR LISTRIK</div>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0">
+                <a href="index.html" class="hover:text-yellow-400 transition"><i class="fas fa-home mr-1"></i> Beranda</a>
+                <a href="index.html#tentang" class="hover:text-yellow-400 transition"><i class="fas fa-info-circle mr-1"></i> Tentang</a>
+                <a href="index.html#daftar-isi" class="hover:text-yellow-400 transition"><i class="fas fa-list mr-1"></i> Daftar Bab</a>
+                <a href="index.html#kontak" class="hover:text-yellow-400 transition"><i class="fas fa-user mr-1"></i> Penulis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Chapter -->
+    <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="bg-yellow-500 text-blue-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pertemuan 6</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-4 mb-2">Komponen Utama Panel Kontrol Motor Listrik</h1>
+            <p class="text-blue-100 text-lg max-w-3xl mx-auto">
+                Mengenal secara mendalam komponen-komponen utama panel kontrol: MCB, Kontaktor Magnetik, Thermal Overload Relay (TOR), Timer, Push Button, Relay Bantu, Lampu Indikator, dan Selector Switch — termasuk prinsip kerja, karakteristik, spesifikasi, simbol, serta teknik pemilihannya sesuai standar PUIL 2011.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <a href="5.html" class="bg-gray-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-600 transition border border-gray-500"><i class="fas fa-arrow-left mr-1"></i>Pertemuan 5</a>
+                <a href="#materi-inti" class="bg-white text-blue-900 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition">Mulai Membaca</a>
+                <a href="7.html" class="bg-blue-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-blue-600 transition border border-blue-500">Pertemuan 7 →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl" id="materi-inti">
+        
+        <!-- Pendahuluan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b-2 border-blue-200 pb-2">Pendahuluan</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Setelah mempelajari berbagai metode pengasutan motor listrik pada lima pertemuan sebelumnya — mulai dari DOL, Star-Delta, PLC, hingga motor 1 fasa dan kontrol kecepatannya — siswa kini memasuki fase penting berikutnya: <strong>mengenal komponen-komponen yang membentuk sebuah panel kontrol</strong>. Panel kontrol adalah "jantung" dari setiap sistem kendali motor listrik di industri. Tanpa pemahaman yang mendalam tentang setiap komponen di dalamnya, seorang teknisi tidak akan mampu merancang, merakit, maupun melakukan troubleshooting dengan benar.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Sebuah panel kontrol motor listrik standar terdiri dari minimal 6–8 komponen utama yang masing-masing memiliki fungsi spesifik: <strong>MCB</strong> sebagai pengaman hubung singkat, <strong>Kontaktor</strong> sebagai saklar utama bertenaga elektromagnetik, <strong>TOR</strong> sebagai pengaman beban lebih, <strong>Timer</strong> untuk pengaturan waktu, <strong>Push Button</strong> sebagai antarmuka operator, <strong>Relay Bantu</strong> untuk logika kontrol, <strong>Lampu Indikator</strong> untuk status visual, dan <strong>Selector Switch</strong> untuk pemilihan mode operasi.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Pada pertemuan ini, siswa akan mempelajari setiap komponen secara komprehensif: prinsip kerja, simbol standar IEC, spesifikasi teknis, cara pemilihan yang tepat, serta teknik pemasangan sesuai PUIL 2011. Pemahaman ini menjadi fondasi mutlak sebelum siswa merakit panel kontrol secara utuh pada pertemuan berikutnya.
+            </p>
+        </section>
+
+        <!-- Konsep Kunci -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-key text-yellow-500 mr-2"></i>Konsep Kunci</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Panel Kontrol</h4>
+                    <p class="text-sm text-gray-700 mt-1">Kotak/boks yang berisi komponen-komponen listrik untuk mengendalikan, melindungi, dan memantau operasi motor listrik. Terdiri dari dua bagian utama: rangkaian daya (power circuit) dan rangkaian kontrol (control circuit).</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Rangkaian Daya vs Rangkaian Kontrol</h4>
+                    <p class="text-sm text-gray-700 mt-1"><strong>Rangkaian Daya:</strong> Membawa arus besar dari sumber ke motor (melalui MCB, kontaktor utama, TOR). <strong>Rangkaian Kontrol:</strong> Membawa arus kecil untuk logika kendali (melalui push button, relay, timer, kontak bantu).</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Standar IEC & PUIL</h4>
+                    <p class="text-sm text-gray-700 mt-1">Komponen panel harus memenuhi standar internasional IEC (International Electrotechnical Commission) dan di Indonesia diatur dalam PUIL 2011 (Persyaratan Umum Instalasi Listrik) untuk menjamin keselamatan dan keandalan.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Koordinasi Proteksi</h4>
+                    <p class="text-sm text-gray-700 mt-1">Prinsip bahwa semua perangkat proteksi (MCB, TOR, fuse) harus bekerja secara terkoordinasi — yang paling dekat dengan gangguan yang bekerja paling cepat, sehingga isolasi gangguan selektif dan tidak mematikan seluruh sistem.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Landasan Teoretis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">6.1 Landasan Teoretis Komponen Panel Kontrol</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">6.1.1 Klasifikasi Komponen Panel</h3>
+                    <p class="text-gray-700 mt-2">
+                        Komponen panel kontrol dapat diklasifikasikan ke dalam 4 kelompok berdasarkan fungsinya:
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg mt-3 border-l-4 border-blue-400">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li><strong>Komponen Proteksi:</strong> MCB, MCCB, Fuse, TOR, Relay Proteksi — berfungsi melindungi sistem dari gangguan.</li>
+                            <li><strong>Komponen Pengendali (Switching):</strong> Kontaktor, Relay Bantu, Timer, Solid State Relay — berfungsi menghubungkan/memutus rangkaian.</li>
+                            <li><strong>Komponen Antarmuka Operator:</strong> Push Button, Selector Switch, Potensiometer, Lampu Indikator — berfungsi sebagai interaksi manusia-mesin.</li>
+                            <li><strong>Komponen Pendukung:</strong> Terminal Block, Kabel, Ducting, Din Rail, Busbar — berfungsi sebagai infrastruktur panel.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">6.1.2 Standar Rating Komponen</h3>
+                    <p class="text-gray-700 mt-2">
+                        Setiap komponen panel memiliki rating standar yang harus disesuaikan dengan aplikasi:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 ml-4 space-y-1">
+                        <li><strong>Tegangan Kerja (Ue):</strong> Tegangan maksimum komponen (misal: 400V AC, 250V DC).</li>
+                        <li><strong>Arus Nominal (In):</strong> Arus maksimum yang dapat ditahan komponen secara terus-menerus.</li>
+                        <li><strong>Arus Hubung Singkat (Icu/Ics):</strong> Kemampuan komponen memutus arus gangguan maksimum.</li>
+                        <li><strong>Kategori Pemakaian (AC-1, AC-3, AC-4):</strong> Menunjukkan jenis beban yang dapat ditangani (lihat tabel IEC 60947).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detail Komponen -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">6.2 Komponen Utama Panel Kontrol Motor Listrik</h2>
+            
+            <div class="space-y-8">
+                <!-- MCB -->
+                <div class="component-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-red-100 text-red-700 p-3 rounded-full"><i class="fas fa-shield-alt text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">6.2.1 MCB (Miniature Circuit Breaker)</h3>
+                            <p class="text-sm text-gray-600">Pengaman Hubung Singkat & Beban Lebih</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">
+                        MCB adalah saklar otomatis yang akan trip (memutus rangkaian) ketika terjadi arus berlebih (overload) atau hubung singkat (short circuit). MCB melindungi kabel dan komponen panel dari kerusakan akibat arus abnormal.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm mb-3">
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Karakteristik Trip:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li><strong>Tipe B:</strong> Trip 3–5× In (beban resistif, penerangan)</li>
+                                <li><strong>Tipe C:</strong> Trip 5–10× In (beban motor umum)</li>
+                                <li><strong>Tipe D:</strong> Trip 10–20× In (beban motor besar, trafo)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Spesifikasi Penting:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Rating arus: 0.5A – 63A</li>
+                                <li>Tegangan: 230V (1P), 400V (3P)</li>
+                                <li>Icu: 6kA, 10kA, 16kA, 25kA</li>
+                                <li>Jumlah pole: 1P, 2P, 3P, 4P</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        <strong>Simbol IEC:</strong> Saklar dengan simbol thermal-magnetic. <strong>Aplikasi:</strong> Sebagai pengaman utama (incoming) pada panel motor. <strong>Untuk motor:</strong> Gunakan MCB tipe C atau D untuk menahan arus starting 5–7× In tanpa trip sesaat.
+                    </p>
+                </div>
+
+                <!-- Kontaktor -->
+                <div class="component-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-blue-100 text-blue-700 p-3 rounded-full"><i class="fas fa-bolt text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">6.2.2 Kontaktor Magnetik (Magnetic Contactor)</h3>
+                            <p class="text-sm text-gray-600">Saklar Utama Bertenaga Elektromagnetik</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">
+                        Kontaktor adalah saklar elektromagnetik berukuran besar yang digunakan untuk menghubungkan dan memutuskan arus beban tinggi (motor, pemanas, kapasitor bank). Berbeda dengan relay, kontaktor dirancang untuk menangani arus besar dan dilengkapi dengan <em>arc chute</em> untuk memadamkan busur api.
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400 mb-3">
+                        <p class="font-semibold text-blue-900 mb-2">Prinsip Kerja:</p>
+                        <ol class="list-decimal list-inside text-gray-700 space-y-1 text-sm">
+                            <li>Arus AC/DC mengalir melalui <strong>coil (kumparan)</strong> kontaktor.</li>
+                            <li>Timbul <strong>medan magnet</strong> yang menarik <strong>armature</strong> (jangkar).</li>
+                            <li>Armature menarik semua kontak yang terhubung: <strong>kontak utama NO</strong> (untuk daya) menutup, kontak bantu NO menutup, kontak bantu NC membuka.</li>
+                            <li>Saat coil de-energize, pegas mengembalikan armature ke posisi semula.</li>
+                        </ol>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm mb-3">
+                        <div class="bg-yellow-50 p-3 rounded">
+                            <p class="font-bold text-yellow-900">Jenis Kontak:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li><strong>Kontak Utama (Main):</strong> NO, 3 atau 4 pole, untuk arus tinggi (9A–800A+)</li>
+                                <li><strong>Kontak Bantu (Auxiliary):</strong> NO/NC, untuk arus rendah (10A), digunakan pada rangkaian kontrol</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Kategori Pemakaian (IEC 60947):</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li><strong>AC-1:</strong> Beban resistif/non-induktif</li>
+                                <li><strong>AC-2:</strong> Motor slip ring (starting)</li>
+                                <li><strong>AC-3:</strong> Motor squirrel cage (running)</li>
+                                <li><strong>AC-4:</strong> Motor squirrel cage (starting + plugging)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        <strong>Pemilihan:</strong> Rating kontaktor untuk motor harus minimal 1.25 × In motor (untuk kategori AC-3). Tegangan coil standar: 24V DC, 110V AC, 220V AC, 380V AC.
+                    </p>
+                </div>
+
+                <!-- TOR -->
+                <div class="component-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-orange-100 text-orange-700 p-3 rounded-full"><i class="fas fa-temperature-high text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">6.2.3 Thermal Overload Relay (TOR)</h3>
+                            <p class="text-sm text-gray-600">Pengaman Beban Lebih Berbasis Panas</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">
+                        TOR adalah perangkat proteksi yang melindungi motor dari arus beban lebih (overload) yang berlangsung lama. TOR bekerja berdasarkan prinsip <strong>bimetal</strong> — dua logam berbeda koefisien muai yang dilaminasi menjadi satu. Ketika arus berlebih mengalir, bimetal memanas dan melengkung, akhirnya memicu kontak NC untuk membuka rangkaian kontrol kontaktor.
+                    </p>
+                    <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-400 mb-3">
+                        <p class="font-semibold text-orange-900 mb-2">Karakteristik Trip (Kelas Proteksi):</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                            <li><strong>Kelas 10:</strong> Trip dalam 10 detik pada arus 6× In (untuk motor dengan starting cepat)</li>
+                            <li><strong>Kelas 20:</strong> Trip dalam 20 detik pada arus 6× In (standar umum, cocok untuk motor konvensional)</li>
+                            <li><strong>Kelas 30:</strong> Trip dalam 30 detik pada arus 6× In (untuk motor dengan starting lama/beban inersia tinggi)</li>
+                        </ul>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm mb-3">
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Fitur Penting:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Setting arus adjustable (±20% dari rating)</li>
+                                <li>Tombol <strong>RESET</strong> (manual/otomatis)</li>
+                                <li>Tes fungsi (push-to-test)</li>
+                                <li>Kompensasi suhu ambient</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 p-3 rounded">
+                            <p class="font-bold text-red-900">Peringatan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>TOR TIDAK melindungi hubung singkat (tugas MCB/fuse)</li>
+                                <li>TOR TIDAK melindungi phasing loss (perlu relay proteksi fase)</li>
+                                <li>Setting TOR harus sesuai nameplate motor (0.95–1.05 × In)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timer -->
+                <div class="component-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-purple-100 text-purple-700 p-3 rounded-full"><i class="fas fa-clock text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">6.2.4 Timer (Pengatur Waktu)</h3>
+                            <p class="text-sm text-gray-600">Kontrol Logika Berbasis Waktu</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">
+                        Timer adalah komponen yang memberikan penundaan waktu pada rangkaian kontrol. Timer banyak digunakan pada pengasutan Star-Delta (transisi Y-Δ), penundaan starting motor berurutan, sistem lubrication, dan berbagai aplikasi otomasi lainnya.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm mb-3">
+                        <div class="bg-purple-50 p-3 rounded">
+                            <p class="font-bold text-purple-900">Jenis Timer Berdasarkan Fungsi:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li><strong>On-Delay Timer:</strong> Kontak berubah SETELAH waktu setting tercapai (paling umum)</li>
+                                <li><strong>Off-Delay Timer:</strong> Kontak berubah SEGERA saat coil aktif, kembali setelah waktu habis saat coil mati</li>
+                                <li><strong>On-Delay + Off-Delay (Interval):</strong> Kombinasi keduanya</li>
+                                <li><strong>Star-Delta Timer:</strong> Khusus dengan dead-time antar transisi</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Spesifikasi:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Range waktu: 0.05s – 100 jam</li>
+                                <li>Tegangan coil: 24V DC, 24-240V AC/DC</li>
+                                <li>Kontak output: 2 CO (changeover)</li>
+                                <li>Akurasi: ±1% (timer elektronik)</li>
+                                <li>Tipe: Pneumatik, Elektronik, Mikroprosesor</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        <strong>Aplikasi Khas:</strong> Timer On-Delay paling sering digunakan pada pengasutan Star-Delta (Pertemuan 3) untuk mengatur waktu transisi dari konfigurasi Star ke Delta (setting 5–15 detik).
+                    </p>
+                </div>
+
+                <!-- Push Button -->
+                <div class="component-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-green-100 text-green-700 p-3 rounded-full"><i class="fas fa-hand-pointer text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">6.2.5 Push Button (Tombol Tekan)</h3>
+                            <p class="text-sm text-gray-600">Antarmuka Utama Operator</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">
+                        Push Button adalah saklar yang hanya bekerja saat ditekan dan kembali ke posisi semula saat dilepas (kecuali tipe <em>latching</em>). Push Button merupakan komponen antarmuka utama antara operator dan sistem kontrol.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm mb-3">
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Jenis Push Button:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li><strong>NO (Normally Open):</strong> Kontak terbuka saat tidak ditekan → menutup saat ditekan. Untuk tombol START (warna HIJAU).</li>
+                                <li><strong>NC (Normally Closed):</strong> Kontak tertutup saat tidak ditekan → membuka saat ditekan. Untuk tombol STOP (warna MERAH).</li>
+                                <li><strong>CO (Changeover):</strong> Kombinasi NO+NC dalam satu unit.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-yellow-50 p-3 rounded">
+                            <p class="font-bold text-yellow-900">Standar Warna IEC 60204:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li><span class="inline-block w-4 h-4 bg-green-600 rounded mr-1"></span> <strong>HIJAU:</strong> START / ON</li>
+                                <li><span class="inline-block w-4 h-4 bg-red-600 rounded mr-1"></span> <strong>MERAH:</strong> STOP / OFF / EMERGENCY</li>
+                                <li><span class="inline-block w-4 h-4 bg-yellow-400 rounded mr-1"></span> <strong>KUNING:</strong> RESET / INTERVENSI</li>
+                                <li><span class="inline-block w-4 h-4 bg-blue-600 rounded mr-1"></span> <strong>BIRU:</strong> Fungsi wajib (reset)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600">
+                        <strong>Emergency Stop (E-Stop):</strong> Tombol STOP darurat berwarna MERAH dengan kepala JAMUR (mushroom head), tipe NC, latching (harus diputar untuk reset). WAJIB ada pada setiap panel motor.
+                    </p>
+                </div>
+
+                <!-- Relay Bantu -->
+                <div class="component-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-indigo-100 text-indigo-700 p-3 rounded-full"><i class="fas fa-project-diagram text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">6.2.6 Relay Bantu (Auxiliary Relay / Control Relay)</h3>
+                            <p class="text-sm text-gray-600">Logika Kontrol & Pengganda Kontak</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">
+                        Relay bantu adalah versi kecil dari kontaktor yang digunakan untuk logika kontrol, pengganda kontak, isolasi antar rangkaian, atau penguatan sinyal. Relay bantu tidak dirancang untuk memutus arus motor, hanya arus kontrol kecil (6–10A).
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm mb-3">
+                        <div class="bg-indigo-50 p-3 rounded">
+                            <p class="font-bold text-indigo-900">Fungsi Utama:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Menggandakan kontak NO/NC (1 sinyal → banyak kontak)</li>
+                                <li>Isolasi galvanis antar rangkaian (PLC → kontaktor)</li>
+                                <li>Logika AND/OR/NOT dalam rangkaian kontrol</li>
+                                <li>Pengubah level tegangan (24V DC → 220V AC)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Spesifikasi:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Kontak: 2, 4, 6, 8 CO (changeover)</li>
+                                <li>Rating kontak: 6A – 10A (250V AC)</li>
+                                <li>Tegangan coil: 24V DC, 110V AC, 220V AC</li>
+                                <li>LED indikator status coil</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lampu Indikator & Selector Switch -->
+                <div class="component-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-pink-100 text-pink-700 p-3 rounded-full"><i class="fas fa-lightbulb text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">6.2.7 Lampu Indikator & Selector Switch</h3>
+                            <p class="text-sm text-gray-600">Visualisasi Status & Pemilihan Mode</p>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-pink-50 p-3 rounded">
+                            <p class="font-bold text-pink-900">Lampu Indikator (Pilot Light):</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li><span class="inline-block w-3 h-3 bg-green-600 rounded-full mr-1"></span> HIJAU: Motor BERJALAN / sistem ON</li>
+                                <li><span class="inline-block w-3 h-3 bg-red-600 rounded-full mr-1"></span> MERAH: Motor BERHENTI / TRIP / ALARM</li>
+                                <li><span class="inline-block w-3 h-3 bg-yellow-400 rounded-full mr-1"></span> KUNING: Peringatan / siaga</li>
+                                <li><span class="inline-block w-3 h-3 bg-blue-600 rounded-full mr-1"></span> BIRU: Tekanan/parameter lain</li>
+                                <li>Tegangan: 24V DC, 220V AC, LED (hemat energi)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Selector Switch:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Saklar putar untuk pemilihan mode operasi</li>
+                                <li>Tipe: 2 posisi (HAND-OFF-AUTO), 3 posisi</li>
+                                <li>Kontak: NO/NC, 1-4 step</li>
+                                <li>Aplikasi: pemilihan mode MANUAL/AUTO, LOKAL/REMOTE</li>
+                                <li>Dilengkapi kunci untuk keamanan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabel Perbandingan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">6.3 Ringkasan Spesifikasi Komponen Utama</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm text-sm">
+                    <thead class="bg-blue-100 text-blue-900">
+                        <tr>
+                            <th class="py-3 px-3 text-left font-bold border-b">Komponen</th>
+                            <th class="py-3 px-3 text-left font-bold border-b">Fungsi Utama</th>
+                            <th class="py-3 px-3 text-left font-bold border-b">Rating Khas</th>
+                            <th class="py-3 px-3 text-left font-bold border-b">Lokasi di Panel</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">MCB/MCCB</td>
+                            <td class="py-3 px-3">Pengaman hubung singkat & overload</td>
+                            <td class="py-3 px-3">6–630A, 400V AC</td>
+                            <td class="py-3 px-3">Paling hulu (incoming)</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Kontaktor</td>
+                            <td class="py-3 px-3">Saklar utama motor</td>
+                            <td class="py-3 px-3">9–800A, AC-3</td>
+                            <td class="py-3 px-3">Rangkaian daya</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">TOR</td>
+                            <td class="py-3 px-3">Pengaman beban lebih</td>
+                            <td class="py-3 px-3">0.1–104A, Kelas 10/20/30</td>
+                            <td class="py-3 px-3">Seri dengan kontaktor</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Timer</td>
+                            <td class="py-3 px-3">Penundaan waktu</td>
+                            <td class="py-3 px-3">0.05s – 100 jam</td>
+                            <td class="py-3 px-3">Rangkaian kontrol</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Push Button</td>
+                            <td class="py-3 px-3">Perintah operator</td>
+                            <td class="py-3 px-3">10A, 250V AC</td>
+                            <td class="py-3 px-3">Pintu panel (door)</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Relay Bantu</td>
+                            <td class="py-3 px-3">Logika & isolasi</td>
+                            <td class="py-3 px-3">6–10A, 250V AC</td>
+                            <td class="py-3 px-3">Rangkaian kontrol</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Lampu Indikator</td>
+                            <td class="py-3 px-3">Visualisasi status</td>
+                            <td class="py-3 px-3">LED, 24V/220V</td>
+                            <td class="py-3 px-3">Pintu panel</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Selector Switch</td>
+                            <td class="py-3 px-3">Pemilihan mode</td>
+                            <td class="py-3 px-3">10A, 2-3 posisi</td>
+                            <td class="py-3 px-3">Pintu panel</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Studi Kasus -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-book-open text-yellow-500 mr-2"></i>Studi Kasus 1: Panel Motor 7.5 kW yang Sering Trip</h3>
+            <div class="warning-box p-6 rounded-r-lg">
+                <p class="text-gray-800 mb-3">
+                    Sebuah panel kontrol motor pompa 7.5 kW di sebuah pabrik di Padang sering trip saat starting. Setelah diperiksa teknisi, ditemukan beberapa kesalahan pemilihan komponen:
+                </p>
+                <ul class="list-disc list-inside text-gray-800 ml-4 space-y-2">
+                    <li><strong>MCB yang digunakan tipe B</strong> (trip 3–5× In), padahal motor starting 6× In → MCB trip sesaat. Seharusnya tipe C atau D.</li>
+                    <li><strong>Kontaktor rating 9A (AC-3)</strong>, padahal In motor = 15A → kontaktor cepat aus dan terbakar. Seharusnya minimal 18A (LC1D18).</li>
+                    <li><strong>TOR diset pada 20A</strong>, padahal In motor = 15A → TOR tidak melindungi motor. Seharusnya diset 15A (±5%).</li>
+                    <li><strong>Tidak ada interlock mekanis</strong> pada kontaktor Star-Delta → risiko hubung singkat.</li>
+                </ul>
+                <p class="font-semibold text-green-700 mt-3">
+                    <i class="fas fa-check-circle mr-1"></i> Solusi:
+                </p>
+                <p class="text-gray-800 mt-1">
+                    Ganti MCB dengan tipe C 25A, kontaktor dengan rating 18A, setting TOR pada 15A, dan tambahkan interlock mekanis. Panel beroperasi normal sejak perbaikan.
+                </p>
+            </div>
+        </section>
+
+        <!-- Tips Praktis -->
+        <section class="mb-12">
+            <div class="tip-box p-6 rounded-r-lg">
+                <h3 class="font-bold text-green-800 mb-2"><i class="fas fa-tools mr-2"></i>Tips Praktis Pemilihan Komponen Panel</h3>
+                <ul class="list-disc list-inside text-gray-800 space-y-2 text-sm">
+                    <li><strong>MCB/MCCB:</strong> Pilih rating 1.25–1.5× In motor. Gunakan tipe C untuk motor umum, tipe D untuk motor besar dengan starting berat.</li>
+                    <li><strong>Kontaktor:</strong> Pilih rating minimal 1.25× In motor pada kategori AC-3. Perhatikan juga tegangan coil sesuai dengan tegangan kontrol panel (24V DC/220V AC).</li>
+                    <li><strong>TOR:</strong> Setting pada 0.95–1.05× In motor sesuai nameplate. Pilih kelas proteksi sesuai aplikasi (Kelas 20 untuk umum).</li>
+                    <li><strong>Timer:</strong> Pilih tipe elektronik dengan akurasi tinggi untuk aplikasi presisi. Pastikan tegangan coil sesuai sumber kontrol.</li>
+                    <li><strong>Push Button:</strong> Gunakan warna standar IEC 60204. Tombol E-Stop WAJIB ada dan harus tipe latching mushroom head.</li>
+                    <li><strong>Relay Bantu:</strong> Gunakan untuk isolasi antara PLC dan kontaktor daya. Pilih relay dengan LED indikator untuk memudahkan troubleshooting.</li>
+                    <li><strong>Kabel:</strong> Gunakan kabel NYAF (serabut) untuk rangkaian kontrol, NYY/NYFGbY untuk daya. Ukuran minimal 1.5 mm² untuk kontrol, sesuai PUIL untuk daya.</li>
+                    <li><strong>Dokumentasi:</strong> Selalu buat diagram rangkaian, label setiap komponen dan kabel, serta buku log pemeliharaan.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Refleksi -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Refleksi untuk Siswa SMK</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Memahami komponen panel kontrol bukan sekadar hafalan — ini adalah fondasi keselamatan dan keandalan sistem. Seorang teknisi yang mampu memilih MCB dengan tepat, menyetting TOR dengan akurat, dan merangkai logika kontrol dengan relay bantu yang benar, akan menciptakan sistem yang aman bagi operator dan efisien secara energi. Sebaliknya, kesalahan kecil dalam pemilihan komponen dapat berakibat fatal: kebakaran panel, kerusakan motor mahal, bahkan cedera pada manusia. Oleh karena itu, kuasailah setiap komponen dengan sungguh-sungguh — ini adalah investasi jangka panjang bagi karir Anda sebagai teknisi listrik profesional.
+            </p>
+        </section>
+
+        <!-- Kesimpulan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b-2 border-blue-200 pb-2">Kesimpulan</h2>
+            <p class="text-gray-700 leading-relaxed">
+                Panel kontrol motor listrik terdiri dari berbagai komponen yang masing-masing memiliki fungsi spesifik: MCB untuk proteksi hubung singkat, kontaktor sebagai saklar utama elektromagnetik, TOR untuk proteksi beban lebih, timer untuk logika waktu, push button sebagai antarmuka operator, relay bantu untuk logika dan isolasi, lampu indikator untuk visualisasi status, dan selector switch untuk pemilihan mode. Pemilihan komponen yang tepat — berdasarkan rating arus, tegangan, kategori pemakaian (IEC), dan aplikasi — sangat menentukan keandalan dan keselamatan sistem. Pemahaman mendalam tentang setiap komponen ini menjadi prasyarat mutlak sebelum siswa melangkah ke perakitan panel kontrol pada pertemuan berikutnya.
+            </p>
+        </section>
+
+        <!-- Daftar Pustaka -->
+        <section class="mb-16">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-book text-yellow-500 mr-2"></i>Daftar Pustaka</h3>
+            <ul class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                <li>PUIL 2011. <em>Persyaratan Umum Instalasi Listrik 2011</em>. Jakarta: Badan Standardisasi Nasional.</li>
+                <li>IEC 60947-1 & 60947-4-1. (2020). <em>Low-voltage switchgear and controlgear — Contactors and motor-starters</em>. International Electrotechnical Commission.</li>
+                <li>IEC 60204-1. (2016). <em>Safety of machinery — Electrical equipment of machines</em>. International Electrotechnical Commission.</li>
+                <li>Zuraida, dkk. (2021). <em>Instalasi Motor Listrik Jilid 1 untuk SMK</em>. Jakarta: Direktorat Pembinaan SMK.</li>
+                <li>Manual Book Schneider Electric TeSys Series, ABB AF Series, Siemens 3RT Series — untuk spesifikasi kontaktor dan TOR.</li>
+                <li>Manual Book Schneider Electric Acti9 iC60, ABB S200 Series — untuk spesifikasi MCB.</li>
+            </ul>
+        </section>
+
+        <!-- Navigasi Bawah -->
+        <div class="flex justify-between items-center border-t pt-6 mb-16 flex-wrap gap-3">
+            <a href="5.html" class="text-blue-600 hover:text-blue-800 font-semibold"><i class="fas fa-arrow-left mr-1"></i> Pertemuan 5</a>
+            <a href="#top" class="text-gray-500 hover:text-gray-700 font-semibold"><i class="fas fa-arrow-up mr-1"></i> Ke Atas</a>
+            <a href="7.html" class="text-blue-600 hover:text-blue-800 font-semibold">Pertemuan 7: Teknik Pengkabelan Panel <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN UJI FORMATIF -->
+        <!-- ========================================================= -->
+        <section id="uji-formatif" class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-blue-900">📋 Uji Formatif 6: Komponen Panel Kontrol Motor Listrik</h2>
+                <p class="text-gray-600 mt-2">Materi: MCB, Kontaktor, TOR, Timer, Push Button, Relay Bantu, Lampu Indikator, Selector Switch.</p>
+                <p class="text-red-600 text-sm font-semibold mt-2">⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu!</p>
+            </div>
+
+            <form id="quizForm" class="space-y-8">
+                <!-- Data Siswa -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">📋 Data Siswa</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Nama Lengkap</label>
+                            <input type="text" name="nama" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* NIS (Nomor Induk Siswa)</label>
+                            <input type="text" name="nis" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Tanggal Ujian</label>
+                            <input type="date" name="tanggal" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Kelas</label>
+                            <input type="text" name="kelas" placeholder="Contoh: XI TITL 1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Semester</label>
+                            <select name="semester" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                                <option value="">Pilih Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian A: Pilihan Ganda -->
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon lengkapi semua 10 soal pilihan ganda!</p>
+                    
+                    <div class="space-y-6 text-gray-800">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">1. Komponen panel yang berfungsi sebagai pengaman utama terhadap arus hubung singkat adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q1" value="a" class="mr-2"> a. Kontaktor</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="b" class="mr-2"> b. MCB (Miniature Circuit Breaker)</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="c" class="mr-2"> c. Timer</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="d" class="mr-2"> d. Relay Bantu</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">2. Kontaktor magnetik bekerja berdasarkan prinsip...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q2" value="a" class="mr-2"> a. Efek termal bimetal</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="b" class="mr-2"> b. Induksi elektromagnetik pada coil</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="c" class="mr-2"> c. Reaksi kimia elektrolit</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="d" class="mr-2"> d. Tekanan pneumatik</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">3. Thermal Overload Relay (TOR) melindungi motor dari...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q3" value="a" class="mr-2"> a. Arus hubung singkat sesaat</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="b" class="mr-2"> b. Arus beban lebih yang berlangsung lama</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="c" class="mr-2"> c. Tegangan lebih akibat petir</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="d" class="mr-2"> d. Frekuensi tidak stabil</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">4. Timer yang digunakan pada pengasutan Star-Delta untuk mengatur waktu transisi Y-Δ adalah tipe...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q4" value="a" class="mr-2"> a. Off-Delay Timer</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="b" class="mr-2"> b. On-Delay Timer</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="c" class="mr-2"> c. Interval Timer</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="d" class="mr-2"> d. One-Shot Timer</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">5. Warna tombol START dan STOP menurut standar IEC 60204 adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q5" value="a" class="mr-2"> a. START merah, STOP hijau</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="b" class="mr-2"> b. START hijau, STOP merah</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="c" class="mr-2"> c. START kuning, STOP biru</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="d" class="mr-2"> d. START putih, STOP hitam</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">6. Kategori pemakaian kontaktor untuk motor squirrel cage dalam kondisi running adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q6" value="a" class="mr-2"> a. AC-1</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="b" class="mr-2"> b. AC-2</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="c" class="mr-2"> c. AC-3</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="d" class="mr-2"> d. AC-4</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">7. MCB tipe C akan trip pada arus berapa kali arus nominal?</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q7" value="a" class="mr-2"> a. 1–3× In</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="b" class="mr-2"> b. 3–5× In</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="c" class="mr-2"> c. 5–10× In</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="d" class="mr-2"> d. 10–20× In</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">8. Fungsi utama relay bantu dalam panel kontrol adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q8" value="a" class="mr-2"> a. Menghubungkan arus besar ke motor</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="b" class="mr-2"> b. Melindungi dari hubung singkat</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="c" class="mr-2"> c. Menggandakan kontak dan isolasi logika kontrol</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="d" class="mr-2"> d. Mengatur kecepatan motor</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">9. Tombol Emergency Stop (E-Stop) yang sesuai standar memiliki karakteristik...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q9" value="a" class="mr-2"> a. Warna hijau, tipe NO, momentary</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="b" class="mr-2"> b. Warna merah, kepala jamur, tipe NC, latching</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="c" class="mr-2"> c. Warna kuning, tipe NO, latching</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="d" class="mr-2"> d. Warna biru, kepala datar, momentary</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">10. Setting arus pada TOR untuk motor dengan In = 20A sebaiknya diset pada...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q10" value="a" class="mr-2"> a. 10A</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="b" class="mr-2"> b. 20A (sesuai nameplate)</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="c" class="mr-2"> c. 40A</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="d" class="mr-2"> d. 100A</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Essay -->
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon isi semua 5 soal essay dengan jawaban yang jelas!</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <p class="font-semibold mb-2">1. Jelaskan prinsip kerja kontaktor magnetik secara detail! Sebutkan perbedaan antara kontak utama dan kontak bantu, serta fungsi masing-masing dalam rangkaian kontrol motor!</p>
+                            <textarea name="essay1" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">2. Bandingkan fungsi MCB, TOR, dan Fuse dalam sistem proteksi panel motor! Mengapa ketiganya tetap dibutuhkan meskipun sama-sama berfungsi sebagai pengaman?</p>
+                            <textarea name="essay2" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">3. Sebuah motor 3 fasa memiliki nameplate: 5.5 kW, 380V, In = 11A, cos φ = 0.85. Rancanglah pemilihan komponen panel kontrol yang tepat: (a) rating MCB, (b) rating kontaktor, (c) setting TOR, dan (d) tipe MCB yang digunakan. Jelaskan alasan pemilihan Anda!</p>
+                            <textarea name="essay3" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">4. Jelaskan perbedaan antara On-Delay Timer dan Off-Delay Timer! Berikan masing-masing 2 contoh aplikasi pada rangkaian kontrol motor listrik!</p>
+                            <textarea name="essay4" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">5. Berdasarkan studi kasus panel motor 7.5 kW yang sering trip, analisislah kesalahan-kesalahan pemilihan komponen yang dilakukan! Berikan solusi perbaikan dengan perhitungan rating komponen yang tepat!</p>
+                            <textarea name="essay5" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hasil & Tombol Aksi -->
+                <div class="bg-blue-50 p-6 rounded-lg border border-blue-200 text-center">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4">📊 Hasil Uji Formatif</h3>
+                    <div id="hasilSkor" class="text-3xl font-extrabold text-blue-700 mb-2">0</div>
+                    <p id="detailSkor" class="text-sm text-gray-600 mb-6">Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button type="button" onclick="hitungNilai()" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-paper-plane mr-2"></i>KIRIM JAWABAN & LIHAT HASIL
+                        </button>
+                        <button type="button" onclick="window.print()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-file-pdf mr-2"></i>UNDUH PDF LENGKAP
+                        </button>
+                        <button type="button" onclick="kirimEmail()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-envelope mr-2"></i>KIRIM EMAIL GURU
+                        </button>
+                        <button type="button" onclick="resetForm()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-redo mr-2"></i>MULAI ULANG
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-blue-200 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">&copy; 2026 UKI SAPUTRA - SMK N 1 Koto Balingka. Hak Cipta Dilindungi.</p>
+            <a href="respon-pembaca.html" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-2 px-6 rounded-full transition duration-300 text-sm">
+                <i class="fas fa-paper-plane mr-1"></i> Kirim Respon tentang Materi Ini
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Fungsi Uji Formatif -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const kunciJawaban = {
+            q1: 'b', // MCB
+            q2: 'b', // Induksi elektromagnetik
+            q3: 'b', // Arus beban lebih yang berlangsung lama
+            q4: 'b', // On-Delay Timer
+            q5: 'b', // START hijau, STOP merah
+            q6: 'c', // AC-3
+            q7: 'c', // 5-10x In
+            q8: 'c', // Menggandakan kontak dan isolasi logika
+            q9: 'b', // Merah, kepala jamur, NC, latching
+            q10: 'b' // 20A sesuai nameplate
+        };
+
+        function hitungNilai() {
+            const form = document.getElementById('quizForm');
+            if (!form.checkValidity()) {
+                alert("⚠️ Mohon lengkapi semua data siswa, 10 soal Pilihan Ganda, dan 5 soal Essay terlebih dahulu!");
+                form.reportValidity();
+                return;
+            }
+
+            let skorPG = 0;
+            let benar = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const jawabanSiswa = document.querySelector(`input[name="q${i}"]:checked`);
+                if (jawabanSiswa && jawabanSiswa.value === kunciJawaban[`q${i}`]) {
+                    benar++;
+                    skorPG += 10;
+                }
+            }
+
+            const hasilDiv = document.getElementById('hasilSkor');
+            const detailDiv = document.getElementById('detailSkor');
+            
+            hasilDiv.innerText = skorPG;
+            detailDiv.innerHTML = `Bagian A (PG): <strong>${skorPG}/100</strong> (${benar} jawaban benar) <br> Bagian B (Essay): <strong>Menunggu Penilaian Guru</strong> (Jawaban telah tersimpan di sistem)`;
+            
+            document.getElementById('hasilSkor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            alert(`✅ Jawaban berhasil dikirim!\nSkor Sementara Pilihan Ganda: ${skorPG}/100\n\nCatatan: Jawaban Essay akan dinilai oleh guru.`);
+        }
+
+        function kirimEmail() {
+            const nama = document.querySelector('input[name="nama"]').value || "Siswa";
+            const nis = document.querySelector('input[name="nis"]').value || "-";
+            const kelas = document.querySelector('input[name="kelas"]').value || "-";
+            
+            const subject = `Hasil Uji Formatif 6 (Komponen Panel Kontrol) - ${nama} (${nis})`;
+            const body = `Yth. Bapak UKI SAPUTRA,\n\nBerikut adalah hasil uji formatif saya:\nNama: ${nama}\nNIS: ${nis}\nKelas: ${kelas}\nMateri: Pertemuan 6 - Komponen Panel Kontrol Motor Listrik\n\nSaya telah menyelesaikan Bagian A (Pilihan Ganda) dan Bagian B (Essay) pada Pertemuan 6.\n\nTerima kasih.`;
+            
+            window.location.href = `mailto:trauky@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function resetForm() {
+            if(confirm("⚠️ Apakah Anda yakin ingin menghapus semua jawaban dan mulai ulang?")) {
+                document.getElementById('quizForm').reset();
+                document.getElementById('hasilSkor').innerText = "0";
+                document.getElementById('detailSkor').innerText = "Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

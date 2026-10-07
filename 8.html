@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ujian Tengah Semester (UTS) - Instalasi Motor Listrik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .highlight-box { border-left: 4px solid #2563eb; background-color: #eff6ff; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .tip-box { border-left: 4px solid #16a34a; background-color: #f0fdf4; }
+        .uts-header { background: linear-gradient(135deg, #1e3a8a 0%, #7c2d12 100%); }
+        .hots-badge { background-color: #dc2626; color: white; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-left: 6px; }
+        .lots-badge { background-color: #2563eb; color: white; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; margin-left: 6px; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans" id="top">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl font-bold tracking-wide">INSTALASI MOTOR LISTRIK</div>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0">
+                <a href="index.html" class="hover:text-yellow-400 transition"><i class="fas fa-home mr-1"></i> Beranda</a>
+                <a href="index.html#tentang" class="hover:text-yellow-400 transition"><i class="fas fa-info-circle mr-1"></i> Tentang</a>
+                <a href="index.html#daftar-isi" class="hover:text-yellow-400 transition"><i class="fas fa-list mr-1"></i> Daftar Bab</a>
+                <a href="index.html#kontak" class="hover:text-yellow-400 transition"><i class="fas fa-user mr-1"></i> Penulis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header UTS -->
+    <header class="uts-header text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="bg-yellow-500 text-blue-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pertemuan 8 — Evaluasi Tengah Semester</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold mt-4 mb-2">UJIAN TENGAH SEMESTER (UTS)</h1>
+            <h2 class="text-xl md:text-2xl font-semibold text-yellow-300 mb-4">INSTALASI MOTOR LISTRIK — Kelas XI Semester I</h2>
+            <p class="text-blue-100 text-lg max-w-3xl mx-auto">
+                Menguji pemahaman komprehensif siswa terhadap materi Pertemuan 1–7: Pengasutan Motor 3 Fasa (Manual, PLC, Star-Delta), Motor 1 Fasa, Kontrol Kecepatan, Komponen Panel Kontrol, dan Teknik Pengkabelan Panel.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <a href="7.html" class="bg-gray-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-600 transition border border-gray-500"><i class="fas fa-arrow-left mr-1"></i>Pertemuan 7</a>
+                <a href="#data-siswa" class="bg-yellow-500 text-blue-900 font-bold py-2 px-6 rounded-lg hover:bg-yellow-400 transition"><i class="fas fa-pen mr-1"></i>Mulai Ujian</a>
+                <a href="9.html" class="bg-blue-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-blue-600 transition border border-blue-500">Pertemuan 9 →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl">
+        
+        <!-- Informasi Ujian -->
+        <section class="mb-10">
+            <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-yellow-500">
+                <h2 class="text-2xl font-bold text-blue-900 mb-4"><i class="fas fa-info-circle text-yellow-500 mr-2"></i>Petunjuk Pengerjaan UTS</h2>
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <p class="font-bold text-blue-900 mb-2">📋 Struktur Soal:</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li><strong>Bagian A:</strong> 20 Pilihan Ganda (15 LOTS + 5 HOTS) — Bobot 10/soal</li>
+                            <li><strong>Bagian B:</strong> 10 Pilihan Ganda Kompleks — Bobot 10/soal</li>
+                            <li><strong>Bagian C:</strong> 5 Benar/Salah — Bobot 5/soal</li>
+                            <li><strong>Bagian D:</strong> 5 Menjodohkan — Bobot 5/soal</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg">
+                        <p class="font-bold text-red-900 mb-2">⚠️ Ketentuan:</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1">
+                            <li>Total bobot: <strong>375 poin</strong></li>
+                            <li>Waktu pengerjaan: <strong>90 menit</strong></li>
+                            <li>Wajib mengisi semua data siswa</li>
+                            <li>Jawab semua soal — tidak ada soal yang boleh dikosongkan</li>
+                            <li>PG Kompleks: pilih SEMUA jawaban yang benar</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-4 bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
+                    <p class="text-sm text-gray-800"><i class="fas fa-lightbulb text-yellow-600 mr-1"></i> <strong>Cakupan Materi:</strong> Pertemuan 1 (Pengasutan Manual), 2 (PLC), 3 (Star-Delta), 4 (Motor 1 Fasa), 5 (Kontrol Kecepatan), 6 (Komponen Panel), 7 (Pengkabelan Panel).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Ujian -->
+        <form id="utsForm" class="space-y-10">
+
+            <!-- Data Siswa -->
+            <section id="data-siswa" class="bg-white rounded-xl shadow-md p-6 border-t-4 border-blue-600">
+                <h2 class="text-xl font-bold text-blue-900 mb-4 border-b pb-2"><i class="fas fa-user-graduate mr-2"></i>Data Siswa</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">* Nama Lengkap</label>
+                        <input type="text" name="nama" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">* NIS (Nomor Induk Siswa)</label>
+                        <input type="text" name="nis" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">* Tanggal Ujian</label>
+                        <input type="date" name="tanggal" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">* Kelas</label>
+                        <input type="text" name="kelas" placeholder="Contoh: XI TITL 1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">* Semester</label>
+                        <select name="semester" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="">Pilih Semester</option>
+                            <option value="1">Semester 1</option>
+                            <option value="2">Semester 2</option>
+                            <option value="3">Semester 3</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">* Mata Pelajaran</label>
+                        <input type="text" value="Instalasi Motor Listrik" readonly class="w-full px-3 py-2 border rounded bg-gray-100">
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================ -->
+            <!-- BAGIAN A: PILIHAN GANDA (20 SOAL) -->
+            <!-- ============================================ -->
+            <section class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-xl font-bold text-blue-900 mb-2 border-b pb-2"><i class="fas fa-list-ol mr-2"></i>BAGIAN A — Pilihan Ganda (20 Soal × 10 poin = 200)</h2>
+                <p class="text-sm text-gray-600 mb-6">Pilih SATU jawaban yang paling tepat. Soal 1–15 termasuk kategori LOTS (C1-C2), Soal 16–20 termasuk kategori HOTS (C4-C6).</p>
+
+                <div class="space-y-6">
+                    
+                    <!-- SOAL 1 - LOTS (P1) -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold mb-2">1. Komponen yang berfungsi sebagai pengaman beban lebih (overload) pada rangkaian motor listrik adalah...<span class="lots-badge">LOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q1" value="a" class="mr-2"> a. MCB (Miniature Circuit Breaker)</label>
+                            <label class="flex items-center"><input type="radio" name="q1" value="b" class="mr-2"> b. TOR (Thermal Overload Relay)</label>
+                            <label class="flex items-center"><input type="radio" name="q1" value="c" class="mr-2"> c. Kontaktor</label>
+                            <label class="flex items-center"><input type="radio" name="q1" value="d" class="mr-2"> d. Push Button</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 2 - LOTS (P1) -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold mb-2">2. Arus starting (Ist) pada pengasutan Direct On Line (DOL) umumnya mencapai berapa kali arus nominal (In)?<span class="lots-badge">LOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q2" value="a" class="mr-2"> a. 1 – 2 kali In</label>
+                            <label class="flex items-center"><input type="radio" name="q2" value="b" class="mr-2"> b. 5 – 7 kali In</label>
+                            <label class="flex items-center"><input type="radio" name="q2" value="c" class="mr-2"> c. 10 – 15 kali In</label>
+                            <label class="flex items-center"><input type="radio" name="q2" value="d" class="mr-2"> d. Sama dengan In</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 3 - LOTS (P1) -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold mb-2">3. Pada rangkaian Forward-Reverse, fungsi kontak bantu NC yang dipasang seri dengan coil kontaktor lawan adalah...<span class="lots-badge">LOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q3" value="a" class="mr-2"> a. Sebagai pengunci mekanis (Interlock)</label>
+                            <label class="flex items-center"><input type="radio" name="q3" value="b" class="mr-2"> b. Sebagai indikator lampu</label>
+                            <label class="flex items-center"><input type="radio" name="q3" value="c" class="mr-2"> c. Untuk menunda waktu (timer)</label>
+                            <label class="flex items-center"><input type="radio" name="q3" value="d" class="mr-2"> d. Untuk meningkatkan arus starting</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 4 - LOTS (P2) -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold mb-2">4. PLC merupakan singkatan dari...<span class="lots-badge">LOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q4" value="a" class="mr-2"> a. Power Line Controller</label>
+                            <label class="flex items-center"><input type="radio" name="q4" value="b" class="mr-2"> b. Programmable Logic Controller</label>
+                            <label class="flex items-center"><input type="radio" name="q4" value="c" class="mr-2"> c. Process Level Circuit</label>
+                            <label class="flex items-center"><input type="radio" name="q4" value="d" class="mr-2"> d. Programmed Load Control</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 5 - LOTS (P2) -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold mb-2">5. Urutan siklus scan (scan cycle) PLC yang benar adalah...<span class="lots-badge">LOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q5" value="a" class="mr-2"> a. Update Output → Eksekusi Program → Baca Input</label>
+                            <label class="flex items-center"><input type="radio" name="q5" value="b" class="mr-2"> b. Eksekusi Program → Baca Input → Update Output</label>
+                            <label class="flex items-center"><input type="radio" name="q5" value="c" class="mr-2"> c. Baca Input → Eksekusi Program → Update Output</label>
+                            <label class="flex items-center"><input type="radio" name="q5" value="d" class="mr-2"> d. Baca Input → Update Output → Eksekusi Program</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 6 - LOTS (P3) -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold mb-2">6. Tujuan utama pengasutan Star-Delta adalah...<span class="lots-badge">LOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q6" value="a" class="mr-2"> a. Meningkatkan torsi starting motor</label>
+                            <label class="flex items-center"><input type="radio" name="q6" value="b" class="mr-2"> b. Mengurangi arus starting hingga 1/3 dari arus DOL</label>
+                            <label class="flex items-center"><input type="radio" name="q6" value="c" class="mr-2"> c. Meningkatkan kecepatan motor</label>
+                            <label class="flex items-center"><input type="radio" name="q6" value="d" class="mr-2"> d. Mengubah frekuensi sumber</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 7 - LOTS (P3) -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold mb-2">7. Pada nameplate motor tertera 380V/660V (Δ/Y). Motor tersebut dapat di-start Star-Delta pada sumber tegangan...<span class="lots-badge">LOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q7" value="a" class="mr-2"> a. 220V</label>
+                            <label class="flex items-center"><input type="radio" name="q7" value="b" class="mr-2"> b. 380V</label>
+                            <label class="flex items-center"><input type="radio" name="q7" value="c" class="mr-2"> c. 660V</label>
+                            <label class="flex items-center"><input type="radio" name="q7" value="d" class="mr-2"> d. 110V</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 8 - LOTS (P4) -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold mb-2">8. Motor 1 fasa yang TIDAK memiliki lilitan bantu maupun kapasitor adalah...<span class="lots-badge">LOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q8" value="a" class="mr-2"> a. Split Phase</label>
+                            <label class="flex items-center"><input type="radio" name="q8" value="b" class="mr-2"> b. Capacitor Start</label>
+                            <label class="flex items-center"><input type="radio" name="q8" value="c" class="mr-2"> c. Shaded Pole</label>
+                            <label class="flex items-center"><input type="radio" name="q8" value="d" class="mr-2"> d. PSC</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 9 - LOTS (P4) -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold mb-2">9. AC (Air Conditioner) rumah tangga umumnya menggunakan jenis motor...<span class="lots-badge">LOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q9" value="a" class="mr-2"> a. Split Phase</label>
+                            <label class="flex items-center"><input type="radio" name="q9" value="b" class="mr-2"> b. Shaded Pole</label>
+                            <label class="flex items-center"><input type="radio" name="q9" value="c" class="mr-2"> c. Capacitor Start – Capacitor Run</label>
+                            <label class="flex items-center"><input type="radio" name="q9" value="d" class="mr-2"> d. Motor 3 fasa DOL</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 10 - LOTS (P5) -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold mb-2">10. Metode kontrol kecepatan yang paling efisien untuk motor 1 fasa adalah...<span class="lots-badge">LOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q10" value="a" class="mr-2"> a. Voltage control menggunakan TRIAC</label>
+                            <label class="flex items-center"><input type="radio" name="q10" value="b" class="mr-2"> b. Pole changing</label>
+                            <label class="flex items-center"><input type="radio" name="q10" value="c" class="mr-2"> c. Variable Frequency Drive (VFD)</label>
+                            <label class="flex items-center"><input type="radio" name="q10" value="d" class="mr-2"> d. Rheostat control</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 11 - LOTS (P5) -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold mb-2">11. Komponen semikonduktor yang berfungsi sebagai pemicu (trigger) pada rangkaian dimmer kipas angin adalah...<span class="lots-badge">LOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q11" value="a" class="mr-2"> a. TRIAC</label>
+                            <label class="flex items-center"><input type="radio" name="q11" value="b" class="mr-2"> b. DIAC</label>
+                            <label class="flex items-center"><input type="radio" name="q11" value="c" class="mr-2"> c. IGBT</label>
+                            <label class="flex items-center"><input type="radio" name="q11" value="d" class="mr-2"> d. MOSFET</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 12 - LOTS (P6) -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold mb-2">12. Warna tombol START dan STOP menurut standar IEC 60204 adalah...<span class="lots-badge">LOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q12" value="a" class="mr-2"> a. START merah, STOP hijau</label>
+                            <label class="flex items-center"><input type="radio" name="q12" value="b" class="mr-2"> b. START hijau, STOP merah</label>
+                            <label class="flex items-center"><input type="radio" name="q12" value="c" class="mr-2"> c. START kuning, STOP biru</label>
+                            <label class="flex items-center"><input type="radio" name="q12" value="d" class="mr-2"> d. START putih, STOP hitam</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 13 - LOTS (P6) -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold mb-2">13. Kategori pemakaian kontaktor untuk motor squirrel cage dalam kondisi running adalah...<span class="lots-badge">LOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q13" value="a" class="mr-2"> a. AC-1</label>
+                            <label class="flex items-center"><input type="radio" name="q13" value="b" class="mr-2"> b. AC-2</label>
+                            <label class="flex items-center"><input type="radio" name="q13" value="c" class="mr-2"> c. AC-3</label>
+                            <label class="flex items-center"><input type="radio" name="q13" value="d" class="mr-2"> d. AC-4</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 14 - LOTS (P7) -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold mb-2">14. Kabel yang paling umum digunakan untuk wiring dalam panel kontrol karena sifatnya yang fleksibel adalah...<span class="lots-badge">LOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q14" value="a" class="mr-2"> a. NYA (kawat padat)</label>
+                            <label class="flex items-center"><input type="radio" name="q14" value="b" class="mr-2"> b. NYAF (kawat serabut)</label>
+                            <label class="flex items-center"><input type="radio" name="q14" value="c" class="mr-2"> c. NYY (kabel tanah)</label>
+                            <label class="flex items-center"><input type="radio" name="q14" value="d" class="mr-2"> d. NYFGbY (kabel baja)</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 15 - LOTS (P7) -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-blue-400">
+                        <p class="font-semibold mb-2">15. Nilai tahanan isolasi minimum yang dipersyaratkan pada pengujian Megger panel kontrol adalah...<span class="lots-badge">LOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q15" value="a" class="mr-2"> a. 0,1 MΩ</label>
+                            <label class="flex items-center"><input type="radio" name="q15" value="b" class="mr-2"> b. 0,5 MΩ</label>
+                            <label class="flex items-center"><input type="radio" name="q15" value="c" class="mr-2"> c. 1 MΩ</label>
+                            <label class="flex items-center"><input type="radio" name="q15" value="d" class="mr-2"> d. 10 MΩ</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 16 - HOTS (P1+P3) -->
+                    <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold mb-2">16. Sebuah motor 3 fasa 15 kW di-start dengan DOL menyebabkan MCB 63A di panel utama trip setiap kali starting. Setelah dianalisis, sumber daya tidak mampu menahan lonjakan arus starting. Solusi teknis PALING TEPAT untuk mengatasi masalah ini tanpa mengganti transformator adalah...<span class="hots-badge">HOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q16" value="a" class="mr-2"> a. Mengganti MCB dengan rating lebih besar (100A)</label>
+                            <label class="flex items-center"><input type="radio" name="q16" value="b" class="mr-2"> b. Mengubah metode starting menjadi Star-Delta untuk menurunkan arus starting hingga 1/3</label>
+                            <label class="flex items-center"><input type="radio" name="q16" value="c" class="mr-2"> c. Menambah jumlah kabel fasa menjadi dua set paralel</label>
+                            <label class="flex items-center"><input type="radio" name="q16" value="d" class="mr-2"> d. Menonaktifkan TOR agar motor dapat start lebih cepat</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 17 - HOTS (P3) -->
+                    <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold mb-2">17. Saat pengujian panel Star-Delta, motor berhasil start pada mode Star, tetapi saat transisi ke Delta, MCB langsung trip. Analisis penyebab yang PALING MUNGKIN terjadi adalah...<span class="hots-badge">HOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q17" value="a" class="mr-2"> a. Timer diset terlalu lama</label>
+                            <label class="flex items-center"><input type="radio" name="q17" value="b" class="mr-2"> b. Interlock antara kontaktor Star dan Delta tidak berfungsi, sehingga keduanya aktif bersamaan</label>
+                            <label class="flex items-center"><input type="radio" name="q17" value="c" class="mr-2"> c. TOR diset terlalu rendah</label>
+                            <label class="flex items-center"><input type="radio" name="q17" value="d" class="mr-2"> d. Tombol Start rusak</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 18 - HOTS (P4) -->
+                    <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold mb-2">18. Sebuah AC 1 PK tidak dapat start, kompresor hanya mendengung (humming), dan MCB 16A sering trip. Setelah diperiksa dengan capacitance meter, kapasitor run 30 µF terukur hanya 8 µF. Kesimpulan diagnosis yang PALING TEPAT adalah...<span class="hots-badge">HOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q18" value="a" class="mr-2"> a. Kompresor rusak dan harus diganti</label>
+                            <label class="flex items-center"><input type="radio" name="q18" value="b" class="mr-2"> b. Kapasitor run rusak menyebabkan medan putar lemah → arus locked rotor tinggi → MCB trip. Solusi: ganti kapasitor 30 µF 400VAC</label>
+                            <label class="flex items-center"><input type="radio" name="q18" value="c" class="mr-2"> c. MCB terlalu kecil, harus diganti 32A</label>
+                            <label class="flex items-center"><input type="radio" name="q18" value="d" class="mr-2"> d. Tegangan sumber terlalu tinggi</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 19 - HOTS (P6) -->
+                    <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold mb-2">19. Sebuah panel motor 7.5 kW (In = 15A) sering trip saat starting. Hasil inspeksi: MCB tipe B 20A, kontaktor rating 9A (AC-3), TOR diset 20A. Evaluasi yang PALING TEPAT terhadap kesalahan pemilihan komponen tersebut adalah...<span class="hots-badge">HOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q19" value="a" class="mr-2"> a. Semua komponen sudah tepat, hanya perlu mengganti MCB dengan tipe yang sama</label>
+                            <label class="flex items-center"><input type="radio" name="q19" value="b" class="mr-2"> b. MCB harus tipe C 25A (tahan starting), kontaktor minimal 18A (sesuai In motor), TOR diset 15A (sesuai nameplate)</label>
+                            <label class="flex items-center"><input type="radio" name="q19" value="c" class="mr-2"> c. Cukup mengganti TOR dengan setting lebih tinggi</label>
+                            <label class="flex items-center"><input type="radio" name="q19" value="d" class="mr-2"> d. Hilangkan TOR agar motor dapat start tanpa hambatan</label>
+                        </div>
+                    </div>
+
+                    <!-- SOAL 20 - HOTS (P7) -->
+                    <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold mb-2">20. Seorang teknisi merakit panel kontrol motor 5.5 kW. Setelah semua kabel dipasang, ia langsung meng-energize panel tanpa pemeriksaan pendahuluan. Panel meledak dan MCB incoming trip. Berdasarkan prosedur commissioning yang benar, langkah yang SEHARUSNYA dilakukan sebelum energizing adalah...<span class="hots-badge">HOTS</span></p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="radio" name="q20" value="a" class="mr-2"> a. Langsung energize karena sudah yakin wiring benar</label>
+                            <label class="flex items-center"><input type="radio" name="q20" value="b" class="mr-2"> b. Pemeriksaan visual → pengukuran tahanan isolasi (Megger) → uji kontinuitas → uji tanpa beban → baru energize penuh</label>
+                            <label class="flex items-center"><input type="radio" name="q20" value="c" class="mr-2"> c. Cukup memeriksa warna kabel saja</label>
+                            <label class="flex items-center"><input type="radio" name="q20" value="d" class="mr-2"> d. Menambah rating MCB incoming agar tidak trip</label>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ============================================ -->
+            <!-- BAGIAN B: PILIHAN GANDA KOMPLEKS (10 SOAL) -->
+            <!-- ============================================ -->
+            <section class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-xl font-bold text-blue-900 mb-2 border-b pb-2"><i class="fas fa-check-double mr-2"></i>BAGIAN B — Pilihan Ganda Kompleks (10 Soal × 10 poin = 100)</h2>
+                <p class="text-sm text-gray-600 mb-6">Pilih <strong>LEBIH DARI SATU</strong> jawaban yang benar. Skor penuh hanya jika semua jawaban benar dipilih dan tidak ada jawaban salah yang dipilih.</p>
+
+                <div class="space-y-6">
+
+                    <!-- PG Kompleks 1 -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-purple-400">
+                        <p class="font-semibold mb-2">1. Tiga jenis pengasutan motor 3 fasa secara manual yang dipelajari pada Pertemuan 1 adalah... (pilih semua yang benar)</p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="checkbox" name="c1" value="a" class="mr-2"> a. Start DOL (Direct On Line)</label>
+                            <label class="flex items-center"><input type="checkbox" name="c1" value="b" class="mr-2"> b. Start Star-Delta</label>
+                            <label class="flex items-center"><input type="checkbox" name="c1" value="c" class="mr-2"> c. Pengasutan 2 motor hidup berurutan</label>
+                            <label class="flex items-center"><input type="checkbox" name="c1" value="d" class="mr-2"> d. Forward-Reverse (Membalik arah putaran)</label>
+                            <label class="flex items-center"><input type="checkbox" name="c1" value="e" class="mr-2"> e. Auto-transformator starting</label>
+                        </div>
+                    </div>
+
+                    <!-- PG Kompleks 2 -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-purple-400">
+                        <p class="font-semibold mb-2">2. Komponen utama arsitektur PLC meliputi... (pilih semua yang benar)</p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="checkbox" name="c2" value="a" class="mr-2"> a. Power Supply</label>
+                            <label class="flex items-center"><input type="checkbox" name="c2" value="b" class="mr-2"> b. CPU (Central Processing Unit)</label>
+                            <label class="flex items-center"><input type="checkbox" name="c2" value="c" class="mr-2"> c. Modul Input</label>
+                            <label class="flex items-center"><input type="checkbox" name="c2" value="d" class="mr-2"> d. Modul Output</label>
+                            <label class="flex items-center"><input type="checkbox" name="c2" value="e" class="mr-2"> e. Komutator mekanis</label>
+                        </div>
+                    </div>
+
+                    <!-- PG Kompleks 3 -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-purple-400">
+                        <p class="font-semibold mb-2">3. Komponen yang WAJIB ada pada rangkaian Star-Delta otomatis adalah... (pilih semua yang benar)</p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="checkbox" name="c3" value="a" class="mr-2"> a. Kontaktor Utama (Main/KM1)</label>
+                            <label class="flex items-center"><input type="checkbox" name="c3" value="b" class="mr-2"> b. Kontaktor Star (KM2)</label>
+                            <label class="flex items-center"><input type="checkbox" name="c3" value="c" class="mr-2"> c. Kontaktor Delta (KM3)</label>
+                            <label class="flex items-center"><input type="checkbox" name="c3" value="d" class="mr-2"> d. Timer On-Delay</label>
+                            <label class="flex items-center"><input type="checkbox" name="c3" value="e" class="mr-2"> e. Kapasitor start</label>
+                        </div>
+                    </div>
+
+                    <!-- PG Kompleks 4 -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-purple-400">
+                        <p class="font-semibold mb-2">4. Jenis-jenis motor listrik 1 fasa yang dipelajari pada Pertemuan 4 meliputi... (pilih semua yang benar)</p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="checkbox" name="c4" value="a" class="mr-2"> a. Split Phase</label>
+                            <label class="flex items-center"><input type="checkbox" name="c4" value="b" class="mr-2"> b. Capacitor Start</label>
+                            <label class="flex items-center"><input type="checkbox" name="c4" value="c" class="mr-2"> c. Capacitor Start – Capacitor Run</label>
+                            <label class="flex items-center"><input type="checkbox" name="c4" value="d" class="mr-2"> d. Permanent Split Capacitor (PSC)</label>
+                            <label class="flex items-center"><input type="checkbox" name="c4" value="e" class="mr-2"> e. Shaded Pole</label>
+                        </div>
+                    </div>
+
+                    <!-- PG Kompleks 5 -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-purple-400">
+                        <p class="font-semibold mb-2">5. Metode-metode kontrol kecepatan motor 1 fasa yang dipelajari pada Pertemuan 5 adalah... (pilih semua yang benar)</p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="checkbox" name="c5" value="a" class="mr-2"> a. Kontrol tegangan menggunakan TRIAC/DIAC</label>
+                            <label class="flex items-center"><input type="checkbox" name="c5" value="b" class="mr-2"> b. Perubahan jumlah kutub (Pole Changing)</label>
+                            <label class="flex items-center"><input type="checkbox" name="c5" value="c" class="mr-2"> c. Variable Frequency Drive (VFD)</label>
+                            <label class="flex items-center"><input type="checkbox" name="c5" value="d" class="mr-2"> d. Pengasutan Star-Delta</label>
+                            <label class="flex items-center"><input type="checkbox" name="c5" value="e" class="mr-2"> e. Rheostat control</label>
+                        </div>
+                    </div>
+
+                    <!-- PG Kompleks 6 -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-purple-400">
+                        <p class="font-semibold mb-2">6. Komponen proteksi dalam panel kontrol motor listrik meliputi... (pilih semua yang benar)</p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="checkbox" name="c6" value="a" class="mr-2"> a. MCB (Miniature Circuit Breaker)</label>
+                            <label class="flex items-center"><input type="checkbox" name="c6" value="b" class="mr-2"> b. TOR (Thermal Overload Relay)</label>
+                            <label class="flex items-center"><input type="checkbox" name="c6" value="c" class="mr-2"> c. Fuse</label>
+                            <label class="flex items-center"><input type="checkbox" name="c6" value="d" class="mr-2"> d. Push Button</label>
+                            <label class="flex items-center"><input type="checkbox" name="c6" value="e" class="mr-2"> e. Lampu indikator</label>
+                        </div>
+                    </div>
+
+                    <!-- PG Kompleks 7 -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-purple-400">
+                        <p class="font-semibold mb-2">7. Karakteristik MCB tipe C meliputi... (pilih semua yang benar)</p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="checkbox" name="c7" value="a" class="mr-2"> a. Trip pada arus 5–10× In</label>
+                            <label class="flex items-center"><input type="checkbox" name="c7" value="b" class="mr-2"> b. Cocok untuk beban motor umum</label>
+                            <label class="flex items-center"><input type="checkbox" name="c7" value="c" class="mr-2"> c. Mampu menahan arus starting motor tanpa trip sesaat</label>
+                            <label class="flex items-center"><input type="checkbox" name="c7" value="d" class="mr-2"> d. Trip pada arus 3–5× In</label>
+                            <label class="flex items-center"><input type="checkbox" name="c7" value="e" class="mr-2"> e. Khusus untuk beban penerangan resistif</label>
+                        </div>
+                    </div>
+
+                    <!-- PG Kompleks 8 -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-purple-400">
+                        <p class="font-semibold mb-2">8. Tahapan commissioning panel kontrol yang BENAR sebelum energizing adalah... (pilih semua yang benar)</p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="checkbox" name="c8" value="a" class="mr-2"> a. Pemeriksaan visual semua terminasi kabel</label>
+                            <label class="flex items-center"><input type="checkbox" name="c8" value="b" class="mr-2"> b. Pengukuran tahanan isolasi dengan Megger</label>
+                            <label class="flex items-center"><input type="checkbox" name="c8" value="c" class="mr-2"> c. Uji kontinuitas rangkaian</label>
+                            <label class="flex items-center"><input type="checkbox" name="c8" value="d" class="mr-2"> d. Langsung ON-kan MCB tanpa pemeriksaan</label>
+                            <label class="flex items-center"><input type="checkbox" name="c8" value="e" class="mr-2"> e. Pemeriksaan grounding panel</label>
+                        </div>
+                    </div>
+
+                    <!-- PG Kompleks 9 -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-purple-400">
+                        <p class="font-semibold mb-2">9. Warna kabel standar PUIL 2011 untuk instalasi 3 fasa adalah... (pilih semua yang benar)</p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="checkbox" name="c9" value="a" class="mr-2"> a. Fase R = Merah</label>
+                            <label class="flex items-center"><input type="checkbox" name="c9" value="b" class="mr-2"> b. Fase S = Kuning</label>
+                            <label class="flex items-center"><input type="checkbox" name="c9" value="c" class="mr-2"> c. Fase T = Biru</label>
+                            <label class="flex items-center"><input type="checkbox" name="c9" value="d" class="mr-2"> d. Netral = Hitam</label>
+                            <label class="flex items-center"><input type="checkbox" name="c9" value="e" class="mr-2"> e. Ground = Kuning-Hijau</label>
+                        </div>
+                    </div>
+
+                    <!-- PG Kompleks 10 -->
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-purple-400">
+                        <p class="font-semibold mb-2">10. Keuntungan penggunaan VFD dibanding kontrol tegangan TRIAC adalah... (pilih semua yang benar)</p>
+                        <div class="space-y-1 ml-4">
+                            <label class="flex items-center"><input type="checkbox" name="c10" value="a" class="mr-2"> a. Efisiensi sangat tinggi (95–98%)</label>
+                            <label class="flex items-center"><input type="checkbox" name="c10" value="b" class="mr-2"> b. Kontrol kecepatan kontinyu dan presisi</label>
+                            <label class="flex items-center"><input type="checkbox" name="c10" value="c" class="mr-2"> c. Soft start & soft stop terintegrasi</label>
+                            <label class="flex items-center"><input type="checkbox" name="c10" value="d" class="mr-2"> d. Harga lebih murah</label>
+                            <label class="flex items-center"><input type="checkbox" name="c10" value="e" class="mr-2"> e. Torsi tetap baik pada kecepatan rendah</label>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ============================================ -->
+            <!-- BAGIAN C: BENAR / SALAH (5 SOAL) -->
+            <!-- ============================================ -->
+            <section class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-xl font-bold text-blue-900 mb-2 border-b pb-2"><i class="fas fa-check-circle mr-2"></i>BAGIAN C — Benar / Salah (5 Soal × 5 poin = 25)</h2>
+                <p class="text-sm text-gray-600 mb-6">Tentukan apakah pernyataan berikut BENAR atau SALAH.</p>
+
+                <div class="space-y-4">
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-green-400">
+                        <p class="font-semibold mb-2">1. Pada pengasutan Star-Delta, arus starting pada mode Star turun menjadi 1/3 dari arus DOL, dan torsi starting juga turun menjadi 1/3 dari torsi Delta.</p>
+                        <div class="flex gap-4 ml-4 mt-2">
+                            <label class="flex items-center"><input type="radio" name="bs1" value="benar" class="mr-2"> BENAR</label>
+                            <label class="flex items-center"><input type="radio" name="bs1" value="salah" class="mr-2"> SALAH</label>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-green-400">
+                        <p class="font-semibold mb-2">2. Motor 1 fasa tipe Capacitor Start dengan centrifugal switch dapat langsung dihubungkan ke VFD tanpa modifikasi apapun.</p>
+                        <div class="flex gap-4 ml-4 mt-2">
+                            <label class="flex items-center"><input type="radio" name="bs2" value="benar" class="mr-2"> BENAR</label>
+                            <label class="flex items-center"><input type="radio" name="bs2" value="salah" class="mr-2"> SALAH</label>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-green-400">
+                        <p class="font-semibold mb-2">3. Thermal Overload Relay (TOR) berfungsi melindungi motor dari arus hubung singkat (short circuit) yang berlangsung sesaat.</p>
+                        <div class="flex gap-4 ml-4 mt-2">
+                            <label class="flex items-center"><input type="radio" name="bs3" value="benar" class="mr-2"> BENAR</label>
+                            <label class="flex items-center"><input type="radio" name="bs3" value="salah" class="mr-2"> SALAH</label>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-green-400">
+                        <p class="font-semibold mb-2">4. Kabel serabut (stranded) yang akan dipasang pada terminal screw WAJIB menggunakan ferrule (end sleeve) agar kontak sempurna dan aman.</p>
+                        <div class="flex gap-4 ml-4 mt-2">
+                            <label class="flex items-center"><input type="radio" name="bs4" value="benar" class="mr-2"> BENAR</label>
+                            <label class="flex items-center"><input type="radio" name="bs4" value="salah" class="mr-2"> SALAH</label>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50 rounded-lg border-l-4 border-green-400">
+                        <p class="font-semibold mb-2">5. Menurut Teori Double Revolving Field, medan magnet pulsasi pada motor 1 fasa dapat diuraikan menjadi dua medan putar yang berlawanan arah dengan magnitudo masing-masing ½ dari medan maksimum.</p>
+                        <div class="flex gap-4 ml-4 mt-2">
+                            <label class="flex items-center"><input type="radio" name="bs5" value="benar" class="mr-2"> BENAR</label>
+                            <label class="flex items-center"><input type="radio" name="bs5" value="salah" class="mr-2"> SALAH</label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================ -->
+            <!-- BAGIAN D: MENJODOHKAN (5 SOAL) -->
+            <!-- ============================================ -->
+            <section class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-xl font-bold text-blue-900 mb-2 border-b pb-2"><i class="fas fa-link mr-2"></i>BAGIAN D — Menjodohkan (5 Soal × 5 poin = 25)</h2>
+                <p class="text-sm text-gray-600 mb-6">Pasangkan pernyataan di kolom kiri dengan jawaban yang paling tepat di kolom kanan menggunakan dropdown.</p>
+
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                        <thead class="bg-blue-100 text-blue-900">
+                            <tr>
+                                <th class="py-3 px-4 text-left font-bold border-b w-12">No</th>
+                                <th class="py-3 px-4 text-left font-bold border-b">Pernyataan</th>
+                                <th class="py-3 px-4 text-left font-bold border-b w-64">Jawaban</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700 text-sm">
+                            <tr class="border-b">
+                                <td class="py-3 px-4 font-bold">1</td>
+                                <td class="py-3 px-4">Komponen yang bekerja berdasarkan prinsip bimetal untuk melindungi motor dari beban lebih</td>
+                                <td class="py-3 px-4">
+                                    <select name="j1" class="w-full px-2 py-1 border rounded">
+                                        <option value="">-- Pilih --</option>
+                                        <option value="a">MCB</option>
+                                        <option value="b">TOR</option>
+                                        <option value="c">Kontaktor</option>
+                                        <option value="d">Timer</option>
+                                        <option value="e">VFD</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3 px-4 font-bold">2</td>
+                                <td class="py-3 px-4">Metode pengasutan yang menurunkan arus starting hingga 1/3 dengan mengubah konfigurasi lilitan dari Star ke Delta</td>
+                                <td class="py-3 px-4">
+                                    <select name="j2" class="w-full px-2 py-1 border rounded">
+                                        <option value="">-- Pilih --</option>
+                                        <option value="a">DOL</option>
+                                        <option value="b">Star-Delta</option>
+                                        <option value="c">Soft Starter</option>
+                                        <option value="d">Auto-trafo</option>
+                                        <option value="e">PLC</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3 px-4 font-bold">3</td>
+                                <td class="py-3 px-4">Motor 1 fasa paling sederhana yang menggunakan cincin hubung singkat (shading coil) tanpa kapasitor</td>
+                                <td class="py-3 px-4">
+                                    <select name="j3" class="w-full px-2 py-1 border rounded">
+                                        <option value="">-- Pilih --</option>
+                                        <option value="a">Split Phase</option>
+                                        <option value="b">Capacitor Start</option>
+                                        <option value="c">PSC</option>
+                                        <option value="d">Shaded Pole</option>
+                                        <option value="e">Cap. Start-Run</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3 px-4 font-bold">4</td>
+                                <td class="py-3 px-4">Perangkat elektronik yang mengubah frekuensi dan tegangan untuk mengontrol kecepatan motor secara presisi</td>
+                                <td class="py-3 px-4">
+                                    <select name="j4" class="w-full px-2 py-1 border rounded">
+                                        <option value="">-- Pilih --</option>
+                                        <option value="a">TRIAC</option>
+                                        <option value="b">DIAC</option>
+                                        <option value="c">VFD</option>
+                                        <option value="d">PLC</option>
+                                        <option value="e">Timer</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 font-bold">5</td>
+                                <td class="py-3 px-4">Alat ukur yang digunakan untuk mengukur tahanan isolasi kabel/panel dengan tegangan DC tinggi (500V/1000V)</td>
+                                <td class="py-3 px-4">
+                                    <select name="j5" class="w-full px-2 py-1 border rounded">
+                                        <option value="">-- Pilih --</option>
+                                        <option value="a">Multimeter</option>
+                                        <option value="b">Clamp Meter</option>
+                                        <option value="c">Megger</option>
+                                        <option value="d">Earth Tester</option>
+                                        <option value="e">Oscilloscope</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Hasil & Tombol Aksi -->
+            <section class="bg-blue-50 p-6 rounded-xl border border-blue-200 text-center">
+                <h2 class="text-xl font-bold text-blue-900 mb-4">📊 Hasil Ujian Tengah Semester</h2>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-white p-4 rounded-lg">
+                        <p class="text-sm text-gray-600">Total Skor</p>
+                        <div id="totalSkor" class="text-4xl font-extrabold text-blue-700">0</div>
+                        <p class="text-xs text-gray-500">dari 375 poin</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg">
+                        <p class="text-sm text-gray-600">Detail Per Bagian</p>
+                        <div id="detailSkor" class="text-sm text-gray-700 text-left mt-2">
+                            <p>• Bagian A (PG): 0/200</p>
+                            <p>• Bagian B (PG Kompleks): 0/100</p>
+                            <p>• Bagian C (B/S): 0/25</p>
+                            <p>• Bagian D (Menjodohkan): 0/25</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="gradeDisplay" class="mb-4 text-lg font-bold"></div>
+                
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button type="button" onclick="hitungNilaiUTS()" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                        <i class="fas fa-paper-plane mr-2"></i>KIRIM JAWABAN & LIHAT HASIL
+                    </button>
+                    <button type="button" onclick="window.print()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                        <i class="fas fa-file-pdf mr-2"></i>UNDUH PDF LENGKAP
+                    </button>
+                    <button type="button" onclick="kirimEmailUTS()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                        <i class="fas fa-envelope mr-2"></i>KIRIM EMAIL GURU
+                    </button>
+                    <button type="button" onclick="resetFormUTS()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                        <i class="fas fa-redo mr-2"></i>MULAI ULANG
+                    </button>
+                </div>
+            </section>
+
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-blue-200 py-8 text-center mt-12">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">&copy; 2026 UKI SAPUTRA - SMK N 1 Koto Balingka. Hak Cipta Dilindungi.</p>
+            <p class="text-sm mb-3">Ujian Tengah Semester — Instalasi Motor Listrik Kelas XI Semester I</p>
+            <a href="respon-pembaca.html" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-2 px-6 rounded-full transition duration-300 text-sm">
+                <i class="fas fa-paper-plane mr-1"></i> Kirim Respon tentang Ujian Ini
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Fungsi UTS -->
+    <script>
+        // Kunci Jawaban Bagian A: Pilihan Ganda
+        const kunciPG = {
+            q1: 'b', q2: 'b', q3: 'a', q4: 'b', q5: 'c',
+            q6: 'b', q7: 'b', q8: 'c', q9: 'c', q10: 'c',
+            q11: 'b', q12: 'b', q13: 'c', q14: 'b', q15: 'c',
+            q16: 'b', q17: 'b', q18: 'b', q19: 'b', q20: 'b'
+        };
+
+        // Kunci Jawaban Bagian B: Pilihan Ganda Kompleks (array jawaban benar)
+        const kunciKompleks = {
+            c1: ['a', 'c', 'd'],          // DOL, Berurutan, Fwd-Rev
+            c2: ['a', 'b', 'c', 'd'],    // PS, CPU, Input, Output
+            c3: ['a', 'b', 'c', 'd'],    // KM1, KM2, KM3, Timer
+            c4: ['a', 'b', 'c', 'd', 'e'], // Semua jenis motor 1 fasa
+            c5: ['a', 'b', 'c'],          // TRIAC, Pole, VFD
+            c6: ['a', 'b', 'c'],          // MCB, TOR, Fuse
+            c7: ['a', 'b', 'c'],          // 5-10x In, motor umum, tahan starting
+            c8: ['a', 'b', 'c', 'e'],    // Visual, Megger, Kontinuitas, Grounding
+            c9: ['a', 'b', 'c', 'd', 'e'], // Semua warna standar PUIL
+            c10: ['a', 'b', 'c', 'e']     // Efisiensi, presisi, soft start, torsi baik
+        };
+
+        // Kunci Jawaban Bagian C: Benar/Salah
+        const kunciBS = {
+            bs1: 'benar',   // Star-Delta: arus & torsi 1/3
+            bs2: 'salah',   // Cap Start + centrifugal TIDAK boleh ke VFD
+            bs3: 'salah',   // TOR untuk overload, BUKAN short circuit
+            bs4: 'benar',   // Kabel serabut WAJIB ferrule
+            bs5: 'benar'    // Double Revolving Field
+        };
+
+        // Kunci Jawaban Bagian D: Menjodohkan
+        const kunciJodoh = {
+            j1: 'b',   // TOR - bimetal
+            j2: 'b',   // Star-Delta
+            j3: 'd',   // Shaded Pole
+            j4: 'c',   // VFD
+            j5: 'c'    // Megger
+        };
+
+        function hitungNilaiUTS() {
+            const form = document.getElementById('utsForm');
+            if (!form.checkValidity()) {
+                alert("⚠️ Mohon lengkapi semua data siswa dan jawab SEMUA soal terlebih dahulu!");
+                form.reportValidity();
+                return;
+            }
+
+            // === BAGIAN A: PG (20 soal × 10 = 200) ===
+            let skorA = 0;
+            let benarA = 0;
+            for (let i = 1; i <= 20; i++) {
+                const j = document.querySelector(`input[name="q${i}"]:checked`);
+                if (j && j.value === kunciPG[`q${i}`]) {
+                    benarA++;
+                    skorA += 10;
+                }
+            }
+
+            // === BAGIAN B: PG Kompleks (10 soal × 10 = 100) ===
+            let skorB = 0;
+            let benarB = 0;
+            for (let i = 1; i <= 10; i++) {
+                const checkboxes = document.querySelectorAll(`input[name="c${i}"]:checked`);
+                const jawabanSiswa = Array.from(checkboxes).map(cb => cb.value).sort();
+                const jawabanBenar = kunciKompleks[`c${i}`].sort();
+                
+                // Skor penuh hanya jika jawaban sama persis
+                if (JSON.stringify(jawabanSiswa) === JSON.stringify(jawabanBenar)) {
+                    benarB++;
+                    skorB += 10;
+                }
+            }
+
+            // === BAGIAN C: Benar/Salah (5 soal × 5 = 25) ===
+            let skorC = 0;
+            let benarC = 0;
+            for (let i = 1; i <= 5; i++) {
+                const j = document.querySelector(`input[name="bs${i}"]:checked`);
+                if (j && j.value === kunciBS[`bs${i}`]) {
+                    benarC++;
+                    skorC += 5;
+                }
+            }
+
+            // === BAGIAN D: Menjodohkan (5 soal × 5 = 25) ===
+            let skorD = 0;
+            let benarD = 0;
+            for (let i = 1; i <= 5; i++) {
+                const j = document.querySelector(`select[name="j${i}"]`);
+                if (j && j.value === kunciJodoh[`j${i}`]) {
+                    benarD++;
+                    skorD += 5;
+                }
+            }
+
+            // Total Skor
+            const totalSkor = skorA + skorB + skorC + skorD;
+            const totalMaks = 375;
+            const persentase = ((totalSkor / totalMaks) * 100).toFixed(1);
+
+            // Grade
+            let grade = "";
+            let predikat = "";
+            let warna = "";
+            if (persentase >= 90) { grade = "A"; predikat = "Sangat Baik"; warna = "text-green-600"; }
+            else if (persentase >= 80) { grade = "B"; predikat = "Baik"; warna = "text-blue-600"; }
+            else if (persentase >= 70) { grade = "C"; predikat = "Cukup"; warna = "text-yellow-600"; }
+            else if (persentase >= 60) { grade = "D"; predikat = "Kurang"; warna = "text-orange-600"; }
+            else { grade = "E"; predikat = "Sangat Kurang — Perlu Remedial"; warna = "text-red-600"; }
+
+            // Tampilkan Hasil
+            document.getElementById('totalSkor').innerText = totalSkor;
+            document.getElementById('detailSkor').innerHTML = `
+                <p>• Bagian A (PG): <strong>${skorA}/200</strong> (${benarA}/20 benar)</p>
+                <p>• Bagian B (PG Kompleks): <strong>${skorB}/100</strong> (${benarB}/10 benar)</p>
+                <p>• Bagian C (B/S): <strong>${skorC}/25</strong> (${benarC}/5 benar)</p>
+                <p>• Bagian D (Menjodohkan): <strong>${skorD}/25</strong> (${benarD}/5 benar)</p>
+                <p class="mt-2 font-bold">Persentase: ${persentase}%</p>
+            `;
+            document.getElementById('gradeDisplay').innerHTML = `
+                <span class="${warna}">Grade: ${grade} — ${predikat}</span>
+            `;
+
+            document.getElementById('totalSkor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            alert(`✅ Jawaban UTS berhasil dikirim!\n\nTotal Skor: ${totalSkor}/${totalMaks} (${persentase}%)\nGrade: ${grade} (${predikat})\n\nDetail:\n• Bagian A: ${skorA}/200\n• Bagian B: ${skorB}/100\n• Bagian C: ${skorC}/25\n• Bagian D: ${skorD}/25`);
+        }
+
+        function kirimEmailUTS() {
+            const nama = document.querySelector('input[name="nama"]').value || "Siswa";
+            const nis = document.querySelector('input[name="nis"]').value || "-";
+            const kelas = document.querySelector('input[name="kelas"]').value || "-";
+            const totalSkor = document.getElementById('totalSkor').innerText;
+            
+            if (totalSkor === "0") {
+                alert("⚠️ Silakan hitung nilai terlebih dahulu dengan menekan tombol 'KIRIM JAWABAN & LIHAT HASIL'!");
+                return;
+            }
+
+            const subject = `Hasil UTS Instalasi Motor Listrik - ${nama} (${nis})`;
+            const body = `Yth. Bapak UKI SAPUTRA,\n\nBerikut adalah hasil Ujian Tengah Semester (UTS) saya:\n\nNama: ${nama}\nNIS: ${nis}\nKelas: ${kelas}\nMata Pelajaran: Instalasi Motor Listrik\nMateri UTS: Pertemuan 1–7\n\nTotal Skor: ${totalSkor}/375\n\nSaya telah menyelesaikan seluruh soal UTS:\n• Bagian A: Pilihan Ganda (20 soal)\n• Bagian B: Pilihan Ganda Kompleks (10 soal)\n• Bagian C: Benar/Salah (5 soal)\n• Bagian D: Menjodohkan (5 soal)\n\nTerima kasih.`;
+            
+            window.location.href = `mailto:trauky@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function resetFormUTS() {
+            if(confirm("⚠️ Apakah Anda yakin ingin menghapus semua jawaban dan mulai ulang UTS?")) {
+                document.getElementById('utsForm').reset();
+                document.getElementById('totalSkor').innerText = "0";
+                document.getElementById('detailSkor').innerHTML = `
+                    <p>• Bagian A (PG): 0/200</p>
+                    <p>• Bagian B (PG Kompleks): 0/100</p>
+                    <p>• Bagian C (B/S): 0/25</p>
+                    <p>• Bagian D (Menjodohkan): 0/25</p>
+                `;
+                document.getElementById('gradeDisplay').innerHTML = "";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

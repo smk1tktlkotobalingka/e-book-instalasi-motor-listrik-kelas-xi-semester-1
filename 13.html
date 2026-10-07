@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 13: Perancangan Proyek Instalasi Motor Listrik (Studi Kasus) - Instalasi Motor Listrik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .highlight-box { border-left: 4px solid #2563eb; background-color: #eff6ff; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .tip-box { border-left: 4px solid #16a34a; background-color: #f0fdf4; }
+        .formula-box { background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 0.5rem; font-family: 'Courier New', monospace; }
+        .project-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .project-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .phase-badge { display: inline-block; padding: 3px 10px; border-radius: 9999px; font-size: 0.7rem; font-weight: bold; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans" id="top">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl font-bold tracking-wide">INSTALASI MOTOR LISTRIK</div>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0">
+                <a href="index.html" class="hover:text-yellow-400 transition"><i class="fas fa-home mr-1"></i> Beranda</a>
+                <a href="index.html#tentang" class="hover:text-yellow-400 transition"><i class="fas fa-info-circle mr-1"></i> Tentang</a>
+                <a href="index.html#daftar-isi" class="hover:text-yellow-400 transition"><i class="fas fa-list mr-1"></i> Daftar Bab</a>
+                <a href="index.html#kontak" class="hover:text-yellow-400 transition"><i class="fas fa-user mr-1"></i> Penulis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Chapter -->
+    <header class="bg-gradient-to-r from-emerald-800 to-emerald-600 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="bg-yellow-500 text-emerald-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pertemuan 13 — Bab 6: Proyek Akhir & Evaluasi</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-4 mb-2">Perancangan Proyek Instalasi Motor Listrik (Studi Kasus)</h1>
+            <p class="text-emerald-100 text-lg max-w-3xl mx-auto">
+                Mempelajari metodologi perancangan proyek instalasi motor listrik secara komprehensif — mulai dari analisis kebutuhan, perhitungan daya, pemilihan komponen, pembuatan diagram teknis, penyusunan RAB, hingga manajemen proyek — melalui studi kasus nyata di industri dan bangunan komersial.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <a href="12.html" class="bg-gray-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-600 transition border border-gray-500"><i class="fas fa-arrow-left mr-1"></i>Pertemuan 12</a>
+                <a href="#materi-inti" class="bg-white text-emerald-900 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition">Mulai Membaca</a>
+                <a href="14.html" class="bg-emerald-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-emerald-600 transition border border-emerald-500">Pertemuan 14 →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl" id="materi-inti">
+        
+        <!-- Pendahuluan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-emerald-900 mb-4 border-b-2 border-emerald-200 pb-2">Pendahuluan</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Setelah melewati 12 pertemuan yang membekali siswa dengan pengetahuan teoretis dan praktis tentang pengasutan motor, kontrol PLC, motor 1 fasa, komponen panel, teknik pengkabelan, K3, pemeliharaan, troubleshooting, dan pengukuran kinerja — kini saatnya mengintegrasikan seluruh kompetensi tersebut ke dalam sebuah <strong>proyek instalasi motor listrik yang utuh</strong>.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Di dunia industri nyata, seorang teknisi listrik tidak hanya dituntut mampu merangkai satu panel atau memperbaiki satu motor. Ia harus mampu <strong>merancang sistem instalasi motor secara menyeluruh</strong> — mulai dari menerima spesifikasi kebutuhan klien, melakukan survei lapangan, menghitung beban, memilih komponen, menggambar diagram teknis, menyusun anggaran, hingga merencanakan jadwal pelaksanaan. Kompetensi ini yang membedakan <em>teknisi pelaksana</em> dengan <em>teknisi perancang</em> — dan yang terakhir memiliki nilai profesional jauh lebih tinggi.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Pada pertemuan ini, siswa akan mempelajari metodologi perancangan proyek instalasi motor listrik melalui pendekatan <em>project-based learning</em>. Materi mencakup 7 tahap perancangan: analisis kebutuhan, perhitungan daya, pemilihan komponen, pembuatan diagram, penyusunan RAB, perencanaan jadwal, dan dokumentasi teknis. Seluruh tahapan akan diilustrasikan melalui <strong>3 studi kasus nyata</strong>: instalasi motor pompa di gedung bertingkat, instalasi motor konveyor di pabrik, dan instalasi motor HVAC di pusat perbelanjaan.
+            </p>
+        </section>
+
+        <!-- Konsep Kunci -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-emerald-900 mb-4"><i class="fas fa-key text-yellow-500 mr-2"></i>Konsep Kunci</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Perancangan Instalasi (Design Engineering)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Proses sistematis untuk merencanakan sistem instalasi motor listrik yang aman, andal, efisien, dan sesuai standar — mulai dari konsep hingga dokumen teknis siap bangun.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Load Analysis (Analisis Beban)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Proses mengidentifikasi, mengklasifikasikan, dan menghitung seluruh beban listrik (motor dan non-motor) dalam suatu sistem untuk menentukan kapasitas sumber daya yang dibutuhkan.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Single-Line Diagram (SLD)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Diagram skematis yang menunjukkan jalur distribusi daya dari sumber ke beban menggunakan simbol standar. Merupakan "peta" utama sistem instalasi listrik.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">RAB (Rencana Anggaran Biaya)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Dokumen yang merinci seluruh biaya proyek: material, peralatan, tenaga kerja, overhead, dan keuntungan. Menjadi dasar penawaran dan pengendalian biaya proyek.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Landasan Teoretis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-emerald-900 mb-6 border-b-2 border-emerald-200 pb-2">13.1 Landasan Teoretis Perancangan Proyek Instalasi</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">13.1.1 Siklus Hidup Proyek Instalasi</h3>
+                    <p class="text-gray-700 mt-2">
+                        Setiap proyek instalasi motor listrik mengikuti siklus hidup yang terdiri dari 5 fase:
+                    </p>
+                    <div class="bg-emerald-50 p-4 rounded-lg mt-3 border-l-4 border-emerald-400">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li><strong>Fase 1 — Inisiasi (Initiation):</strong> Menerima permintaan klien, survei lapangan, identifikasi kebutuhan, studi kelayakan.</li>
+                            <li><strong>Fase 2 — Perencanaan (Planning):</strong> Analisis beban, perhitungan daya, pemilihan komponen, pembuatan diagram, penyusunan RAB dan jadwal.</li>
+                            <li><strong>Fase 3 — Pelaksanaan (Execution):</strong> Pengadaan material, perakitan panel, pemasangan kabel, instalasi motor, wiring.</li>
+                            <li><strong>Fase 4 — Pengujian (Commissioning):</strong> Inspeksi visual, uji isolasi, uji kontinuitas, uji fungsi, uji beban penuh.</li>
+                            <li><strong>Fase 5 — Serah Terima & Pemeliharaan (Handover & Maintenance):</strong> Dokumentasi as-built, pelatihan operator, garansi, jadwal pemeliharaan.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">13.1.2 Standar dan Regulasi yang Berlaku</h3>
+                    <p class="text-gray-700 mt-2">
+                        Perancangan instalasi motor listrik di Indonesia harus mengacu pada:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 ml-4 space-y-1">
+                        <li><strong>PUIL 2011</strong> (Persyaratan Umum Instalasi Listrik) — standar wajib nasional.</li>
+                        <li><strong>SNI 04-0225-2011</strong> — standar instalasi listrik bangunan.</li>
+                        <li><strong>IEC 60364</strong> — standar internasional instalasi listrik bangunan.</li>
+                        <li><strong>IEC 60439</strong> — standar panel distribusi dan kontrol.</li>
+                        <li><strong>IEC 60034</strong> — standar motor listrik.</li>
+                        <li><strong>Permen ESDM No. 12 Tahun 2021</strong> — K3 instalasi listrik.</li>
+                        <li><strong>Peraturan daerah</strong> — IMB, izin instalasi, SLO (Sertifikat Laik Operasi).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7 Tahap Perancangan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-emerald-900 mb-6 border-b-2 border-emerald-200 pb-2">13.2 Tujuh Tahap Perancangan Proyek Instalasi Motor</h2>
+            
+            <div class="space-y-8">
+                <!-- Tahap 1 -->
+                <div class="project-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-emerald-100 text-emerald-700 p-3 rounded-full"><i class="fas fa-clipboard-list text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">Tahap 1: Analisis Kebutuhan & Survei Lapangan</h3>
+                            <span class="phase-badge bg-blue-100 text-blue-800">Fase Perencanaan</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">Langkah pertama dan paling kritis. Kesalahan di tahap ini akan berakibat fatal pada seluruh proyek.</p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Data yang Harus Dikumpulkan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Daftar semua motor (jenis, daya, tegangan, jumlah)</li>
+                                <li>Lokasi pemasangan motor dan panel</li>
+                                <li>Kondisi lingkungan (suhu, kelembaban, debu, korosi)</li>
+                                <li>Sumber daya tersedia (kapasitas trafo, tegangan, fasa)</li>
+                                <li>Jarak dari panel ke motor (untuk perhitungan kabel)</li>
+                                <li>Jenis beban (kontinyu, intermiten, siklik)</li>
+                                <li>Kebutuhan kontrol (manual, otomatis, PLC, VFD)</li>
+                                <li>Standar keselamatan yang berlaku</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Output Tahap 1:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Laporan survei lapangan</li>
+                                <li>Tabel daftar beban motor</li>
+                                <li>Denah lokasi instalasi</li>
+                                <li>Spesifikasi teknis kebutuhan klien</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tahap 2 -->
+                <div class="project-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-yellow-100 text-yellow-700 p-3 rounded-full"><i class="fas fa-calculator text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">Tahap 2: Perhitungan Daya & Arus</h3>
+                            <span class="phase-badge bg-yellow-100 text-yellow-800">Fase Perencanaan</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">Menghitung total daya, arus operasi, arus starting, dan faktor kebutuhan untuk menentukan kapasitas sistem.</p>
+                    <div class="formula-box">
+                        <p><strong>Arus Nominal Motor 3 Fasa:</strong></p>
+                        <p>I<sub>n</sub> = P / (√3 × V × cos φ × η)</p>
+                        <p class="mt-2"><strong>Arus Starting (DOL):</strong></p>
+                        <p>I<sub>st</sub> = 5–7 × I<sub>n</sub></p>
+                        <p class="mt-2"><strong>Total Daya Terpasang:</strong></p>
+                        <p>P<sub>total</sub> = Σ P<sub>motor</sub> × Faktor Kebutuhan (Demand Factor)</p>
+                        <p class="mt-2"><strong>Faktor Kebutuhan Khas:</strong></p>
+                        <p>Pompa: 0.7–0.8 | Konveyor: 0.6–0.7 | HVAC: 0.6–0.8</p>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400 mt-3">
+                        <p class="font-semibold text-yellow-900 mb-2">Contoh Perhitungan:</p>
+                        <p class="text-sm text-gray-700">Motor pompa 15 kW, 380V, cos φ = 0.85, η = 0.90</p>
+                        <p class="text-sm text-gray-700">I<sub>n</sub> = 15000 / (1.732 × 380 × 0.85 × 0.90) = <strong>29.8 A</strong></p>
+                        <p class="text-sm text-gray-700">I<sub>st</sub> (DOL) = 6 × 29.8 = <strong>178.8 A</strong></p>
+                        <p class="text-sm text-gray-700">I<sub>st</sub> (Star-Delta) = 178.8 / 3 = <strong>59.6 A</strong></p>
+                    </div>
+                </div>
+
+                <!-- Tahap 3 -->
+                <div class="project-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-purple-100 text-purple-700 p-3 rounded-full"><i class="fas fa-microchip text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">Tahap 3: Pemilihan Komponen</h3>
+                            <span class="phase-badge bg-purple-100 text-purple-800">Fase Perencanaan</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">Memilih semua komponen berdasarkan hasil perhitungan daya dan kondisi operasi.</p>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm border border-gray-200">
+                            <thead class="bg-purple-50">
+                                <tr>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Komponen</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Kriteria Pemilihan</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Contoh (Motor 15 kW)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                <tr class="border-b"><td class="py-2 px-3 font-semibold">MCB/MCCB</td><td class="py-2 px-3">1.25–1.5 × I<sub>n</sub>, tipe C/D</td><td class="py-2 px-3">MCCB 40A, 3P, tipe D</td></tr>
+                                <tr class="border-b"><td class="py-2 px-3 font-semibold">Kontaktor</td><td class="py-2 px-3">≥ 1.25 × I<sub>n</sub>, kategori AC-3</td><td class="py-2 px-3">LC1D38 (38A, AC-3)</td></tr>
+                                <tr class="border-b"><td class="py-2 px-3 font-semibold">TOR</td><td class="py-2 px-3">Setting = 0.95–1.05 × I<sub>n</sub></td><td class="py-2 px-3">LRD32 (23–32A)</td></tr>
+                                <tr class="border-b"><td class="py-2 px-3 font-semibold">Kabel Daya</td><td class="py-2 px-3">I<sub>z</sub> ≥ I<sub>n</sub> × faktor koreksi</td><td class="py-2 px-3">NYY 4×10 mm²</td></tr>
+                                <tr class="border-b"><td class="py-2 px-3 font-semibold">Kabel Kontrol</td><td class="py-2 px-3">Min 1.5 mm²</td><td class="py-2 px-3">NYAF 1.5 mm²</td></tr>
+                                <tr><td class="py-2 px-3 font-semibold">Metode Starting</td><td class="py-2 px-3">Daya ≥ 4 kW → Star-Delta</td><td class="py-2 px-3">Star-Delta otomatis</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tahap 4 -->
+                <div class="project-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-indigo-100 text-indigo-700 p-3 rounded-full"><i class="fas fa-drafting-compass text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">Tahap 4: Pembuatan Diagram Teknis</h3>
+                            <span class="phase-badge bg-indigo-100 text-indigo-800">Fase Perencanaan</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">Menghasilkan dokumen gambar teknis yang menjadi panduan pelaksanaan di lapangan.</p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-indigo-50 p-3 rounded">
+                            <p class="font-bold text-indigo-900">Jenis Diagram yang Dibuat:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li><strong>Single-Line Diagram (SLD):</strong> Peta distribusi daya keseluruhan</li>
+                                <li><strong>Diagram Rangkaian Daya:</strong> Koneksi MCB → Kontaktor → TOR → Motor</li>
+                                <li><strong>Diagram Rangkaian Kontrol:</strong> Logika push button, relay, timer, PLC</li>
+                                <li><strong>Wiring Diagram:</strong> Koneksi kabel point-to-point</li>
+                                <li><strong>Layout Panel:</strong> Tata letak komponen dalam panel</li>
+                                <li><strong>Denah Instalasi:</strong> Lokasi panel, motor, jalur kabel</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Software yang Digunakan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>AutoCAD Electrical</li>
+                                <li>EPLAN Electric P8</li>
+                                <li>SEE Electrical</li>
+                                <li>Zuken E3.series</li>
+                                <li>Microsoft Visio (sederhana)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tahap 5 -->
+                <div class="project-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-pink-100 text-pink-700 p-3 rounded-full"><i class="fas fa-file-invoice-dollar text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">Tahap 5: Penyusunan RAB (Rencana Anggaran Biaya)</h3>
+                            <span class="phase-badge bg-pink-100 text-pink-800">Fase Perencanaan</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">Menghitung seluruh biaya proyek secara detail dan transparan.</p>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm border border-gray-200">
+                            <thead class="bg-pink-50">
+                                <tr>
+                                    <th class="py-2 px-3 text-left font-bold border-b">No</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Komponen Biaya</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Persentase Khas</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                <tr class="border-b"><td class="py-2 px-3">1</td><td class="py-2 px-3">Material utama (motor, panel, kabel, komponen)</td><td class="py-2 px-3">50–65%</td></tr>
+                                <tr class="border-b"><td class="py-2 px-3">2</td><td class="py-2 px-3">Material pendukung (ducting, terminal, label, baut)</td><td class="py-2 px-3">5–10%</td></tr>
+                                <tr class="border-b"><td class="py-2 px-3">3</td><td class="py-2 px-3">Tenaga kerja (teknisi, helper, supervisor)</td><td class="py-2 px-3">15–25%</td></tr>
+                                <tr class="border-b"><td class="py-2 px-3">4</td><td class="py-2 px-3">Alat kerja & sewa peralatan</td><td class="py-2 px-3">2–5%</td></tr>
+                                <tr class="border-b"><td class="py-2 px-3">5</td><td class="py-2 px-3">Transportasi & mobilisasi</td><td class="py-2 px-3">2–5%</td></tr>
+                                <tr class="border-b"><td class="py-2 px-3">6</td><td class="py-2 px-3">Overhead & manajemen proyek</td><td class="py-2 px-3">3–5%</td></tr>
+                                <tr><td class="py-2 px-3">7</td><td class="py-2 px-3">Keuntungan kontraktor</td><td class="py-2 px-3">10–15%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tahap 6 -->
+                <div class="project-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-cyan-100 text-cyan-700 p-3 rounded-full"><i class="fas fa-calendar-alt text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">Tahap 6: Perencanaan Jadwal (Timeline)</h3>
+                            <span class="phase-badge bg-cyan-100 text-cyan-800">Fase Perencanaan</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">Menyusun jadwal pelaksanaan proyek menggunakan Gantt Chart atau Critical Path Method (CPM).</p>
+                    <div class="bg-cyan-50 p-4 rounded-lg border-l-4 border-cyan-400">
+                        <p class="font-semibold text-cyan-900 mb-2">Contoh Timeline Proyek Instalasi 5 Motor (4 minggu):</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                            <li><strong>Minggu 1:</strong> Pengadaan material, perakitan panel di workshop</li>
+                            <li><strong>Minggu 2:</strong> Pemasangan panel di lokasi, penarikan kabel daya & kontrol</li>
+                            <li><strong>Minggu 3:</strong> Instalasi motor, terminasi kabel, grounding</li>
+                            <li><strong>Minggu 4:</strong> Commissioning, uji fungsi, uji beban, serah terima</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tahap 7 -->
+                <div class="project-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <div class="flex items-start gap-4 mb-3">
+                        <div class="bg-orange-100 text-orange-700 p-3 rounded-full"><i class="fas fa-folder-open text-2xl"></i></div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-bold text-gray-800">Tahap 7: Dokumentasi Teknis</h3>
+                            <span class="phase-badge bg-orange-100 text-orange-800">Fase Perencanaan & Serah Terima</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-3">Menyusun seluruh dokumen teknis yang menjadi deliverable proyek.</p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-orange-50 p-3 rounded">
+                            <p class="font-bold text-orange-900">Dokumen yang Diserahkan:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Gambar as-built (sesuai kondisi aktual)</li>
+                                <li>Buku manual operasi & pemeliharaan</li>
+                                <li>Daftar komponen & spare part</li>
+                                <li>Laporan uji commissioning</li>
+                                <li>Sertifikat garansi</li>
+                                <li>Jadwal pemeliharaan preventif</li>
+                                <li>Log book panel</li>
+                            </ul>
+                        </div>
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Mengapa Dokumentasi Penting?</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Memudahkan troubleshooting di masa depan</li>
+                                <li>Dasar untuk modifikasi/ekspansi</li>
+                                <li>Persyaratan audit & sertifikasi</li>
+                                <li>Referensi untuk pelatihan operator</li>
+                                <li>Bukti kepatuhan terhadap standar</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Studi Kasus -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-emerald-900 mb-6 border-b-2 border-emerald-200 pb-2">13.3 Studi Kasus Perancangan Proyek</h2>
+            
+            <div class="space-y-8">
+                <!-- Studi Kasus 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-emerald-600">
+                    <h3 class="text-lg font-bold text-emerald-900 mb-3"><i class="fas fa-building text-emerald-600 mr-2"></i>Studi Kasus 1: Instalasi Motor Pompa Gedung Bertingkat 10 Lantai</h3>
+                    <div class="bg-gray-50 p-4 rounded-lg mb-3">
+                        <p class="font-bold text-gray-800 mb-2">Spesifikasi Klien:</p>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                            <li>Gedung perkantoran 10 lantai di Padang</li>
+                            <li>Membutuhkan sistem pompa air bersih (transfer pump + booster pump)</li>
+                            <li>Transfer pump: 2 unit × 7.5 kW (1 standby), dari ground tank ke roof tank</li>
+                            <li>Booster pump: 2 unit × 5.5 kW (1 standby), dari roof tank ke lantai</li>
+                            <li>Sumber daya: 3 fasa 380V, kapasitas trafo 200 kVA</li>
+                            <li>Kontrol: otomatis dengan level sensor (float switch)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-emerald-50 p-4 rounded-lg">
+                        <p class="font-bold text-emerald-900 mb-2">Solusi Perancangan:</p>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                            <li><strong>Metode starting:</strong> Star-Delta untuk transfer pump (7.5 kW), DOL untuk booster pump (5.5 kW)</li>
+                            <li><strong>Panel:</strong> 1 panel utama (MDP) + 2 panel motor (MCC) — 1 untuk transfer, 1 untuk booster</li>
+                            <li><strong>Kontrol:</strong> Auto/Manual selector + float switch + alternation relay (pompa bergantian)</li>
+                            <li><strong>Proteksi:</strong> MCCB incoming, MCB per motor, TOR, phase failure relay</li>
+                            <li><strong>Kabel:</strong> NYY 4×6 mm² (transfer pump), NYY 4×4 mm² (booster pump)</li>
+                            <li><strong>Estimasi RAB:</strong> ±Rp 85 juta (termasuk panel, kabel, motor, instalasi)</li>
+                            <li><strong>Timeline:</strong> 3 minggu</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Studi Kasus 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-600">
+                    <h3 class="text-lg font-bold text-blue-900 mb-3"><i class="fas fa-industry text-blue-600 mr-2"></i>Studi Kasus 2: Instalasi Motor Konveyor Pabrik Roti</h3>
+                    <div class="bg-gray-50 p-4 rounded-lg mb-3">
+                        <p class="font-bold text-gray-800 mb-2">Spesifikasi Klien:</p>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                            <li>Pabrik roti di Bukittinggi, produksi 10.000 loaf/hari</li>
+                            <li>3 unit konveyor: mixing (3 kW), proofing (2.2 kW), baking (4 kW)</li>
+                            <li>Semua motor 3 fasa 380V, operasi 16 jam/hari</li>
+                            <li>Kontrol: berurutan (mixing → proofing → baking), dengan PLC</li>
+                            <li>Lingkungan: suhu 35–45°C, kelembaban tinggi, debu tepung</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <p class="font-bold text-blue-900 mb-2">Solusi Perancangan:</p>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                            <li><strong>Metode starting:</strong> DOL untuk semua (daya < 4 kW)</li>
+                            <li><strong>Kontrol:</strong> PLC (Mitsubishi FX3U) untuk logika sequential + HMI touchscreen</li>
+                            <li><strong>Panel:</strong> IP54 (debu & air) dengan filter ventilasi</li>
+                            <li><strong>Proteksi:</strong> MCB tipe C, TOR kelas 20, emergency stop di setiap konveyor</li>
+                            <li><strong>Fitur khusus:</strong> Interlock antar konveyor, alarm gangguan, counter produksi</li>
+                            <li><strong>Estimasi RAB:</strong> ±Rp 120 juta (termasuk PLC, HMI, panel IP54)</li>
+                            <li><strong>Timeline:</strong> 4 minggu</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Studi Kasus 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-purple-600">
+                    <h3 class="text-lg font-bold text-purple-900 mb-3"><i class="fas fa-snowflake text-purple-600 mr-2"></i>Studi Kasus 3: Instalasi Motor HVAC Pusat Perbelanjaan</h3>
+                    <div class="bg-gray-50 p-4 rounded-lg mb-3">
+                        <p class="font-bold text-gray-800 mb-2">Spesifikasi Klien:</p>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                            <li>Mall 3 lantai di Padang, luas 15.000 m²</li>
+                            <li>Chiller: 2 unit × 30 kW (1 standby)</li>
+                            <li>AHU (Air Handling Unit): 6 unit × 7.5 kW</li>
+                            <li>Exhaust fan: 12 unit × 1.5 kW (1 fasa)</li>
+                            <li>Kontrol: BMS (Building Management System) dengan VFD</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <p class="font-bold text-purple-900 mb-2">Solusi Perancangan:</p>
+                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
+                            <li><strong>Chiller:</strong> Soft starter (30 kW terlalu besar untuk Star-Delta)</li>
+                            <li><strong>AHU:</strong> VFD 7.5 kW untuk kontrol kecepatan variabel (hemat energi 30%)</li>
+                            <li><strong>Exhaust fan:</strong> DOL dengan kontrol on/off dari BMS</li>
+                            <li><strong>Panel:</strong> 1 MDP + 3 MCC (1 per lantai) + panel VFD</li>
+                            <li><strong>Integrasi:</strong> Semua motor terkoneksi ke BMS via Modbus RTU</li>
+                            <li><strong>Estimasi RAB:</strong> ±Rp 850 juta</li>
+                            <li><strong>Timeline:</strong> 12 minggu</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Praktis -->
+        <section class="mb-12">
+            <div class="tip-box p-6 rounded-r-lg">
+                <h3 class="font-bold text-green-800 mb-2"><i class="fas fa-tools mr-2"></i>Tips Praktis Perancangan Proyek untuk Siswa SMK</h3>
+                <ul class="list-disc list-inside text-gray-800 space-y-2 text-sm">
+                    <li><strong>Selalu mulai dari kebutuhan klien:</strong> Jangan merancang berdasarkan asumsi — tanyakan, survei, dan dokumentasikan kebutuhan aktual.</li>
+                    <li><strong>Over-design sedikit lebih baik daripada under-design:</strong> Berikan margin 10–20% pada kapasitas komponen untuk mengantisipasi ekspansi di masa depan.</li>
+                    <li><strong>Pertimbangkan lingkungan:</strong> Motor di ruang terbuka, area basah, atau berdebu memerlukan spesifikasi berbeda (IP rating, kelas isolasi).</li>
+                    <li><strong>Hitung voltage drop:</strong> Untuk kabel panjang (> 50m), pastikan voltage drop ≤ 5% dari tegangan nominal.</li>
+                    <li><strong>Gunakan komponen standar:</strong> Pilih merek dan tipe yang mudah didapat di pasaran lokal untuk memudahkan maintenance.</li>
+                    <li><strong>Dokumentasikan SEMUA:</strong> Setiap keputusan desain harus tercatat dengan alasannya — ini penting saat ada pertanyaan di kemudian hari.</li>
+                    <li><strong>Review oleh senior:</strong> Sebelum dokumen dikirim ke klien, minta review dari teknisi senior atau guru pembimbing.</li>
+                    <li><strong>Belajar dari proyek nyata:</strong> Kunjungi instalasi yang sudah beroperasi, pelajari desainnya, dan catat hal-hal yang bisa diperbaiki.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Refleksi -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-emerald-900 mb-4"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Refleksi untuk Siswa SMK</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Perancangan proyek instalasi motor listrik adalah puncak dari seluruh kompetensi yang telah dipelajari selama 12 pertemuan sebelumnya. Di sinilah semua pengetahuan — dari prinsip pengasutan, logika PLC, pemilihan komponen, teknik pengkabelan, K3, hingga pengukuran kinerja — diintegrasikan menjadi sebuah karya rekayasa yang nyata. Sebagai siswa SMK, Anda mungkin merasa bahwa perancangan proyek adalah "urusan insinyur". Namun, di industri modern, batas antara teknisi dan engineer semakin kabur. Teknisi yang mampu merancang sistem instalasi — bukan hanya memasang — memiliki karir yang jauh lebih cemerlang. Mulailah dari proyek kecil: rancang instalasi motor untuk bengkel sekolah Anda, hitung kebutuhannya, buat diagramnya, dan susun RAB-nya. Dari situlah kompetensi perancangan Anda akan tumbuh.
+            </p>
+        </section>
+
+        <!-- Kesimpulan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-emerald-900 mb-4 border-b-2 border-emerald-200 pb-2">Kesimpulan</h2>
+            <p class="text-gray-700 leading-relaxed">
+                Perancangan proyek instalasi motor listrik adalah proses sistematis yang mencakup 7 tahap utama: analisis kebutuhan, perhitungan daya, pemilihan komponen, pembuatan diagram teknis, penyusunan RAB, perencanaan jadwal, dan dokumentasi. Setiap tahap saling terkait dan harus dilakukan dengan cermat berdasarkan standar PUIL 2011, IEC, dan SNI. Melalui tiga studi kasus (gedung bertingkat, pabrik roti, pusat perbelanjaan), siswa dapat melihat bagaimana teori yang dipelajari di kelas diterjemahkan menjadi solusi rekayasa nyata dengan berbagai tingkat kompleksitas. Kemampuan merancang proyek instalasi merupakan kompetensi tingkat tinggi yang mengintegrasikan seluruh pengetahuan teknis, ekonomi, dan manajerial — dan menjadi pembeda utama antara teknisi pelaksana dengan teknisi perancang profesional.
+            </p>
+        </section>
+
+        <!-- Daftar Pustaka -->
+        <section class="mb-16">
+            <h3 class="text-xl font-bold text-emerald-900 mb-4"><i class="fas fa-book text-yellow-500 mr-2"></i>Daftar Pustaka</h3>
+            <ul class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                <li>PUIL 2011. <em>Persyaratan Umum Instalasi Listrik 2011</em>. Jakarta: Badan Standardisasi Nasional.</li>
+                <li>SNI 04-0225-2011. <em>Persyaratan Umum Instalasi Listrik 2011</em>. Jakarta: BSN.</li>
+                <li>IEC 60364. (2018). <em>Low-voltage electrical installations</em>. International Electrotechnical Commission.</li>
+                <li>IEC 60439. (2020). <em>Low-voltage switchgear and controlgear assemblies</em>. International Electrotechnical Commission.</li>
+                <li>Zuraida, dkk. (2021). <em>Instalasi Motor Listrik Jilid 1 untuk SMK</em>. Jakarta: Direktorat Pembinaan SMK.</li>
+                <li>Hart, D. W. (2011). <em>Power Electronics</em>. New York: McGraw-Hill.</li>
+                <li>Manual Book Schneider Electric, ABB, Siemens — untuk spesifikasi komponen dan panduan perancangan.</li>
+                <li>EPRI. (2019). <em>Electric Motor Systems: Maintenance and Reliability Guide</em>. Palo Alto: EPRI.</li>
+            </ul>
+        </section>
+
+        <!-- Navigasi Bawah -->
+        <div class="flex justify-between items-center border-t pt-6 mb-16 flex-wrap gap-3">
+            <a href="12.html" class="text-emerald-600 hover:text-emerald-800 font-semibold"><i class="fas fa-arrow-left mr-1"></i> Pertemuan 12</a>
+            <a href="#top" class="text-gray-500 hover:text-gray-700 font-semibold"><i class="fas fa-arrow-up mr-1"></i> Ke Atas</a>
+            <a href="14.html" class="text-emerald-600 hover:text-emerald-800 font-semibold">Pertemuan 14: Implementasi Proyek <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN UJI FORMATIF -->
+        <!-- ========================================================= -->
+        <section id="uji-formatif" class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-emerald-900">📋 Uji Formatif 13: Perancangan Proyek Instalasi Motor Listrik</h2>
+                <p class="text-gray-600 mt-2">Materi: Metodologi perancangan, analisis beban, perhitungan daya, pemilihan komponen, RAB, dan studi kasus.</p>
+                <p class="text-red-600 text-sm font-semibold mt-2">⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu!</p>
+            </div>
+
+            <form id="quizForm" class="space-y-8">
+                <!-- Data Siswa -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-emerald-900 mb-4 border-b pb-2">📋 Data Siswa</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Nama Lengkap</label>
+                            <input type="text" name="nama" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-emerald-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* NIS (Nomor Induk Siswa)</label>
+                            <input type="text" name="nis" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-emerald-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Tanggal Ujian</label>
+                            <input type="date" name="tanggal" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-emerald-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Kelas</label>
+                            <input type="text" name="kelas" placeholder="Contoh: XI TITL 1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-emerald-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Semester</label>
+                            <select name="semester" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-emerald-500 outline-none">
+                                <option value="">Pilih Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian A: Pilihan Ganda -->
+                <div>
+                    <h3 class="text-lg font-bold text-emerald-900 mb-4 border-b pb-2">📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon lengkapi semua 10 soal pilihan ganda!</p>
+                    
+                    <div class="space-y-6 text-gray-800">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">1. Tahap PERTAMA dalam perancangan proyek instalasi motor listrik adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q1" value="a" class="mr-2"> a. Pembuatan diagram teknis</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="b" class="mr-2"> b. Analisis kebutuhan dan survei lapangan</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="c" class="mr-2"> c. Penyusunan RAB</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="d" class="mr-2"> d. Pemilihan komponen</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">2. Rumus untuk menghitung arus nominal motor 3 fasa adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q2" value="a" class="mr-2"> a. I<sub>n</sub> = P / (V × cos φ)</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="b" class="mr-2"> b. I<sub>n</sub> = P / (√3 × V × cos φ × η)</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="c" class="mr-2"> c. I<sub>n</sub> = P × V × √3</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="d" class="mr-2"> d. I<sub>n</sub> = V / (P × cos φ)</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">3. Single-Line Diagram (SLD) dalam perancangan instalasi berfungsi sebagai...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q3" value="a" class="mr-2"> a. Gambar detail koneksi kabel point-to-point</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="b" class="mr-2"> b. Peta distribusi daya dari sumber ke beban secara keseluruhan</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="c" class="mr-2"> c. Gambar tata letak komponen dalam panel</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="d" class="mr-2"> d. Denah lokasi bangunan</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">4. Motor 3 fasa 11 kW, 380V, cos φ = 0.85, η = 0.88 memiliki arus nominal sekitar...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q4" value="a" class="mr-2"> a. 12.5 A</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="b" class="mr-2"> b. 22.4 A</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="c" class="mr-2"> c. 35.0 A</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="d" class="mr-2"> d. 50.0 A</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">5. Rating MCB/MCCB untuk motor sebaiknya dipilih sebesar...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q5" value="a" class="mr-2"> a. Sama persis dengan arus nominal motor</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="b" class="mr-2"> b. 1.25–1.5 × arus nominal motor</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="c" class="mr-2"> c. 3 × arus nominal motor</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="d" class="mr-2"> d. 0.5 × arus nominal motor</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">6. Standar nasional Indonesia yang WAJIB dipatuhi dalam perancangan instalasi listrik adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q6" value="a" class="mr-2"> a. ISO 9001</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="b" class="mr-2"> b. PUIL 2011</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="c" class="mr-2"> c. IEEE 802</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="d" class="mr-2"> d. NFPA 70E</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">7. Komponen biaya terbesar dalam RAB proyek instalasi motor listrik biasanya adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q7" value="a" class="mr-2"> a. Tenaga kerja</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="b" class="mr-2"> b. Material utama (motor, panel, kabel, komponen)</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="c" class="mr-2"> c. Transportasi</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="d" class="mr-2"> d. Overhead</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">8. Untuk motor 3 fasa 15 kW pada sumber 380V, metode starting yang PALING TEPAT adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q8" value="a" class="mr-2"> a. DOL (Direct On Line)</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="b" class="mr-2"> b. Star-Delta</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="c" class="mr-2"> c. Shaded pole</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="d" class="mr-2"> d. Capacitor start</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">9. Voltage drop maksimum yang diperbolehkan pada kabel motor menurut PUIL 2011 adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q9" value="a" class="mr-2"> a. 1%</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="b" class="mr-2"> b. 5%</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="c" class="mr-2"> c. 10%</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="d" class="mr-2"> d. 15%</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">10. Dokumen "as-built" dalam proyek instalasi motor listrik adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q10" value="a" class="mr-2"> a. Gambar desain awal sebelum proyek dimulai</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="b" class="mr-2"> b. Gambar yang menunjukkan kondisi aktual instalasi setelah proyek selesai</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="c" class="mr-2"> c. RAB proyek</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="d" class="mr-2"> d. Jadwal pelaksanaan proyek</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Essay -->
+                <div>
+                    <h3 class="text-lg font-bold text-emerald-900 mb-4 border-b pb-2">✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon isi semua 5 soal essay dengan jawaban yang jelas!</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <p class="font-semibold mb-2">1. Uraikan 7 tahap perancangan proyek instalasi motor listrik secara lengkap! Jelaskan output/dokumen yang dihasilkan pada setiap tahap!</p>
+                            <textarea name="essay1" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">2. Sebuah pabrik membutuhkan instalasi 3 motor 3 fasa: Motor A (7.5 kW), Motor B (11 kW), Motor C (4 kW). Semua motor 380V, cos φ = 0.85, η = 0.90. Hitunglah: (a) arus nominal masing-masing motor, (b) arus starting DOL, (c) metode starting yang tepat untuk masing-masing motor, dan (d) total daya terpasang dengan faktor kebutuhan 0.7!</p>
+                            <textarea name="essay2" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">3. Berdasarkan Studi Kasus 1 (gedung bertingkat 10 lantai), rancanglah Single-Line Diagram (SLD) secara naratif untuk sistem pompa air bersih! Jelaskan setiap komponen dari sumber daya hingga motor, termasuk proteksi dan kontrol yang digunakan!</p>
+                            <textarea name="essay3" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">4. Jelaskan komponen-komponen utama dalam RAB proyek instalasi motor listrik! Mengapa over-design 10–20% pada kapasitas komponen disarankan? Berikan contoh konkret dampaknya terhadap biaya dan keandalan sistem!</p>
+                            <textarea name="essay4" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">5. Bandingkan solusi perancangan pada 3 studi kasus (gedung bertingkat, pabrik roti, pusat perbelanjaan)! Analisislah perbedaan pendekatan dalam hal: metode starting, jenis kontrol, spesifikasi panel, dan estimasi biaya. Mengapa setiap kasus memerlukan solusi yang berbeda?</p>
+                            <textarea name="essay5" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hasil & Tombol Aksi -->
+                <div class="bg-emerald-50 p-6 rounded-lg border border-emerald-200 text-center">
+                    <h3 class="text-lg font-bold text-emerald-900 mb-4">📊 Hasil Uji Formatif</h3>
+                    <div id="hasilSkor" class="text-3xl font-extrabold text-emerald-700 mb-2">0</div>
+                    <p id="detailSkor" class="text-sm text-gray-600 mb-6">Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button type="button" onclick="hitungNilai()" class="bg-emerald-900 hover:bg-emerald-800 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-paper-plane mr-2"></i>KIRIM JAWABAN & LIHAT HASIL
+                        </button>
+                        <button type="button" onclick="window.print()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-file-pdf mr-2"></i>UNDUH PDF LENGKAP
+                        </button>
+                        <button type="button" onclick="kirimEmail()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-envelope mr-2"></i>KIRIM EMAIL GURU
+                        </button>
+                        <button type="button" onclick="resetForm()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-redo mr-2"></i>MULAI ULANG
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-blue-200 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">&copy; 2026 UKI SAPUTRA - SMK N 1 Koto Balingka. Hak Cipta Dilindungi.</p>
+            <p class="text-sm mb-3 italic">"Design is not just what it looks like. Design is how it works." — Steve Jobs</p>
+            <a href="respon-pembaca.html" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-2 px-6 rounded-full transition duration-300 text-sm">
+                <i class="fas fa-paper-plane mr-1"></i> Kirim Respon tentang Materi Ini
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Fungsi Uji Formatif -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const kunciJawaban = {
+            q1: 'b', // Analisis kebutuhan & survei
+            q2: 'b', // P / (√3 × V × cos φ × η)
+            q3: 'b', // Peta distribusi daya
+            q4: 'b', // 22.4 A
+            q5: 'b', // 1.25-1.5 × In
+            q6: 'b', // PUIL 2011
+            q7: 'b', // Material utama
+            q8: 'b', // Star-Delta
+            q9: 'b', // 5%
+            q10: 'b' // Gambar kondisi aktual
+        };
+
+        function hitungNilai() {
+            const form = document.getElementById('quizForm');
+            if (!form.checkValidity()) {
+                alert("⚠️ Mohon lengkapi semua data siswa, 10 soal Pilihan Ganda, dan 5 soal Essay terlebih dahulu!");
+                form.reportValidity();
+                return;
+            }
+
+            let skorPG = 0;
+            let benar = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const jawabanSiswa = document.querySelector(`input[name="q${i}"]:checked`);
+                if (jawabanSiswa && jawabanSiswa.value === kunciJawaban[`q${i}`]) {
+                    benar++;
+                    skorPG += 10;
+                }
+            }
+
+            const hasilDiv = document.getElementById('hasilSkor');
+            const detailDiv = document.getElementById('detailSkor');
+            
+            hasilDiv.innerText = skorPG;
+            detailDiv.innerHTML = `Bagian A (PG): <strong>${skorPG}/100</strong> (${benar} jawaban benar) <br> Bagian B (Essay): <strong>Menunggu Penilaian Guru</strong> (Jawaban telah tersimpan di sistem)`;
+            
+            document.getElementById('hasilSkor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            let pesan = `✅ Jawaban berhasil dikirim!\nSkor Sementara Pilihan Ganda: ${skorPG}/100\n\nCatatan: Jawaban Essay akan dinilai oleh guru.`;
+            if (skorPG >= 80) pesan += `\n\n🏗️ Excellent! Anda memahami perancangan proyek instalasi dengan sangat baik!`;
+            else if (skorPG >= 60) pesan += `\n\n👍 Bagus! Terus pelajari studi kasus perancangan proyek.`;
+            else pesan += `\n\n⚠️ Pelajari kembali 7 tahap perancangan dan rumus perhitungan daya.`;
+            
+            alert(pesan);
+        }
+
+        function kirimEmail() {
+            const nama = document.querySelector('input[name="nama"]').value || "Siswa";
+            const nis = document.querySelector('input[name="nis"]').value || "-";
+            const kelas = document.querySelector('input[name="kelas"]').value || "-";
+            
+            const subject = `Hasil Uji Formatif 13 (Perancangan Proyek) - ${nama} (${nis})`;
+            const body = `Yth. Bapak UKI SAPUTRA,\n\nBerikut adalah hasil uji formatif saya:\nNama: ${nama}\nNIS: ${nis}\nKelas: ${kelas}\nMateri: Pertemuan 13 - Perancangan Proyek Instalasi Motor Listrik\n\nSaya telah menyelesaikan Bagian A (Pilihan Ganda) dan Bagian B (Essay) pada Pertemuan 13.\n\nTerima kasih.`;
+            
+            window.location.href = `mailto:trauky@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function resetForm() {
+            if(confirm("⚠️ Apakah Anda yakin ingin menghapus semua jawaban dan mulai ulang?")) {
+                document.getElementById('quizForm').reset();
+                document.getElementById('hasilSkor').innerText = "0";
+                document.getElementById('detailSkor').innerText = "Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

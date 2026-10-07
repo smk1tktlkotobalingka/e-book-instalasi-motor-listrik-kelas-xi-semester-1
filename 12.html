@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 12: Pengukuran Kinerja Motor (Arus, Tegangan, Isolasi) - Instalasi Motor Listrik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .highlight-box { border-left: 4px solid #2563eb; background-color: #eff6ff; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .tip-box { border-left: 4px solid #16a34a; background-color: #f0fdf4; }
+        .formula-box { background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 0.5rem; font-family: 'Courier New', monospace; }
+        .meter-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .meter-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .parameter-badge { display: inline-block; padding: 4px 12px; border-radius: 9999px; font-size: 0.75rem; font-weight: bold; margin: 2px; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans" id="top">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl font-bold tracking-wide">INSTALASI MOTOR LISTRIK</div>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0">
+                <a href="index.html" class="hover:text-yellow-400 transition"><i class="fas fa-home mr-1"></i> Beranda</a>
+                <a href="index.html#tentang" class="hover:text-yellow-400 transition"><i class="fas fa-info-circle mr-1"></i> Tentang</a>
+                <a href="index.html#daftar-isi" class="hover:text-yellow-400 transition"><i class="fas fa-list mr-1"></i> Daftar Bab</a>
+                <a href="index.html#kontak" class="hover:text-yellow-400 transition"><i class="fas fa-user mr-1"></i> Penulis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Chapter -->
+    <header class="bg-gradient-to-r from-indigo-800 to-indigo-600 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="bg-yellow-500 text-indigo-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pertemuan 12 — Bab 5: Pemeliharaan & Troubleshooting</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-4 mb-2">Pengukuran Kinerja Motor Listrik (Arus, Tegangan, Isolasi)</h1>
+            <p class="text-indigo-100 text-lg max-w-3xl mx-auto">
+                Mempelajari teknik pengukuran parameter kinerja motor listrik — arus, tegangan, tahanan isolasi, tahanan lilitan, efisiensi, dan faktor daya — menggunakan alat ukur yang tepat sesuai standar IEEE, NEMA, dan PUIL 2011 untuk menilai kondisi kesehatan motor secara kuantitatif.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <a href="11.html" class="bg-gray-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-600 transition border border-gray-500"><i class="fas fa-arrow-left mr-1"></i>Pertemuan 11</a>
+                <a href="#materi-inti" class="bg-white text-indigo-900 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition">Mulai Membaca</a>
+                <a href="13.html" class="bg-indigo-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-indigo-600 transition border border-indigo-500">Pertemuan 13 →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl" id="materi-inti">
+        
+        <!-- Pendahuluan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-indigo-900 mb-4 border-b-2 border-indigo-200 pb-2">Pendahuluan</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Setelah mempelajari teknik troubleshooting pada pertemuan sebelumnya, siswa kini akan mendalami aspek yang lebih kuantitatif: <strong>pengukuran kinerja motor listrik</strong>. Jika troubleshooting membantu menemukan "di mana" gangguan terjadi, maka pengukuran kinerja menjawab pertanyaan "seberapa baik" motor tersebut beroperasi dan "seberapa sehat" kondisinya secara numerik.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Motor listrik menyumbang sekitar <strong>65–70% konsumsi energi listrik di industri</strong> (menurut data Department of Energy AS). Sebuah motor yang beroperasi dengan efisiensi turun 5% saja dapat menyebabkan pemborosan energi sebesar <strong>puluhan juta rupiah per tahun</strong> untuk motor berdaya besar. Oleh karena itu, kemampuan mengukur dan mengevaluasi kinerja motor secara akurat adalah kompetensi kritis bagi setiap teknisi listrik.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Pada pertemuan ini, siswa akan mempelajari secara komprehensif pengukuran parameter-parameter utama motor listrik: <strong>arus operasi</strong> (termasuk analisis unbalance), <strong>tegangan suplai</strong> (termasuk voltage unbalance menurut NEMA), <strong>tahanan isolasi</strong> (dengan Megger sesuai IEEE 43), <strong>tahanan lilitan</strong>, <strong>efisiensi</strong>, dan <strong>faktor daya (power factor)</strong>. Pemahaman ini akan membekali siswa untuk melakukan "medical check-up" pada motor listrik layaknya dokter yang memeriksa pasien — berdasarkan data, bukan asumsi.
+            </p>
+        </section>
+
+        <!-- Konsep Kunci -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-indigo-900 mb-4"><i class="fas fa-key text-yellow-500 mr-2"></i>Konsep Kunci</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Parameter Kinerja Motor</h4>
+                    <p class="text-sm text-gray-700 mt-1">Besaran-besaran yang menunjukkan kondisi operasi motor: arus (A), tegangan (V), daya (W/HP), efisiensi (%), faktor daya (cos φ), suhu (°C), getaran (mm/s), dan tahanan isolasi (MΩ).</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Efisiensi Motor (η)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Perbandingan daya output (mekanis) terhadap daya input (listrik): η = (P<sub>out</sub> / P<sub>in</sub>) × 100%. Motor standar IE1: 80–85%, IE2: 85–90%, IE3: 90–95%, IE4: >95%.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Faktor Daya (cos φ)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Perbandingan daya aktif (kW) terhadap daya semu (kVA). Motor induksi beroperasi pada cos φ 0.8–0.9 saat beban penuh. cos φ rendah = pemborosan energi & denda dari PLN.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Voltage Unbalance</h4>
+                    <p class="text-sm text-gray-700 mt-1">Ketidaksamaan tegangan antar fasa pada sistem 3 fasa. Unbalance 1% pada tegangan dapat menyebabkan unbalance 6–10% pada arus — merusak motor secara signifikan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Landasan Teoretis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-indigo-900 mb-6 border-b-2 border-indigo-200 pb-2">12.1 Landasan Teoretis Pengukuran Kinerja Motor</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">12.1.1 Persamaan Dasar Motor Induksi</h3>
+                    <p class="text-gray-700 mt-2">
+                        Untuk memahami pengukuran kinerja motor, siswa harus menguasai persamaan-persamaan dasar berikut:
+                    </p>
+                    <div class="formula-box mt-3">
+                        <p><strong>Daya Input (3 fasa):</strong></p>
+                        <p>P<sub>in</sub> = √3 × V × I × cos φ (Watt)</p>
+                        <p class="mt-2"><strong>Efisiensi:</strong></p>
+                        <p>η = (P<sub>out</sub> / P<sub>in</sub>) × 100%</p>
+                        <p class="mt-2"><strong>Daya Output (mekanis):</strong></p>
+                        <p>P<sub>out</sub> = (2π × n × T) / 60 (Watt)</p>
+                        <p class="mt-2"><strong>Dimana:</strong></p>
+                        <p>V = tegangan line (V)</p>
+                        <p>I = arus line (A)</p>
+                        <p>cos φ = faktor daya</p>
+                        <p>n = kecepatan rotor (RPM)</p>
+                        <p>T = torsi (N·m)</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">12.1.2 Standar Efisiensi Motor (IEC 60034-30)</h3>
+                    <p class="text-gray-700 mt-2">
+                        IEC mengklasifikasikan efisiensi motor ke dalam 4 kelas (IE Code):
+                    </p>
+                    <div class="overflow-x-auto mt-3">
+                        <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm text-sm">
+                            <thead class="bg-indigo-100 text-indigo-900">
+                                <tr>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Kode IE</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Klasifikasi</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Efisiensi Khas</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-semibold">IE1</td>
+                                    <td class="py-2 px-3">Standard Efficiency</td>
+                                    <td class="py-2 px-3">80–85%</td>
+                                    <td class="py-2 px-3">Tidak diproduksi lagi (phase-out)</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-semibold">IE2</td>
+                                    <td class="py-2 px-3">High Efficiency</td>
+                                    <td class="py-2 px-3">85–90%</td>
+                                    <td class="py-2 px-3">Minimum di banyak negara</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-semibold">IE3</td>
+                                    <td class="py-2 px-3">Premium Efficiency</td>
+                                    <td class="py-2 px-3">90–95%</td>
+                                    <td class="py-2 px-3">Standar industri modern</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-semibold">IE4</td>
+                                    <td class="py-2 px-3">Super Premium</td>
+                                    <td class="py-2 px-3">> 95%</td>
+                                    <td class="py-2 px-3">Teknologi terbaru</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pengukuran Arus -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-indigo-900 mb-6 border-b-2 border-indigo-200 pb-2">12.2 Pengukuran Arus Motor</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">12.2.1 Alat Ukur: Clamp Meter (True RMS)</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        <strong>Clamp meter</strong> adalah alat ukur arus yang paling praktis karena dapat mengukur arus tanpa memutus rangkaian. Prinsip kerjanya berdasarkan <strong>hukum induksi elektromagnetik</strong> — arus yang mengalir melalui konduktor menghasilkan medan magnet yang dideteksi oleh sensor clamp.
+                    </p>
+                    <div class="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-400">
+                        <p class="font-semibold text-indigo-900 mb-2">Spesifikasi Clamp Meter yang Baik:</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                            <li><strong>True RMS:</strong> Mampu mengukur arus non-sinusoidal (dari VFD, harmonisa) dengan akurat</li>
+                            <li><strong>Range:</strong> Minimal 0–600A AC untuk aplikasi industri</li>
+                            <li><strong>Akurasi:</strong> ±1–2% dari reading</li>
+                            <li><strong>Inrush mode:</strong> Untuk mengukur arus starting motor</li>
+                            <li><strong>Data hold & min/max:</strong> Untuk merekam fluktuasi arus</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">12.2.2 Prosedur Pengukuran Arus Operasi</h3>
+                    <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li>Pastikan motor beroperasi pada kondisi beban normal (bukan starting).</li>
+                            <li>Set clamp meter pada mode <strong>AC Current (A~)</strong> dengan range yang sesuai.</li>
+                            <li>Buka clamp, jepitkan pada <strong>satu konduktor fasa</strong> (JANGAN dua atau tiga kabel sekaligus!).</li>
+                            <li>Baca nilai arus — ulangi untuk ketiga fasa (L1, L2, L3).</li>
+                            <li>Catat ketiga nilai arus untuk analisis unbalance.</li>
+                            <li>Bandingkan dengan arus nameplate (In) — arus operasi harus ≤ In.</li>
+                        </ol>
+                    </div>
+                    <div class="warning-box p-4 rounded-r-lg mt-3">
+                        <p class="text-sm text-gray-800">
+                            <strong>⚠️ PERINGATAN:</strong> Jika clamp meter menjepit 2 atau 3 kabel sekaligus, resultan medan magnet = 0 (karena vektor arus 3 fasa saling meniadakan) → reading = 0 A. Ini kesalahan umum pemula!
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">12.2.3 Analisis Current Unbalance</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Arus 3 fasa harus seimbang. Ketidaksamaan (unbalance) menandakan masalah serius.
+                    </p>
+                    <div class="formula-box">
+                        <p><strong>Rumus % Current Unbalance:</strong></p>
+                        <p class="mt-2">I<sub>rata-rata</sub> = (I<sub>L1</sub> + I<sub>L2</sub> + I<sub>L3</sub>) / 3</p>
+                        <p class="mt-2">Deviasi maks = |I<sub>terjauh</sub> − I<sub>rata-rata</sub>|</p>
+                        <p class="mt-2">% Unbalance = (Deviasi maks / I<sub>rata-rata</sub>) × 100%</p>
+                        <p class="mt-3"><strong>Standar NEMA MG-1:</strong></p>
+                        <p>% Unbalance ≤ 10% → Motor dapat beroperasi</p>
+                        <p>% Unbalance > 10% → Harus dikoreksi segera!</p>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400 mt-3">
+                        <p class="font-semibold text-yellow-900 mb-2">Contoh Perhitungan:</p>
+                        <p class="text-sm text-gray-700">Arus terukur: L1 = 14.5A, L2 = 15.2A, L3 = 16.8A</p>
+                        <p class="text-sm text-gray-700">I<sub>rata-rata</sub> = (14.5 + 15.2 + 16.8) / 3 = 15.5A</p>
+                        <p class="text-sm text-gray-700">Deviasi maks = |16.8 − 15.5| = 1.3A</p>
+                        <p class="text-sm text-gray-700">% Unbalance = (1.3 / 15.5) × 100% = <strong>8.4%</strong> (masih dalam batas)</p>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400 mt-3">
+                        <p class="font-semibold text-red-900 mb-2">Dampak Current Unbalance:</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                            <li>Unbalance 5% → kenaikan suhu 40°C → umur isolasi turun 50%!</li>
+                            <li>Meningkatkan rugi-rugi tembaga (I²R)</li>
+                            <li>Getaran meningkat, bearing cepat aus</li>
+                            <li>Torsi berfluktuasi, efisiensi turun</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pengukuran Tegangan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-indigo-900 mb-6 border-b-2 border-indigo-200 pb-2">12.3 Pengukuran Tegangan Suplai</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">12.3.1 Alat Ukur: Multimeter Digital / Power Quality Analyzer</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Tegangan suplai diukur menggunakan <strong>multimeter digital</strong> (untuk pengukuran dasar) atau <strong>power quality analyzer</strong> (untuk analisis lengkap termasuk harmonisa, sag, swell).
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">12.3.2 Prosedur Pengukuran Tegangan 3 Fasa</h3>
+                    <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li>Set multimeter pada mode <strong>AC Voltage (V~)</strong>, range minimal 600V.</li>
+                            <li>Ukur tegangan antar fasa: <strong>V<sub>L1-L2</sub>, V<sub>L2-L3</sub>, V<sub>L3-L1</sub></strong> (3 pengukuran line-to-line).</li>
+                            <li>Opsional: ukur juga tegangan fasa-netral: V<sub>L1-N</sub>, V<sub>L2-N</sub>, V<sub>L3-N</sub>.</li>
+                            <li>Catat ketiga nilai tegangan line-to-line.</li>
+                            <li>Hitung voltage unbalance.</li>
+                            <li>Bandingkan dengan nameplate motor — tegangan harus dalam range ±10%.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">12.3.3 Analisis Voltage Unbalance (NEMA MG-1)</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Voltage unbalance adalah penyebab utama current unbalance. Menurut standar NEMA MG-1, voltage unbalance yang diperbolehkan adalah <strong>maksimal 1%</strong>.
+                    </p>
+                    <div class="formula-box">
+                        <p><strong>Rumus % Voltage Unbalance (NEMA):</strong></p>
+                        <p class="mt-2">V<sub>rata-rata</sub> = (V<sub>L1-L2</sub> + V<sub>L2-L3</sub> + V<sub>L3-L1</sub>) / 3</p>
+                        <p class="mt-2">Deviasi maks = |V<sub>terjauh</sub> − V<sub>rata-rata</sub>|</p>
+                        <p class="mt-2">% Voltage Unbalance = (Deviasi maks / V<sub>rata-rata</sub>) × 100%</p>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400 mt-3">
+                        <p class="font-semibold text-yellow-900 mb-2">Contoh Perhitungan:</p>
+                        <p class="text-sm text-gray-700">V<sub>L1-L2</sub> = 380V, V<sub>L2-L3</sub> = 395V, V<sub>L3-L1</sub> = 385V</p>
+                        <p class="text-sm text-gray-700">V<sub>rata-rata</sub> = (380 + 395 + 385) / 3 = 386.7V</p>
+                        <p class="text-sm text-gray-700">Deviasi maks = |395 − 386.7| = 8.3V</p>
+                        <p class="text-sm text-gray-700">% Unbalance = (8.3 / 386.7) × 100% = <strong>2.15%</strong></p>
+                        <p class="text-sm text-red-700 font-semibold mt-2">⚠️ Melebihi batas 1% — harus dikoreksi!</p>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400 mt-3">
+                        <p class="font-semibold text-red-900 mb-2">Dampak Voltage Unbalance:</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                            <li>Voltage unbalance 1% → current unbalance 6–10%</li>
+                            <li>Kenaikan suhu motor signifikan</li>
+                            <li>Efisiensi turun, rugi-rugi meningkat</li>
+                            <li>Umur motor berkurang drastis (isolasi cepat terdegradasi)</li>
+                        </ul>
+                        <p class="text-sm text-gray-700 mt-2"><strong>Penyebab umum:</strong> Beban 1 fasa tidak seimbang pada trafo, kabel longgar, koneksi korosi, trafo overload.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pengukuran Tahanan Isolasi -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-indigo-900 mb-6 border-b-2 border-indigo-200 pb-2">12.4 Pengukuran Tahanan Isolasi (Insulation Resistance)</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">12.4.1 Alat Ukur: Megger (Insulation Tester)</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        <strong>Megger</strong> adalah alat ukur tahanan isolasi yang menghasilkan tegangan DC tinggi (250V, 500V, 1000V, 2500V, 5000V, atau 10000V) untuk mendeteksi degradasi isolasi. Multimeter biasa TIDAK dapat digunakan karena tegangannya terlalu rendah (hanya 3–9V) — tidak mampu mendeteksi kelemahan isolasi.
+                    </p>
+                    <div class="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-400">
+                        <p class="font-semibold text-indigo-900 mb-2">Pemilihan Tegangan Test Megger (IEEE 43):</p>
+                        <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                            <li>Motor < 1000V → Tegangan test <strong>500V DC</strong></li>
+                            <li>Motor 1000–2500V → Tegangan test <strong>500–1000V DC</strong></li>
+                            <li>Motor 2500–5000V → Tegangan test <strong>1000–2500V DC</strong></li>
+                            <li>Motor > 5000V → Tegangan test <strong>2500–5000V DC</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">12.4.2 Prosedur Pengukuran (IEEE 43-2013)</h3>
+                    <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li><strong>De-energize motor</strong> dan terapkan LOTO — pastikan motor benar-benar mati.</li>
+                            <li><strong>Discharge</strong> lilitan motor ke ground (minimal waktu = durasi test × 4).</li>
+                            <li>Hubungkan terminal <strong>"Line"</strong> Megger ke terminal lilitan motor (U1, V1, W1 — bisa dijumper).</li>
+                            <li>Hubungkan terminal <strong>"Earth"</strong> Megger ke body motor (ground).</li>
+                            <li>Tekan tombol TEST — Megger mengeluarkan tegangan DC selama <strong>1 menit</strong> (standar IEEE 43).</li>
+                            <li>Baca nilai tahanan isolasi pada menit ke-1 (R<sub>1min</sub>).</li>
+                            <li>Opsional: baca juga pada menit ke-10 untuk menghitung <strong>Polarization Index (PI)</strong>.</li>
+                            <li>Setelah selesai, discharge kembali lilitan ke ground.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">12.4.3 Standar Nilai Minimum (IEEE 43-2013)</h3>
+                    <div class="formula-box">
+                        <p><strong>Rumus Minimum Insulation Resistance:</strong></p>
+                        <p class="mt-2">R<sub>min</sub> (MΩ) = kV<sub>rating</sub> + 1</p>
+                        <p class="mt-2">Untuk motor 380V (0.38 kV):</p>
+                        <p>R<sub>min</sub> = 0.38 + 1 = <strong>1.38 MΩ ≈ 1 MΩ</strong></p>
+                        <p class="mt-3"><strong>Polarization Index (PI):</strong></p>
+                        <p>PI = R<sub>10min</sub> / R<sub>1min</sub></p>
+                        <p class="mt-2">PI ≥ 2.0 → Isolasi BAIK</p>
+                        <p>PI 1.5–2.0 → Isolasi MAMPU DIPERTAHANKAN</p>
+                        <p>PI 1.0–1.5 → Isolasi BURUK (perlu investigasi)</p>
+                        <p>PI < 1.0 → Isolasi SANGAT BURUK (segera tindakan)</p>
+                    </div>
+                    <div class="overflow-x-auto mt-3">
+                        <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm text-sm">
+                            <thead class="bg-indigo-100 text-indigo-900">
+                                <tr>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Nilai R<sub>1min</sub> (MΩ)</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Kondisi Isolasi</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Tindakan</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-semibold text-green-700">> 100 MΩ</td>
+                                    <td class="py-2 px-3">Sangat Baik</td>
+                                    <td class="py-2 px-3">Operasi normal</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-semibold text-blue-700">10–100 MΩ</td>
+                                    <td class="py-2 px-3">Baik</td>
+                                    <td class="py-2 px-3">Monitor trend</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-semibold text-yellow-700">1–10 MΩ</td>
+                                    <td class="py-2 px-3">Cukup</td>
+                                    <td class="py-2 px-3">Investigasi, bersihkan/keringkan</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-semibold text-orange-700">0.1–1 MΩ</td>
+                                    <td class="py-2 px-3">Buruk</td>
+                                    <td class="py-2 px-3">Segera tindakan, jangan di-energize</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-semibold text-red-700">< 0.1 MΩ</td>
+                                    <td class="py-2 px-3">Sangat Buruk</td>
+                                    <td class="py-2 px-3">Motor perlu rewind atau ganti</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">12.4.4 Faktor yang Mempengaruhi Tahanan Isolasi</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <p class="font-bold text-red-900 mb-2">Menurunkan Isolasi:</p>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                                <li>Suhu tinggi (setiap naik 10°C, isolasi turun 50%)</li>
+                                <li>Kelembaban tinggi</li>
+                                <li>Kontaminasi minyak/debu/kimia</li>
+                                <li>Penuaan isolasi (thermal aging)</li>
+                                <li>Vibrasi berlebihan</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <p class="font-bold text-green-900 mb-2">Meningkatkan Isolasi:</p>
+                            <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                                <li>Suhu rendah</li>
+                                <li>Lingkungan kering</li>
+                                <li>Bersih dari kontaminan</li>
+                                <li>Motor baru (isolasi segar)</li>
+                                <li>Perawatan berkala (cleaning, baking)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pengukuran Tahanan Lilitan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-indigo-900 mb-6 border-b-2 border-indigo-200 pb-2">12.5 Pengukuran Tahanan Lilitan (Winding Resistance)</h2>
+            
+            <div class="space-y-6">
+                <p class="text-gray-700 leading-relaxed">
+                    Pengukuran tahanan lilitan dilakukan untuk mendeteksi <strong>ketidaksamaan antar fasa</strong> yang dapat mengindikasikan short turn, koneksi longgar, atau broken rotor bar.
+                </p>
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">Prosedur Pengukuran:</h3>
+                    <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                        <li>Matikan motor, terapkan LOTO, discharge lilitan.</li>
+                        <li>Gunakan <strong>micro-ohmmeter</strong> atau multimeter digital presisi (resolusi 0.01 Ω).</li>
+                        <li>Ukur tahanan masing-masing fasa: R<sub>U</sub> (U1-U2), R<sub>V</sub> (V1-V2), R<sub>W</sub> (W1-W2).</li>
+                        <li>Catat suhu lilitan saat pengukuran (tahanan dipengaruhi suhu).</li>
+                        <li>Hitung deviasi: % = (R<sub>terjauh</sub> − R<sub>rata-rata</sub>) / R<sub>rata-rata</sub> × 100%.</li>
+                    </ol>
+                </div>
+                <div class="formula-box">
+                    <p><strong>Standar Deviasi Tahanan Lilitan:</strong></p>
+                    <p class="mt-2">Deviasi ≤ 2% → BAIK</p>
+                    <p>Deviasi 2–5% → PERLU INVESTIGASI</p>
+                    <p>Deviasi > 5% → RUSAK (short turn atau koneksi buruk)</p>
+                </div>
+                <div class="tip-box p-4 rounded-r-lg mt-3">
+                    <p class="text-sm text-gray-800">
+                        <strong>💡 Catatan:</strong> Untuk motor besar (> 1 MW), gunakan <strong>Bridge Method</strong> (Kelvin double bridge) untuk akurasi tinggi. Koreksi suhu ke nilai referensi (biasanya 20°C atau 75°C) menggunakan rumus: R<sub>2</sub> = R<sub>1</sub> × [(T + t<sub>2</sub>) / (T + t<sub>1</sub>)] dimana T = 235°C untuk tembaga.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pengukuran Efisiensi & Power Factor -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-indigo-900 mb-6 border-b-2 border-indigo-200 pb-2">12.6 Pengukuran Efisiensi dan Faktor Daya</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">12.6.1 Pengukuran Efisiensi Motor</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Efisiensi motor dapat diukur dengan beberapa metode:
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="meter-card bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                            <p class="font-bold text-indigo-900 mb-2">a. Metode Input-Output (Langsung)</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li>Ukur daya input dengan power analyzer</li>
+                                <li>Ukur daya output dengan dynamometer/torsi meter</li>
+                                <li>η = (P<sub>out</sub> / P<sub>in</sub>) × 100%</li>
+                                <li>Akurasi tinggi, tapi perlu alat khusus</li>
+                            </ul>
+                        </div>
+                        <div class="meter-card bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                            <p class="font-bold text-indigo-900 mb-2">b. Metode Estimasi (Tidak Langsung)</p>
+                            <ul class="list-disc list-inside text-sm text-gray-700 space-y-1">
+                                <li>Ukur P<sub>in</sub> (V, I, cos φ)</li>
+                                <li>Estimasi rugi-rugi (tembaga, besi, mekanis)</li>
+                                <li>P<sub>out</sub> = P<sub>in</sub> − Σ rugi-rugi</li>
+                                <li>Lebih praktis di lapangan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">12.6.2 Pengukuran Faktor Daya (cos φ)</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        Faktor daya menunjukkan seberapa efektif motor menggunakan daya listrik. cos φ rendah berarti banyak daya reaktif (kVAR) yang tidak melakukan kerja nyata.
+                    </p>
+                    <div class="formula-box">
+                        <p><strong>Segitiga Daya:</strong></p>
+                        <p class="mt-2">P (kW) = Daya Aktif (kerja nyata)</p>
+                        <p>Q (kVAR) = Daya Reaktif (magnetisasi)</p>
+                        <p>S (kVA) = Daya Semu = √(P² + Q²)</p>
+                        <p class="mt-2">cos φ = P / S</p>
+                        <p class="mt-3"><strong>Standar Faktor Daya Motor:</strong></p>
+                        <p>Beban penuh (100%): cos φ = 0.85–0.90</p>
+                        <p>Beban 75%: cos φ = 0.80–0.85</p>
+                        <p>Beban 50%: cos φ = 0.70–0.75</p>
+                        <p>Beban 25%: cos φ = 0.50–0.60</p>
+                        <p>Tanpa beban: cos φ = 0.10–0.20 (sangat buruk!)</p>
+                    </div>
+                    <div class="warning-box p-4 rounded-r-lg mt-3">
+                        <p class="text-sm text-gray-800">
+                            <strong>⚠️ Dampak cos φ rendah:</strong> PLN mengenakan denda jika cos φ < 0.85 (untuk industri). Motor yang beroperasi under-load akan memiliki cos φ rendah — solusinya: ganti motor dengan ukuran yang sesuai beban, atau pasang <strong>kapasitor bank</strong> untuk power factor correction.
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">12.6.3 Alat Ukur: Power Analyzer</h3>
+                    <p class="text-gray-700 mt-2 mb-3">
+                        <strong>Power analyzer</strong> (atau power quality analyzer) adalah alat canggih yang dapat mengukur sekaligus: V, I, P (kW), Q (kVAR), S (kVA), cos φ, frekuensi, harmonisa, dan efisiensi. Alat ini menjadi standar dalam audit energi industri.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pengukuran Getaran & Suhu -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-indigo-900 mb-6 border-b-2 border-indigo-200 pb-2">12.7 Pengukuran Getaran dan Suhu</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="meter-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-indigo-800 mb-3"><i class="fas fa-wave-square text-indigo-600 mr-2"></i>Pengukuran Getaran</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                        <li><strong>Alat:</strong> Vibration meter / accelerometer</li>
+                        <li><strong>Satuan:</strong> mm/s (velocity) atau g (acceleration)</li>
+                        <li><strong>Standar ISO 10816:</strong>
+                            <ul class="list-circle list-inside ml-4 mt-1">
+                                <li>< 1.8 mm/s: Excellent</li>
+                                <li>1.8–4.5 mm/s: Good</li>
+                                <li>4.5–11.2 mm/s: Alert</li>
+                                <li>> 11.2 mm/s: Danger</li>
+                            </ul>
+                        </li>
+                        <li><strong>Penyebab getaran tinggi:</strong> bearing aus, misalignment, unbalance rotor, looseness</li>
+                        <li><strong>Titik ukur:</strong> Drive End (DE) & Non-Drive End (NDE), horizontal & vertikal</li>
+                    </ul>
+                </div>
+                <div class="meter-card bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-indigo-800 mb-3"><i class="fas fa-temperature-high text-indigo-600 mr-2"></i>Pengukuran Suhu</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                        <li><strong>Alat:</strong> Thermocouple, RTD, IR thermometer, thermal camera</li>
+                        <li><strong>Standar Kelas Isolasi (IEC 60034-1):</strong>
+                            <ul class="list-circle list-inside ml-4 mt-1">
+                                <li>Class A: maks 105°C</li>
+                                <li>Class B: maks 130°C</li>
+                                <li>Class F: maks 155°C (paling umum)</li>
+                                <li>Class H: maks 180°C</li>
+                            </ul>
+                        </li>
+                        <li><strong>Aturan praktis:</strong> Setiap kenaikan 10°C di atas rating → umur isolasi turun 50% (Montsinger's Rule)</li>
+                        <li><strong>Titik ukur:</strong> Bearing DE/NDE, body motor, terminal box, winding (via RTD embedded)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ringkasan Alat Ukur -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-indigo-900 mb-6 border-b-2 border-indigo-200 pb-2">12.8 Ringkasan Alat Ukur Kinerja Motor</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm text-sm">
+                    <thead class="bg-indigo-100 text-indigo-900">
+                        <tr>
+                            <th class="py-3 px-3 text-left font-bold border-b">Parameter</th>
+                            <th class="py-3 px-3 text-left font-bold border-b">Alat Ukur</th>
+                            <th class="py-3 px-3 text-left font-bold border-b">Standar Acuan</th>
+                            <th class="py-3 px-3 text-left font-bold border-b">Nilai Normal</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Arus Operasi</td>
+                            <td class="py-3 px-3">Clamp Meter (True RMS)</td>
+                            <td class="py-3 px-3">NEMA MG-1</td>
+                            <td class="py-3 px-3">≤ In nameplate, unbalance ≤ 10%</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Tegangan Suplai</td>
+                            <td class="py-3 px-3">Multimeter / Power Analyzer</td>
+                            <td class="py-3 px-3">NEMA MG-1, PUIL 2011</td>
+                            <td class="py-3 px-3">±10% nameplate, unbalance ≤ 1%</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Tahanan Isolasi</td>
+                            <td class="py-3 px-3">Megger (Insulation Tester)</td>
+                            <td class="py-3 px-3">IEEE 43-2013</td>
+                            <td class="py-3 px-3">≥ 1 MΩ (untuk motor 380V)</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Tahanan Lilitan</td>
+                            <td class="py-3 px-3">Micro-ohmmeter / Multimeter</td>
+                            <td class="py-3 px-3">IEEE 43</td>
+                            <td class="py-3 px-3">Deviasi antar fasa ≤ 2%</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Efisiensi</td>
+                            <td class="py-3 px-3">Power Analyzer / Dynamometer</td>
+                            <td class="py-3 px-3">IEC 60034-30</td>
+                            <td class="py-3 px-3">≥ 90% (IE3)</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Faktor Daya</td>
+                            <td class="py-3 px-3">Power Analyzer</td>
+                            <td class="py-3 px-3">PLN / IEC</td>
+                            <td class="py-3 px-3">0.85–0.90 (beban penuh)</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Getaran</td>
+                            <td class="py-3 px-3">Vibration Meter</td>
+                            <td class="py-3 px-3">ISO 10816</td>
+                            <td class="py-3 px-3">< 4.5 mm/s (good)</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-3 px-3 font-semibold">Suhu</td>
+                            <td class="py-3 px-3">Thermocouple / IR / Thermal Camera</td>
+                            <td class="py-3 px-3">IEC 60034-1</td>
+                            <td class="py-3 px-3">Sesuai kelas isolasi (F: ≤ 155°C)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Studi Kasus -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-indigo-900 mb-4"><i class="fas fa-book-open text-yellow-500 mr-2"></i>Studi Kasus 1: Audit Energi Motor Pompa 30 kW</h3>
+            <div class="warning-box p-6 rounded-r-lg">
+                <p class="text-gray-800 mb-3">
+                    Sebuah pabrik melakukan audit energi pada motor pompa 30 kW yang beroperasi 24 jam. Hasil pengukuran:
+                </p>
+                <ul class="list-disc list-inside text-gray-800 ml-4 space-y-2">
+                    <li><strong>Tegangan:</strong> V<sub>L1-L2</sub> = 378V, V<sub>L2-L3</sub> = 392V, V<sub>L3-L1</sub> = 385V → <strong>Voltage unbalance 1.8%</strong> (melebihi batas 1%)</li>
+                    <li><strong>Arus:</strong> I<sub>L1</sub> = 52A, I<sub>L2</sub> = 58A, I<sub>L3</sub> = 62A → <strong>Current unbalance 10.3%</strong> (melebihi batas 10%)</li>
+                    <li><strong>Tahanan isolasi:</strong> 8 MΩ (cukup, tapi turun dari 50 MΩ enam bulan lalu)</li>
+                    <li><strong>Suhu bearing DE:</strong> 85°C (normal < 80°C)</li>
+                    <li><strong>Getaran:</strong> 6.2 mm/s (kategori Alert)</li>
+                    <li><strong>Faktor daya:</strong> 0.72 (di bawah standar 0.85)</li>
+                </ul>
+                <p class="font-semibold text-indigo-700 mt-3">
+                    <i class="fas fa-search mr-1"></i> Analisis & Tindakan:
+                </p>
+                <ul class="list-disc list-inside text-gray-800 ml-4 space-y-1 mt-2">
+                    <li>Voltage unbalance disebabkan beban 1 fasa tidak seimbang di panel distribusi → redistribusi beban</li>
+                    <li>Current unbalance akibat voltage unbalance + bearing mulai aus → ganti bearing</li>
+                    <li>Tahanan isolasi turun karena kelembaban → baking motor + perbaikan ventilasi</li>
+                    <li>cos φ rendah karena motor under-load → pasang kapasitor bank 25 kVAR</li>
+                </ul>
+                <p class="font-semibold text-green-700 mt-3">
+                    <i class="fas fa-check-circle mr-1"></i> Hasil setelah perbaikan:
+                </p>
+                <ul class="list-disc list-inside text-gray-800 ml-4 space-y-1 mt-1">
+                    <li>Voltage unbalance turun menjadi 0.6%</li>
+                    <li>Current unbalance turun menjadi 3.2%</li>
+                    <li>Tahanan isolasi naik menjadi 120 MΩ</li>
+                    <li>Suhu bearing turun menjadi 65°C</li>
+                    <li>Getaran turun menjadi 2.1 mm/s</li>
+                    <li>cos φ naik menjadi 0.92 → <strong>hemat listrik 12%, ROI 14 bulan</strong></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Tips Praktis -->
+        <section class="mb-12">
+            <div class="tip-box p-6 rounded-r-lg">
+                <h3 class="font-bold text-green-800 mb-2"><i class="fas fa-tools mr-2"></i>Tips Praktis Pengukuran Kinerja Motor</h3>
+                <ul class="list-disc list-inside text-gray-800 space-y-2 text-sm">
+                    <li><strong>Gunakan alat ukur terkalibrasi:</strong> Alat yang tidak terkalibrasi memberikan data menyesatkan. Kalibrasi minimal 1 tahun sekali.</li>
+                    <li><strong>Catat kondisi operasi:</strong> Beban, suhu ambient, tegangan suplai — semua mempengaruhi hasil pengukuran.</li>
+                    <li><strong>Bangun basis data historis:</strong> Catat setiap pengukuran untuk trend monitoring. Penurunan isolasi dari 100 MΩ ke 10 MΩ dalam 6 bulan = tanda bahaya.</li>
+                    <li><strong>Ukur pada kondisi stabil:</strong> Motor harus beroperasi minimal 30 menit sebelum pengukuran (suhu stabil).</li>
+                    <li><strong>LOTO sebelum pengukuran isolasi:</strong> Megger mengeluarkan tegangan tinggi — pastikan motor de-energize dan semua orang menjauh.</li>
+                    <li><strong>Discharge setelah pengukuran:</strong> Lilitan motor menyimpan muatan seperti kapasitor — discharge ke ground sebelum disentuh.</li>
+                    <li><strong>Koreksi suhu:</strong> Tahanan lilitan berubah dengan suhu — koreksi ke nilai referensi untuk perbandingan yang adil.</li>
+                    <li><strong>Dokumentasikan:</strong> Foto nameplate, hasil pengukuran, kondisi motor — semua menjadi data berharga untuk analisis di masa depan.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Refleksi -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-indigo-900 mb-4"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Refleksi untuk Siswa SMK</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Pengukuran kinerja motor adalah "bahasa universal" yang digunakan teknisi di seluruh dunia untuk menilai kesehatan motor. Dengan menguasai teknik pengukuran yang benar, Anda mampu berbicara dengan data — bukan asumsi. Anda dapat mengatakan: "Motor ini efisiensinya turun 5%, tahanan isolasinya tinggal 8 MΩ, dan voltage unbalance-nya 1.8%" — dan setiap teknisi di dunia akan memahami bahwa motor ini perlu perawatan segera. Inilah perbedaan antara teknisi biasa dan teknisi profesional: yang pertama bekerja berdasarkan "kira-kira", yang kedua bekerja berdasarkan <strong>data terukur</strong>. Jadilah yang kedua.
+            </p>
+        </section>
+
+        <!-- Kesimpulan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-indigo-900 mb-4 border-b-2 border-indigo-200 pb-2">Kesimpulan</h2>
+            <p class="text-gray-700 leading-relaxed">
+                Pengukuran kinerja motor listrik mencakup parameter-parameter utama: arus operasi (dengan analisis unbalance), tegangan suplai (dengan voltage unbalance menurut NEMA), tahanan isolasi (dengan Megger sesuai IEEE 43), tahanan lilitan, efisiensi, faktor daya, getaran, dan suhu. Setiap parameter memiliki alat ukur spesifik, standar acuan (IEEE, NEMA, IEC, ISO), dan nilai batas normal yang harus dipatuhi. Pengukuran yang dilakukan secara berkala dan terdokumentasi dengan baik akan membentuk basis data historis untuk trend monitoring — memungkinkan deteksi dini degradasi motor sebelum terjadi kegagalan. Dalam era efisiensi energi saat ini, kemampuan mengukur dan mengevaluasi kinerja motor menjadi kompetensi wajib bagi teknisi listrik profesional.
+            </p>
+        </section>
+
+        <!-- Daftar Pustaka -->
+        <section class="mb-16">
+            <h3 class="text-xl font-bold text-indigo-900 mb-4"><i class="fas fa-book text-yellow-500 mr-2"></i>Daftar Pustaka</h3>
+            <ul class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                <li>IEEE. (2013). <em>IEEE 43-2013: Recommended Practice for Testing Insulation Resistance of Rotating Machinery</em>. New York: IEEE.</li>
+                <li>NEMA. (2016). <em>NEMA MG-1: Motors and Generators</em>. Rosslyn: National Electrical Manufacturers Association.</li>
+                <li>IEC 60034-30-1. (2014). <em>Rotating electrical machines — Part 30-1: Efficiency classes</em>. International Electrotechnical Commission.</li>
+                <li>IEC 60034-1. (2017). <em>Rotating electrical machines — Part 1: Rating and performance</em>. International Electrotechnical Commission.</li>
+                <li>ISO 10816. (2017). <em>Mechanical vibration — Evaluation of machine vibration</em>. International Organization for Standardization.</li>
+                <li>PUIL 2011. <em>Persyaratan Umum Instalasi Listrik 2011</em>. Jakarta: Badan Standardisasi Nasional.</li>
+                <li>Zuraida, dkk. (2021). <em>Instalasi Motor Listrik Jilid 1 untuk SMK</em>. Jakarta: Direktorat Pembinaan SMK.</li>
+                <li>EPRI. (2019). <em>Electric Motor Systems: Maintenance and Reliability Guide</em>. Palo Alto: Electric Power Research Institute.</li>
+            </ul>
+        </section>
+
+        <!-- Navigasi Bawah -->
+        <div class="flex justify-between items-center border-t pt-6 mb-16 flex-wrap gap-3">
+            <a href="11.html" class="text-indigo-600 hover:text-indigo-800 font-semibold"><i class="fas fa-arrow-left mr-1"></i> Pertemuan 11</a>
+            <a href="#top" class="text-gray-500 hover:text-gray-700 font-semibold"><i class="fas fa-arrow-up mr-1"></i> Ke Atas</a>
+            <a href="13.html" class="text-indigo-600 hover:text-indigo-800 font-semibold">Pertemuan 13: Perancangan Proyek <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN UJI FORMATIF -->
+        <!-- ========================================================= -->
+        <section id="uji-formatif" class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-indigo-900">📋 Uji Formatif 12: Pengukuran Kinerja Motor Listrik</h2>
+                <p class="text-gray-600 mt-2">Materi: Pengukuran arus, tegangan, isolasi, tahanan lilitan, efisiensi, power factor, getaran, suhu.</p>
+                <p class="text-red-600 text-sm font-semibold mt-2">⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu!</p>
+            </div>
+
+            <form id="quizForm" class="space-y-8">
+                <!-- Data Siswa -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-indigo-900 mb-4 border-b pb-2">📋 Data Siswa</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Nama Lengkap</label>
+                            <input type="text" name="nama" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-indigo-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* NIS (Nomor Induk Siswa)</label>
+                            <input type="text" name="nis" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-indigo-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Tanggal Ujian</label>
+                            <input type="date" name="tanggal" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-indigo-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Kelas</label>
+                            <input type="text" name="kelas" placeholder="Contoh: XI TITL 1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-indigo-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Semester</label>
+                            <select name="semester" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-indigo-500 outline-none">
+                                <option value="">Pilih Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian A: Pilihan Ganda -->
+                <div>
+                    <h3 class="text-lg font-bold text-indigo-900 mb-4 border-b pb-2">📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon lengkapi semua 10 soal pilihan ganda!</p>
+                    
+                    <div class="space-y-6 text-gray-800">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">1. Alat ukur yang digunakan untuk mengukur arus motor tanpa memutus rangkaian adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q1" value="a" class="mr-2"> a. Multimeter analog</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="b" class="mr-2"> b. Clamp meter (True RMS)</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="c" class="mr-2"> c. Megger</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="d" class="mr-2"> d. Oscilloscope</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">2. Batas voltage unbalance yang diperbolehkan menurut standar NEMA MG-1 adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q2" value="a" class="mr-2"> a. 1%</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="b" class="mr-2"> b. 5%</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="c" class="mr-2"> c. 10%</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="d" class="mr-2"> d. 15%</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">3. Standar internasional yang mengatur pengukuran tahanan isolasi motor listrik adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q3" value="a" class="mr-2"> a. ISO 9001</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="b" class="mr-2"> b. IEEE 43</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="c" class="mr-2"> c. IEC 61131</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="d" class="mr-2"> d. NFPA 70E</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">4. Tegangan test yang digunakan Megger untuk motor dengan rating tegangan < 1000V adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q4" value="a" class="mr-2"> a. 50V DC</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="b" class="mr-2"> b. 250V DC</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="c" class="mr-2"> c. 500V DC</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="d" class="mr-2"> d. 5000V DC</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">5. Nilai tahanan isolasi minimum untuk motor 380V menurut IEEE 43 adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q5" value="a" class="mr-2"> a. 0,1 MΩ</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="b" class="mr-2"> b. 1 MΩ</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="c" class="mr-2"> c. 10 MΩ</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="d" class="mr-2"> d. 100 MΩ</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">6. Polarization Index (PI) yang menunjukkan kondisi isolasi BAIK adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q6" value="a" class="mr-2"> a. PI < 1.0</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="b" class="mr-2"> b. PI 1.0–1.5</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="c" class="mr-2"> c. PI 1.5–2.0</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="d" class="mr-2"> d. PI ≥ 2.0</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">7. Voltage unbalance 1% pada sistem 3 fasa dapat menyebabkan current unbalance sebesar...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q7" value="a" class="mr-2"> a. 1%</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="b" class="mr-2"> b. 3–5%</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="c" class="mr-2"> c. 6–10%</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="d" class="mr-2"> d. 20–30%</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">8. Motor dengan kode efisiensi IE3 menurut IEC 60034-30 memiliki klasifikasi...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q8" value="a" class="mr-2"> a. Standard Efficiency</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="b" class="mr-2"> b. High Efficiency</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="c" class="mr-2"> c. Premium Efficiency</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="d" class="mr-2"> d. Super Premium Efficiency</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">9. Standar batas getaran motor yang termasuk kategori "Good" menurut ISO 10816 adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q9" value="a" class="mr-2"> a. < 1.8 mm/s</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="b" class="mr-2"> b. 1.8–4.5 mm/s</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="c" class="mr-2"> c. 4.5–11.2 mm/s</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="d" class="mr-2"> d. > 11.2 mm/s</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">10. Faktor daya motor induksi pada kondisi beban penuh (100%) biasanya berada pada range...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q10" value="a" class="mr-2"> a. 0.10–0.20</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="b" class="mr-2"> b. 0.50–0.60</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="c" class="mr-2"> c. 0.70–0.75</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="d" class="mr-2"> d. 0.85–0.90</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Essay -->
+                <div>
+                    <h3 class="text-lg font-bold text-indigo-900 mb-4 border-b pb-2">✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon isi semua 5 soal essay dengan jawaban yang jelas!</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <p class="font-semibold mb-2">1. Jelaskan prosedur lengkap pengukuran tahanan isolasi motor menggunakan Megger sesuai standar IEEE 43! Sertakan langkah-langkah keselamatan, pemilihan tegangan test, durasi pengukuran, dan interpretasi hasil!</p>
+                            <textarea name="essay1" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">2. Sebuah motor 3 fasa memiliki pengukuran tegangan: V<sub>L1-L2</sub> = 378V, V<sub>L2-L3</sub> = 392V, V<sub>L3-L1</sub> = 385V. Hitunglah voltage unbalance-nya! Apakah masih dalam batas yang diperbolehkan menurut NEMA? Jelaskan dampak voltage unbalance terhadap kinerja motor!</p>
+                            <textarea name="essay2" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">3. Bandingkan 4 kelas efisiensi motor (IE1, IE2, IE3, IE4) menurut IEC 60034-30! Jelaskan mengapa industri modern cenderung beralih ke motor IE3 atau IE4 meskipun harganya lebih mahal! Sertakan analisis penghematan energi jangka panjang!</p>
+                            <textarea name="essay3" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">4. Jelaskan konsep Polarization Index (PI)! Bagaimana cara menghitungnya? Berikan interpretasi nilai PI 0.8, 1.7, dan 2.5 terhadap kondisi isolasi motor! Mengapa PI lebih informatif dibanding hanya R<sub>1min</sub>?</p>
+                            <textarea name="essay4" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">5. Berdasarkan studi kasus audit energi motor pompa 30 kW, analisislah seluruh parameter yang diukur! Jelaskan hubungan antara voltage unbalance, current unbalance, dan faktor daya! Rancanglah rencana perbaikan komprehensif untuk mengembalikan kinerja motor ke kondisi optimal!</p>
+                            <textarea name="essay5" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-indigo-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hasil & Tombol Aksi -->
+                <div class="bg-indigo-50 p-6 rounded-lg border border-indigo-200 text-center">
+                    <h3 class="text-lg font-bold text-indigo-900 mb-4">📊 Hasil Uji Formatif</h3>
+                    <div id="hasilSkor" class="text-3xl font-extrabold text-indigo-700 mb-2">0</div>
+                    <p id="detailSkor" class="text-sm text-gray-600 mb-6">Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button type="button" onclick="hitungNilai()" class="bg-indigo-900 hover:bg-indigo-800 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-paper-plane mr-2"></i>KIRIM JAWABAN & LIHAT HASIL
+                        </button>
+                        <button type="button" onclick="window.print()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-file-pdf mr-2"></i>UNDUH PDF LENGKAP
+                        </button>
+                        <button type="button" onclick="kirimEmail()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-envelope mr-2"></i>KIRIM EMAIL GURU
+                        </button>
+                        <button type="button" onclick="resetForm()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-redo mr-2"></i>MULAI ULANG
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-blue-200 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">&copy; 2026 UKI SAPUTRA - SMK N 1 Koto Balingka. Hak Cipta Dilindungi.</p>
+            <p class="text-sm mb-3 italic">"What gets measured, gets managed" — Peter Drucker</p>
+            <a href="respon-pembaca.html" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-2 px-6 rounded-full transition duration-300 text-sm">
+                <i class="fas fa-paper-plane mr-1"></i> Kirim Respon tentang Materi Ini
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Fungsi Uji Formatif -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const kunciJawaban = {
+            q1: 'b', // Clamp meter True RMS
+            q2: 'a', // 1%
+            q3: 'b', // IEEE 43
+            q4: 'c', // 500V DC
+            q5: 'b', // 1 MΩ
+            q6: 'd', // PI ≥ 2.0
+            q7: 'c', // 6-10%
+            q8: 'c', // Premium Efficiency
+            q9: 'b', // 1.8-4.5 mm/s
+            q10: 'd' // 0.85-0.90
+        };
+
+        function hitungNilai() {
+            const form = document.getElementById('quizForm');
+            if (!form.checkValidity()) {
+                alert("⚠️ Mohon lengkapi semua data siswa, 10 soal Pilihan Ganda, dan 5 soal Essay terlebih dahulu!");
+                form.reportValidity();
+                return;
+            }
+
+            let skorPG = 0;
+            let benar = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const jawabanSiswa = document.querySelector(`input[name="q${i}"]:checked`);
+                if (jawabanSiswa && jawabanSiswa.value === kunciJawaban[`q${i}`]) {
+                    benar++;
+                    skorPG += 10;
+                }
+            }
+
+            const hasilDiv = document.getElementById('hasilSkor');
+            const detailDiv = document.getElementById('detailSkor');
+            
+            hasilDiv.innerText = skorPG;
+            detailDiv.innerHTML = `Bagian A (PG): <strong>${skorPG}/100</strong> (${benar} jawaban benar) <br> Bagian B (Essay): <strong>Menunggu Penilaian Guru</strong> (Jawaban telah tersimpan di sistem)`;
+            
+            document.getElementById('hasilSkor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            let pesan = `✅ Jawaban berhasil dikirim!\nSkor Sementara Pilihan Ganda: ${skorPG}/100\n\nCatatan: Jawaban Essay akan dinilai oleh guru.`;
+            if (skorPG >= 80) pesan += `\n\n📊 Excellent! Anda memahami pengukuran kinerja motor dengan sangat baik!`;
+            else if (skorPG >= 60) pesan += `\n\n👍 Bagus! Terus perdalam pemahaman tentang standar pengukuran.`;
+            else pesan += `\n\n⚠️ Pelajari kembali standar IEEE 43, NEMA MG-1, dan IEC 60034.`;
+            
+            alert(pesan);
+        }
+
+        function kirimEmail() {
+            const nama = document.querySelector('input[name="nama"]').value || "Siswa";
+            const nis = document.querySelector('input[name="nis"]').value || "-";
+            const kelas = document.querySelector('input[name="kelas"]').value || "-";
+            
+            const subject = `Hasil Uji Formatif 12 (Pengukuran Kinerja Motor) - ${nama} (${nis})`;
+            const body = `Yth. Bapak UKI SAPUTRA,\n\nBerikut adalah hasil uji formatif saya:\nNama: ${nama}\nNIS: ${nis}\nKelas: ${kelas}\nMateri: Pertemuan 12 - Pengukuran Kinerja Motor (Arus, Tegangan, Isolasi)\n\nSaya telah menyelesaikan Bagian A (Pilihan Ganda) dan Bagian B (Essay) pada Pertemuan 12.\n\nTerima kasih.`;
+            
+            window.location.href = `mailto:trauky@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function resetForm() {
+            if(confirm("⚠️ Apakah Anda yakin ingin menghapus semua jawaban dan mulai ulang?")) {
+                document.getElementById('quizForm').reset();
+                document.getElementById('hasilSkor').innerText = "0";
+                document.getElementById('detailSkor').innerText = "Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

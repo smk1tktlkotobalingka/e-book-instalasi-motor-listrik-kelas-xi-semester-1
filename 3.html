@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 3: Pengasutan Star-Delta - Instalasi Motor Listrik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .highlight-box { border-left: 4px solid #2563eb; background-color: #eff6ff; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .tip-box { border-left: 4px solid #16a34a; background-color: #f0fdf4; }
+        .formula-box { background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 0.5rem; font-family: 'Courier New', monospace; }
+        .diagram { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 0.5rem; font-family: 'Courier New', monospace; overflow-x: auto; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans" id="top">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl font-bold tracking-wide">INSTALASI MOTOR LISTRIK</div>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0">
+                <a href="index.html" class="hover:text-yellow-400 transition"><i class="fas fa-home mr-1"></i> Beranda</a>
+                <a href="index.html#tentang" class="hover:text-yellow-400 transition"><i class="fas fa-info-circle mr-1"></i> Tentang</a>
+                <a href="index.html#daftar-isi" class="hover:text-yellow-400 transition"><i class="fas fa-list mr-1"></i> Daftar Bab</a>
+                <a href="index.html#kontak" class="hover:text-yellow-400 transition"><i class="fas fa-user mr-1"></i> Penulis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Chapter -->
+    <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="bg-yellow-500 text-blue-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pertemuan 3</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-4 mb-2">Pengasutan Motor Listrik 3 Fasa Metode Star-Delta</h1>
+            <p class="text-blue-100 text-lg max-w-3xl mx-auto">
+                Mempelajari teknik pengasutan motor 3 fasa daya tinggi dengan mengurangi arus starting hingga 1/3 dari arus DOL, menggunakan konfigurasi bintang (Y) di awal dan delta (Δ) saat beroperasi penuh — baik secara manual maupun otomatis dengan timer.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <a href="2.html" class="bg-gray-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-600 transition border border-gray-500"><i class="fas fa-arrow-left mr-1"></i>Pertemuan 2</a>
+                <a href="#materi-inti" class="bg-white text-blue-900 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition">Mulai Membaca</a>
+                <a href="4.html" class="bg-blue-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-blue-600 transition border border-blue-500">Pertemuan 4 →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl" id="materi-inti">
+        
+        <!-- Pendahuluan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b-2 border-blue-200 pb-2">Pendahuluan</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Pada pertemuan sebelumnya, siswa telah mempelajari pengasutan motor 3 fasa secara manual dan otomatis menggunakan PLC. Namun, metode <em>Direct On Line</em> (DOL) memiliki keterbatasan serius saat diterapkan pada motor berdaya besar (di atas 4 kW). Arus starting yang mencapai <strong>5–7 kali arus nominal</strong> dapat menyebabkan: tegangan jala-jala turun drastis (voltage drop), MCB utama trip, gangguan pada peralatan elektronik sekitar, hingga kerusakan mekanis pada kopling dan belt motor.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Solusi klasik yang paling banyak digunakan di industri adalah metode <strong>Star-Delta (Y-Δ)</strong>. Prinsipnya sederhana namun elegan: motor di-start dalam konfigurasi <em>Bintang (Star/Y)</em> yang menurunkan tegangan per lilitan menjadi 1/√3 dari tegangan jala-jala, sehingga arus starting turun menjadi <strong>1/3 dari arus DOL</strong>. Setelah motor mencapai kecepatan nominal (biasanya 5–15 detik), konfigurasi diubah ke <em>Delta (Δ)</em> untuk operasi penuh.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Metode ini menjadi kompetensi wajib bagi setiap teknisi instalasi motor listrik karena aplikasinya yang sangat luas: pompa besar, kompresor industri, conveyor berat, fan blower, dan mesin-mesin produksi. Pada pertemuan ini, siswa akan mempelajari prinsip, komponen, diagram rangkaian, hingga teknik troubleshooting pengasutan Star-Delta baik secara manual maupun otomatis.
+            </p>
+        </section>
+
+        <!-- Konsep Kunci -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-key text-yellow-500 mr-2"></i>Konsep Kunci</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Koneksi Star (Y)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Tiga ujung lilitan motor (U2, V2, W2) dihubungkan menjadi satu titik netral. Tegangan per fasa = V<sub>line</sub>/√3. Arus starting turun menjadi 1/3 dari DOL, tetapi torsi starting juga turun menjadi 1/3.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Koneksi Delta (Δ)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Ujung lilitan dihubungkan silang (U1-W2, V1-U2, W1-V2). Tegangan per fasa = V<sub>line</sub> penuh. Motor beroperasi dengan daya dan torsi nominal. Ini adalah mode operasi normal motor.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Transisi Star → Delta</h4>
+                    <p class="text-sm text-gray-700 mt-1">Proses perpindahan dari mode Star ke Delta yang harus diatur dengan hati-hati menggunakan timer (pada sistem otomatis) untuk menghindari lonjakan arus transien dan hubung singkat.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Interlock Star-Delta</h4>
+                    <p class="text-sm text-gray-700 mt-1">Mekanisme pengaman (listrik + mekanis) yang mencegah kontaktor Star dan Delta aktif bersamaan. Pelanggaran interlock = hubung singkat 3 fasa = ledakan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Landasan Teoretis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">3.1 Landasan Teoretis Pengasutan Star-Delta</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">3.1.1 Perbandingan Tegangan dan Arus Star vs Delta</h3>
+                    <p class="text-gray-700 mt-2">
+                        Pada motor 3 fasa dengan nameplate <strong>380V/660V (Δ/Y)</strong>, ketika dihubungkan ke sumber 380V:
+                    </p>
+                    <div class="formula-box mt-3">
+                        <p><strong>Mode Delta (Δ):</strong></p>
+                        <p>V<sub>fasa</sub> = V<sub>line</sub> = 380V</p>
+                        <p>I<sub>line</sub> = √3 × I<sub>fasa</sub> (arus penuh)</p>
+                        <p class="mt-3"><strong>Mode Star (Y):</strong></p>
+                        <p>V<sub>fasa</sub> = V<sub>line</sub> / √3 = 380 / 1.732 ≈ 220V</p>
+                        <p>I<sub>line</sub> = I<sub>fasa</sub> (turun menjadi 1/3 dari arus Delta)</p>
+                    </div>
+                    <p class="text-gray-700 mt-3">
+                        Karena torsi motor sebanding dengan kuadrat tegangan (T ∝ V²), maka pada mode Star:
+                    </p>
+                    <div class="formula-box mt-2">
+                        T<sub>Star</sub> = (1/√3)² × T<sub>Delta</sub> = 1/3 × T<sub>Delta</sub>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">3.1.2 Kapan Menggunakan Star-Delta?</h3>
+                    <p class="text-gray-700 mt-2">
+                        Metode Star-Delta direkomendasikan ketika:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 ml-4 space-y-1">
+                        <li>Daya motor ≥ 4 kW (sesuai PUIL 2011 dan standar PLN)</li>
+                        <li>Sumber daya (transformator) terbatas dan tidak mampu menahan lonjakan arus DOL</li>
+                        <li>Beban starting ringan hingga sedang (pompa, fan, kompresor tanpa beban)</li>
+                        <li>Torsi starting 1/3 dari torsi nominal masih mencukupi untuk mengangkat beban</li>
+                    </ul>
+                    <p class="text-gray-700 mt-3">
+                        <strong>Catatan penting:</strong> Motor yang akan di-start Star-Delta <strong>wajib</strong> memiliki 6 terminal di terminal box (U1-U2, V1-V2, W1-W2) dan nameplate harus menunjukkan tegangan 380V/660V (Δ/Y). Motor dengan nameplate 220V/380V tidak dapat di-start Star-Delta pada sumber 380V.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Komponen Rangkaian -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">3.2 Komponen Utama Rangkaian Star-Delta</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
+                    <thead class="bg-blue-100 text-blue-900">
+                        <tr>
+                            <th class="py-3 px-4 text-left font-bold border-b">Komponen</th>
+                            <th class="py-3 px-4 text-left font-bold border-b">Simbol</th>
+                            <th class="py-3 px-4 text-left font-bold border-b">Fungsi</th>
+                            <th class="py-3 px-4 text-left font-bold border-b">Jumlah</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700 text-sm">
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Kontaktor Utama (Main)</td>
+                            <td class="py-3 px-4 font-mono">KM1</td>
+                            <td class="py-3 px-4">Menghubungkan sumber 3 fasa ke motor (selalu aktif saat motor berjalan)</td>
+                            <td class="py-3 px-4 text-center">1</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Kontaktor Star</td>
+                            <td class="py-3 px-4 font-mono">KM2</td>
+                            <td class="py-3 px-4">Memshortkan U2-V2-W2 menjadi titik netral saat starting</td>
+                            <td class="py-3 px-4 text-center">1</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Kontaktor Delta</td>
+                            <td class="py-3 px-4 font-mono">KM3</td>
+                            <td class="py-3 px-4">Menghubungkan lilitan secara delta saat motor mencapai kecepatan nominal</td>
+                            <td class="py-3 px-4 text-center">1</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Timer (On-Delay)</td>
+                            <td class="py-3 px-4 font-mono">T1</td>
+                            <td class="py-3 px-4">Menunda perpindahan Star → Delta (setting 5–15 detik)</td>
+                            <td class="py-3 px-4 text-center">1</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Thermal Overload Relay</td>
+                            <td class="py-3 px-4 font-mono">TOR</td>
+                            <td class="py-3 px-4">Pengaman beban lebih, dipasang di sisi garis utama (sebelum KM1)</td>
+                            <td class="py-3 px-4 text-center">1</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Push Button (Start/Stop)</td>
+                            <td class="py-3 px-4 font-mono">S1/S2</td>
+                            <td class="py-3 px-4">Kontrol manual operator</td>
+                            <td class="py-3 px-4 text-center">2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Studi Kasus -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-book-open text-yellow-500 mr-2"></i>Studi Kasus 1: MCB Trip pada Motor Kompresor 15 kW</h3>
+            <div class="warning-box p-6 rounded-r-lg">
+                <p class="text-gray-800 mb-3">
+                    Sebuah UKM pengelasan di Padang menggunakan kompresor 15 kW dengan pengasutan DOL. Setiap kali kompresor dinyalakan, MCB utama 63A di panel selalu trip. Setelah diukur, arus starting motor mencapai 180A (3× In), menyebabkan voltage drop hingga 30% — lampu-lampu di bengkel berkedip dan mesin las lain ikut terganggu.
+                </p>
+                <p class="font-semibold text-red-700">
+                    <i class="fas fa-lightbulb mr-1"></i> Solusi:
+                </p>
+                <p class="text-gray-800 mt-1">
+                    Teknisi memasang panel Star-Delta otomatis. Arus starting turun dari 180A menjadi 60A (1/3), MCB tidak lagi trip, voltage drop hanya 8%, dan peralatan lain beroperasi normal. Investasi panel Star-Delta (±Rp 3 juta) jauh lebih murah dibanding upgrade transformator (±Rp 25 juta).
+                </p>
+            </div>
+        </section>
+
+        <!-- Diagram Rangkaian -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">3.3 Diagram dan Logika Kerja Rangkaian Star-Delta</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">3.3.1 Diagram Daya (Power Circuit)</h3>
+                    <div class="diagram text-sm">
+<pre>
+     L1      L2      L3
+      |       |       |
+      +-------+-------+
+      |       |       |
+    [MCB 3P] [TOR]   
+      |       |       |
+      +-------+-------+-----> ke KM1 (Main)
+      |       |       |
+      U1      V1      W1    <--- Ujung motor
+      |       |       |
+      +-------+-------+
+              |
+        +-----+-----+
+        |           |
+    [KM3 Δ]     [KM2 Y]
+   (U1-W2,      (U2-V2-W2 
+    V1-U2,       di-short)
+    W1-V2)
+        |           |
+      W2,U2,V2    U2,V2,W2
+</pre>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-3">
+                        <strong>Catatan:</strong> Perhatikan polaritas kabel pada KM3 (Delta). Pemasangan yang salah akan menyebabkan motor berputar terbalik atau terjadi hubung singkat saat transisi.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">3.3.2 Urutan Kerja Rangkaian Star-Delta Otomatis</h3>
+                    <div class="bg-blue-50 p-5 rounded-lg border-l-4 border-blue-400">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li>Tombol <strong>START</strong> ditekan → <strong>KM1 (Main)</strong> dan <strong>KM2 (Star)</strong> aktif bersamaan.</li>
+                            <li>Motor berputar dalam konfigurasi <strong>Star</strong> dengan arus starting rendah (1/3 In).</li>
+                            <li><strong>Timer T1</strong> mulai menghitung waktu (setting 5–15 detik sesuai beban).</li>
+                            <li>Setelah timer habis → kontak NC T1 membuka → <strong>KM2 (Star) OFF</strong>.</li>
+                            <li>Jeda singkat (dead time 50–100 ms) untuk menghindari busur api.</li>
+                            <li>Kontak NO T1 menutup → <strong>KM3 (Delta) ON</strong>.</li>
+                            <li>Motor beroperasi penuh dalam konfigurasi <strong>Delta</strong> hingga tombol <strong>STOP</strong> ditekan atau TOR trip.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">3.3.3 Logika Interlock (Wajib!)</h3>
+                    <p class="text-gray-700 mt-2">
+                        Interlock pada rangkaian Star-Delta bersifat <strong>ganda</strong>:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 ml-4 space-y-1">
+                        <li><strong>Interlock Listrik:</strong> Kontak NC KM3 dipasang seri di rangkaian coil KM2, dan kontak NC KM2 dipasang seri di rangkaian coil KM3. Jika salah satu aktif, yang lain tidak mungkin aktif.</li>
+                        <li><strong>Interlock Mekanis:</strong> Bracket mekanis yang dipasang antara KM2 dan KM3 mencegah kedua armature tertarik bersamaan secara fisik.</li>
+                    </ul>
+                    <div class="warning-box p-4 rounded-r-lg mt-3">
+                        <p class="text-sm text-gray-800">
+                            <strong>⚠️ PERINGATAN KERAS:</strong> Jika KM2 (Star) dan KM3 (Delta) aktif bersamaan, akan terjadi <strong>hubung singkat 3 fasa langsung</strong> melalui lilitan motor. Akibatnya: ledakan, kebakaran panel, dan cedera fatal pada operator. Interlock bukan opsional — ia adalah kewajiban!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Praktis -->
+        <section class="mb-12">
+            <div class="tip-box p-6 rounded-r-lg">
+                <h3 class="font-bold text-green-800 mb-2"><i class="fas fa-tools mr-2"></i>Tips Praktis Perakitan Panel Star-Delta</h3>
+                <ul class="list-disc list-inside text-gray-800 space-y-2 text-sm">
+                    <li>Pastikan motor memiliki <strong>6 terminal</strong> dan nameplate menunjukkan <strong>380V/660V (Δ/Y)</strong> sebelum merangkai panel Star-Delta.</li>
+                    <li>Setting <strong>TOR</strong> pada 0.58 × In motor (karena TOR dipasang di sisi garis, bukan di dalam delta).</li>
+                    <li>Setting <strong>Timer</strong> berdasarkan pengamatan arus starting — gunakan clamp meter untuk melihat kapan arus turun ke nilai stabil.</li>
+                    <li>Tambahkan <strong>dead time</strong> 50–100 ms antara OFF-nya KM2 dan ON-nya KM3 untuk menghindari busur api (arc) yang dapat merusak kontak.</li>
+                    <li>Pasang <strong>interlock mekanis</strong> antara KM2 dan KM3 sebagai lapisan pengaman kedua di samping interlock listrik.</li>
+                    <li>Lakukan uji coba <strong>tanpa beban</strong> terlebih dahulu, lalu bertahap dengan beban penuh.</li>
+                    <li>Dokumentasikan wiring dengan foto dan diagram sebelum panel ditutup — sangat berguna saat troubleshooting di masa depan.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Perbandingan Metode -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">3.4 Perbandingan Metode Pengasutan Motor</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm text-sm">
+                    <thead class="bg-blue-100 text-blue-900">
+                        <tr>
+                            <th class="py-3 px-4 text-left font-bold border-b">Aspek</th>
+                            <th class="py-3 px-4 text-left font-bold border-b">DOL</th>
+                            <th class="py-3 px-4 text-left font-bold border-b">Star-Delta</th>
+                            <th class="py-3 px-4 text-left font-bold border-b">Soft Starter</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Arus Starting</td>
+                            <td class="py-3 px-4">5–7 × In</td>
+                            <td class="py-3 px-4">1.7–2.5 × In</td>
+                            <td class="py-3 px-4">2–4 × In (terkontrol)</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Torsi Starting</td>
+                            <td class="py-3 px-4">100%</td>
+                            <td class="py-3 px-4">33%</td>
+                            <td class="py-3 px-4">30–80% (adjustable)</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Biaya</td>
+                            <td class="py-3 px-4">Rendah</td>
+                            <td class="py-3 px-4">Sedang</td>
+                            <td class="py-3 px-4">Tinggi</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Kompleksitas</td>
+                            <td class="py-3 px-4">Sangat sederhana</td>
+                            <td class="py-3 px-4">Sedang</td>
+                            <td class="py-3 px-4">Tinggi (berbasis elektronik)</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Cocok untuk beban</td>
+                            <td class="py-3 px-4">Ringan–sedang</td>
+                            <td class="py-3 px-4">Ringan (fan, pompa)</td>
+                            <td class="py-3 px-4">Berat (conveyor, crusher)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Refleksi -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Refleksi untuk Siswa SMK</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Pengasutan Star-Delta adalah contoh sempurna bagaimana teori listrik (koneksi Y-Δ) diterjemahkan menjadi solusi rekayasa yang nyata di industri. Sebagai calon teknisi, Anda tidak hanya dituntut mampu merangkai, tetapi juga memahami <em>mengapa</em> setiap komponen ada di sana — mengapa timer diperlukan, mengapa interlock wajib, mengapa TOR diset pada 0.58 In. Pemahaman konseptual inilah yang membedakan teknisi profesional dari sekadar "tukang wiring".
+            </p>
+        </section>
+
+        <!-- Kesimpulan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b-2 border-blue-200 pb-2">Kesimpulan</h2>
+            <p class="text-gray-700 leading-relaxed">
+                Pengasutan Star-Delta adalah metode klasik namun tetap relevan untuk motor 3 fasa berdaya ≥ 4 kW. Dengan menggunakan 3 kontaktor (Main, Star, Delta), timer on-delay, dan sistem interlock ganda, arus starting dapat ditekan hingga 1/3 dari nilai DOL — melindungi instalasi listrik dan peralatan sekitar. Penguasaan metode ini membuka pintu bagi siswa untuk menangani instalasi motor industri yang sesungguhnya, sekaligus menjadi landasan untuk mempelajari metode lanjutan seperti <em>Auto Transformer</em>, <em>Soft Starter</em>, dan <em>Variable Frequency Drive</em> (VFD) pada pertemuan-pertemuan selanjutnya.
+            </p>
+        </section>
+
+        <!-- Daftar Pustaka -->
+        <section class="mb-16">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-book text-yellow-500 mr-2"></i>Daftar Pustaka</h3>
+            <ul class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                <li>PUIL 2011. <em>Persyaratan Umum Instalasi Listrik 2011</em>. Jakarta: Badan Standardisasi Nasional.</li>
+                <li>Zuraida, dkk. (2021). <em>Instalasi Motor Listrik Jilid 1 untuk SMK</em>. Jakarta: Direktorat Pembinaan SMK.</li>
+                <li>Theraja, B. L., & Theraja, A. (2005). <em>A Textbook of Electrical Technology Vol. II</em>. New Delhi: S. Chand.</li>
+                <li>Manual Book Kontaktor & Overload Relay Schneider Electric (TeSys Series) / ABB (AF Series).</li>
+                <li>Bolton, W. (2021). <em>Programmable Logic Controllers</em> (7th ed.). Oxford: Newnes.</li>
+            </ul>
+        </section>
+
+        <!-- Navigasi Bawah -->
+        <div class="flex justify-between items-center border-t pt-6 mb-16 flex-wrap gap-3">
+            <a href="2.html" class="text-blue-600 hover:text-blue-800 font-semibold"><i class="fas fa-arrow-left mr-1"></i> Pertemuan 2</a>
+            <a href="#top" class="text-gray-500 hover:text-gray-700 font-semibold"><i class="fas fa-arrow-up mr-1"></i> Ke Atas</a>
+            <a href="4.html" class="text-blue-600 hover:text-blue-800 font-semibold">Pertemuan 4: Motor 1 Fasa <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN UJI FORMATIF -->
+        <!-- ========================================================= -->
+        <section id="uji-formatif" class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-blue-900">📋 Uji Formatif 3: Pengasutan Star-Delta</h2>
+                <p class="text-gray-600 mt-2">Materi: Prinsip Star-Delta, komponen, diagram, interlock, dan troubleshooting.</p>
+                <p class="text-red-600 text-sm font-semibold mt-2">⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu!</p>
+            </div>
+
+            <form id="quizForm" class="space-y-8">
+                <!-- Data Siswa -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">📋 Data Siswa</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Nama Lengkap</label>
+                            <input type="text" name="nama" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* NIS (Nomor Induk Siswa)</label>
+                            <input type="text" name="nis" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Tanggal Ujian</label>
+                            <input type="date" name="tanggal" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Kelas</label>
+                            <input type="text" name="kelas" placeholder="Contoh: XI TITL 1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Semester</label>
+                            <select name="semester" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                                <option value="">Pilih Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian A: Pilihan Ganda -->
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon lengkapi semua 10 soal pilihan ganda!</p>
+                    
+                    <div class="space-y-6 text-gray-800">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">1. Tujuan utama pengasutan Star-Delta adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q1" value="a" class="mr-2"> a. Meningkatkan torsi starting motor</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="b" class="mr-2"> b. Mengurangi arus starting hingga 1/3 dari arus DOL</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="c" class="mr-2"> c. Meningkatkan kecepatan motor</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="d" class="mr-2"> d. Mengubah frekuensi sumber</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">2. Pada koneksi Star (Y), tegangan per fasa motor terhadap tegangan line adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q2" value="a" class="mr-2"> a. V<sub>line</sub></label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="b" class="mr-2"> b. V<sub>line</sub> × √3</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="c" class="mr-2"> c. V<sub>line</sub> / √3</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="d" class="mr-2"> d. V<sub>line</sub> / 2</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">3. Pada nameplate motor tertera 380V/660V (Δ/Y). Motor tersebut dapat di-start Star-Delta pada sumber tegangan...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q3" value="a" class="mr-2"> a. 220V</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="b" class="mr-2"> b. 380V</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="c" class="mr-2"> c. 660V</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="d" class="mr-2"> d. 110V</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">4. Pada rangkaian Star-Delta otomatis, jumlah kontaktor minimum yang dibutuhkan adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q4" value="a" class="mr-2"> a. 1 kontaktor</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="b" class="mr-2"> b. 2 kontaktor</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="c" class="mr-2"> c. 3 kontaktor</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="d" class="mr-2"> d. 4 kontaktor</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">5. Fungsi timer pada rangkaian Star-Delta otomatis adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q5" value="a" class="mr-2"> a. Menghitung konsumsi listrik</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="b" class="mr-2"> b. Menunda perpindahan dari konfigurasi Star ke Delta</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="c" class="mr-2"> c. Mengatur kecepatan motor</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="d" class="mr-2"> d. Mematikan motor secara otomatis</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">6. Jika kontaktor Star (KM2) dan kontaktor Delta (KM3) aktif bersamaan, akibat yang terjadi adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q6" value="a" class="mr-2"> a. Motor berputar lebih cepat</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="b" class="mr-2"> b. Motor berhenti dengan aman</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="c" class="mr-2"> c. Terjadi hubung singkat 3 fasa yang dapat menyebabkan ledakan</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="d" class="mr-2"> d. TOR akan otomatis trip tanpa kerusakan</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">7. Setting arus pada Thermal Overload Relay (TOR) untuk motor yang di-start Star-Delta sebaiknya diset pada...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q7" value="a" class="mr-2"> a. 1.0 × In motor</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="b" class="mr-2"> b. 0.58 × In motor (karena TOR dipasang di sisi garis)</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="c" class="mr-2"> c. 2.0 × In motor</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="d" class="mr-2"> d. 0.25 × In motor</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">8. Torsi starting motor pada mode Star dibandingkan dengan mode Delta adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q8" value="a" class="mr-2"> a. Sama dengan torsi Delta</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="b" class="mr-2"> b. 3 kali torsi Delta</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="c" class="mr-2"> c. 1/3 dari torsi Delta</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="d" class="mr-2"> d. 1/√3 dari torsi Delta</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">9. Motor yang dapat di-start dengan metode Star-Delta harus memiliki spesifikasi...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q9" value="a" class="mr-2"> a. 3 terminal di terminal box</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="b" class="mr-2"> b. 6 terminal di terminal box dan nameplate 380V/660V (Δ/Y)</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="c" class="mr-2"> c. Nameplate 220V/380V</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="d" class="mr-2"> d. Motor 1 fasa dengan kapasitor</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">10. Aplikasi industri yang PALING TEPAT menggunakan pengasutan Star-Delta adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q10" value="a" class="mr-2"> a. Motor bor meja 0.5 kW</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="b" class="mr-2"> b. Pompa air besar 15 kW dengan beban starting ringan</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="c" class="mr-2"> c. Conveyor dengan beban berat saat start</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="d" class="mr-2"> d. Motor lift yang membutuhkan torsi tinggi saat start</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Essay -->
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon isi semua 5 soal essay dengan jawaban yang jelas!</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <p class="font-semibold mb-2">1. Jelaskan prinsip dasar pengasutan Star-Delta! Mengapa arus starting pada mode Star menjadi 1/3 dari arus DOL? Sertakan rumus pendukung!</p>
+                            <textarea name="essay1" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">2. Sebutkan dan jelaskan fungsi masing-masing dari 3 kontaktor (KM1, KM2, KM3) pada rangkaian Star-Delta otomatis! Mengapa interlock antara KM2 dan KM3 bersifat WAJIB?</p>
+                            <textarea name="essay2" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">3. Sebuah motor 3 fasa 11 kW, 380V/660V, In = 22A akan di-start dengan metode Star-Delta. Hitunglah: (a) arus starting pada mode Star, (b) setting TOR, dan (c) perkiraan waktu timer yang sesuai!</p>
+                            <textarea name="essay3" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">4. Saat pengujian panel Star-Delta, motor berhasil start pada mode Star, tetapi saat transisi ke Delta, MCB langsung trip. Analisislah minimal 3 kemungkinan penyebabnya dan berikan solusi perbaikan!</p>
+                            <textarea name="essay4" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">5. Bandingkan metode pengasutan DOL, Star-Delta, dan Soft Starter dari segi: arus starting, torsi starting, biaya, dan aplikasi yang cocok! Kapan seorang teknisi sebaiknya memilih Star-Delta dibanding Soft Starter?</p>
+                            <textarea name="essay5" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hasil & Tombol Aksi -->
+                <div class="bg-blue-50 p-6 rounded-lg border border-blue-200 text-center">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4">📊 Hasil Uji Formatif</h3>
+                    <div id="hasilSkor" class="text-3xl font-extrabold text-blue-700 mb-2">0</div>
+                    <p id="detailSkor" class="text-sm text-gray-600 mb-6">Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button type="button" onclick="hitungNilai()" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-paper-plane mr-2"></i>KIRIM JAWABAN & LIHAT HASIL
+                        </button>
+                        <button type="button" onclick="window.print()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-file-pdf mr-2"></i>UNDUH PDF LENGKAP
+                        </button>
+                        <button type="button" onclick="kirimEmail()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-envelope mr-2"></i>KIRIM EMAIL GURU
+                        </button>
+                        <button type="button" onclick="resetForm()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-redo mr-2"></i>MULAI ULANG
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-blue-200 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">&copy; 2026 UKI SAPUTRA - SMK N 1 Koto Balingka. Hak Cipta Dilindungi.</p>
+            <a href="respon-pembaca.html" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-2 px-6 rounded-full transition duration-300 text-sm">
+                <i class="fas fa-paper-plane mr-1"></i> Kirim Respon tentang Materi Ini
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Fungsi Uji Formatif -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const kunciJawaban = {
+            q1: 'b', // Mengurangi arus starting 1/3
+            q2: 'c', // Vline / √3
+            q3: 'b', // 380V
+            q4: 'c', // 3 kontaktor
+            q5: 'b', // Menunda perpindahan Star ke Delta
+            q6: 'c', // Hubung singkat 3 fasa
+            q7: 'b', // 0.58 x In
+            q8: 'c', // 1/3 torsi Delta
+            q9: 'b', // 6 terminal & nameplate 380/660
+            q10: 'b' // Pompa besar 15 kW beban ringan
+        };
+
+        function hitungNilai() {
+            const form = document.getElementById('quizForm');
+            if (!form.checkValidity()) {
+                alert("⚠️ Mohon lengkapi semua data siswa, 10 soal Pilihan Ganda, dan 5 soal Essay terlebih dahulu!");
+                form.reportValidity();
+                return;
+            }
+
+            let skorPG = 0;
+            let benar = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const jawabanSiswa = document.querySelector(`input[name="q${i}"]:checked`);
+                if (jawabanSiswa && jawabanSiswa.value === kunciJawaban[`q${i}`]) {
+                    benar++;
+                    skorPG += 10;
+                }
+            }
+
+            const hasilDiv = document.getElementById('hasilSkor');
+            const detailDiv = document.getElementById('detailSkor');
+            
+            hasilDiv.innerText = skorPG;
+            detailDiv.innerHTML = `Bagian A (PG): <strong>${skorPG}/100</strong> (${benar} jawaban benar) <br> Bagian B (Essay): <strong>Menunggu Penilaian Guru</strong> (Jawaban telah tersimpan di sistem)`;
+            
+            document.getElementById('hasilSkor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            alert(`✅ Jawaban berhasil dikirim!\nSkor Sementara Pilihan Ganda: ${skorPG}/100\n\nCatatan: Jawaban Essay akan dinilai oleh guru.`);
+        }
+
+        function kirimEmail() {
+            const nama = document.querySelector('input[name="nama"]').value || "Siswa";
+            const nis = document.querySelector('input[name="nis"]').value || "-";
+            const kelas = document.querySelector('input[name="kelas"]').value || "-";
+            
+            const subject = `Hasil Uji Formatif 3 (Star-Delta) - ${nama} (${nis})`;
+            const body = `Yth. Bapak UKI SAPUTRA,\n\nBerikut adalah hasil uji formatif saya:\nNama: ${nama}\nNIS: ${nis}\nKelas: ${kelas}\nMateri: Pertemuan 3 - Pengasutan Star-Delta\n\nSaya telah menyelesaikan Bagian A (Pilihan Ganda) dan Bagian B (Essay) pada Pertemuan 3.\n\nTerima kasih.`;
+            
+            window.location.href = `mailto:trauky@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function resetForm() {
+            if(confirm("⚠️ Apakah Anda yakin ingin menghapus semua jawaban dan mulai ulang?")) {
+                document.getElementById('quizForm').reset();
+                document.getElementById('hasilSkor').innerText = "0";
+                document.getElementById('detailSkor').innerText = "Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

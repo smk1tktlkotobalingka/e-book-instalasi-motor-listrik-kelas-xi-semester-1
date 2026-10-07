@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 4: Motor Listrik 1 Fasa - Instalasi Motor Listrik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .highlight-box { border-left: 4px solid #2563eb; background-color: #eff6ff; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .tip-box { border-left: 4px solid #16a34a; background-color: #f0fdf4; }
+        .formula-box { background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 0.5rem; font-family: 'Courier New', monospace; }
+        .diagram { background: #1e293b; color: #e2e8f0; padding: 1.5rem; border-radius: 0.5rem; font-family: 'Courier New', monospace; overflow-x: auto; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans" id="top">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl font-bold tracking-wide">INSTALASI MOTOR LISTRIK</div>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0">
+                <a href="index.html" class="hover:text-yellow-400 transition"><i class="fas fa-home mr-1"></i> Beranda</a>
+                <a href="index.html#tentang" class="hover:text-yellow-400 transition"><i class="fas fa-info-circle mr-1"></i> Tentang</a>
+                <a href="index.html#daftar-isi" class="hover:text-yellow-400 transition"><i class="fas fa-list mr-1"></i> Daftar Bab</a>
+                <a href="index.html#kontak" class="hover:text-yellow-400 transition"><i class="fas fa-user mr-1"></i> Penulis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Chapter -->
+    <header class="bg-gradient-to-r from-blue-800 to-blue-600 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="bg-yellow-500 text-blue-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pertemuan 4</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-4 mb-2">Prinsip Kerja & Pengasutan Motor Listrik 1 Fasa</h1>
+            <p class="text-blue-100 text-lg max-w-3xl mx-auto">
+                Memahami teori medan magnet pulsasi, jenis-jenis motor 1 fasa (Split Phase, Capacitor Start, Capacitor Start-Run, Shaded Pole), peran kapasitor start & run, serta teknik pengasutan dan aplikasinya di industri dan rumah tangga.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <a href="3.html" class="bg-gray-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-600 transition border border-gray-500"><i class="fas fa-arrow-left mr-1"></i>Pertemuan 3</a>
+                <a href="#materi-inti" class="bg-white text-blue-900 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition">Mulai Membaca</a>
+                <a href="5.html" class="bg-blue-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-blue-600 transition border border-blue-500">Pertemuan 5 →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl" id="materi-inti">
+        
+        <!-- Pendahuluan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b-2 border-blue-200 pb-2">Pendahuluan</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Setelah mempelajari pengasutan motor 3 fasa pada tiga pertemuan sebelumnya, siswa kini beralih ke dunia motor listrik 1 fasa — jenis motor yang paling banyak ditemui dalam kehidupan sehari-hari. Mulai dari kipas angin, kulkas, mesin cuci, pompa air rumah tangga, hingga AC, semuanya menggunakan motor 1 fasa sebagai penggeraknya.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Berbeda dengan motor 3 fasa yang memiliki medan putar alami dari sumber 3 fasa, motor 1 fasa menghadapi tantangan fundamental: <strong>sumber 1 fasa hanya menghasilkan medan magnet pulsasi</strong> (bolak-balik), bukan medan putar. Akibatnya, motor 1 fasa <em>tidak memiliki torsi starting secara alami</em> — jika rotor didiamkan dan sumber dihubungkan, motor tidak akan berputar, hanya mendengung.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Solusi rekayasa yang dikembangkan untuk mengatasi masalah ini sangat menarik untuk dipelajari: penggunaan <strong>lilitan bantu (auxiliary winding)</strong> yang digeser 90° listrik dari lilitan utama, dikombinasikan dengan <strong>kapasitor</strong>, <strong>centrifugal switch</strong>, atau <strong>cincin hubung singkat (shaded pole)</strong>. Pada pertemuan ini, siswa akan memahami prinsip "Double Revolving Field", mengenal empat jenis utama motor 1 fasa, serta teknik pengasutan dan perawatannya.
+            </p>
+        </section>
+
+        <!-- Konsep Kunci -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-key text-yellow-500 mr-2"></i>Konsep Kunci</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Medan Magnet Pulsasi</h4>
+                    <p class="text-sm text-gray-700 mt-1">Medan magnet yang dihasilkan lilitan stator motor 1 fasa — besarnya berubah-ubah secara sinusoidal tetapi arahnya tetap (tidak berputar). Medan ini dapat diuraikan menjadi dua medan putar yang berlawanan arah dengan magnitudo ½ dari medan pulsasi.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Teori Double Revolving Field</h4>
+                    <p class="text-sm text-gray-700 mt-1">Teori yang menyatakan bahwa medan pulsasi dapat diuraikan menjadi dua komponen medan putar: medan maju (forward) dan medan mundur (backward). Torsi total motor = Torsi maju − Torsi mundur. Saat diam, keduanya sama besar → torsi start = 0.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Lilitan Bantu (Auxiliary Winding)</h4>
+                    <p class="text-sm text-gray-700 mt-1">Lilitan kedua pada stator yang digeser 90° listrik dari lilitan utama. Bersama dengan lilitan utama, menghasilkan medan putar saat starting. Biasanya diputus oleh centrifugal switch setelah motor mencapai 75% kecepatan nominal.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Kapasitor Start & Kapasitor Run</h4>
+                    <p class="text-sm text-gray-700 mt-1"><strong>Kapasitor Start</strong> (elektrolitik, nilai besar) hanya bekerja saat starting untuk meningkatkan torsi. <strong>Kapasitor Run</strong> (oil-filled, nilai kecil) bekerja terus-menerus untuk meningkatkan faktor daya dan efisiensi.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Landasan Teoretis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">4.1 Landasan Teoretis Motor 1 Fasa</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">4.1.1 Mengapa Motor 1 Fasa Tidak Berputar Sendiri?</h3>
+                    <p class="text-gray-700 mt-2">
+                        Ketika arus AC 1 fasa mengalir melalui lilitan stator tunggal, ia menghasilkan medan magnet pulsasi yang arahnya tetap tetapi besarnya berubah sinusoidal. Menurut <strong>Teori Double Revolving Field</strong> (yang dikembangkan oleh Cross dan Hamilton), medan pulsasi ini dapat diuraikan menjadi dua medan putar yang berlawanan arah:
+                    </p>
+                    <div class="formula-box mt-3">
+                        <p>Φ<sub>pulsasi</sub> = Φ<sub>maju</sub> + Φ<sub>mundur</sub></p>
+                        <p>Φ<sub>maju</sub> = ½ Φ<sub>maks</sub> (berputar searah jarum jam)</p>
+                        <p>Φ<sub>mundur</sub> = ½ Φ<sub>maks</sub> (berputar berlawanan jarum jam)</p>
+                    </div>
+                    <p class="text-gray-700 mt-3">
+                        Karena rotor dalam keadaan diam, kedua medan ini menginduksi torsi yang sama besar tetapi berlawanan arah. <strong>Torsi resultan = 0</strong>, sehingga rotor tidak berputar. Namun, jika rotor diputar sedikit saja (dibantu tangan), medan yang searah dengan putaran akan mendominasi, dan motor akan terus berputar pada arah tersebut.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">4.1.2 Solusi: Menciptakan Medan Putar Buatan</h3>
+                    <p class="text-gray-700 mt-2">
+                        Untuk membuat motor 1 fasa dapat berputar sendiri (self-starting), diperlukan <strong>medan putar buatan</strong> saat starting. Cara yang paling umum adalah:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-700 mt-2 ml-4 space-y-1">
+                        <li>Menambahkan <strong>lilitan bantu</strong> yang digeser 90° listrik dari lilitan utama</li>
+                        <li>Mengalirkan arus pada lilitan bantu dengan <strong>sudut fase berbeda</strong> dari arus lilitan utama</li>
+                        <li>Kombinasi dua arus yang berbeda fase dan dua lilitan yang berbeda posisi → menghasilkan <strong>medan putar</strong></li>
+                    </ul>
+                    <p class="text-gray-700 mt-3">
+                        Setelah motor mencapai sekitar 75% kecepatan nominal, lilitan bantu (dan komponen starting-nya) biasanya diputus oleh <strong>centrifugal switch</strong>, dan motor继续 beroperasi hanya dengan lilitan utama.
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">4.1.3 Persamaan Torsi Motor 1 Fasa</h3>
+                    <div class="formula-box">
+                        <p>T<sub>total</sub> = T<sub>maju</sub> − T<sub>mundur</sub></p>
+                        <p class="mt-2">Dimana:</p>
+                        <p>T<sub>maju</sub> = torsi yang dihasilkan medan putar forward</p>
+                        <p>T<sub>mundur</sub> = torsi yang dihasilkan medan putar backward</p>
+                        <p class="mt-2">Saat starting (s = 1): T<sub>maju</sub> = T<sub>mundur</sub> → T<sub>total</sub> = 0</p>
+                        <p>Saat berputar (s &lt; 1): T<sub>maju</sub> &gt; T<sub>mundur</sub> → T<sub>total</sub> &gt; 0</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Jenis-Jenis Motor 1 Fasa -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">4.2 Jenis-Jenis Motor Listrik 1 Fasa</h2>
+            
+            <div class="space-y-6">
+                <!-- Split Phase -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">4.2.1 Motor Split Phase (Resistance Start)</h3>
+                    <p class="text-gray-700 mb-3">
+                        Motor 1 fasa paling sederhana. Lilitan bantu dibuat dengan kawat berukuran lebih kecil dan lebih sedikit lilitan dibanding lilitan utama, sehingga memiliki <strong>resistansi tinggi dan reaktansi rendah</strong>. Perbedaan R/X antara kedua lilitan menghasilkan perbedaan sudut fase sekitar 30° — cukup untuk menghasilkan torsi starting rendah.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Karakteristik:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Torsi starting: rendah (1,5–2 × Torsi nominal)</li>
+                                <li>Arus starting: tinggi (5–7 × In)</li>
+                                <li>Daya: 1/8 – 1/3 HP</li>
+                                <li>Centrifugal switch: YA</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Aplikasi:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Kipas angin kecil</li>
+                                <li>Blower</li>
+                                <li>Gerinda kecil</li>
+                                <li>Mesin cuci (tanpa beban berat)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Capacitor Start -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">4.2.2 Motor Capacitor Start</h3>
+                    <p class="text-gray-700 mb-3">
+                        Perbaikan dari motor Split Phase. Sebuah <strong>kapasitor elektrolitik (nilai besar, 50–300 µF)</strong> dipasang seri dengan lilitan bantu. Kapasitor ini menggeser arus lilitan bantu mendekati 90° dari arus lilitan utama, menghasilkan medan putar yang lebih kuat dan torsi starting tinggi.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Karakteristik:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Torsi starting: tinggi (3–4,5 × Torsi nominal)</li>
+                                <li>Arus starting: sedang (4–6 × In)</li>
+                                <li>Daya: 1/12 – 10 HP</li>
+                                <li>Centrifugal switch: YA</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Aplikasi:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Pompa air rumah tangga</li>
+                                <li>Kompresor udara</li>
+                                <li> Conveyor kecil</li>
+                                <li>Mesin pertanian</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Capacitor Start-Capacitor Run -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">4.2.3 Motor Capacitor Start – Capacitor Run (Two-Value Capacitor)</h3>
+                    <p class="text-gray-700 mb-3">
+                        Kombinasi terbaik dari kedua dunia. Menggunakan <strong>dua kapasitor</strong>: kapasitor start (elektrolitik, nilai besar) untuk starting, dan kapasitor run (oil-filled, nilai kecil, 5–30 µF) yang tetap terhubung selama operasi. Memberikan torsi starting tinggi DAN efisiensi operasi tinggi.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Karakteristik:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Torsi starting: sangat tinggi</li>
+                                <li>Efisiensi & faktor daya: tinggi</li>
+                                <li>Suara operasi: halus</li>
+                                <li>Daya: 1 – 10 HP</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Aplikasi:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Pompa air besar</li>
+                                <li>AC (Air Conditioner)</li>
+                                <li>Mesin perkakas berat</li>
+                                <li>Kompresor industri kecil</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Capacitor Run (Permanent Split Capacitor) -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">4.2.4 Motor Permanent Split Capacitor (PSC)</h3>
+                    <p class="text-gray-700 mb-3">
+                        Hanya menggunakan <strong>satu kapasitor run</strong> (oil-filled) yang tetap terhubung baik saat starting maupun operasi. <strong>Tidak memiliki centrifugal switch</strong>, sehingga lebih andal dan hening. Torsi starting lebih rendah dibanding Capacitor Start, tetapi operasi lebih halus.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Karakteristik:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Torsi starting: rendah-sedang</li>
+                                <li>Efisiensi: tinggi</li>
+                                <li>Suara: sangat halus</li>
+                                <li>Tanpa centrifugal switch</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Aplikasi:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Kipas angin (ceiling & standing)</li>
+                                <li>Blower HVAC</li>
+                                <li>Exhaust fan</li>
+                                <li>Pompa sirkulasi</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shaded Pole -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">4.2.5 Motor Shaded Pole</h3>
+                    <p class="text-gray-700 mb-3">
+                        Motor 1 fasa paling sederhana dan paling murah. Tidak memiliki lilitan bantu maupun kapasitor. Menggunakan <strong>cincin tembaga hubung singkat (shading coil)</strong> yang melingkari sebagian kutub stator. Cincin ini menghasilkan medan putar lemah yang cukup untuk menggerakkan rotor.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-blue-50 p-3 rounded">
+                            <p class="font-bold text-blue-900">Karakteristik:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Torsi starting: sangat rendah</li>
+                                <li>Efisiensi: sangat rendah (5–35%)</li>
+                                <li>Daya: sangat kecil (1/300 – 1/20 HP)</li>
+                                <li>Konstruksi: sangat sederhana</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-3 rounded">
+                            <p class="font-bold text-green-900">Aplikasi:</p>
+                            <ul class="list-disc list-inside text-gray-700 mt-1">
+                                <li>Kipas angin meja kecil</li>
+                                <li>Exhaust fan kamar mandi</li>
+                                <li>Peralatan kantor</li>
+                                <li>Advertisement display</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perbandingan Jenis Motor -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6 border-b-2 border-blue-200 pb-2">4.3 Perbandingan Kelima Jenis Motor 1 Fasa</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm text-sm">
+                    <thead class="bg-blue-100 text-blue-900">
+                        <tr>
+                            <th class="py-3 px-4 text-left font-bold border-b">Jenis Motor</th>
+                            <th class="py-3 px-4 text-left font-bold border-b">Torsi Start</th>
+                            <th class="py-3 px-4 text-left font-bold border-b">Efisiensi</th>
+                            <th class="py-3 px-4 text-left font-bold border-b">Harga</th>
+                            <th class="py-3 px-4 text-left font-bold border-b">Aplikasi Utama</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Split Phase</td>
+                            <td class="py-3 px-4">Rendah</td>
+                            <td class="py-3 px-4">Sedang</td>
+                            <td class="py-3 px-4">Murah</td>
+                            <td class="py-3 px-4">Kipas, blower kecil</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Capacitor Start</td>
+                            <td class="py-3 px-4">Tinggi</td>
+                            <td class="py-3 px-4">Sedang</td>
+                            <td class="py-3 px-4">Sedang</td>
+                            <td class="py-3 px-4">Pompa, kompresor</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Cap. Start – Cap. Run</td>
+                            <td class="py-3 px-4">Sangat Tinggi</td>
+                            <td class="py-3 px-4">Tinggi</td>
+                            <td class="py-3 px-4">Mahal</td>
+                            <td class="py-3 px-4">AC, pompa besar</td>
+                        </tr>
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">PSC (Cap. Run)</td>
+                            <td class="py-3 px-4">Rendah-Sedang</td>
+                            <td class="py-3 px-4">Tinggi</td>
+                            <td class="py-3 px-4">Sedang</td>
+                            <td class="py-3 px-4">Kipas angin, HVAC</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-3 px-4 font-semibold">Shaded Pole</td>
+                            <td class="py-3 px-4">Sangat Rendah</td>
+                            <td class="py-3 px-4">Sangat Rendah</td>
+                            <td class="py-3 px-4">Sangat Murah</td>
+                            <td class="py-3 px-4">Kipas meja kecil</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Studi Kasus -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-book-open text-yellow-500 mr-2"></i>Studi Kasus 1: AC Rumah Tangga Tidak Dingin, Hanya Mendengung</h3>
+            <div class="warning-box p-6 rounded-r-lg">
+                <p class="text-gray-800 mb-3">
+                    Seorang pelanggan mengeluh AC 1 PK di rumahnya tidak dapat start. Kompresor hanya mendengung (humming) dan MCB 16A di rumah sering trip. Setelah diperiksa teknisi, ditemukan <strong>kapasitor run 30 µF</strong> pada unit outdoor telah <em>gembung</em> dan kapasitasnya turun menjadi hanya 8 µF (ukur dengan kapasitance meter).
+                </p>
+                <p class="font-semibold text-red-700">
+                    <i class="fas fa-search mr-1"></i> Analisis:
+                </p>
+                <p class="text-gray-800 mt-1">
+                    Kapasitor run yang rusak menyebabkan lilitan bantu tidak menghasilkan sudut fase yang tepat. Akibatnya, medan putar menjadi lemah, kompresor tidak mampu start, arus naik drastis (locked rotor current), dan MCB trip.
+                </p>
+                <p class="font-semibold text-green-700 mt-3">
+                    <i class="fas fa-check-circle mr-1"></i> Solusi:
+                </p>
+                <p class="text-gray-800 mt-1">
+                    Ganti kapasitor run dengan tipe dan nilai yang sama (30 µF, 400VAC, oil-filled). Setelah diganti, kompresor start normal dan AC kembali dingin. Biaya perbaikan: ±Rp 150.000 — jauh lebih murah dibanding ganti kompresor (±Rp 1,5 juta).
+                </p>
+            </div>
+        </section>
+
+        <!-- Tips Praktis -->
+        <section class="mb-12">
+            <div class="tip-box p-6 rounded-r-lg">
+                <h3 class="font-bold text-green-800 mb-2"><i class="fas fa-tools mr-2"></i>Tips Praktis Troubleshooting Motor 1 Fasa</h3>
+                <ul class="list-disc list-inside text-gray-800 space-y-2 text-sm">
+                    <li><strong>Motor mendengung tapi tidak berputar:</strong> Periksa kapasitor start (jika ada), centrifugal switch, dan lilitan bantu. Gunakan multimeter untuk cek kontinuitas dan kapasitance meter untuk cek kapasitor.</li>
+                    <li><strong>Motor berputar lambat:</strong> Cek kapasitor run (jika tipe PSC atau Cap Start-Run), tegangan sumber, dan bearing rotor. Bearing yang aus menyebabkan gesekan mekanis tinggi.</li>
+                    <li><strong>Motor cepat panas:</strong> Periksa beban berlebih, ventilasi, dan lilitan stator (kemungkinan short antar lilitan). Ukur tahanan isolasi dengan megger — nilai minimum 1 MΩ.</li>
+                    <li><strong>Centrifugal switch tidak membuka:</strong> Lilitan bantu tetap terhubung saat operasi → motor cepat panas dan bisa terbakar. Bersihkan kontak switch dari kotoran.</li>
+                    <li><strong>Arah putaran salah:</strong> Tukar ujung lilitan bantu (atau lilitan utama) — jangan keduanya. Pada motor PSC, tukar koneksi kapasitor.</li>
+                    <li>Selalu catat nilai kapasitor (µF dan rating tegangan) sebelum melepas — ganti dengan tipe dan nilai yang sama persis.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Refleksi -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Refleksi untuk Siswa SMK</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Motor 1 fasa adalah "jembatan" antara teori medan magnet dan aplikasi praktis yang ditemui setiap hari. Ketika siswa membuka kulkas, menyalakan AC, atau menghidupkan pompa air, di balik kesederhanaan itu ada prinsip rekayasa yang cerdas: menciptakan medan putar dari sumber yang sebenarnya tidak memproduksinya. Pemahaman ini membekali siswa untuk menjadi teknisi yang tidak hanya mampu mengganti komponen, tetapi juga <em>menganalisis mengapa</em> komponen itu gagal dan bagaimana memperbaikinya secara sistematis.
+            </p>
+        </section>
+
+        <!-- Kesimpulan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-blue-900 mb-4 border-b-2 border-blue-200 pb-2">Kesimpulan</h2>
+            <p class="text-gray-700 leading-relaxed">
+                Motor 1 fasa memiliki tantangan fundamental berupa tidak adanya torsi starting alami karena hanya menghasilkan medan magnet pulsasi. Solusi rekayasa yang dikembangkan meliputi penggunaan lilitan bantu yang digeser 90° listrik, dikombinasikan dengan kapasitor, centrifugal switch, atau shading coil. Lima jenis motor 1 fasa — Split Phase, Capacitor Start, Capacitor Start-Run, Permanent Split Capacitor (PSC), dan Shaded Pole — masing-masing memiliki karakteristik torsi, efisiensi, dan aplikasi yang berbeda. Pemilihan jenis motor yang tepat sesuai kebutuhan beban akan menentukan keandalan dan efisiensi sistem secara keseluruhan.
+            </p>
+        </section>
+
+        <!-- Daftar Pustaka -->
+        <section class="mb-16">
+            <h3 class="text-xl font-bold text-blue-900 mb-4"><i class="fas fa-book text-yellow-500 mr-2"></i>Daftar Pustaka</h3>
+            <ul class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                <li>Theraja, B. L., & Theraja, A. (2005). <em>A Textbook of Electrical Technology Vol. II</em>. New Delhi: S. Chand.</li>
+                <li>Chapman, S. J. (2011). <em>Electric Machinery Fundamentals</em> (5th ed.). New York: McGraw-Hill.</li>
+                <li>Zuraida, dkk. (2021). <em>Instalasi Motor Listrik Jilid 1 untuk SMK</em>. Jakarta: Direktorat Pembinaan SMK.</li>
+                <li>PUIL 2011. <em>Persyaratan Umum Instalasi Listrik 2011</em>. Jakarta: Badan Standardisasi Nasional.</li>
+                <li>Manual Book Motor 1 Fasa (Toshiba, Panasonic, Grundfos) untuk Spesifikasi Kapasitor dan Koneksi.</li>
+            </ul>
+        </section>
+
+        <!-- Navigasi Bawah -->
+        <div class="flex justify-between items-center border-t pt-6 mb-16 flex-wrap gap-3">
+            <a href="3.html" class="text-blue-600 hover:text-blue-800 font-semibold"><i class="fas fa-arrow-left mr-1"></i> Pertemuan 3</a>
+            <a href="#top" class="text-gray-500 hover:text-gray-700 font-semibold"><i class="fas fa-arrow-up mr-1"></i> Ke Atas</a>
+            <a href="5.html" class="text-blue-600 hover:text-blue-800 font-semibold">Pertemuan 5: Kontrol Kecepatan Motor 1 Fasa <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN UJI FORMATIF -->
+        <!-- ========================================================= -->
+        <section id="uji-formatif" class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-blue-900">📋 Uji Formatif 4: Motor Listrik 1 Fasa</h2>
+                <p class="text-gray-600 mt-2">Materi: Prinsip kerja, jenis motor 1 fasa, peran kapasitor, dan teknik pengasutan.</p>
+                <p class="text-red-600 text-sm font-semibold mt-2">⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu!</p>
+            </div>
+
+            <form id="quizForm" class="space-y-8">
+                <!-- Data Siswa -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">📋 Data Siswa</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Nama Lengkap</label>
+                            <input type="text" name="nama" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* NIS (Nomor Induk Siswa)</label>
+                            <input type="text" name="nis" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Tanggal Ujian</label>
+                            <input type="date" name="tanggal" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Kelas</label>
+                            <input type="text" name="kelas" placeholder="Contoh: XI TITL 1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Semester</label>
+                            <select name="semester" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none">
+                                <option value="">Pilih Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian A: Pilihan Ganda -->
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon lengkapi semua 10 soal pilihan ganda!</p>
+                    
+                    <div class="space-y-6 text-gray-800">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">1. Menurut Teori Double Revolving Field, medan magnet pulsasi pada motor 1 fasa dapat diuraikan menjadi...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q1" value="a" class="mr-2"> a. Satu medan putar searah jarum jam</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="b" class="mr-2"> b. Dua medan putar yang searah dengan magnitudo berbeda</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="c" class="mr-2"> c. Dua medan putar yang berlawanan arah dengan magnitudo sama (½ Φ<sub>maks</sub>)</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="d" class="mr-2"> d. Medan magnet statis yang tidak berputar</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">2. Mengapa motor 1 fasa tidak dapat berputar sendiri saat rotor dalam keadaan diam?</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q2" value="a" class="mr-2"> a. Karena tegangan sumber terlalu rendah</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="b" class="mr-2"> b. Karena torsi maju dan torsi mundur sama besar sehingga resultan torsi = 0</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="c" class="mr-2"> c. Karena rotor terkunci secara mekanis</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="d" class="mr-2"> d. Karena tidak ada arus yang mengalir ke rotor</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">3. Komponen yang berfungsi memutus lilitan bantu setelah motor mencapai 75% kecepatan nominal adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q3" value="a" class="mr-2"> a. Kapasitor run</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="b" class="mr-2"> b. Thermal relay</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="c" class="mr-2"> c. Centrifugal switch</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="d" class="mr-2"> d. Shading coil</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">4. Motor 1 fasa yang memiliki torsi starting PALING TINGGI adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q4" value="a" class="mr-2"> a. Split Phase</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="b" class="mr-2"> b. Shaded Pole</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="c" class="mr-2"> c. Capacitor Start – Capacitor Run</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="d" class="mr-2"> d. Permanent Split Capacitor (PSC)</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">5. Fungsi kapasitor run pada motor PSC (Permanent Split Capacitor) adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q5" value="a" class="mr-2"> a. Hanya bekerja saat starting untuk meningkatkan torsi</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="b" class="mr-2"> b. Bekerja terus-menerus untuk meningkatkan faktor daya dan efisiensi operasi</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="c" class="mr-2"> c. Memutus arus saat beban lebih</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="d" class="mr-2"> d. Mengatur kecepatan motor secara elektronik</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">6. Motor 1 fasa yang TIDAK memiliki lilitan bantu maupun kapasitor adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q6" value="a" class="mr-2"> a. Split Phase</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="b" class="mr-2"> b. Capacitor Start</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="c" class="mr-2"> c. Shaded Pole</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="d" class="mr-2"> d. PSC</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">7. AC (Air Conditioner) rumah tangga umumnya menggunakan jenis motor...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q7" value="a" class="mr-2"> a. Split Phase</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="b" class="mr-2"> b. Shaded Pole</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="c" class="mr-2"> c. Capacitor Start – Capacitor Run</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="d" class="mr-2"> d. Motor 3 fasa DOL</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">8. Jika sebuah motor 1 fasa hanya mendengung tetapi tidak berputar, kemungkinan penyebab yang PALING UMUM adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q8" value="a" class="mr-2"> a. Tegangan sumber terlalu tinggi</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="b" class="mr-2"> b. Kapasitor start rusak atau centrifugal switch macet</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="c" class="mr-2"> c. Beban terlalu ringan</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="d" class="mr-2"> d. Kapasitor run terlalu besar nilainya</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">9. Perbedaan sudut fase ideal antara arus lilitan utama dan lilitan bantu untuk menghasilkan medan putar optimal adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q9" value="a" class="mr-2"> a. 0°</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="b" class="mr-2"> b. 30°</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="c" class="mr-2"> c. 90°</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="d" class="mr-2"> d. 180°</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">10. Motor 1 fasa yang paling cocok untuk aplikasi kipas angin ceiling (yang membutuhkan operasi hening dan efisien) adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q10" value="a" class="mr-2"> a. Split Phase</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="b" class="mr-2"> b. Capacitor Start</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="c" class="mr-2"> c. Permanent Split Capacitor (PSC)</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="d" class="mr-2"> d. Shaded Pole</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Essay -->
+                <div>
+                    <h3 class="text-lg font-bold text-blue-900 mb-4 border-b pb-2">✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon isi semua 5 soal essay dengan jawaban yang jelas!</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <p class="font-semibold mb-2">1. Jelaskan secara komprehensif Teori Double Revolving Field dan bagaimana teori ini menjelaskan mengapa motor 1 fasa tidak dapat berputar sendiri! Sertakan rumus pendukung!</p>
+                            <textarea name="essay1" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">2. Bandingkan kelima jenis motor 1 fasa (Split Phase, Capacitor Start, Capacitor Start-Run, PSC, Shaded Pole) dari segi: prinsip starting, torsi starting, efisiensi, dan aplikasi! Buat dalam bentuk tabel!</p>
+                            <textarea name="essay2" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">3. Jelaskan peran kapasitor start dan kapasitor run pada motor Capacitor Start-Capacitor Run! Mengapa kedua kapasitor ini memiliki nilai dan tipe yang berbeda?</p>
+                            <textarea name="essay3" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">4. Sebuah AC 1 PK tidak dapat start, kompresor hanya mendengung, dan MCB sering trip. Analisislah minimal 3 kemungkinan penyebabnya dan berikan langkah troubleshooting sistematis untuk mengatasinya!</p>
+                            <textarea name="essay4" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">5. Rancanglah skenario pemilihan motor 1 fasa yang tepat untuk tiga aplikasi berikut: (a) pompa air rumah tangga dengan tekanan tinggi, (b) kipas angin standing fan, (c) exhaust fan kamar mandi. Jelaskan alasan pemilihan Anda untuk masing-masing aplikasi!</p>
+                            <textarea name="essay5" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hasil & Tombol Aksi -->
+                <div class="bg-blue-50 p-6 rounded-lg border border-blue-200 text-center">
+                    <h3 class="text-lg font-bold text-blue-900 mb-4">📊 Hasil Uji Formatif</h3>
+                    <div id="hasilSkor" class="text-3xl font-extrabold text-blue-700 mb-2">0</div>
+                    <p id="detailSkor" class="text-sm text-gray-600 mb-6">Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button type="button" onclick="hitungNilai()" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-paper-plane mr-2"></i>KIRIM JAWABAN & LIHAT HASIL
+                        </button>
+                        <button type="button" onclick="window.print()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-file-pdf mr-2"></i>UNDUH PDF LENGKAP
+                        </button>
+                        <button type="button" onclick="kirimEmail()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-envelope mr-2"></i>KIRIM EMAIL GURU
+                        </button>
+                        <button type="button" onclick="resetForm()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-redo mr-2"></i>MULAI ULANG
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-blue-200 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">&copy; 2026 UKI SAPUTRA - SMK N 1 Koto Balingka. Hak Cipta Dilindungi.</p>
+            <a href="respon-pembaca.html" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-2 px-6 rounded-full transition duration-300 text-sm">
+                <i class="fas fa-paper-plane mr-1"></i> Kirim Respon tentang Materi Ini
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Fungsi Uji Formatif -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const kunciJawaban = {
+            q1: 'c', // Dua medan putar berlawanan arah ½ Φmaks
+            q2: 'b', // Torsi maju = torsi mundur, resultan = 0
+            q3: 'c', // Centrifugal switch
+            q4: 'c', // Capacitor Start-Capacitor Run
+            q5: 'b', // Meningkatkan faktor daya & efisiensi
+            q6: 'c', // Shaded Pole
+            q7: 'c', // Capacitor Start-Capacitor Run
+            q8: 'b', // Kapasitor start rusak / centrifugal switch macet
+            q9: 'c', // 90°
+            q10: 'c' // PSC
+        };
+
+        function hitungNilai() {
+            const form = document.getElementById('quizForm');
+            if (!form.checkValidity()) {
+                alert("⚠️ Mohon lengkapi semua data siswa, 10 soal Pilihan Ganda, dan 5 soal Essay terlebih dahulu!");
+                form.reportValidity();
+                return;
+            }
+
+            let skorPG = 0;
+            let benar = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const jawabanSiswa = document.querySelector(`input[name="q${i}"]:checked`);
+                if (jawabanSiswa && jawabanSiswa.value === kunciJawaban[`q${i}`]) {
+                    benar++;
+                    skorPG += 10;
+                }
+            }
+
+            const hasilDiv = document.getElementById('hasilSkor');
+            const detailDiv = document.getElementById('detailSkor');
+            
+            hasilDiv.innerText = skorPG;
+            detailDiv.innerHTML = `Bagian A (PG): <strong>${skorPG}/100</strong> (${benar} jawaban benar) <br> Bagian B (Essay): <strong>Menunggu Penilaian Guru</strong> (Jawaban telah tersimpan di sistem)`;
+            
+            document.getElementById('hasilSkor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            alert(`✅ Jawaban berhasil dikirim!\nSkor Sementara Pilihan Ganda: ${skorPG}/100\n\nCatatan: Jawaban Essay akan dinilai oleh guru.`);
+        }
+
+        function kirimEmail() {
+            const nama = document.querySelector('input[name="nama"]').value || "Siswa";
+            const nis = document.querySelector('input[name="nis"]').value || "-";
+            const kelas = document.querySelector('input[name="kelas"]').value || "-";
+            
+            const subject = `Hasil Uji Formatif 4 (Motor 1 Fasa) - ${nama} (${nis})`;
+            const body = `Yth. Bapak UKI SAPUTRA,\n\nBerikut adalah hasil uji formatif saya:\nNama: ${nama}\nNIS: ${nis}\nKelas: ${kelas}\nMateri: Pertemuan 4 - Motor Listrik 1 Fasa\n\nSaya telah menyelesaikan Bagian A (Pilihan Ganda) dan Bagian B (Essay) pada Pertemuan 4.\n\nTerima kasih.`;
+            
+            window.location.href = `mailto:trauky@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function resetForm() {
+            if(confirm("⚠️ Apakah Anda yakin ingin menghapus semua jawaban dan mulai ulang?")) {
+                document.getElementById('quizForm').reset();
+                document.getElementById('hasilSkor').innerText = "0";
+                document.getElementById('detailSkor').innerText = "Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

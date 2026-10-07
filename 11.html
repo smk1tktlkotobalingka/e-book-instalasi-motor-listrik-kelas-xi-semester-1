@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertemuan 11: Teknik Troubleshooting Rangkaian Kontrol - Instalasi Motor Listrik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .highlight-box { border-left: 4px solid #2563eb; background-color: #eff6ff; }
+        .warning-box { border-left: 4px solid #dc2626; background-color: #fef2f2; }
+        .tip-box { border-left: 4px solid #16a34a; background-color: #f0fdf4; }
+        .formula-box { background-color: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 0.5rem; font-family: 'Courier New', monospace; }
+        .flowchart-step { background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%); border-left: 4px solid #0d9488; padding: 1rem; margin-bottom: 0.5rem; border-radius: 0.5rem; position: relative; }
+        .flowchart-step::after { content: '↓'; position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); color: #0d9488; font-size: 1.2rem; font-weight: bold; }
+        .flowchart-step:last-child::after { content: ''; }
+        .trouble-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .trouble-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans" id="top">
+
+    <!-- Navigation -->
+    <nav class="bg-blue-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <div class="text-xl font-bold tracking-wide">INSTALASI MOTOR LISTRIK</div>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0">
+                <a href="index.html" class="hover:text-yellow-400 transition"><i class="fas fa-home mr-1"></i> Beranda</a>
+                <a href="index.html#tentang" class="hover:text-yellow-400 transition"><i class="fas fa-info-circle mr-1"></i> Tentang</a>
+                <a href="index.html#daftar-isi" class="hover:text-yellow-400 transition"><i class="fas fa-list mr-1"></i> Daftar Bab</a>
+                <a href="index.html#kontak" class="hover:text-yellow-400 transition"><i class="fas fa-user mr-1"></i> Penulis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Chapter -->
+    <header class="bg-gradient-to-r from-teal-800 to-teal-600 text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <span class="bg-yellow-500 text-teal-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Pertemuan 11 — Bab 5: Pemeliharaan & Troubleshooting</span>
+            <h1 class="text-3xl md:text-4xl font-extrabold mt-4 mb-2">Teknik Troubleshooting Rangkaian Kontrol Motor Listrik</h1>
+            <p class="text-teal-100 text-lg max-w-3xl mx-auto">
+                Mempelajari pendekatan sistematis dalam mendiagnosis dan memperbaiki gangguan pada rangkaian kontrol motor listrik — meliputi metode <em>half-split</em>, <em>signal tracing</em>, penggunaan alat ukur, flowchart troubleshooting, hingga studi kasus gangguan pada rangkaian DOL, Star-Delta, Forward-Reverse, dan motor 1 fasa.
+            </p>
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <a href="10.html" class="bg-gray-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-gray-600 transition border border-gray-500"><i class="fas fa-arrow-left mr-1"></i>Pertemuan 10</a>
+                <a href="#materi-inti" class="bg-white text-teal-900 font-bold py-2 px-6 rounded-lg hover:bg-gray-100 transition">Mulai Membaca</a>
+                <a href="12.html" class="bg-teal-700 text-white font-bold py-2 px-5 rounded-lg hover:bg-teal-600 transition border border-teal-500">Pertemuan 12 →</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl" id="materi-inti">
+        
+        <!-- Pendahuluan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-teal-900 mb-4 border-b-2 border-teal-200 pb-2">Pendahuluan</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Setelah mempelajari pemeliharaan preventif pada pertemuan sebelumnya, siswa kini memasuki tahap yang lebih menantang: <strong>troubleshooting</strong> — seni mendiagnosis dan memperbaiki gangguan pada rangkaian kontrol motor listrik. Jika pemeliharaan preventif bersifat <em>proaktif</em> (mencegah sebelum rusak), maka troubleshooting bersifat <em>reaktif</em> (memperbaiki setelah terjadi gangguan). Namun, keduanya sama-sama membutuhkan pemahaman mendalam tentang prinsip kerja rangkaian.
+            </p>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Di industri, downtime akibat kegagalan motor dapat merugikan perusahaan hingga <strong>jutaan rupiah per jam</strong>. Seorang teknisi yang mampu melakukan troubleshooting dengan cepat dan akurat adalah aset berharga. Data dari <em>Plant Engineering Magazine</em> menunjukkan bahwa <strong>70% gangguan listrik di industri dapat diselesaikan dalam waktu kurang dari 2 jam</strong> jika teknisi menggunakan pendekatan troubleshooting yang sistematis — bukan asal coba-coba.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Pada pertemuan ini, siswa akan mempelajari teknik troubleshooting yang terstruktur: mulai dari prinsip dasar diagnosa, metode-metode troubleshooting (half-split, signal tracing, input-output), penggunaan alat ukur (multimeter, clamp meter, megger), flowchart troubleshooting untuk berbagai jenis rangkaian (DOL, Star-Delta, Forward-Reverse, motor 1 fasa), hingga teknik isolasi gangguan dan verifikasi perbaikan. Pemahaman ini akan membekali siswa untuk menjadi teknisi yang tidak hanya mampu merakit, tetapi juga <em>mendiagnosis dan memperbaiki</em> dengan percaya diri.
+            </p>
+        </section>
+
+        <!-- Konsep Kunci -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-teal-900 mb-4"><i class="fas fa-key text-yellow-500 mr-2"></i>Konsep Kunci</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Troubleshooting</h4>
+                    <p class="text-sm text-gray-700 mt-1">Proses sistematis untuk mengidentifikasi, mengisolasi, dan memperbaiki gangguan pada sistem. Bukan asal coba-coba, melainkan pendekatan logis berbasis pemahaman prinsip kerja.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Fault Finding</h4>
+                    <p class="text-sm text-gray-700 mt-1">Proses pencarian titik gangguan (<em>fault point</em>) dalam rangkaian. Dapat dilakukan dengan pengukuran elektris, pemeriksaan visual, atau kombinasi keduanya.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Half-Split Method</h4>
+                    <p class="text-sm text-gray-700 mt-1">Metode troubleshooting dengan membagi rangkaian menjadi dua bagian, memeriksa titik tengah, dan mempersempit area gangguan hingga ditemukan titik fault secara efisien.</p>
+                </div>
+                <div class="highlight-box p-4 rounded-r-lg">
+                    <h4 class="font-bold text-blue-800">Root Cause Analysis</h4>
+                    <p class="text-sm text-gray-700 mt-1">Analisis akar penyebab gangguan — bukan hanya memperbaiki gejala, tetapi mencari penyebab fundamental agar gangguan tidak terulang. Menggunakan metode "5 Why" atau Fishbone Diagram.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Landasan Teoretis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-teal-900 mb-6 border-b-2 border-teal-200 pb-2">11.1 Landasan Teoretis Troubleshooting</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">11.1.1 Prinsip Dasar Troubleshooting</h3>
+                    <p class="text-gray-700 mt-2">
+                        Troubleshooting yang efektif didasarkan pada 4 prinsip utama:
+                    </p>
+                    <div class="bg-teal-50 p-4 rounded-lg mt-3 border-l-4 border-teal-400">
+                        <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                            <li><strong>Pahami sistem secara menyeluruh:</strong> Tidak mungkin memperbaiki apa yang tidak dipahami. Pelajari diagram rangkaian, prinsip kerja, dan logika kontrol sebelum melakukan troubleshooting.</li>
+                            <li><strong>Gunakan pendekatan sistematis:</strong> Ikuti metode terstruktur (half-split, signal tracing) — jangan asal coba-coba yang dapat memperparah gangguan.</li>
+                            <li><strong>Observasi dan kumpulkan informasi:</strong> Tanyakan kepada operator tentang gejala, waktu kejadian, dan kondisi sebelum gangguan. Informasi ini sangat berharga.</li>
+                            <li><strong>Verifikasi perbaikan:</strong> Setelah perbaikan, uji sistem secara menyeluruh untuk memastikan gangguan benar-benar teratasi dan tidak ada masalah turunan.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">11.1.2 Metode-Metode Troubleshooting</h3>
+                    <div class="space-y-4 mt-3">
+                        <div class="bg-white p-4 rounded-lg border border-gray-200">
+                            <h4 class="font-bold text-teal-800 mb-2">a. Metode Half-Split (Pembagian Dua)</h4>
+                            <p class="text-sm text-gray-700">
+                                Metode paling efisien untuk rangkaian panjang. Prinsipnya: <strong>ukur di titik tengah rangkaian</strong>. Jika titik tengah normal, gangguan ada di setengah berikutnya; jika abnormal, gangguan ada di setengah sebelumnya. Ulangi proses ini hingga titik fault ditemukan.
+                            </p>
+                            <p class="text-sm text-gray-700 mt-2"><strong>Contoh:</strong> Rangkaian kontrol dengan 8 komponen. Ukur di komponen ke-4. Jika normal, periksa komponen 5-8; jika tidak, periksa 1-3. Dalam maksimal 3 langkah, fault ditemukan (log₂8 = 3).
+                            </p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-gray-200">
+                            <h4 class="font-bold text-teal-800 mb-2">b. Metode Signal Tracing (Penelusuran Sinyal)</h4>
+                            <p class="text-sm text-gray-700">
+                                Menelusuri jalur sinyal dari input ke output (atau sebaliknya) untuk menemukan titik di mana sinyal hilang atau berubah. Cocok untuk rangkaian logika kompleks seperti PLC atau rangkaian kontrol dengan banyak relay.
+                            </p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-gray-200">
+                            <h4 class="font-bold text-teal-800 mb-2">c. Metode Input-Output</h4>
+                            <p class="text-sm text-gray-700">
+                                Memeriksa kondisi input dan output setiap komponen. Jika input normal tetapi output abnormal, komponen tersebut rusak. Cepat dan langsung ke sasaran.
+                            </p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-gray-200">
+                            <h4 class="font-bold text-teal-800 mb-2">d. Metode Substitusi (Penggantian)</h4>
+                            <p class="text-sm text-gray-700">
+                                Mengganti komponen yang dicurigai rusak dengan komponen baru yang diketahui baik. Jika sistem kembali normal, komponen lama memang rusak. <strong>Peringatan:</strong> Gunakan hanya setelah analisis awal — jangan asal ganti komponen!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800">11.1.3 Alat Ukur untuk Troubleshooting</h3>
+                    <div class="overflow-x-auto mt-3">
+                        <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm text-sm">
+                            <thead class="bg-teal-100 text-teal-900">
+                                <tr>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Alat Ukur</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Fungsi</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Aplikasi Troubleshooting</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-semibold">Multimeter Digital</td>
+                                    <td class="py-2 px-3">Ukur tegangan, arus, tahanan, kontinuitas</td>
+                                    <td class="py-2 px-3">Pemeriksaan rangkaian kontrol, cek coil kontaktor, cek kontak bantu</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-semibold">Clamp Meter (True RMS)</td>
+                                    <td class="py-2 px-3">Ukur arus tanpa memutus rangkaian</td>
+                                    <td class="py-2 px-3">Cek arus operasi motor, deteksi unbalance, cek overload</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-semibold">Megger (Insulation Tester)</td>
+                                    <td class="py-2 px-3">Ukur tahanan isolasi dengan tegangan DC tinggi</td>
+                                    <td class="py-2 px-3">Deteksi degradasi isolasi lilitan motor, kabel, komponen</td>
+                                </tr>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-semibold">Thermal Camera</td>
+                                    <td class="py-2 px-3">Visualisasi distribusi suhu</td>
+                                    <td class="py-2 px-3">Deteksi hotspot terminal, bearing panas, overload</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="py-2 px-3 font-semibold">Vibration Meter</td>
+                                    <td class="py-2 px-3">Ukur getaran mekanis</td>
+                                    <td class="py-2 px-3">Deteksi bearing aus, misalignment, unbalance rotor</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flowchart Troubleshooting Umum -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-teal-900 mb-6 border-b-2 border-teal-200 pb-2">11.2 Flowchart Troubleshooting Umum</h2>
+            
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Berikut adalah flowchart umum troubleshooting rangkaian kontrol motor listrik yang dapat diterapkan pada berbagai jenis rangkaian:
+            </p>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                <div class="flowchart-step">
+                    <p class="font-bold text-teal-900">1. Terima Laporan Gangguan</p>
+                    <p class="text-sm text-gray-700">Kumpulkan informasi dari operator: gejala, waktu kejadian, suara/bau abnormal, apa yang dilakukan sebelum gangguan.</p>
+                </div>
+                <div class="flowchart-step">
+                    <p class="font-bold text-teal-900">2. Terapkan LOTO & Pastikan Keselamatan</p>
+                    <p class="text-sm text-gray-700">Matikan sumber daya, pasang gembok & tag, verifikasi zero energy. KESELAMATAN PERTAMA!</p>
+                </div>
+                <div class="flowchart-step">
+                    <p class="font-bold text-teal-900">3. Pemeriksaan Visual</p>
+                    <p class="text-sm text-gray-700">Cek: kabel putus/terbakar, terminal longgar, komponen hangus, fuse putus, TOR trip, bau hangus.</p>
+                </div>
+                <div class="flowchart-step">
+                    <p class="font-bold text-teal-900">4. Identifikasi Area Gangguan</p>
+                    <p class="text-sm text-gray-700">Tentukan apakah gangguan di: (a) Rangkaian Daya, (b) Rangkaian Kontrol, atau (c) Beban (Motor).</p>
+                </div>
+                <div class="flowchart-step">
+                    <p class="font-bold text-teal-900">5. Gunakan Metode Troubleshooting</p>
+                    <p class="text-sm text-gray-700">Terapkan half-split, signal tracing, atau input-output untuk mempersempit lokasi fault.</p>
+                </div>
+                <div class="flowchart-step">
+                    <p class="font-bold text-teal-900">6. Ukur dengan Alat yang Tepat</p>
+                    <p class="text-sm text-gray-700">Gunakan multimeter untuk tegangan/tahanan, clamp meter untuk arus, megger untuk isolasi.</p>
+                </div>
+                <div class="flowchart-step">
+                    <p class="font-bold text-teal-900">7. Isolasi & Perbaiki Komponen Rusak</p>
+                    <p class="text-sm text-gray-700">Ganti/perbaiki komponen yang teridentifikasi rusak. Pastikan spesifikasi sama dengan aslinya.</p>
+                </div>
+                <div class="flowchart-step">
+                    <p class="font-bold text-teal-900">8. Verifikasi Perbaikan</p>
+                    <p class="text-sm text-gray-700">Uji rangkaian tanpa beban terlebih dahulu, lalu dengan beban penuh. Ukur parameter operasi.</p>
+                </div>
+                <div class="flowchart-step">
+                    <p class="font-bold text-teal-900">9. Root Cause Analysis & Dokumentasi</p>
+                    <p class="text-sm text-gray-700">Cari akar penyebab agar gangguan tidak terulang. Catat dalam log book: gejala, penyebab, tindakan perbaikan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Troubleshooting Rangkaian Spesifik -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-teal-900 mb-6 border-b-2 border-teal-200 pb-2">11.3 Troubleshooting Rangkaian Kontrol Spesifik</h2>
+            
+            <div class="space-y-8">
+                <!-- DOL -->
+                <div class="trouble-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-teal-800 mb-3"><i class="fas fa-search text-teal-600 mr-2"></i>11.3.1 Troubleshooting Rangkaian DOL</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm border border-gray-200">
+                            <thead class="bg-teal-50">
+                                <tr>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Gejala</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Kemungkinan Penyebab</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Tindakan Troubleshooting</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                <tr class="border-b">
+                                    <td class="py-2 px-3">Motor tidak start sama sekali, tidak ada suara</td>
+                                    <td class="py-2 px-3">• Fuse/control circuit breaker trip<br>• Tombol STOP macet (NC terbuka)<br>• TOR trip dan belum di-reset<br>• Kabel kontrol putus</td>
+                                    <td class="py-2 px-3">1. Cek tegangan di titik awal rangkaian kontrol<br>2. Gunakan half-split untuk menemukan titik putus<br>3. Reset TOR jika trip<br>4. Ganti fuse dengan rating yang sama</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-2 px-3">Motor mendengung tapi tidak berputar</td>
+                                    <td class="py-2 px-3">• Hilang satu fasa (phasing loss)<br>• Rotor terkunci mekanis<br>• Beban terlalu berat<br>• Kontak kontaktor aus (satu pole tidak menutup)</td>
+                                    <td class="py-2 px-3">1. Ukur tegangan 3 fasa — cek phasing<br>2. Putar rotor manual — harus lancar<br>3. Periksa kontak utama kontaktor<br>4. Cek arus dengan clamp meter</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-2 px-3">Kontaktor tidak menutup saat Start ditekan</td>
+                                    <td class="py-2 px-3">• Coil kontaktor rusak (open)<br>• Tegangan coil tidak sesuai<br>• Rangkaian holding circuit terbuka<br>• Tombol Start rusak (NO tidak menutup)</td>
+                                    <td class="py-2 px-3">1. Ukur tahanan coil kontaktor<br>2. Ukur tegangan di terminal coil saat Start ditekan<br>3. Cek kontak bantu NO (holding)<br>4. Ganti tombol Start jika perlu</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-3">Kontaktor menutup tapi langsung terbuka (tidak self-holding)</td>
+                                    <td class="py-2 px-3">• Kontak bantu NO (holding) rusak/kotor<br>• Kabel holding putus<br>• Koneksi ke holding circuit longgar</td>
+                                    <td class="py-2 px-3">1. Periksa kontak bantu NO dengan multimeter<br>2. Bersihkan atau ganti kontak bantu<br>3. Kencangkan semua terminal holding</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Star-Delta -->
+                <div class="trouble-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-teal-800 mb-3"><i class="fas fa-search text-teal-600 mr-2"></i>11.3.2 Troubleshooting Rangkaian Star-Delta</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm border border-gray-200">
+                            <thead class="bg-teal-50">
+                                <tr>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Gejala</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Kemungkinan Penyebab</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Tindakan Troubleshooting</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                <tr class="border-b">
+                                    <td class="py-2 px-3">Motor start di Star, tapi tidak pindah ke Delta</td>
+                                    <td class="py-2 px-3">• Timer rusak atau setting salah<br>• Kontak timer NO/NC tidak bekerja<br>• Coil kontaktor Delta (KM3) rusak<br>• Interlock NC dari KM2 macet</td>
+                                    <td class="py-2 px-3">1. Cek apakah timer menghitung waktu<br>2. Ukur tegangan di coil KM3 saat timer habis<br>3. Cek kontak bantu timer<br>4. Periksa interlock NC KM2</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-2 px-3">MCB trip saat transisi Star ke Delta</td>
+                                    <td class="py-2 px-3">• Interlock KM2-KM3 gagal (keduanya aktif bersamaan)<br>• Wiring Delta salah polaritas<br>• Dead time terlalu singkat</td>
+                                    <td class="py-2 px-3">1. Cek interlock listrik & mekanis<br>2. Periksa wiring Delta (U1-W2, V1-U2, W1-V2)<br>3. Tambahkan dead time 50-100 ms</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-3">Motor berputar terbalik setelah transisi ke Delta</td>
+                                    <td class="py-2 px-3">• Urutan fasa pada wiring Delta salah<br>• Salah satu kabel Delta terpasang terbalik</td>
+                                    <td class="py-2 px-3">1. Periksa urutan fasa wiring Delta<br>2. Tukar dua kabel fasa pada terminal motor<br>3. Verifikasi dengan diagram</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Forward-Reverse -->
+                <div class="trouble-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-teal-800 mb-3"><i class="fas fa-search text-teal-600 mr-2"></i>11.3.3 Troubleshooting Rangkaian Forward-Reverse</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm border border-gray-200">
+                            <thead class="bg-teal-50">
+                                <tr>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Gejala</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Kemungkinan Penyebab</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Tindakan Troubleshooting</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                <tr class="border-b">
+                                    <td class="py-2 px-3">Motor hanya berputar satu arah (misal Forward saja)</td>
+                                    <td class="py-2 px-3">• Tombol Reverse rusak<br>• Coil kontaktor Reverse rusak<br>• Interlock NC dari Forward macet (terbuka)<br>• Kabel kontrol Reverse putus</td>
+                                    <td class="py-2 px-3">1. Cek tombol Reverse dengan multimeter<br>2. Ukur tegangan di coil kontaktor Reverse<br>3. Cek interlock NC dari Forward<br>4. Telusuri kabel kontrol dengan half-split</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-2 px-3">MCB trip saat menekan tombol arah kedua</td>
+                                    <td class="py-2 px-3">• Interlock listrik gagal (kedua kontaktor aktif)<br>• Interlock mekanis rusak<br>• Kontak utama kontaktor macet (welded)</td>
+                                    <td class="py-2 px-3">1. Periksa interlock NC silang<br>2. Cek interlock mekanis<br>3. Periksa kontak utama — ganti kontaktor jika welded</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-3">Arah putaran terbalik dari yang seharusnya</td>
+                                    <td class="py-2 px-3">• Wiring fasa pada kontaktor terbalik<br>• Urutan L1-L2-L3 salah</td>
+                                    <td class="py-2 px-3">1. Periksa wiring utama kontaktor<br>2. Tukar dua fasa pada sisi output kontaktor<br>3. Verifikasi dengan diagram</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Motor 1 Fasa -->
+                <div class="trouble-card bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-teal-800 mb-3"><i class="fas fa-search text-teal-600 mr-2"></i>11.3.4 Troubleshooting Motor 1 Fasa</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm border border-gray-200">
+                            <thead class="bg-teal-50">
+                                <tr>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Gejala</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Kemungkinan Penyebab</th>
+                                    <th class="py-2 px-3 text-left font-bold border-b">Tindakan Troubleshooting</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700">
+                                <tr class="border-b">
+                                    <td class="py-2 px-3">Motor hanya mendengung, tidak start</td>
+                                    <td class="py-2 px-3">• Kapasitor start rusak<br>• Centrifugal switch macet (tidak menutup)<br>• Lilitan bantu open<br>• Beban terlalu berat</td>
+                                    <td class="py-2 px-3">1. Ukur kapasitansi kapasitor start<br>2. Cek kontinuitas centrifugal switch<br>3. Ukur tahanan lilitan bantu<br>4. Lepaskan beban, coba start ulang</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-2 px-3">Motor start tapi cepat panas</td>
+                                    <td class="py-2 px-3">• Centrifugal switch tidak membuka (lilitan bantu tetap aktif)<br>• Kapasitor run rusak<br>• Bearing aus/seret<br>• Overload</td>
+                                    <td class="py-2 px-3">1. Cek centrifugal switch — harus membuka saat 75% speed<br>2. Ukur kapasitor run<br>3. Putar rotor manual — harus lancar<br>4. Ukur arus operasi</td>
+                                </tr>
+                                <tr class="border-b">
+                                    <td class="py-2 px-3">Motor berputar lambat</td>
+                                    <td class="py-2 px-3">• Tegangan sumber rendah<br>• Kapasitor run lemah<br>• Bearing aus<br>• Short turn pada lilitan</td>
+                                    <td class="py-2 px-3">1. Ukur tegangan sumber<br>2. Ukur kapasitansi kapasitor run<br>3. Periksa bearing<br>4. Ukur tahanan lilitan — bandingkan dengan standar</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-3">Motor berputar tapi arah salah</td>
+                                    <td class="py-2 px-3">• Koneksi lilitan bantu terbalik<br>• Koneksi kapasitor terbalik (pada PSC)</td>
+                                    <td class="py-2 px-3">1. Tukar ujung lilitan bantu<br>2. Periksa diagram wiring motor<br>3. Verifikasi koneksi kapasitor</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Studi Kasus -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-teal-900 mb-4"><i class="fas fa-book-open text-yellow-500 mr-2"></i>Studi Kasus 1: Troubleshooting Motor Konveyor yang Trip Berkala</h3>
+            <div class="warning-box p-6 rounded-r-lg">
+                <p class="text-gray-800 mb-3">
+                    <strong>Situasi:</strong> Motor konveyor 7.5 kW di pabrik rotik sering trip TOR setiap 2-3 jam operasi. Operator sudah mereset TOR beberapa kali, tetapi gangguan kembali terjadi. Produksi terganggu dan target harian tidak tercapai.
+                </p>
+                <p class="font-semibold text-teal-700">
+                    <i class="fas fa-search mr-1"></i> Proses Troubleshooting Sistematis:
+                </p>
+                <ol class="list-decimal list-inside text-gray-800 ml-4 space-y-2 mt-2">
+                    <li><strong>Langkah 1 — Observasi:</strong> Teknisi bertanya ke operator. Diketahui: TOR trip setelah motor beroperasi 2-3 jam, motor terasa panas, tidak ada suara abnormal.</li>
+                    <li><strong>Langkah 2 — Pemeriksaan Visual:</strong> Tidak ada kabel terbakar, terminal kencang, kipas pendingin utuh. Setting TOR = 15A (sesuai nameplate).</li>
+                    <li><strong>Langkah 3 — Pengukuran:</strong>
+                        <ul class="list-disc list-inside ml-4 mt-1">
+                            <li>Tegangan suplai: 378V (normal, dalam range ±10%)</li>
+                            <li>Arus operasi: 16.5A (di atas In = 15A) — <strong>OVERLOAD!</strong></li>
+                            <li>Unbalance arus: 8% (masih dalam batas)</li>
+                            <li>Tahanan isolasi: 250 MΩ (baik)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Langkah 4 — Analisis Akar Penyebab:</strong> Arus 16.5A > In 15A. Mengapa? Teknisi memeriksa beban mekanis: ditemukan <strong>bearing konveyor aus</strong> menyebabkan gesekan tinggi → motor bekerja lebih berat → arus naik → TOR trip.</li>
+                    <li><strong>Langkah 5 — Perbaikan:</strong> Ganti bearing konveyor (biaya ±Rp 300 ribu). Setelah diganti, arus turun menjadi 13.5A (di bawah In).</li>
+                    <li><strong>Langkah 6 — Verifikasi:</strong> Motor diuji operasi 8 jam non-stop — tidak ada trip. Suhu motor normal (65°C).</li>
+                </ol>
+                <p class="font-semibold text-green-700 mt-3">
+                    <i class="fas fa-check-circle mr-1"></i> Pembelajaran:
+                </p>
+                <p class="text-gray-800 mt-1">
+                    Jika teknisi hanya mereset TOR tanpa mencari akar penyebab, gangguan akan terus berulang. Troubleshooting sistematis dengan pengukuran arus mengungkap bahwa masalah sebenarnya ada di <strong>beban mekanis</strong>, bukan di rangkaian listrik. Root cause analysis menyelamatkan produksi dan mencegah kerusakan motor lebih lanjut.
+                </p>
+            </div>
+        </section>
+
+        <!-- Tips Praktis -->
+        <section class="mb-12">
+            <div class="tip-box p-6 rounded-r-lg">
+                <h3 class="font-bold text-green-800 mb-2"><i class="fas fa-tools mr-2"></i>10 Aturan Emas Troubleshooting untuk Siswa SMK</h3>
+                <ol class="list-decimal list-inside text-gray-800 space-y-2 text-sm">
+                    <li><strong>Pahami dulu, perbaiki kemudian:</strong> Pelajari diagram rangkaian sebelum menyentuh komponen.</li>
+                    <li><strong>Kumpulkan informasi:</strong> Tanya operator — mereka tahu gejala lebih baik dari siapa pun.</li>
+                    <li><strong>Mulai dari yang sederhana:</strong> Cek fuse, MCB, TOR reset dulu sebelum membongkar komponen.</li>
+                    <li><strong>Gunakan pendekatan sistematis:</strong> Half-split, signal tracing — jangan asal coba!</li>
+                    <li><strong>Satu gangguan, satu waktu:</strong> Selesaikan satu masalah dulu sebelum lanjut ke masalah lain.</li>
+                    <li><strong>Catat setiap langkah:</strong> Dokumentasi membantu troubleshooting di masa depan.</li>
+                    <li><strong>Jangan terburu-buru:</strong> Kecelakaan dan kesalahan terjadi karena tergesa-gesa.</li>
+                    <li><strong>Verifikasi perbaikan:</strong> Uji sistem secara menyeluruh sebelum diserahkan ke operator.</li>
+                    <li><strong>Cari akar penyebab:</strong> Jangan hanya memperbaiki gejala — cari mengapa gangguan terjadi.</li>
+                    <li><strong>LOTO selalu:</strong> Keselamatan adalah harga mati dalam troubleshooting.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Root Cause Analysis -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-teal-900 mb-6 border-b-2 border-teal-200 pb-2">11.4 Root Cause Analysis (Analisis Akar Penyebab)</h2>
+            
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Setelah gangguan diperbaiki, langkah kritis berikutnya adalah mencari <strong>akar penyebab</strong> (root cause) agar gangguan tidak terulang. Dua metode yang umum digunakan:
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-teal-900 mb-2"><i class="fas fa-question-circle text-teal-600 mr-2"></i>Metode "5 Why"</h4>
+                    <p class="text-sm text-gray-700 mb-3">Tanyakan "Mengapa?" sebanyak 5 kali berturut-turut untuk mencapai akar masalah.</p>
+                    <div class="bg-teal-50 p-3 rounded text-xs text-gray-700 space-y-1">
+                        <p><strong>Masalah:</strong> TOR trip berulang.</p>
+                        <p>1. Mengapa? → Arus motor melebihi In.</p>
+                        <p>2. Mengapa? → Beban mekanis terlalu berat.</p>
+                        <p>3. Mengapa? → Bearing konveyor aus.</p>
+                        <p>4. Mengapa? → Tidak ada pelumasan berkala.</p>
+                        <p>5. Mengapa? → <strong>Tidak ada jadwal pemeliharaan preventif.</strong> ← ROOT CAUSE</p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-200">
+                    <h4 class="font-bold text-teal-900 mb-2"><i class="fas fa-fish text-teal-600 mr-2"></i>Fishbone Diagram (Ishikawa)</h4>
+                    <p class="text-sm text-gray-700 mb-3">Analisis penyebab dari 6 kategori: Man, Machine, Material, Method, Measurement, Environment.</p>
+                    <div class="bg-teal-50 p-3 rounded text-xs text-gray-700">
+                        <p class="font-bold mb-1">Contoh untuk motor overheating:</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li><strong>Man:</strong> Operator tidak terlatih</li>
+                            <li><strong>Machine:</strong> Bearing aus, kipas rusak</li>
+                            <li><strong>Material:</strong> Isolasi lilitan degraded</li>
+                            <li><strong>Method:</strong> Tidak ada PM schedule</li>
+                            <li><strong>Measurement:</strong> Alat ukur tidak terkalibrasi</li>
+                            <li><strong>Environment:</strong> Suhu ruang tinggi, debu banyak</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Refleksi -->
+        <section class="mb-12">
+            <h3 class="text-xl font-bold text-teal-900 mb-4"><i class="fas fa-lightbulb text-yellow-500 mr-2"></i>Refleksi untuk Siswa SMK</h3>
+            <p class="text-gray-700 leading-relaxed">
+                Troubleshooting adalah perpaduan antara <strong>ilmu</strong> (pemahaman prinsip kerja rangkaian) dan <strong>seni</strong> (intuisi berdasarkan pengalaman). Seorang teknisi ahli mampu mendiagnosis gangguan hanya dari suara motor, bau yang tercium, atau getaran yang dirasakan. Namun, intuisi ini dibangun di atas fondasi pengetahuan yang kuat dan jam terbang yang tinggi. Sebagai siswa SMK, mulailah dengan mengikuti prosedur sistematis yang telah dipelajari — catat setiap kasus troubleshooting yang Anda temui di bengkel, pelajari polanya, dan bangun "perpustakaan kasus" pribadi Anda. Dengan waktu, Anda akan berkembang dari teknisi yang mengikuti prosedur menjadi teknisi yang mampu mendiagnosis dengan insting yang terasah.
+            </p>
+        </section>
+
+        <!-- Kesimpulan -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold text-teal-900 mb-4 border-b-2 border-teal-200 pb-2">Kesimpulan</h2>
+            <p class="text-gray-700 leading-relaxed">
+                Troubleshooting rangkaian kontrol motor listrik adalah kompetensi kritis yang memadukan pemahaman teoretis, keterampilan pengukuran, dan pendekatan sistematis. Metode-metode seperti half-split, signal tracing, input-output, dan substitusi memberikan kerangka kerja yang efisien untuk menemukan titik gangguan. Flowchart troubleshooting 9 langkah memberikan panduan terstruktur dari penerimaan laporan hingga dokumentasi perbaikan. Setiap jenis rangkaian (DOL, Star-Delta, Forward-Reverse, motor 1 fasa) memiliki pola gangguan khas yang dapat didiagnosis melalui tabel gejala-penyebab-tindakan. Yang terpenting, setelah perbaikan dilakukan, root cause analysis dengan metode "5 Why" atau Fishbone Diagram akan mencegah gangguan terulang. Seorang teknisi troubleshooter yang handal adalah aset berharga di industri — ia tidak hanya memperbaiki, tetapi juga <em>mengembalikan keandalan sistem</em> secara menyeluruh.
+            </p>
+        </section>
+
+        <!-- Daftar Pustaka -->
+        <section class="mb-16">
+            <h3 class="text-xl font-bold text-teal-900 mb-4"><i class="fas fa-book text-yellow-500 mr-2"></i>Daftar Pustaka</h3>
+            <ul class="text-sm text-gray-700 space-y-2 list-decimal list-inside">
+                <li>PUIL 2011. <em>Persyaratan Umum Instalasi Listrik 2011</em>. Jakarta: Badan Standardisasi Nasional.</li>
+                <li>Zuraida, dkk. (2021). <em>Instalasi Motor Listrik Jilid 1 untuk SMK</em>. Jakarta: Direktorat Pembinaan SMK.</li>
+                <li>Theraja, B. L., & Theraja, A. (2005). <em>A Textbook of Electrical Technology Vol. II</em>. New Delhi: S. Chand.</li>
+                <li>Mobley, R. K. (2002). <em>An Introduction to Predictive Maintenance</em> (2nd ed.). Boston: Butterworth-Heinemann.</li>
+                <li>EPRI. (2019). <em>Electric Motor Systems: Maintenance and Reliability Guide</em>. Palo Alto: Electric Power Research Institute.</li>
+                <li>Manual Book Schneider Electric TeSys Series, ABB AF Series — untuk spesifikasi kontaktor dan troubleshooting guide.</li>
+                <li>NFPA 70E. (2021). <em>Standard for Electrical Safety in the Workplace</em>. Quincy: NFPA.</li>
+            </ul>
+        </section>
+
+        <!-- Navigasi Bawah -->
+        <div class="flex justify-between items-center border-t pt-6 mb-16 flex-wrap gap-3">
+            <a href="10.html" class="text-teal-600 hover:text-teal-800 font-semibold"><i class="fas fa-arrow-left mr-1"></i> Pertemuan 10</a>
+            <a href="#top" class="text-gray-500 hover:text-gray-700 font-semibold"><i class="fas fa-arrow-up mr-1"></i> Ke Atas</a>
+            <a href="12.html" class="text-teal-600 hover:text-teal-800 font-semibold">Pertemuan 12: Pengukuran Kinerja Motor <i class="fas fa-arrow-right ml-1"></i></a>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- BAGIAN UJI FORMATIF -->
+        <!-- ========================================================= -->
+        <section id="uji-formatif" class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-teal-900">📋 Uji Formatif 11: Teknik Troubleshooting Rangkaian Kontrol</h2>
+                <p class="text-gray-600 mt-2">Materi: Metode troubleshooting, flowchart, diagnosa DOL/Star-Delta/Fwd-Rev/motor 1 fasa, root cause analysis.</p>
+                <p class="text-red-600 text-sm font-semibold mt-2">⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu!</p>
+            </div>
+
+            <form id="quizForm" class="space-y-8">
+                <!-- Data Siswa -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                    <h3 class="text-lg font-bold text-teal-900 mb-4 border-b pb-2">📋 Data Siswa</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Nama Lengkap</label>
+                            <input type="text" name="nama" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-teal-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* NIS (Nomor Induk Siswa)</label>
+                            <input type="text" name="nis" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-teal-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Tanggal Ujian</label>
+                            <input type="date" name="tanggal" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-teal-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Kelas</label>
+                            <input type="text" name="kelas" placeholder="Contoh: XI TITL 1" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-teal-500 outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">* Semester</label>
+                            <select name="semester" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-teal-500 outline-none">
+                                <option value="">Pilih Semester</option>
+                                <option value="1">Semester 1</option>
+                                <option value="2">Semester 2</option>
+                                <option value="3">Semester 3</option>
+                                <option value="4">Semester 4</option>
+                                <option value="5">Semester 5</option>
+                                <option value="6">Semester 6</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian A: Pilihan Ganda -->
+                <div>
+                    <h3 class="text-lg font-bold text-teal-900 mb-4 border-b pb-2">📋 Bagian A – Pilihan Ganda (Skor 10/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon lengkapi semua 10 soal pilihan ganda!</p>
+                    
+                    <div class="space-y-6 text-gray-800">
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">1. Metode troubleshooting yang membagi rangkaian menjadi dua bagian untuk mempersempit area gangguan secara efisien disebut...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q1" value="a" class="mr-2"> a. Metode substitusi</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="b" class="mr-2"> b. Metode half-split</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="c" class="mr-2"> c. Metode input-output</label>
+                                <label class="flex items-center"><input type="radio" name="q1" value="d" class="mr-2"> d. Metode signal tracing</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">2. Langkah PERTAMA yang harus dilakukan sebelum melakukan troubleshooting pada panel motor adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q2" value="a" class="mr-2"> a. Langsung membongkar komponen</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="b" class="mr-2"> b. Menerapkan LOTO dan memastikan keselamatan</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="c" class="mr-2"> c. Mengganti semua komponen</label>
+                                <label class="flex items-center"><input type="radio" name="q2" value="d" class="mr-2"> d. Mengabaikan prosedur keselamatan</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">3. Pada rangkaian DOL, jika motor tidak start sama sekali dan tidak ada suara, penyebab yang PALING MUNGKIN adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q3" value="a" class="mr-2"> a. Beban terlalu berat</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="b" class="mr-2"> b. Rangkaian kontrol terbuka (fuse trip, TOR trip, kabel putus)</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="c" class="mr-2"> c. Kapasitor start rusak</label>
+                                <label class="flex items-center"><input type="radio" name="q3" value="d" class="mr-2"> d. Timer rusak</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">4. Jika motor 3 fasa mendengung tetapi tidak berputar, penyebab yang harus diperiksa PERTAMA kali adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q4" value="a" class="mr-2"> a. Timer pada rangkaian</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="b" class="mr-2"> b. Tegangan 3 fasa (cek phasing loss) dan rotor terkunci mekanis</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="c" class="mr-2"> c. Kapasitor run</label>
+                                <label class="flex items-center"><input type="radio" name="q4" value="d" class="mr-2"> d. Push button</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">5. Pada rangkaian Star-Delta, jika motor start di Star tetapi tidak pindah ke Delta, penyebab yang PALING MUNGKIN adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q5" value="a" class="mr-2"> a. Tombol Start rusak</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="b" class="mr-2"> b. Timer rusak atau setting salah, kontak timer tidak bekerja</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="c" class="mr-2"> c. TOR trip</label>
+                                <label class="flex items-center"><input type="radio" name="q5" value="d" class="mr-2"> d. MCB incoming trip</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">6. Jika MCB trip saat transisi Star ke Delta pada rangkaian Star-Delta, kemungkinan penyebabnya adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q6" value="a" class="mr-2"> a. Timer diset terlalu lama</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="b" class="mr-2"> b. Interlock KM2-KM3 gagal sehingga keduanya aktif bersamaan</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="c" class="mr-2"> c. Tombol Stop rusak</label>
+                                <label class="flex items-center"><input type="radio" name="q6" value="d" class="mr-2"> d. Kapasitor start rusak</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">7. Alat ukur yang PALING TEPAT digunakan untuk mendeteksi degradasi isolasi lilitan motor adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q7" value="a" class="mr-2"> a. Multimeter analog</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="b" class="mr-2"> b. Clamp meter</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="c" class="mr-2"> c. Megger (Insulation Tester)</label>
+                                <label class="flex items-center"><input type="radio" name="q7" value="d" class="mr-2"> d. Oscilloscope</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">8. Pada motor 1 fasa, jika motor hanya mendengung tetapi tidak start, komponen yang PERTAMA kali harus diperiksa adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q8" value="a" class="mr-2"> a. Bearing</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="b" class="mr-2"> b. Kapasitor start dan centrifugal switch</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="c" class="mr-2"> c. Kipas pendingin</label>
+                                <label class="flex items-center"><input type="radio" name="q8" value="d" class="mr-2"> d. Terminal box</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">9. Metode "5 Why" dalam root cause analysis bertujuan untuk...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q9" value="a" class="mr-2"> a. Menghitung jumlah komponen yang rusak</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="b" class="mr-2"> b. Mencari akar penyebab gangguan agar tidak terulang</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="c" class="mr-2"> c. Mengukur tahanan isolasi</label>
+                                <label class="flex items-center"><input type="radio" name="q9" value="d" class="mr-2"> d. Mengganti semua komponen sekaligus</label>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gray-50 rounded-lg">
+                            <p class="font-semibold mb-2">10. Setelah perbaikan gangguan dilakukan, langkah WAJIB berikutnya adalah...</p>
+                            <div class="space-y-1 ml-4">
+                                <label class="flex items-center"><input type="radio" name="q10" value="a" class="mr-2"> a. Langsung meninggalkan panel</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="b" class="mr-2"> b. Verifikasi perbaikan dengan uji tanpa beban dan beban penuh, lalu dokumentasi</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="c" class="mr-2"> c. Menambah rating MCB</label>
+                                <label class="flex items-center"><input type="radio" name="q10" value="d" class="mr-2"> d. Mengganti motor dengan yang baru</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bagian B: Essay -->
+                <div>
+                    <h3 class="text-lg font-bold text-teal-900 mb-4 border-b pb-2">✍️ Bagian B – Essay (Skor 20/soal)</h3>
+                    <p class="text-red-600 text-sm font-semibold mb-4">⚠️ Mohon isi semua 5 soal essay dengan jawaban yang jelas!</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <p class="font-semibold mb-2">1. Jelaskan 4 metode troubleshooting (half-split, signal tracing, input-output, substitusi)! Berikan contoh konkret penerapan masing-masing metode pada troubleshooting rangkaian kontrol motor!</p>
+                            <textarea name="essay1" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-teal-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">2. Uraikan flowchart troubleshooting umum 9 langkah untuk rangkaian kontrol motor listrik! Mengapa setiap langkah tidak boleh dilewatkan? Jelaskan konsekuensi jika suatu langkah diabaikan!</p>
+                            <textarea name="essay2" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-teal-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">3. Sebuah motor 3 fasa 7.5 kW dengan rangkaian DOL tidak dapat start sama sekali. Rancanglah prosedur troubleshooting sistematis mulai dari pemeriksaan awal hingga identifikasi akar masalah! Sertakan alat ukur yang digunakan dan interpretasi hasil pengukuran!</p>
+                            <textarea name="essay3" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-teal-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">4. Berdasarkan studi kasus motor konveyor yang trip TOR berkala, analisislah proses troubleshooting sistematis yang dilakukan! Jelaskan bagaimana root cause analysis dengan metode "5 Why" digunakan untuk menemukan akar masalah! Mengapa hanya mereset TOR tanpa mencari akar penyebab adalah tindakan yang keliru?</p>
+                            <textarea name="essay4" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-teal-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                        <div>
+                            <p class="font-semibold mb-2">5. Bandingkan troubleshooting pada 3 jenis rangkaian: DOL, Star-Delta, dan Forward-Reverse! Buat tabel yang memuat: gejala khas, penyebab umum, dan tindakan troubleshooting untuk masing-masing rangkaian! Jelaskan mengapa pemahaman prinsip kerja rangkaian sangat penting dalam troubleshooting!</p>
+                            <textarea name="essay5" rows="4" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-teal-500 outline-none" placeholder="Ketik jawaban Anda di sini..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hasil & Tombol Aksi -->
+                <div class="bg-teal-50 p-6 rounded-lg border border-teal-200 text-center">
+                    <h3 class="text-lg font-bold text-teal-900 mb-4">📊 Hasil Uji Formatif</h3>
+                    <div id="hasilSkor" class="text-3xl font-extrabold text-teal-700 mb-2">0</div>
+                    <p id="detailSkor" class="text-sm text-gray-600 mb-6">Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru</p>
+                    
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <button type="button" onclick="hitungNilai()" class="bg-teal-900 hover:bg-teal-800 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-paper-plane mr-2"></i>KIRIM JAWABAN & LIHAT HASIL
+                        </button>
+                        <button type="button" onclick="window.print()" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-file-pdf mr-2"></i>UNDUH PDF LENGKAP
+                        </button>
+                        <button type="button" onclick="kirimEmail()" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-envelope mr-2"></i>KIRIM EMAIL GURU
+                        </button>
+                        <button type="button" onclick="resetForm()" class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded-lg transition shadow-md">
+                            <i class="fas fa-redo mr-2"></i>MULAI ULANG
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-blue-200 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p class="mb-2">&copy; 2026 UKI SAPUTRA - SMK N 1 Koto Balingka. Hak Cipta Dilindungi.</p>
+            <p class="text-sm mb-3 italic">"Troubleshoot like a detective — systematic, logical, thorough"</p>
+            <a href="respon-pembaca.html" target="_blank" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-blue-900 font-bold py-2 px-6 rounded-full transition duration-300 text-sm">
+                <i class="fas fa-paper-plane mr-1"></i> Kirim Respon tentang Materi Ini
+            </a>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk Fungsi Uji Formatif -->
+    <script>
+        // Kunci Jawaban Pilihan Ganda
+        const kunciJawaban = {
+            q1: 'b', // Half-split
+            q2: 'b', // LOTO & keselamatan
+            q3: 'b', // Rangkaian kontrol terbuka
+            q4: 'b', // Tegangan 3 fasa & rotor terkunci
+            q5: 'b', // Timer rusak/setting salah
+            q6: 'b', // Interlock KM2-KM3 gagal
+            q7: 'c', // Megger
+            q8: 'b', // Kapasitor start & centrifugal switch
+            q9: 'b', // Mencari akar penyebab
+            q10: 'b' // Verifikasi & dokumentasi
+        };
+
+        function hitungNilai() {
+            const form = document.getElementById('quizForm');
+            if (!form.checkValidity()) {
+                alert("⚠️ Mohon lengkapi semua data siswa, 10 soal Pilihan Ganda, dan 5 soal Essay terlebih dahulu!");
+                form.reportValidity();
+                return;
+            }
+
+            let skorPG = 0;
+            let benar = 0;
+
+            for (let i = 1; i <= 10; i++) {
+                const jawabanSiswa = document.querySelector(`input[name="q${i}"]:checked`);
+                if (jawabanSiswa && jawabanSiswa.value === kunciJawaban[`q${i}`]) {
+                    benar++;
+                    skorPG += 10;
+                }
+            }
+
+            const hasilDiv = document.getElementById('hasilSkor');
+            const detailDiv = document.getElementById('detailSkor');
+            
+            hasilDiv.innerText = skorPG;
+            detailDiv.innerHTML = `Bagian A (PG): <strong>${skorPG}/100</strong> (${benar} jawaban benar) <br> Bagian B (Essay): <strong>Menunggu Penilaian Guru</strong> (Jawaban telah tersimpan di sistem)`;
+            
+            document.getElementById('hasilSkor').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            let pesan = `✅ Jawaban berhasil dikirim!\nSkor Sementara Pilihan Ganda: ${skorPG}/100\n\nCatatan: Jawaban Essay akan dinilai oleh guru.`;
+            if (skorPG >= 80) pesan += `\n\n🔍 Excellent! Anda memiliki logika troubleshooting yang sangat baik!`;
+            else if (skorPG >= 60) pesan += `\n\n👍 Bagus! Terus asah kemampuan diagnosa Anda.`;
+            else pesan += `\n\n⚠️ Pelajari kembali flowchart troubleshooting dan metode diagnosa.`;
+            
+            alert(pesan);
+        }
+
+        function kirimEmail() {
+            const nama = document.querySelector('input[name="nama"]').value || "Siswa";
+            const nis = document.querySelector('input[name="nis"]').value || "-";
+            const kelas = document.querySelector('input[name="kelas"]').value || "-";
+            
+            const subject = `Hasil Uji Formatif 11 (Troubleshooting) - ${nama} (${nis})`;
+            const body = `Yth. Bapak UKI SAPUTRA,\n\nBerikut adalah hasil uji formatif saya:\nNama: ${nama}\nNIS: ${nis}\nKelas: ${kelas}\nMateri: Pertemuan 11 - Teknik Troubleshooting Rangkaian Kontrol\n\nSaya telah menyelesaikan Bagian A (Pilihan Ganda) dan Bagian B (Essay) pada Pertemuan 11.\n\nTerima kasih.`;
+            
+            window.location.href = `mailto:trauky@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function resetForm() {
+            if(confirm("⚠️ Apakah Anda yakin ingin menghapus semua jawaban dan mulai ulang?")) {
+                document.getElementById('quizForm').reset();
+                document.getElementById('hasilSkor').innerText = "0";
+                document.getElementById('detailSkor').innerText = "Bagian A (PG): 0/100 | Bagian B (Essay): Menunggu Penilaian Guru";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
